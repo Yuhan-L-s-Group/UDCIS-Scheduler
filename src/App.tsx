@@ -6,6 +6,7 @@ function App(): JSX.Element {
         <div className="App">
             <header className="App-header">Yuhan L‘s Group</header>
             Group Members: Yuhan Lin Priyanka Chaudhuri Zonglin Wu Ziyi Zhou
+            Henry Grant
         </div>
     );
 }
