@@ -5,7 +5,9 @@ function App(): JSX.Element {
     return (
         <div className="App">
             <header className="App-header">Yuhan L‘s Group</header>
-            <p>Group Members: Yuhan Lin</p>
+            <p>Group Members: Yuhan Lin
+                              Priyanka Chaudhuri
+            </p>
         </div>
     );
 }
