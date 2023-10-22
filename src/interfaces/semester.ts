@@ -1,6 +1,6 @@
 import { Course } from "./course";
 
-//the possible seasons for a semester
+//the possible types for a semester
 export type Season = "Fall" | "Winter" | "Spring" | "Summer";
 
 //interface for a single semester

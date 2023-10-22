@@ -7,6 +7,8 @@ export interface Course {
     description: string;
     //number of credits offered in the course
     credits: number;
-    //check the pre-requisites for the course requirements
+    //check the pre-requisites for the course
     preReq: string[];
+    //check the core-requisites for the course
+    coreReq: string[];
 }
