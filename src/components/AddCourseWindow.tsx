@@ -1,8 +1,17 @@
 import React, { useState } from "react";
 import { Course } from "../interfaces/course";
-import Courses from "../data/course.json";
-export function AddCourseWindow({ onClose }: { onClose: () => void }) {
-    const listCourses = Courses.map((Course) => ({ ...Course }));
+
+interface AddCourseWindow {
+    onClose: () => void;
+    listCourses: Course[];
+    setListCourses: (prop: Course[]) => void;
+}
+
+export function AddCourseWindow({
+    onClose,
+    listCourses,
+    setListCourses
+}: AddCourseWindow) {
     const [course, setCourse] = useState<Course>({
         code: "",
         name: "",
@@ -11,18 +20,50 @@ export function AddCourseWindow({ onClose }: { onClose: () => void }) {
         preReq: [],
         coreReq: []
     });
-
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target;
-        setCourse({
-            ...course,
-            [name]: value
-        });
+    const [code, setCode] = useState("");
+    const [name, setName] = useState("");
+    const [description, setDescription] = useState("");
+    const [credits, setCredits] = useState(0);
+    const handleCodeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setCode(e.target.value);
     };
 
+    const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setName(e.target.value);
+    };
+
+    const handleDescriptionChange = (
+        e: React.ChangeEvent<HTMLInputElement>
+    ) => {
+        setDescription(e.target.value);
+    };
+
+    const handleCreditsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setCredits(Number(e.target.value));
+    };
+
+    // const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    //     const { name, value } = e.target;
+    //     setCourse({
+    //         ...course,
+    //         [na
+    //     });
+    // };
+
     const handleConfirm = () => {
-        console.log(course);
-        console.log(listCourses.map((course) => ({ ...course })));
+        const courseObject = {
+            code: code,
+            name: name,
+            description: description,
+            credits: credits,
+            preReq: [],
+            coreReq: []
+        };
+        const updated = [...listCourses];
+        updated.splice(updated.length, 0, courseObject);
+        console.log(courseObject);
+        setListCourses(updated);
+        console.log(updated);
         onClose();
     };
 
@@ -34,8 +75,8 @@ export function AddCourseWindow({ onClose }: { onClose: () => void }) {
                 <input
                     type="text"
                     name="code"
-                    value={course.code}
-                    onChange={handleInputChange}
+                    value={code}
+                    onChange={handleCodeChange}
                 />
             </label>
 
@@ -44,8 +85,8 @@ export function AddCourseWindow({ onClose }: { onClose: () => void }) {
                 <input
                     type="text"
                     name="name"
-                    value={course.name}
-                    onChange={handleInputChange}
+                    value={name}
+                    onChange={handleNameChange}
                 />
             </label>
 
@@ -54,8 +95,8 @@ export function AddCourseWindow({ onClose }: { onClose: () => void }) {
                 <input
                     type="text"
                     name="description"
-                    value={course.description}
-                    onChange={handleInputChange}
+                    value={description}
+                    onChange={handleDescriptionChange}
                 />
             </label>
 
@@ -64,8 +105,8 @@ export function AddCourseWindow({ onClose }: { onClose: () => void }) {
                 <input
                     type="number"
                     name="credits"
-                    value={course.credits}
-                    onChange={handleInputChange}
+                    value={credits}
+                    onChange={handleCreditsChange}
                 />
             </label>
 
