@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Course } from "../interfaces/course";
-
+import Courses from "../data/course.json";
 export function AddCourseWindow({ onClose }: { onClose: () => void }) {
+    const listCourses = Courses.map((Course) => ({ ...Course }));
     const [course, setCourse] = useState<Course>({
         code: "",
         name: "",
@@ -13,24 +14,15 @@ export function AddCourseWindow({ onClose }: { onClose: () => void }) {
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
-
-        if (name === "preReq" || name === "coreReq") {
-            setCourse({
-                ...course,
-                [name]: value.split(",").map((item) => item.trim())
-            });
-        } else {
-            setCourse({
-                ...course,
-                [name]: value
-            });
-        }
+        setCourse({
+            ...course,
+            [name]: value
+        });
     };
 
     const handleConfirm = () => {
         console.log(course);
-
-        // Close the window
+        console.log(listCourses.map((course) => ({ ...course })));
         onClose();
     };
 
