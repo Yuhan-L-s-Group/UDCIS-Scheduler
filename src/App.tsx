@@ -1,5 +1,6 @@
 import React from "react";
 import "./App.css";
+import { TwoWindows } from "./components/twoWindows";
 
 function App(): JSX.Element {
     return (
@@ -9,6 +10,9 @@ function App(): JSX.Element {
                 Group Members: Yuhan Lin, Priyanka Chaudhuri, Zonglin Wu, Ziyi
                 Zhou, Henry Grant, Thern Diallo
             </p>
+            <hr />
+            <TwoWindows />
+            <hr />
         </div>
     );
 }
