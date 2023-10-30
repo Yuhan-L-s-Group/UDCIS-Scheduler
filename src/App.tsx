@@ -1,5 +1,6 @@
 import React from "react";
 import "./App.css";
+import "./courses.tsx";
 
 function App(): JSX.Element {
     return (
