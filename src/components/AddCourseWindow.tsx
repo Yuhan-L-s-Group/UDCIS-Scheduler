@@ -29,8 +29,6 @@ export function AddCourseWindow({
         const updated = [...listCourses];
         updated.push(courseObject);
         setListCourses(updated);
-
-        // Log the entered data to the console
         console.log("Entered Course Data:", courseObject);
         console.log(updated);
         onClose();
