@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import "./courses.tsx";
+import CoursesTable from "./components/coursesTable";
 
 function App(): JSX.Element {
     return (
@@ -10,6 +10,10 @@ function App(): JSX.Element {
                 Group Members: Yuhan Lin, Priyanka Chaudhuri, Zonglin Wu, Ziyi
                 Zhou, Henry Grant, Thern Diallo
             </p>
+            <div className="courses-section">
+                <h2>Courses</h2>
+                <CoursesTable />
+            </div>
         </div>
     );
 }
