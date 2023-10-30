@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import CoursesTable from "./components/coursesTable";
+import CoursesTable from "../components/coursesTable";
 
 function App(): JSX.Element {
     return (
