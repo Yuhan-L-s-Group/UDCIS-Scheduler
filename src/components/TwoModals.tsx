@@ -3,8 +3,8 @@ import { AddCourseWindow } from "./AddCourseWindow";
 import { EditCrouseModal } from "./EditCrouseModal";
 import { Course } from "../interfaces/course";
 import Courses from "../data/course.json";
-import "./modal.css";
 import Button from "react-bootstrap/Button";
+import CoursesTable from "./courseTable";
 
 export function TwoModals() {
     const [isAddCourseOpen, setAddCourseOpen] = useState(false);
@@ -20,6 +20,7 @@ export function TwoModals() {
 
     return (
         <div>
+            <CoursesTable listCourses={listCourses} />
             <Button variant="primary" onClick={openAddCourseWindow}>
                 Add Course
             </Button>

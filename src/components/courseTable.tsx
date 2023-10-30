@@ -11,8 +11,8 @@ interface Course {
     coreReq: string[];
 }
 
-const CoursesTable: React.FC = () => {
-    const categorizedCourses = courses.reduce((acc, course) => {
+const CoursesTable = ({ listCourses }: { listCourses: Course[] }) => {
+    const categorizedCourses = listCourses.reduce((acc, course) => {
         const prefix = course.code.substring(0, 4);
         if (!acc[prefix]) {
             acc[prefix] = [];
@@ -23,10 +23,10 @@ const CoursesTable: React.FC = () => {
 
     return (
         <div>
-            <h1>CoursesList</h1>
-            {Object.entries(categorizedCourses).map(([prefix, courses]) => (
+            <h1 style={{ textAlign: "left" }}>CoursesList</h1>
+            {Object.entries(categorizedCourses).map(([prefix, listCourses]) => (
                 <div key={prefix}>
-                    <h2>{prefix}</h2>
+                    <h2 style={{ textAlign: "left" }}>{prefix}</h2>
                     <table>
                         <thead>
                             <tr>
@@ -35,7 +35,7 @@ const CoursesTable: React.FC = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {courses.map((course: Course) => (
+                            {listCourses.map((course: Course) => (
                                 <tr key={course.code}>
                                     <td>{course.code}</td>
                                     <td>{course.name}</td>
