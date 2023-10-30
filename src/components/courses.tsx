@@ -1,98 +1,42 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+
+const coursesData = [
+    {
+        code: "CS108",
+        name: "Introduction to Computer Science I",
+        description: "Basic concepts of computer science...",
+        credits: 3,
+        preReq: [],
+        coreReq: []
+    }
+];
 
 interface Course {
     code: string;
     name: string;
+    description: string;
+    credits: number;
+    preReq: string[];
+    coreReq: string[];
 }
 
-const courses: Course[] = [
-    {
-        code: "CISC108",
-        name: "Introduction to Computer Science I"
-    },
-    {
-        code: "CISC181",
-        name: "Introduction to Computer Science I"
-    },
-    {
-        code: "CISC210",
-        name: "Introduction to Computer Science I"
-    },
-    {
-        code: "CISC220",
-        name: "Introduction to Computer Science I"
-    },
-    {
-        code: "CISC108",
-        name: "Introduction to Computer Science I"
-    },
-    {
-        code: "CISC108",
-        name: "Introduction to Computer Science I"
-    },
-    {
-        code: "CISC108",
-        name: "Introduction to Computer Science I"
-    },
-    {
-        code: "CISC108",
-        name: "Introduction to Computer Science I"
-    },
-    {
-        code: "CISC108",
-        name: "Introduction to Computer Science I"
-    },
-    {
-        code: "CISC108",
-        name: "Introduction to Computer Science I"
-    },
-    {
-        code: "CISC108",
-        name: "Introduction to Computer Science I"
-    },
-    {
-        code: "CISC108",
-        name: "Introduction to Computer Science I"
-    },
-    {
-        code: "CISC108",
-        name: "Introduction to Computer Science I"
-    },
-    {
-        code: "CISC108",
-        name: "Introduction to Computer Science I"
-    },
-    {
-        code: "CISC108",
-        name: "Introduction to Computer Science I"
-    },
-    {
-        code: "CISC108",
-        name: "Introduction to Computer Science I"
-    },
-    {
-        code: "CISC108",
-        name: "Introduction to Computer Science I"
-    },
-    {
-        code: "CISC108",
-        name: "Introduction to Computer Science I"
-    }
-];
+const CoursesByCategory: React.FC = () => {
+    const [courses, setCourses] = useState<Course[]>([]);
 
-const Courses: React.FC = () => {
+    useEffect(() => {
+        setCourses(coursesData);
+    }, []);
+
     return (
         <div>
-            <h1>Course List</h1>
-            <ul>
-                {courses.map((course) => (
-                    <li key={course.code}>
-                        {course.code}: {course.name}
-                    </li>
-                ))}
-            </ul>
+            <h1>Courses by Category</h1>
+            {courses.map((course) => (
+                <div key={course.code}>
+                    <strong>{course.code}</strong>: {course.name}
+                </div>
+            ))}
         </div>
     );
 };
 
-export default Courses;
+export default CoursesByCategory;
