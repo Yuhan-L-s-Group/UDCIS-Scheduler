@@ -1,7 +1,5 @@
 import React from "react";
 import "./App.css";
-import { TwoModals } from "./components/TwoModals";
-import { Display } from "./components/Display";
 
 function App(): JSX.Element {
     return (
@@ -11,10 +9,6 @@ function App(): JSX.Element {
                 Group Members: Yuhan Lin, Priyanka Chaudhuri, Zonglin Wu, Ziyi
                 Zhou, Henry Grant, Thern Diallo
             </p>
-            <hr />
-            <TwoModals />
-            {/* <Display /> */}
-            <hr />
         </div>
     );
 }
