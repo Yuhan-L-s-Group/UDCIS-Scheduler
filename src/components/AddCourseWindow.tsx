@@ -1,54 +1,21 @@
 import React, { useState } from "react";
 import { Course } from "../interfaces/course";
 
-interface AddCourseWindow {
+interface AddCourseWindowProps {
     onClose: () => void;
     listCourses: Course[];
-    setListCourses: (prop: Course[]) => void;
+    setListCourses: (courses: Course[]) => void;
 }
 
 export function AddCourseWindow({
     onClose,
     listCourses,
     setListCourses
-}: AddCourseWindow) {
-    const [course, setCourse] = useState<Course>({
-        code: "",
-        name: "",
-        description: "",
-        credits: 0,
-        preReq: [],
-        coreReq: []
-    });
+}: AddCourseWindowProps) {
     const [code, setCode] = useState("");
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [credits, setCredits] = useState(0);
-    const handleCodeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setCode(e.target.value);
-    };
-
-    const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setName(e.target.value);
-    };
-
-    const handleDescriptionChange = (
-        e: React.ChangeEvent<HTMLInputElement>
-    ) => {
-        setDescription(e.target.value);
-    };
-
-    const handleCreditsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setCredits(Number(e.target.value));
-    };
-
-    // const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    //     const { name, value } = e.target;
-    //     setCourse({
-    //         ...course,
-    //         [na
-    //     });
-    // };
 
     const handleConfirm = () => {
         const courseObject = {
@@ -60,15 +27,17 @@ export function AddCourseWindow({
             coreReq: []
         };
         const updated = [...listCourses];
-        updated.splice(updated.length, 0, courseObject);
-        console.log(courseObject);
+        updated.push(courseObject);
         setListCourses(updated);
+
+        // Log the entered data to the console
+        console.log("Entered Course Data:", courseObject);
         console.log(updated);
         onClose();
     };
 
     return (
-        <div>
+        <div className="modal-content">
             <h2>Add Course</h2>
             <label>
                 Code:
@@ -76,7 +45,7 @@ export function AddCourseWindow({
                     type="text"
                     name="code"
                     value={code}
-                    onChange={handleCodeChange}
+                    onChange={(e) => setCode(e.target.value)}
                 />
             </label>
 
@@ -86,7 +55,7 @@ export function AddCourseWindow({
                     type="text"
                     name="name"
                     value={name}
-                    onChange={handleNameChange}
+                    onChange={(e) => setName(e.target.value)}
                 />
             </label>
 
@@ -96,7 +65,7 @@ export function AddCourseWindow({
                     type="text"
                     name="description"
                     value={description}
-                    onChange={handleDescriptionChange}
+                    onChange={(e) => setDescription(e.target.value)}
                 />
             </label>
 
@@ -106,11 +75,12 @@ export function AddCourseWindow({
                     type="number"
                     name="credits"
                     value={credits}
-                    onChange={handleCreditsChange}
+                    onChange={(e) => setCredits(Number(e.target.value))}
                 />
             </label>
 
             <button onClick={handleConfirm}>Confirm</button>
+            <button onClick={onClose}>Cancel</button>
         </div>
     );
 }

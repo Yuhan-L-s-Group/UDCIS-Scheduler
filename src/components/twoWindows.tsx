@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { AddCourseWindow } from "./AddCourseWindow";
 import { Course } from "../interfaces/course";
 import Courses from "../data/course.json";
-// import ".modal.css";
+import "./modal.css"; // Import the CSS file
 
 export function TwoWindows() {
     const [isAddCourseOpen, setAddCourseOpen] = useState(false);
-    const [listCourses, setlistCourses] = useState<Course[]>(Courses);
+    const [listCourses, setListCourses] = useState<Course[]>(Courses);
 
     const openAddCourseWindow = () => {
         setAddCourseOpen(true);
@@ -18,14 +18,14 @@ export function TwoWindows() {
 
     return (
         <div>
-            <button onClick={openAddCourseWindow}>Modify Courses</button>
+            <button onClick={openAddCourseWindow}>Add Course</button>
 
             {isAddCourseOpen && (
-                <div>
+                <div className="modal-container">
                     <AddCourseWindow
                         onClose={closeAddCourseWindow}
                         listCourses={listCourses}
-                        setListCourses={setlistCourses}
+                        setListCourses={setListCourses}
                     />
                 </div>
             )}
