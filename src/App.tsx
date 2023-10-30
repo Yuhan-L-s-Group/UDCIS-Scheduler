@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
-import { TwoWindows } from "./components/twoWindows";
+import { TwoModals } from "./components/TwoModals";
+import { Display } from "./components/Display";
 
 function App(): JSX.Element {
     return (
@@ -11,7 +12,8 @@ function App(): JSX.Element {
                 Zhou, Henry Grant, Thern Diallo
             </p>
             <hr />
-            <TwoWindows />
+            <TwoModals />
+            {/* <Display /> */}
             <hr />
         </div>
     );

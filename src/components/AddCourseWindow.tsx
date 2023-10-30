@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import { Course } from "../interfaces/course";
+import Modal from "react-bootstrap/Modal";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 
 interface AddCourseWindowProps {
     onClose: () => void;
@@ -35,50 +38,55 @@ export function AddCourseWindow({
     };
 
     return (
-        <div className="modal-content">
-            <h2>Add Course</h2>
-            <label>
-                Code:
-                <input
-                    type="text"
-                    name="code"
-                    value={code}
-                    onChange={(e) => setCode(e.target.value)}
-                />
-            </label>
-
-            <label>
-                Name:
-                <input
-                    type="text"
-                    name="name"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                />
-            </label>
-
-            <label>
-                Description:
-                <input
-                    type="text"
-                    name="description"
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
-                />
-            </label>
-
-            <label>
-                Credits:
-                <input
-                    type="number"
-                    name="credits"
-                    value={credits}
-                    onChange={(e) => setCredits(Number(e.target.value))}
-                />
-            </label>
-
-            <button onClick={handleConfirm}>Confirm</button>
-            <button onClick={onClose}>Cancel</button>
-        </div>
+        <Modal show={true} onHide={onClose}>
+            {" "}
+            <Modal.Header closeButton>
+                <Modal.Title>Add Course</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <Form>
+                    <Form.Group controlId="code">
+                        <Form.Label>Code</Form.Label>
+                        <Form.Control
+                            type="text"
+                            value={code}
+                            onChange={(e) => setCode(e.target.value)}
+                        />
+                    </Form.Group>
+                    <Form.Group controlId="name">
+                        <Form.Label>Name</Form.Label>
+                        <Form.Control
+                            type="text"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                        />
+                    </Form.Group>
+                    <Form.Group controlId="description">
+                        <Form.Label>Description</Form.Label>
+                        <Form.Control
+                            type="text"
+                            value={description}
+                            onChange={(e) => setDescription(e.target.value)}
+                        />
+                    </Form.Group>
+                    <Form.Group controlId="credits">
+                        <Form.Label>Credits</Form.Label>
+                        <Form.Control
+                            type="number"
+                            value={credits}
+                            onChange={(e) => setCredits(Number(e.target.value))}
+                        />
+                    </Form.Group>
+                </Form>
+            </Modal.Body>
+            <Modal.Footer>
+                <Button variant="secondary" onClick={onClose}>
+                    Close
+                </Button>
+                <Button variant="primary" onClick={handleConfirm}>
+                    Save Changes
+                </Button>
+            </Modal.Footer>
+        </Modal>
     );
 }
