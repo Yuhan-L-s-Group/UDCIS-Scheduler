@@ -1,7 +1,7 @@
 import React from "react";
 import courses from "../data/course.json";
 import "./courseTable.css";
-
+import EditCourse from "./EditCourse";
 interface Course {
     code: string;
     name: string;
@@ -10,8 +10,17 @@ interface Course {
     preReq: string[];
     coreReq: string[];
 }
+interface EditCourseProps {
+    onClose: () => void;
+    listCourses: Course[];
+    setListCourses: (courses: Course[]) => void;
+}
 
-const CoursesTable = ({ listCourses }: { listCourses: Course[] }) => {
+const CoursesTable = ({
+    onClose,
+    listCourses,
+    setListCourses
+}: EditCourseProps) => {
     const categorizedCourses = listCourses.reduce((acc, course) => {
         const prefix = course.code.substring(0, 4);
         if (!acc[prefix]) {
@@ -32,6 +41,7 @@ const CoursesTable = ({ listCourses }: { listCourses: Course[] }) => {
                             <tr>
                                 <th>Code</th>
                                 <th>Name</th>
+                                <th>col</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -39,6 +49,11 @@ const CoursesTable = ({ listCourses }: { listCourses: Course[] }) => {
                                 <tr key={course.code}>
                                     <td>{course.code}</td>
                                     <td>{course.name}</td>
+                                    <td>
+                                        <button onClick={EditCourse}>
+                                            Edit Course
+                                        </button>
+                                    </td>
                                 </tr>
                             ))}
                         </tbody>

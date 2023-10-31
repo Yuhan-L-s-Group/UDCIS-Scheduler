@@ -10,7 +10,7 @@ interface AddCourseWindowProps {
     setListCourses: (courses: Course[]) => void;
 }
 
-export function AddCourseWindow({
+export function AddCourse({
     onClose,
     listCourses,
     setListCourses

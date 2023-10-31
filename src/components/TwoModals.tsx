@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { AddCourseWindow } from "./AddCourseWindow";
-import { EditCrouseModal } from "./EditCrouseModal";
+import { AddCourse } from "./AddCourse";
+import EditCourse from "./EditCourse";
 import { Course } from "../interfaces/course";
 import Courses from "../data/course.json";
 import Button from "react-bootstrap/Button";
@@ -20,22 +20,23 @@ export function TwoModals() {
 
     return (
         <div>
-            <CoursesTable listCourses={listCourses} />
+            <CoursesTable
+                onClose={closeAddCourseWindow}
+                listCourses={listCourses}
+                setListCourses={setListCourses}
+            />
             <Button variant="primary" onClick={openAddCourseWindow}>
                 Add Course
             </Button>
             {isAddCourseOpen && (
                 <div>
-                    <AddCourseWindow
+                    <AddCourse
                         onClose={closeAddCourseWindow}
                         listCourses={listCourses}
                         setListCourses={setListCourses}
                     />
                 </div>
             )}
-            <div>
-                <button onClick={EditCrouseModal}>Edit Course</button>
-            </div>
         </div>
     );
 }
