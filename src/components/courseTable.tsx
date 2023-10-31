@@ -1,7 +1,8 @@
-import React from "react";
 import courses from "../data/course.json";
 import "./courseTable.css";
 import EditCourse from "./EditCourse";
+import React, { useState } from "react";
+
 interface Course {
     code: string;
     name: string;
@@ -29,6 +30,13 @@ const CoursesTable = ({
         acc[prefix].push(course);
         return acc;
     }, {} as Record<string, Course[]>);
+    const [isEditCourseOpen, setEditCourseOpen] = useState(false);
+    const openEditCourse = () => {
+        setEditCourseOpen(true);
+    };
+    const closeEditCourse = () => {
+        setEditCourseOpen(false);
+    };
 
     return (
         <div>
@@ -50,9 +58,22 @@ const CoursesTable = ({
                                     <td>{course.code}</td>
                                     <td>{course.name}</td>
                                     <td>
-                                        <button onClick={EditCourse}>
+                                        <button onClick={openEditCourse}>
                                             Edit Course
                                         </button>
+                                        {isEditCourseOpen && (
+                                            <div>
+                                                <EditCourse
+                                                    listCourses={listCourses}
+                                                    setListCourses={
+                                                        setListCourses
+                                                    }
+                                                    closeEditCourse={
+                                                        closeEditCourse
+                                                    }
+                                                />
+                                            </div>
+                                        )}
                                     </td>
                                 </tr>
                             ))}
