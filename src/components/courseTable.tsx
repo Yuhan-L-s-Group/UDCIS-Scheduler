@@ -49,7 +49,7 @@ const CoursesTable = ({
                             <tr>
                                 <th>Code</th>
                                 <th>Name</th>
-                                <th>col</th>
+                                <th>Edit Course</th>
                             </tr>
                         </thead>
                         <tbody>
