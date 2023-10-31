@@ -72,7 +72,7 @@ export function AddCourse({
                     <Form.Group controlId="credits">
                         <Form.Label>Credits</Form.Label>
                         <Form.Control
-                            type="number"
+                            type="text"
                             value={credits}
                             onChange={(e) => setCredits(Number(e.target.value))}
                         />

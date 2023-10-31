@@ -59,7 +59,7 @@ const CoursesTable = ({
                                     <td>{course.name}</td>
                                     <td>
                                         <button onClick={openEditCourse}>
-                                            Edit Course
+                                            Edit
                                         </button>
                                         {isEditCourseOpen && (
                                             <div>
