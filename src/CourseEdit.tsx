@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Button, Form } from "react-bootstrap";
 import { Course } from "./interfaces/course";
 
@@ -19,31 +19,10 @@ export const courseEdit = ({
     removecourse: (courseCode: string) => void;
     swapcourse: (target1: number, target2: number) => void;
 }) => {
+    /*
     const [a, b] = useState<number>(
         course.options.findIndex((s: string) => course.expected === s)
-    );
-
-    const handleChoiceChange = (
-        e: React.ChangeEvent<HTMLInputElement>,
-        i: number
-    ) => {
-        const newOptions = [...course.options];
-        newOptions.splice(i, 1, e.target.value);
-        editcourse(course.id, {
-            ...course,
-            options: newOptions,
-            expected: a === i ? e.target.value : course.expected
-        });
-    };
-
-    const handleRadioChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const idx = parseInt(e.target.value);
-        b(idx);
-        editcourse(course.id, {
-            ...course,
-            expected: course.options[idx]
-        });
-    };
+    ); */
 
     return (
         <>

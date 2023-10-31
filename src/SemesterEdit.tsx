@@ -1,3 +1,4 @@
+/* eslint-disable no-extra-parens */
 import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { Course } from "../interfaces/course";
@@ -83,9 +84,7 @@ export const SemesterEdit = ({
                             label="Semester Published"
                             data-testid="Semester Published"
                             checked={newSemester.published}
-                            onChange={(
-                                e: React.ChangeEvent<HTMLInputElement>
-                            ) => {
+                            onChange={() => {
                                 setNewSemester({
                                     ...newSemester,
                                     published: !newSemester.published
@@ -93,25 +92,13 @@ export const SemesterEdit = ({
                             }}
                         ></Form.Check>
                     </div>
-                    <Form.Label>Description: </Form.Label>
-                    <Form.Control
-                        as="textarea"
-                        rows={3}
-                        value={newSemester.body}
-                        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                            setNewSemester({
-                                ...newSemester,
-                                body: e.target.value
-                            })
-                        }
-                    ></Form.Control>
                 </Form.Group>
             </div>
 
             <div>
                 {newSemester.CourseList.map((q: Course, index: number) => (
                     <CourseEdit
-                        key={newSemester.id + "|" + q.id}
+                        key={newSemester.year + "|" + q.id}
                         index={index}
                         lastIndex={newSemester.CourseList.length - 1}
                         Course={q}
@@ -133,11 +120,6 @@ export const SemesterEdit = ({
                                 {
                                     id: newSemester.CourseList.length,
                                     body: "Example Course",
-                                    type: "short_answer_Course",
-                                    options: [],
-                                    submission: "",
-                                    expected: "Example Answer",
-                                    points: 1,
                                     published: false
                                 }
                             ]
@@ -165,7 +147,7 @@ export const SemesterEdit = ({
                     <Button
                         variant="danger"
                         onClick={() => {
-                            deleteSemester(Semester.id);
+                            deleteSemester(semester.Code);
                             resetView();
                         }}
                     >
