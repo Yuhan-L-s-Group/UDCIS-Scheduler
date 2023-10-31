@@ -20,14 +20,14 @@ export function TwoModals() {
 
     return (
         <div>
+            <Button variant="primary" onClick={openAddCourseWindow}>
+                Add Course
+            </Button>
             <CoursesTable
                 onClose={closeAddCourseWindow}
                 listCourses={listCourses}
                 setListCourses={setListCourses}
             />
-            <Button variant="primary" onClick={openAddCourseWindow}>
-                Add Course
-            </Button>
             {isAddCourseOpen && (
                 <div>
                     <AddCourse
