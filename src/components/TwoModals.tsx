@@ -20,6 +20,7 @@ export function TwoModals() {
 
     return (
         <div>
+            <div className="">Add course to CourseList:</div>
             <Button variant="primary" onClick={openAddCourseWindow}>
                 Add Course
             </Button>

@@ -45,7 +45,7 @@ export function AddCourse({
             </Modal.Header>
             <Modal.Body>
                 <Form>
-                    <Form.Group controlId="code">
+                    <Form.Group>
                         <Form.Label>Code</Form.Label>
                         <Form.Control
                             type="text"
