@@ -21,7 +21,7 @@ export default function EditCourse({
 
     //     setListCourses(updated);
     // };
-    const [code, setCode] = useState("");
+    const [code, setCode] = useState("2");
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [credits, setCredits] = useState(0);

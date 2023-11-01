@@ -50,14 +50,16 @@ export function AddCourse({
                         <Form.Control
                             type="text"
                             value={code}
-                            onChange={(e) => setCode(e.target.value)}
+                            onChange={(
+                                event: React.ChangeEvent<HTMLInputElement>
+                            ) => setCode(event.target.value)}
                         />
                     </Form.Group>
                     <Form.Group controlId="name">
                         <Form.Label>Name</Form.Label>
                         <Form.Control
                             type="text"
-                            // value={name}
+                            value={name}
                             onChange={(e) => setName(e.target.value)}
                         />
                     </Form.Group>
