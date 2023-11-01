@@ -40,9 +40,13 @@ h2 {
 .prefixColor {
     background-color: #239fb2;
 }
-.courseRow {
-    width: 68%;
-}
 .invisableText {
-    color: #ffffff;
+    color: #1b0505;
+}
+
+.Tablesize {
+    width: 35%;
+}
+.tableBetween {
+    padding-bottom: 40px;
 }

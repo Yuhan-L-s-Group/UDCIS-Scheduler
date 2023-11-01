@@ -43,9 +43,9 @@ const CoursesTable = ({
         <div>
             <h1 style={{ textAlign: "left" }}>CoursesList</h1>
             {Object.entries(categorizedCourses).map(([prefix, listCourses]) => (
-                <div key={prefix}>
-                    <h2 className="invisableText"> {"   Got U   "}</h2>
-                    <table>
+                <div key={prefix} className="tableBetween">
+                    {/* <h2 className="invisableText"> {"   Got U   "}</h2> */}
+                    <table className="Tablesize">
                         <thead>
                             <tr>
                                 <th>Code: {prefix}</th>
