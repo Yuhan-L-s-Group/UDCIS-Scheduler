@@ -17,9 +17,9 @@ export default function EditCourse({
     const [originalList, setListCoursesR] =
         useState<Course[]>(originalListCopy);
 
-    const [code, setCode] = useState("2");
-    const [name, setName] = useState("");
-    const [description, setDescription] = useState("");
+    const [code, setCode] = useState("test");
+    const [name, setName] = useState("test");
+    const [description, setDescription] = useState("test");
     const [credits, setCredits] = useState(0);
     return (
         <Modal show={true} onHide={closeEditCourse}>
@@ -29,7 +29,7 @@ export default function EditCourse({
             </Modal.Header>
             <Modal.Body>
                 <Form>
-                    <Form.Group controlId="code">
+                    <Form.Group className="mb-3" controlId="code">
                         <Form.Label>Code</Form.Label>
                         <Form.Control
                             type="text"
