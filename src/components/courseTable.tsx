@@ -42,52 +42,49 @@ const CoursesTable = ({
     return (
         <div>
             <h1 style={{ textAlign: "left" }}>CoursesList</h1>
-            {Object.entries(categorizedCourses).map(
-                ([prefix, CorrespondingCourses]) => (
-                    <div key={prefix}>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Code: {prefix} </th>
-                                    <th>Name</th>
-                                    <th>Edit Course</th>
+            {Object.entries(categorizedCourses).map(([prefix, listCourses]) => (
+                <div key={prefix}>
+                    <h2 className="invisableText"> {"   Got U   "}</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Code: {prefix}</th>
+                                <th>Name</th>
+                                <th>Edit Course</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {listCourses.map((course: Course) => (
+                                <tr key={course.code}>
+                                    <td>{course.code}</td>
+                                    <td className="courseRow">{course.name}</td>
+                                    <td>
+                                        <Button
+                                            variant="primary"
+                                            onClick={openEditCourse}
+                                        >
+                                            Edit
+                                        </Button>
+                                        {isEditCourseOpen && (
+                                            <div>
+                                                <EditCourse
+                                                    listCourses={listCourses}
+                                                    setListCourses={
+                                                        setListCourses
+                                                    }
+                                                    closeEditCourse={
+                                                        closeEditCourse
+                                                    }
+                                                />
+                                            </div>
+                                        )}
+                                    </td>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                {listCourses.map((course: Course) => (
-                                    <tr key={course.code}>
-                                        <td>{course.code}</td>
-                                        <td>{course.name}</td>
-                                        <td>
-                                            <Button
-                                                variant="primary"
-                                                onClick={openEditCourse}
-                                            >
-                                                Edit
-                                            </Button>
-                                            {isEditCourseOpen && (
-                                                <div>
-                                                    <EditCourse
-                                                        listCourses={
-                                                            listCourses
-                                                        }
-                                                        setListCourses={
-                                                            setListCourses
-                                                        }
-                                                        closeEditCourse={
-                                                            closeEditCourse
-                                                        }
-                                                    />
-                                                </div>
-                                            )}
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
-                )
-            )}
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            ))}
         </div>
     );
 };
