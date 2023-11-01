@@ -44,7 +44,6 @@ const CoursesTable = ({
             <h1 style={{ textAlign: "left" }}>CoursesList</h1>
             {Object.entries(categorizedCourses).map(([prefix, listCourses]) => (
                 <div key={prefix} className="tableBetween">
-                    {/* <h2 className="invisableText"> {"   Got U   "}</h2> */}
                     <table className="Tablesize">
                         <thead>
                             <tr>
@@ -75,6 +74,7 @@ const CoursesTable = ({
                                                     closeEditCourse={
                                                         closeEditCourse
                                                     }
+                                                    CourseSlected={course}
                                                 />
                                             </div>
                                         )}

@@ -7,19 +7,21 @@ interface EditCourseProps {
     listCourses: Course[];
     setListCourses: (courses: Course[]) => void;
     closeEditCourse: () => void;
+    CourseSlected: Course;
 }
 export default function EditCourse({
     listCourses,
     setListCourses,
-    closeEditCourse
+    closeEditCourse,
+    CourseSlected
 }: EditCourseProps) {
     const originalListCopy = listCourses;
     const [originalList, setListCoursesR] =
         useState<Course[]>(originalListCopy);
 
-    const [code, setCode] = useState("test");
-    const [name, setName] = useState("test");
-    const [description, setDescription] = useState("test");
+    const [code, setCode] = useState("");
+    const [name, setName] = useState("");
+    const [description, setDescription] = useState("");
     const [credits, setCredits] = useState(0);
     return (
         <Modal show={true} onHide={closeEditCourse}>
@@ -29,7 +31,7 @@ export default function EditCourse({
             </Modal.Header>
             <Modal.Body>
                 <Form>
-                    <Form.Group className="mb-3" controlId="code">
+                    <Form.Group controlId="code">
                         <Form.Label>Code</Form.Label>
                         <Form.Control
                             type="text"
@@ -66,6 +68,9 @@ export default function EditCourse({
             <Modal.Footer>
                 <Button variant="secondary" onClick={closeEditCourse}>
                     Close
+                </Button>
+                <Button variant="secondary" onClick={closeEditCourse}>
+                    Reset
                 </Button>
                 <Button variant="primary" onClick={closeEditCourse}>
                     Save Changes
