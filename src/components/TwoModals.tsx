@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { AddCourseWindow } from "./AddCourseWindow";
-import { EditCrouseModal } from "./EditCrouseModal";
+import { AddCourse } from "./AddCourse";
+import EditCourse from "./EditCourse";
 import { Course } from "../interfaces/course";
 import Courses from "../data/course.json";
-import "./modal.css";
 import Button from "react-bootstrap/Button";
+import CoursesTable from "./courseTable";
 
 export function TwoModals() {
     const [isAddCourseOpen, setAddCourseOpen] = useState(false);
@@ -23,18 +23,20 @@ export function TwoModals() {
             <Button variant="primary" onClick={openAddCourseWindow}>
                 Add Course
             </Button>
+            <CoursesTable
+                onClose={closeAddCourseWindow}
+                listCourses={listCourses}
+                setListCourses={setListCourses}
+            />
             {isAddCourseOpen && (
                 <div>
-                    <AddCourseWindow
+                    <AddCourse
                         onClose={closeAddCourseWindow}
                         listCourses={listCourses}
                         setListCourses={setListCourses}
                     />
                 </div>
             )}
-            <div>
-                <button onClick={EditCrouseModal}>Edit Course</button>
-            </div>
         </div>
     );
 }

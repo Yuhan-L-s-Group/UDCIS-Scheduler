@@ -10,7 +10,7 @@ interface AddCourseWindowProps {
     setListCourses: (courses: Course[]) => void;
 }
 
-export function AddCourseWindow({
+export function AddCourse({
     onClose,
     listCourses,
     setListCourses
@@ -57,7 +57,7 @@ export function AddCourseWindow({
                         <Form.Label>Name</Form.Label>
                         <Form.Control
                             type="text"
-                            value={name}
+                            // value={name}
                             onChange={(e) => setName(e.target.value)}
                         />
                     </Form.Group>
@@ -72,7 +72,7 @@ export function AddCourseWindow({
                     <Form.Group controlId="credits">
                         <Form.Label>Credits</Form.Label>
                         <Form.Control
-                            type="number"
+                            type="text"
                             value={credits}
                             onChange={(e) => setCredits(Number(e.target.value))}
                         />
