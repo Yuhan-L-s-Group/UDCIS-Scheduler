@@ -57,7 +57,7 @@ const CoursesTable = ({
                             {listCourses.map((course: Course) => (
                                 <tr key={course.code}>
                                     <td>{course.code}</td>
-                                    <td className="courseRow">{course.name}</td>
+                                    <td>{course.name}</td>
                                     <td>
                                         <Button
                                             variant="primary"
