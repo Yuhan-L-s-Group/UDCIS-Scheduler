@@ -17,10 +17,9 @@ export default function EditCourse({
     const [originalList, setListCoursesR] =
         useState<Course[]>(originalListCopy);
 
-    // const handleConfirm = () => {
-
-    //     setListCourses(updated);
-    // };
+    const handleConfirm = () => {
+        setListCourses(updated);
+    };
     const [code, setCode] = useState("2");
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
