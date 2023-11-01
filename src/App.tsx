@@ -1,6 +1,8 @@
 import React from "react";
 import "./App.css";
 
+import { SwitchPlan } from "./components/SwitchPlan";
+
 function App(): JSX.Element {
     return (
         <div className="App">
@@ -9,6 +11,7 @@ function App(): JSX.Element {
                 Group Members: Yuhan Lin, Priyanka Chaudhuri, Zonglin Wu, Ziyi
                 Zhou, Henry Grant, Thern Diallo
             </p>
+            <SwitchPlan></SwitchPlan>
         </div>
     );
 }
