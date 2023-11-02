@@ -41,7 +41,7 @@ h2 {
     background-color: #239fb2;
 }
 .invisableText {
-    color: #1b0505;
+    color: #2c1111;
 }
 
 .Tablesize {
@@ -49,4 +49,8 @@ h2 {
 }
 .tableBetween {
     padding-bottom: 40px;
+}
+.AdjustTitle {
+    font-size: 20px;
+    color: #971038;
 }

@@ -5,6 +5,7 @@ import { Course } from "../interfaces/course";
 import Courses from "../data/course.json";
 import Button from "react-bootstrap/Button";
 import CoursesTable from "./courseTable";
+import "./courseTable.css";
 
 export function TwoModals() {
     const [isAddCourseOpen, setAddCourseOpen] = useState(false);
@@ -20,7 +21,7 @@ export function TwoModals() {
 
     return (
         <div>
-            <div className="">Add course to CourseList:</div>
+            <div className="AdjustTitle">Add course to CourseList:</div>
             <Button variant="primary" onClick={openAddCourseWindow}>
                 Add Course
             </Button>
