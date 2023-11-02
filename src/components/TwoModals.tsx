@@ -10,8 +10,9 @@ import "./courseTable.css";
 export function TwoModals() {
     const [isAddCourseOpen, setAddCourseOpen] = useState(false);
     const [listCourses, setListCourses] = useState<Course[]>(Courses);
-    const tempOriginCourseList = listCourses;
-    const OriginalCourseList = listCourses;
+
+    const OriginalCourseList = [...listCourses];
+    console.log("test OriginalCourseList", OriginalCourseList);
     const openAddCourseWindow = () => {
         setAddCourseOpen(true);
     };

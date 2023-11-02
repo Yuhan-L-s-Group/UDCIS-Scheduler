@@ -3,6 +3,7 @@ import { Course } from "../interfaces/course";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import Courses from "../data/course.json";
 interface EditCourseProps {
     listCourses: Course[];
     setListCourses: (courses: Course[]) => void;
@@ -49,11 +50,11 @@ export default function EditCourse({
         // listCourses.splice(indexOfSelected, 1);
         const update = [...listCourses];
         // update.push(modifyCourse);
-        console.log("test edit button save changes: ", OriginalCourseList);
+        console.log("test edit button save changes: ", update);
         closeEditCourse();
     };
     const handleReset = () => {
-        const update = [...OriginalCourseList];
+        const update = [...Courses];
         setListCourses(update);
         console.log("test edit button save changes: ", update);
         closeEditCourse();
