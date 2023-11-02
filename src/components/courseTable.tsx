@@ -34,11 +34,23 @@ const CoursesTable = ({
         return acc;
     }, {} as Record<string, Course[]>);
     const [isEditCourseOpen, setEditCourseOpen] = useState(false);
+    const [selectedCourse, setselectedCourse] = useState<Course>({
+        code: "",
+        name: "",
+        description: "",
+        credits: 0,
+        preReq: [],
+        coreReq: []
+    });
     const openEditCourse = () => {
         setEditCourseOpen(true);
     };
     const closeEditCourse = () => {
         setEditCourseOpen(false);
+    };
+    const gotYouCourse = (course: Course) => {
+        setselectedCourse(course);
+        setEditCourseOpen(true);
     };
 
     return (
@@ -62,7 +74,7 @@ const CoursesTable = ({
                                     <td>
                                         <Button
                                             variant="primary"
-                                            onClick={openEditCourse}
+                                            onClick={() => gotYouCourse(course)}
                                         >
                                             Edit
                                         </Button>
@@ -76,7 +88,9 @@ const CoursesTable = ({
                                                     closeEditCourse={
                                                         closeEditCourse
                                                     }
-                                                    CourseSlected={course}
+                                                    CourseSlected={
+                                                        selectedCourse
+                                                    }
                                                     ModifiedCourseList={
                                                         ModifiedCourseList
                                                     }

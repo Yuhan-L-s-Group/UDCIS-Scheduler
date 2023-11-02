@@ -51,13 +51,13 @@ export default function EditCourse({
         const update = [...ModifiedCourseList];
         update.push(modifyCourse);
         setListCourses(update);
-        console.log("test edit button save changes: ", update);
+        console.log("test edit button save changes: ", modifyCourse);
         closeEditCourse();
     };
     const handleReset = () => {
         const update = [...Courses];
         setListCourses(update);
-        console.log("test edit button save changes: ", update);
+        console.log("test edit button reset: ", update);
         closeEditCourse();
     };
     return (
