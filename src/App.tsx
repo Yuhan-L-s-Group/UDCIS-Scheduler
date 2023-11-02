@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./App.css";
+import { IntroModal } from "./components/IntroModal";
 
 import { SwitchPlan } from "./components/SwitchPlan";
 import { AddSemesterModal } from "./components/SemesterModal";
@@ -7,11 +8,16 @@ import { Season, Semester } from "./interfaces/semester";
 import { Button } from "react-bootstrap";
 
 function App(): JSX.Element {
-    const [showModal, setShowModal] = useState(false);
+    //for Intro
+    const [showIntro, setShowIntro] = useState<boolean>(true);
+    const handleClose = () => setShowIntro(false);
+
+    //for add semester button
+    const [showAddSemester, setAddSemester] = useState(false);
     const [semester, setSemester] = useState<Semester[]>([]);
 
-    const handleShowModal = () => setShowModal(true);
-    const handleCloseModal = () => setShowModal(false);
+    const handleShowModal = () => setAddSemester(true);
+    const handleCloseModal = () => setAddSemester(false);
 
     function addNewSemester(year: number, season: Season) {
         setSemester((prevSemester) => [
@@ -30,17 +36,18 @@ function App(): JSX.Element {
 
     return (
         <div className="App">
+            <IntroModal show={showIntro} handleClose={handleClose}></IntroModal>
             <header className="App-header">Yuhan L‘s Group</header>
             <p>
                 Group Members: Yuhan Lin, Priyanka Chaudhuri, Zonglin Wu, Ziyi
                 Zhou, Henry Grant, Thern Diallo
             </p>
             <SwitchPlan></SwitchPlan>
-            <Button className="add_btn" onClick={handleShowModal}>
+            <Button className="add_botton" onClick={handleShowModal}>
                 Add New Semester
             </Button>
             <AddSemesterModal
-                show={showModal}
+                show={showAddSemester}
                 handleClose={handleCloseModal}
                 addSemester={addNewSemester}
             ></AddSemesterModal>
