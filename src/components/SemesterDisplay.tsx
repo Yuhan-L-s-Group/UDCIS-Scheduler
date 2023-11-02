@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import Modal from "react-bootstrap/Modal";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 
 export type Season = "Fall" | "Winter" | "Spring" | "Summer";
 
@@ -7,7 +10,7 @@ interface Semester {
     year: number;
 }
 
-const SemesterDisplay: React.FC = () => {
+const SemesterDisplay = () => {
     const [semesters, setSemesters] = useState<Semester[]>([]);
     const [showModal, setShowModal] = useState(false);
     const [selectedSeason, setSelectedSeason] = useState<Season>("Fall");
@@ -50,31 +53,51 @@ const SemesterDisplay: React.FC = () => {
                 </div>
             ))}
 
-            {showModal && (
-                <div>
-                    <select
-                        value={selectedSeason}
-                        onChange={(e) =>
-                            setSelectedSeason(e.target.value as Season)
-                        }
+            <Modal show={showModal} onHide={() => setShowModal(false)}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Add Semester</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <Form>
+                        <Form.Group>
+                            <Form.Label>Season</Form.Label>
+                            <Form.Control
+                                as="select"
+                                value={selectedSeason}
+                                onChange={(e) =>
+                                    setSelectedSeason(e.target.value as Season)
+                                }
+                            >
+                                <option value="Fall">Fall</option>
+                                <option value="Winter">Winter</option>
+                                <option value="Spring">Spring</option>
+                                <option value="Summer">Summer</option>
+                            </Form.Control>
+                        </Form.Group>
+                        <Form.Group>
+                            <Form.Label>Year</Form.Label>
+                            <Form.Control
+                                type="number"
+                                value={selectedYear}
+                                onChange={(e) =>
+                                    setSelectedYear(Number(e.target.value))
+                                }
+                            />
+                        </Form.Group>
+                    </Form>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button
+                        variant="secondary"
+                        onClick={() => setShowModal(false)}
                     >
-                        <option value="Fall">Fall</option>
-                        <option value="Winter">Winter</option>
-                        <option value="Spring">Spring</option>
-                        <option value="Summer">Summer</option>
-                    </select>
-                    <input
-                        type="number"
-                        value={selectedYear}
-                        onChange={(e) =>
-                            setSelectedYear(Number(e.target.value))
-                        }
-                        placeholder="Year"
-                    />
-                    <button onClick={handleSubmit}>ADD</button>
-                    <button onClick={() => setShowModal(false)}>Cancel</button>
-                </div>
-            )}
+                        Cancel
+                    </Button>
+                    <Button variant="primary" onClick={handleSubmit}>
+                        ADD
+                    </Button>
+                </Modal.Footer>
+            </Modal>
 
             <button onClick={handleAddSemester}>Add Semester</button>
             <button onClick={handleClearAll}>Clear All</button>
