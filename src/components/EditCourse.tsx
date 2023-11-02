@@ -49,7 +49,8 @@ export default function EditCourse({
         );
         ModifiedCourseList.splice(indexOfSelected, 1);
         const update = [...ModifiedCourseList];
-        // update.push(modifyCourse);
+        update.push(modifyCourse);
+        setListCourses(update);
         console.log("test edit button save changes: ", update);
         closeEditCourse();
     };
