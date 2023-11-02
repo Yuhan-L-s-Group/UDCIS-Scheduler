@@ -15,9 +15,9 @@ export default function EditCourse({
     closeEditCourse,
     CourseSlected
 }: EditCourseProps) {
-    const [code, setCode] = useState("");
-    const [name, setName] = useState("");
-    const [description, setDescription] = useState("");
+    const [code, setCode] = useState("1");
+    const [name, setName] = useState("2");
+    const [description, setDescription] = useState("3");
     const [credits, setCredits] = useState(0);
 
     const handleSaveChanges = () => {
