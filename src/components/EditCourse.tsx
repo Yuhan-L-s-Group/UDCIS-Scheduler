@@ -9,14 +9,14 @@ interface EditCourseProps {
     setListCourses: (courses: Course[]) => void;
     closeEditCourse: () => void;
     CourseSlected: Course;
-    OriginalCourseList: Course[];
+    ModifiedCourseList: Course[];
 }
 export default function EditCourse({
     listCourses,
     setListCourses,
     closeEditCourse,
     CourseSlected,
-    OriginalCourseList
+    ModifiedCourseList
 }: EditCourseProps) {
     const [code, setCode] = useState(CourseSlected.code);
     const [name, setName] = useState(CourseSlected.name);
@@ -44,11 +44,11 @@ export default function EditCourse({
             modifyCourse.credits = credits;
         }
 
-        const indexOfSelected = listCourses.findIndex(
+        const indexOfSelected = ModifiedCourseList.findIndex(
             (course) => course.code === CourseSlected.code
         );
-        // listCourses.splice(indexOfSelected, 1);
-        const update = [...listCourses];
+        ModifiedCourseList.splice(indexOfSelected, 1);
+        const update = [...ModifiedCourseList];
         // update.push(modifyCourse);
         console.log("test edit button save changes: ", update);
         closeEditCourse();
@@ -92,9 +92,9 @@ export default function EditCourse({
                         />
                     </Form.Group>
                     <Form.Group controlId="credits">
-                        <Form.Label>Credits</Form.Label>
+                        <Form.Label>Credits (please enter number)</Form.Label>
                         <Form.Control
-                            type="text"
+                            type="number"
                             value={credits}
                             onChange={(e) => setCredits(Number(e.target.value))}
                         />

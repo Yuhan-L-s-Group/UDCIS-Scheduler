@@ -11,8 +11,8 @@ export function TwoModals() {
     const [isAddCourseOpen, setAddCourseOpen] = useState(false);
     const [listCourses, setListCourses] = useState<Course[]>(Courses);
 
-    const OriginalCourseList = [...listCourses];
-    console.log("test OriginalCourseList", OriginalCourseList);
+    const ModifiedCourseList = [...listCourses]; // this is for edit course component
+    // console.log("test OriginalCourseList", OriginalCourseList);
     const openAddCourseWindow = () => {
         setAddCourseOpen(true);
     };
@@ -28,7 +28,7 @@ export function TwoModals() {
                 Add Course
             </Button>
             <CoursesTable
-                OriginalCourseList={OriginalCourseList}
+                ModifiedCourseList={ModifiedCourseList}
                 onClose={closeAddCourseWindow}
                 listCourses={listCourses}
                 setListCourses={setListCourses}
