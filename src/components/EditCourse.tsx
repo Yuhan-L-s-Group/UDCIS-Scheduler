@@ -17,31 +17,45 @@ export default function EditCourse({
     CourseSlected,
     OriginalCourseList
 }: EditCourseProps) {
-    const [code, setCode] = useState("1");
-    const [name, setName] = useState("2");
-    const [description, setDescription] = useState("3");
-    const [credits, setCredits] = useState(0);
-
+    const [code, setCode] = useState(CourseSlected.code);
+    const [name, setName] = useState(CourseSlected.name);
+    const [description, setDescription] = useState(CourseSlected.description);
+    const [credits, setCredits] = useState(CourseSlected.credits);
+    const modifyCourse = {
+        code: CourseSlected.code,
+        name: CourseSlected.name,
+        description: CourseSlected.description,
+        credits: CourseSlected.credits,
+        preReq: [],
+        coreReq: []
+    };
     const handleSaveChanges = () => {
-        const modifyCourse = {
-            code: CourseSlected.code,
-            name: CourseSlected.name,
-            description: CourseSlected.description,
-            credits: CourseSlected.credits,
-            preReq: [],
-            coreReq: []
-        };
+        if (CourseSlected.code !== code) {
+            modifyCourse.code = code;
+        }
+        if (CourseSlected.name !== name) {
+            modifyCourse.name = name;
+        }
+        if (CourseSlected.description !== description) {
+            modifyCourse.description = description;
+        }
+        if (CourseSlected.credits !== credits) {
+            modifyCourse.credits = credits;
+        }
+
         const indexOfSelected = listCourses.findIndex(
-            (k) => k.code === CourseSlected.code
+            (course) => course.code === CourseSlected.code
         );
-        listCourses.splice(indexOfSelected, 1);
+        // listCourses.splice(indexOfSelected, 1);
         const update = [...listCourses];
-        update.push(modifyCourse);
-        console.log("test edit button save changes: ", listCourses);
+        // update.push(modifyCourse);
+        console.log("test edit button save changes: ", OriginalCourseList);
         closeEditCourse();
     };
     const handleReset = () => {
-        setListCourses(OriginalCourseList);
+        const update = [...OriginalCourseList];
+        setListCourses(update);
+        console.log("test edit button save changes: ", update);
         closeEditCourse();
     };
     return (
