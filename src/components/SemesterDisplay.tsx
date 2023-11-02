@@ -7,7 +7,7 @@ interface Semester {
     year: number;
 }
 
-const SemesterDisplay: React.FC = () => {
+const SemesterDisplay = () => {
     const [semesters, setSemesters] = useState<Semester[]>([]);
     const [showModal, setShowModal] = useState(false);
     const [selectedSeason, setSelectedSeason] = useState<Season>("Fall");

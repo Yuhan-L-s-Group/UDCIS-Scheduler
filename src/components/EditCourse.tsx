@@ -15,7 +15,7 @@ export default function EditCourse({
     closeEditCourse,
     CourseSlected
 }: EditCourseProps) {
-    const [code, setCode] = useState("test");
+    const [code, setCode] = useState("");
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [credits, setCredits] = useState(0);
@@ -29,9 +29,13 @@ export default function EditCourse({
             preReq: [],
             coreReq: []
         };
+        const indexOfSelected = listCourses.findIndex(
+            (k) => k.code === CourseSlected.code
+        );
+        listCourses.splice(indexOfSelected, 1);
         const update = [...listCourses];
         update.push(modifyCourse);
-        console.log("test edit button save changes: ");
+        console.log("test edit button save changes: ", listCourses);
         closeEditCourse();
     };
     return (
