@@ -8,12 +8,14 @@ interface EditCourseProps {
     setListCourses: (courses: Course[]) => void;
     closeEditCourse: () => void;
     CourseSlected: Course;
+    OriginalCourseList: Course[];
 }
 export default function EditCourse({
     listCourses,
     setListCourses,
     closeEditCourse,
-    CourseSlected
+    CourseSlected,
+    OriginalCourseList
 }: EditCourseProps) {
     const [code, setCode] = useState("1");
     const [name, setName] = useState("2");
@@ -36,6 +38,10 @@ export default function EditCourse({
         const update = [...listCourses];
         update.push(modifyCourse);
         console.log("test edit button save changes: ", listCourses);
+        closeEditCourse();
+    };
+    const handleReset = () => {
+        setListCourses(OriginalCourseList);
         closeEditCourse();
     };
     return (
@@ -81,7 +87,7 @@ export default function EditCourse({
                 </Form>
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="secondary" onClick={closeEditCourse}>
+                <Button variant="secondary" onClick={handleReset}>
                     Reset
                 </Button>
                 <Button variant="primary" onClick={handleSaveChanges}>

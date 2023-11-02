@@ -10,7 +10,7 @@ import "./courseTable.css";
 export function TwoModals() {
     const [isAddCourseOpen, setAddCourseOpen] = useState(false);
     const [listCourses, setListCourses] = useState<Course[]>(Courses);
-
+    const OriginalCourseList = listCourses;
     const openAddCourseWindow = () => {
         setAddCourseOpen(true);
     };
@@ -26,6 +26,7 @@ export function TwoModals() {
                 Add Course
             </Button>
             <CoursesTable
+                OriginalCourseList={OriginalCourseList}
                 onClose={closeAddCourseWindow}
                 listCourses={listCourses}
                 setListCourses={setListCourses}

@@ -16,12 +16,14 @@ interface EditCourseProps {
     onClose: () => void;
     listCourses: Course[];
     setListCourses: (courses: Course[]) => void;
+    OriginalCourseList: Course[];
 }
 
 const CoursesTable = ({
     onClose,
     listCourses,
-    setListCourses
+    setListCourses,
+    OriginalCourseList
 }: EditCourseProps) => {
     const categorizedCourses = listCourses.reduce((acc, course) => {
         const prefix = course.code.substring(0, 4);
@@ -75,6 +77,9 @@ const CoursesTable = ({
                                                         closeEditCourse
                                                     }
                                                     CourseSlected={course}
+                                                    OriginalCourseList={
+                                                        OriginalCourseList
+                                                    }
                                                 />
                                             </div>
                                         )}
