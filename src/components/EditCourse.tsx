@@ -15,14 +15,25 @@ export default function EditCourse({
     closeEditCourse,
     CourseSlected
 }: EditCourseProps) {
-    const originalListCopy = listCourses;
-    const [originalList, setListCoursesR] =
-        useState<Course[]>(originalListCopy);
-
-    const [code, setCode] = useState("");
+    const [code, setCode] = useState("test");
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [credits, setCredits] = useState(0);
+
+    const handleSaveChanges = () => {
+        const modifyCourse = {
+            code: CourseSlected.code,
+            name: CourseSlected.name,
+            description: CourseSlected.description,
+            credits: CourseSlected.credits,
+            preReq: [],
+            coreReq: []
+        };
+        const update = [...listCourses];
+        update.push(modifyCourse);
+        console.log("test edit button save changes: ");
+        closeEditCourse();
+    };
     return (
         <Modal show={true} onHide={closeEditCourse}>
             {" "}
@@ -67,12 +78,9 @@ export default function EditCourse({
             </Modal.Body>
             <Modal.Footer>
                 <Button variant="secondary" onClick={closeEditCourse}>
-                    Close
-                </Button>
-                <Button variant="secondary" onClick={closeEditCourse}>
                     Reset
                 </Button>
-                <Button variant="primary" onClick={closeEditCourse}>
+                <Button variant="primary" onClick={handleSaveChanges}>
                     Save Changes
                 </Button>
             </Modal.Footer>
