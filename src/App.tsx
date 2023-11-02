@@ -30,6 +30,10 @@ function App(): JSX.Element {
         ]);
     }
 
+    function clearSemester() {
+        setSemester([]);
+    }
+
     function print() {
         console.log(semester);
     }
@@ -45,6 +49,9 @@ function App(): JSX.Element {
             <SwitchPlan></SwitchPlan>
             <Button className="add_botton" onClick={handleShowModal}>
                 Add New Semester
+            </Button>
+            <Button className="clear_botton" onClick={clearSemester}>
+                Clear All
             </Button>
             <AddSemesterModal
                 show={showAddSemester}
