@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import "./App.css";
-import { IntroModal } from "./components/IntroModal";
 
+import { Button } from "react-bootstrap";
+import { IntroModal } from "./components/IntroModal";
 import { SwitchPlan } from "./components/SwitchPlan";
 import { AddSemesterModal } from "./components/SemesterModal";
 import { Season, Semester } from "./interfaces/semester";
-import { Button } from "react-bootstrap";
+import { SemesterDisplay } from "./components/SemesterDisplay";
+import { SemesterList } from "./components/SemsterList";
 
 function App(): JSX.Element {
     //for Intro
@@ -14,14 +16,14 @@ function App(): JSX.Element {
 
     //for add semester button
     const [showAddSemester, setAddSemester] = useState(false);
-    const [semester, setSemester] = useState<Semester[]>([]);
+    const [semesters, setSemester] = useState<Semester[]>([]);
 
     const handleShowModal = () => setAddSemester(true);
     const handleCloseModal = () => setAddSemester(false);
 
     function addNewSemester(year: number, season: Season) {
-        setSemester((prevSemester) => [
-            ...prevSemester,
+        setSemester([
+            ...semesters,
             {
                 season: season,
                 year: year,
@@ -34,8 +36,17 @@ function App(): JSX.Element {
         setSemester([]);
     }
 
+    function deleteSemester(season: Season, year: number) {
+        setSemester(
+            semesters.filter(
+                (semester: Semester): boolean =>
+                    year !== semester.year && season !== semester.season
+            )
+        );
+    }
+
     function print() {
-        console.log(semester);
+        console.log(semesters);
     }
 
     return (
@@ -47,9 +58,14 @@ function App(): JSX.Element {
                 Zhou, Henry Grant, Thern Diallo
             </p>
             <SwitchPlan></SwitchPlan>
+
             <Button className="add_botton" onClick={handleShowModal}>
                 Add New Semester
             </Button>
+            <SemesterList
+                semesters={semesters}
+                deleteSemester={deleteSemester}
+            ></SemesterList>
             <Button className="clear_botton" onClick={clearSemester}>
                 Clear All
             </Button>

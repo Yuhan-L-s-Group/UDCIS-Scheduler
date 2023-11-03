@@ -11,11 +11,23 @@ export const SemesterDisplay = ({
     deleteSemester: (season: Season, year: number) => void;
 }): JSX.Element => {
     return (
-        <div>
-            <strong>
+        <div className="semester_view">
+            <h3>
                 {semester.season} {semester.year}
-            </strong>
-            
+            </h3>
+            <Button
+                variant="danger"
+                onClick={() => deleteSemester(semester.season, semester.year)}
+            >
+                X
+            </Button>
+            <div>
+                {semester.courses.length === 0 ? (
+                    <span>Empty!</span>
+                ) : (
+                    <span>Not Empty!</span>
+                )}
+            </div>
         </div>
     );
 };
