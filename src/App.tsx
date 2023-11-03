@@ -37,12 +37,12 @@ function App(): JSX.Element {
     }
 
     function deleteSemester(season: Season, year: number) {
-        setSemester(
-            semesters.filter(
+        setSemester([
+            ...semesters.filter(
                 (semester: Semester): boolean =>
-                    year !== semester.year && season !== semester.season
+                    !(year === semester.year && season === semester.season)
             )
-        );
+        ]);
     }
 
     function print() {
