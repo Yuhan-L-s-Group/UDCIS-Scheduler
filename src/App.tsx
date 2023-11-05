@@ -80,10 +80,11 @@ function App(): JSX.Element {
                 addSemester={addNewSemester}
             ></AddSemesterModal>
             <Button onClick={print}>Print</Button>
-            <TwoModals
+            {/* <TwoModals
                 semesters={semesters}
                 setSemester={setSemester}
-            ></TwoModals>
+            ></TwoModals> */}
+            <TwoModals></TwoModals>
         </div>
     );
 }

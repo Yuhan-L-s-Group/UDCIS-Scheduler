@@ -3,7 +3,7 @@ import courses from "../data/course.json";
 import "./courseTable.css";
 import EditCourse from "./EditCourse";
 import React, { useState } from "react";
-
+import { AddtoSemester } from "./AddtoSemester";
 interface Course {
     code: string;
     name: string;
@@ -42,6 +42,7 @@ const CoursesTable = ({
         preReq: [],
         coreReq: []
     });
+    const [isAddSemesterOpen, SetAddSemester] = useState(false);
     const openEditCourse = () => {
         setEditCourseOpen(true);
     };
@@ -51,6 +52,16 @@ const CoursesTable = ({
     const gotYouCourse = (course: Course) => {
         setselectedCourse(course);
         setEditCourseOpen(true);
+    };
+    const gotYouCourse2 = (course: Course) => {
+        setselectedCourse(course);
+        SetAddSemester(true);
+    };
+    const openAddSemester = () => {
+        SetAddSemester(true);
+    };
+    const closeAddSemester = () => {
+        SetAddSemester(false);
     };
 
     return (
@@ -64,6 +75,7 @@ const CoursesTable = ({
                                 <th>Code: {prefix}</th>
                                 <th>Name</th>
                                 <th>Edit Course</th>
+                                <th>Add Course to Semester</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -93,6 +105,27 @@ const CoursesTable = ({
                                                     }
                                                     ModifiedCourseList={
                                                         ModifiedCourseList
+                                                    }
+                                                />
+                                            </div>
+                                        )}
+                                    </td>
+                                    <td>
+                                        <Button
+                                            onClick={() =>
+                                                gotYouCourse2(course)
+                                            }
+                                        >
+                                            Add Course to Semester
+                                        </Button>
+                                        {isAddSemesterOpen && (
+                                            <div>
+                                                <AddtoSemester
+                                                    selectedCourse={
+                                                        selectedCourse
+                                                    }
+                                                    closeAddSemester={
+                                                        closeAddSemester
                                                     }
                                                 />
                                             </div>

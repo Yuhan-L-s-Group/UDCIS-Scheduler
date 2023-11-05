@@ -6,14 +6,33 @@ import Form from "react-bootstrap/Form";
 import { Season, Semester } from "../interfaces/semester";
 
 interface AddCoursetoSemesterProp {
-    ModifiedCourseList: Course[];
-    semesters: Semester[];
-    setSemester: (semesters: Semester[]) => void;
+    selectedCourse: Course;
+    closeAddSemester: () => void;
 }
 export function AddtoSemester({
-    ModifiedCourseList,
-    semesters,
-    setSemester
+    selectedCourse,
+    closeAddSemester
 }: AddCoursetoSemesterProp) {
-    return <div></div>;
+    const handleChange = () => {
+        closeAddSemester();
+    };
+    return (
+        <div>
+            <Modal show={true} onHide={closeAddSemester}>
+                {" "}
+                <Modal.Header closeButton>
+                    <Modal.Title>Edit Course</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>Blank form needs to be filled out</Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleChange}>
+                        Reset
+                    </Button>
+                    <Button variant="primary" onClick={handleChange}>
+                        Save Changes
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+        </div>
+    );
 }

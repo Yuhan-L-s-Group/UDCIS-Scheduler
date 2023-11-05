@@ -12,7 +12,7 @@ interface SemesterProps {
     semesters: Semester[];
     setSemester: (semesters: Semester[]) => void;
 }
-export function TwoModals({ semesters, setSemester }: SemesterProps) {
+export function TwoModals() {
     const [isAddCourseOpen, setAddCourseOpen] = useState(false);
     const [listCourses, setListCourses] = useState<Course[]>(Courses);
 
@@ -47,11 +47,11 @@ export function TwoModals({ semesters, setSemester }: SemesterProps) {
                     />
                 </div>
             )}
-            <AddtoSemester
+            {/* <AddtoSemester
                 ModifiedCourseList={ModifiedCourseList}
                 semesters={semesters}
                 setSemester={setSemester}
-            />
+            /> */}
         </div>
     );
 }
