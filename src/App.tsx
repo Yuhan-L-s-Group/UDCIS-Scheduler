@@ -9,6 +9,7 @@ import { Season, Semester } from "./interfaces/semester";
 import { SemesterDisplay } from "./components/SemesterDisplay";
 import { SemesterList } from "./components/SemsterList";
 import { TwoModals } from "./components/TwoModals";
+import { Course } from "./interfaces/course";
 
 function App(): JSX.Element {
     //for Intro
@@ -79,7 +80,10 @@ function App(): JSX.Element {
                 addSemester={addNewSemester}
             ></AddSemesterModal>
             <Button onClick={print}>Print</Button>
-            <TwoModals></TwoModals>
+            <TwoModals
+                semesters={semesters}
+                setSemester={setSemester}
+            ></TwoModals>
         </div>
     );
 }

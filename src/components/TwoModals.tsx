@@ -6,8 +6,13 @@ import Courses from "../data/course.json";
 import Button from "react-bootstrap/Button";
 import CoursesTable from "./courseTable";
 import "./courseTable.css";
-
-export function TwoModals() {
+import { AddtoSemester } from "./AddtoSemester";
+import { Season, Semester } from "../interfaces/semester";
+interface SemesterProps {
+    semesters: Semester[];
+    setSemester: (semesters: Semester[]) => void;
+}
+export function TwoModals({ semesters, setSemester }: SemesterProps) {
     const [isAddCourseOpen, setAddCourseOpen] = useState(false);
     const [listCourses, setListCourses] = useState<Course[]>(Courses);
 
@@ -42,6 +47,11 @@ export function TwoModals() {
                     />
                 </div>
             )}
+            <AddtoSemester
+                ModifiedCourseList={ModifiedCourseList}
+                semesters={semesters}
+                setSemester={setSemester}
+            />
         </div>
     );
 }
