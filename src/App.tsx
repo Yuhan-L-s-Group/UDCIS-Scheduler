@@ -38,8 +38,6 @@ function App(): JSX.Element {
     }
 
     function deleteSemester(season: Season, year: number) {
-        console.log(semesters);
-
         const update = [
             ...semesters.filter(
                 (semester: Semester): boolean =>
@@ -63,20 +61,22 @@ function App(): JSX.Element {
             </p>
             <SwitchPlan></SwitchPlan>
 
-            <Button className="add_botton" onClick={handleShowModal}>
+            <Button className="add_button" onClick={handleShowModal}>
                 Add New Semester
             </Button>
             <SemesterList
                 semesters={semesters}
                 deleteSemester={deleteSemester}
             ></SemesterList>
-            <Button className="clear_botton" onClick={clearSemester}>
+
+            <Button className="clear_button" onClick={clearSemester}>
                 Clear All
             </Button>
             <AddSemesterModal
                 show={showAddSemester}
                 handleClose={handleCloseModal}
                 addSemester={addNewSemester}
+                semesters={semesters}
             ></AddSemesterModal>
             <Button onClick={print}>Print</Button>
             <TwoModals></TwoModals>
