@@ -22,7 +22,7 @@ td {
 }
 
 th {
-    background-color: rgb(64, 144, 156);
+    background-color: rgb(40, 151, 170);
     text-align: left;
 }
 
@@ -53,4 +53,7 @@ h2 {
 .AdjustTitle {
     font-size: 30px;
     color: #971038;
+}
+.adjustrow {
+    width: 18%;
 }

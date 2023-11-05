@@ -75,7 +75,7 @@ const CoursesTable = ({
                                 <th>Code: {prefix}</th>
                                 <th>Name</th>
                                 <th>Edit Course</th>
-                                <th>Add Course to Semester</th>
+                                <th>Add it to Semester</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -110,13 +110,14 @@ const CoursesTable = ({
                                             </div>
                                         )}
                                     </td>
-                                    <td>
+                                    <td className="adjustrow">
                                         <Button
                                             onClick={() =>
                                                 gotYouCourse2(course)
                                             }
+                                            variant="success"
                                         >
-                                            Add Course to Semester
+                                            Add to Semester
                                         </Button>
                                         {isAddSemesterOpen && (
                                             <div>
