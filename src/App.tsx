@@ -74,17 +74,17 @@ function App(): JSX.Element {
                 Clear All
             </Button>
             <AddSemesterModal
-                show={showAddSemester}
+                showAddSemester={showAddSemester}
                 handleClose={handleCloseModal}
                 addSemester={addNewSemester}
                 semesters={semesters}
             ></AddSemesterModal>
-            <Button onClick={print}>Print</Button>
+            {/* <Button onClick={print}>Print</Button> */}
             {/* <TwoModals
                 semesters={semesters}
                 setSemester={setSemester}
             ></TwoModals> */}
-            <TwoModals></TwoModals>
+            <TwoModals semesters={semesters}></TwoModals>
         </div>
     );
 }

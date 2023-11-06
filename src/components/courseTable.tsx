@@ -4,6 +4,8 @@ import "./courseTable.css";
 import EditCourse from "./EditCourse";
 import React, { useState } from "react";
 import { AddtoSemester } from "./AddtoSemester";
+import { Season, Semester } from "../interfaces/semester";
+
 interface Course {
     code: string;
     name: string;
@@ -17,13 +19,15 @@ interface EditCourseProps {
     listCourses: Course[];
     setListCourses: (courses: Course[]) => void;
     ModifiedCourseList: Course[];
+    semesters: Semester[];
 }
 
 const CoursesTable = ({
     onClose,
     listCourses,
     setListCourses,
-    ModifiedCourseList
+    ModifiedCourseList,
+    semesters
 }: EditCourseProps) => {
     const categorizedCourses = listCourses.reduce((acc, course) => {
         const prefix = course.code.substring(0, 4);
@@ -128,6 +132,7 @@ const CoursesTable = ({
                                                     closeAddSemester={
                                                         closeAddSemester
                                                     }
+                                                    semesters={semesters}
                                                 />
                                             </div>
                                         )}

@@ -1,17 +1,15 @@
 import React, { useState } from "react";
-
 import { Button, Modal, Col, Form, Container, Row } from "react-bootstrap";
-
 import { Season, Semester } from "../interfaces/semester";
 
 export const AddSemesterModal = ({
-    show,
+    showAddSemester,
     handleClose,
 
     addSemester,
     semesters
 }: {
-    show: boolean;
+    showAddSemester: boolean;
     handleClose: () => void;
     addSemester: (year: number, season: Season) => void;
 
@@ -47,7 +45,11 @@ export const AddSemesterModal = ({
 
     return (
         <div>
-            <Modal show={show} onHide={handleClose} animation={false}>
+            <Modal
+                show={showAddSemester}
+                onHide={handleClose}
+                animation={false}
+            >
                 <Modal.Header closeButton>
                     <Modal.Title>Add New Semester</Modal.Title>
                 </Modal.Header>

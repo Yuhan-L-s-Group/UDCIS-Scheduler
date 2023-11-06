@@ -10,9 +10,8 @@ import { AddtoSemester } from "./AddtoSemester";
 import { Season, Semester } from "../interfaces/semester";
 interface SemesterProps {
     semesters: Semester[];
-    setSemester: (semesters: Semester[]) => void;
 }
-export function TwoModals() {
+export function TwoModals({ semesters }: SemesterProps) {
     const [isAddCourseOpen, setAddCourseOpen] = useState(false);
     const [listCourses, setListCourses] = useState<Course[]>(Courses);
 
@@ -37,6 +36,7 @@ export function TwoModals() {
                 onClose={closeAddCourseWindow}
                 listCourses={listCourses}
                 setListCourses={setListCourses}
+                semesters={semesters}
             />
             {isAddCourseOpen && (
                 <div>

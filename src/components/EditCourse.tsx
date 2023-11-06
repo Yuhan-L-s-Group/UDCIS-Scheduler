@@ -67,7 +67,7 @@ export default function EditCourse({
         closeEditCourse();
     };
     return (
-        <Modal show={true} onHide={closeEditCourse}>
+        <Modal show={true} onHide={closeEditCourse} animation={false}>
             {" "}
             <Modal.Header closeButton>
                 <Modal.Title>Edit Course</Modal.Title>

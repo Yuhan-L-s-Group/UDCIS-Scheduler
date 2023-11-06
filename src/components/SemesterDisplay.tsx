@@ -34,7 +34,15 @@ export const SemesterDisplay = ({
                 {semester.courses.length === 0 ? (
                     <span>Empty!</span>
                 ) : (
-                    <span>Not Empty!</span>
+                    <span>
+                        {semester.courses.map((course) => (
+                            <span key={course.code + course.name}>
+                                {course.code + " "}
+                                {course.name}
+                                <br />
+                            </span>
+                        ))}
+                    </span>
                 )}
             </div>
         </div>
