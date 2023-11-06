@@ -47,10 +47,10 @@ export default function EditCourse({
         const indexOfSelected = ModifiedCourseList.findIndex(
             (course) => course.code === CourseSlected.code
         );
-        ModifiedCourseList.splice(indexOfSelected, 1);
+        ModifiedCourseList.splice(indexOfSelected, 1, modifyCourse);
         const update = [...ModifiedCourseList];
 
-        update.push(modifyCourse);
+        //update.push(modifyCourse);
         // setListCourses(update);
         // ModifiedCourseList[indexOfSelected].code = code;
         // ModifiedCourseList[indexOfSelected].name = name;

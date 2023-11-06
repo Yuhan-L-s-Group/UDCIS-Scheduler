@@ -38,7 +38,8 @@ export const SemesterDisplay = ({
                         {semester.courses.map((course) => (
                             <span key={course.code + course.name}>
                                 {course.code + " - "}
-                                {course.name}
+                                {course.name + " - "}
+                                {course.credits + " credits"}
                                 <br />
                             </span>
                         ))}
