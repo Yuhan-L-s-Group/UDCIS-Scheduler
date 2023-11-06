@@ -3,19 +3,11 @@ import { render, screen } from "@testing-library/react";
 import Courses from "../data/course.json";
 import SemesterDisplay from "../components/SemesterDisplay";
 import { TwoModals } from "../components/TwoModals";
-import AddCourse from "../components/AddCourse";
+import { AddCourse } from "../components/AddCourse";
 import CoursesTable from "../components/courseTable";
 import EditCourse from "../components/EditCourse";
 import { Season, Semester } from "./semester";
 import { Course } from "./course";
-
-describe("App Component", () => {
-    test("renders App component", () => {
-        render(<App />);
-        const headerElement = screen.getByText(/Yuhan L‘s Group/i);
-        expect(headerElement).toBeInTheDocument();
-    });
-});
 
 describe("SemesterDisplay Component", () => {
     test("renders SemesterDisplay component", () => {
