@@ -3,7 +3,7 @@ import { Season, Semester } from "../interfaces/semester";
 import { Course } from "../interfaces/course";
 import { Button } from "react-bootstrap";
 import { AddtoSemester } from "./AddtoSemester";
-import { TwoModals } from "./TwoModals";
+
 export const SemesterDisplay = ({
     semester,
     deleteSemester
@@ -37,7 +37,7 @@ export const SemesterDisplay = ({
                     <span>
                         {semester.courses.map((course) => (
                             <span key={course.code + course.name}>
-                                {course.code + " "}
+                                {course.code + " - "}
                                 {course.name}
                                 <br />
                             </span>

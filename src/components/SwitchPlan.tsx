@@ -25,7 +25,7 @@ export function SwitchPlan(): JSX.Element {
     return (
         <div>
             <Form.Group controlId="choseDegree">
-                <Form.Label>What is your favorite color?</Form.Label>
+                <Form.Label></Form.Label>
                 <Form.Select
                     value={degree}
                     onChange={(e) => setDegree(e.target.value)}

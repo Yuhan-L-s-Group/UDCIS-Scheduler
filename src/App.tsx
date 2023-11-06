@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./App.css";
 
-import { Button } from "react-bootstrap";
+import { Button, Col, Container, Row } from "react-bootstrap";
 import { IntroModal } from "./components/IntroModal";
 import { SwitchPlan } from "./components/SwitchPlan";
 import { AddSemesterModal } from "./components/SemesterModal";
@@ -61,30 +61,43 @@ function App(): JSX.Element {
                 Zhou, Henry Grant, Thern Diallo
             </p>
             <SwitchPlan></SwitchPlan>
-
-            <Button className="add_button" onClick={handleShowModal}>
-                Add New Semester
-            </Button>
-            <SemesterList
-                semesters={semesters}
-                deleteSemester={deleteSemester}
-            ></SemesterList>
-
-            <Button className="clear_button" onClick={clearSemester}>
-                Clear All
-            </Button>
-            <AddSemesterModal
-                showAddSemester={showAddSemester}
-                handleClose={handleCloseModal}
-                addSemester={addNewSemester}
-                semesters={semesters}
-            ></AddSemesterModal>
-            {/* <Button onClick={print}>Print</Button> */}
-            {/* <TwoModals
+            <Container>
+                <Row>
+                    <Col>
+                        <TwoModals semesters={semesters}></TwoModals>
+                    </Col>
+                    <Col>
+                        <br />
+                        <Button
+                            className="add_button"
+                            onClick={handleShowModal}
+                        >
+                            Add New Semester
+                        </Button>
+                        <SemesterList
+                            semesters={semesters}
+                            deleteSemester={deleteSemester}
+                        ></SemesterList>
+                        <Button
+                            className="clear_button"
+                            onClick={clearSemester}
+                        >
+                            Clear All
+                        </Button>
+                        <AddSemesterModal
+                            showAddSemester={showAddSemester}
+                            handleClose={handleCloseModal}
+                            addSemester={addNewSemester}
+                            semesters={semesters}
+                        ></AddSemesterModal>
+                        {/* <Button onClick={print}>Print</Button> */}
+                        {/* <TwoModals
                 semesters={semesters}
                 setSemester={setSemester}
             ></TwoModals> */}
-            <TwoModals semesters={semesters}></TwoModals>
+                    </Col>
+                </Row>
+            </Container>
         </div>
     );
 }
