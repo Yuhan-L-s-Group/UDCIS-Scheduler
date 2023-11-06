@@ -19,6 +19,7 @@ export const AddSemesterModal = ({
     const [season, setSeason] = useState<Season>("Fall");
     const [warn, setWarn] = useState<string>("");
     const years = Array.from(Array(30).keys()).map((x) => x + 2018);
+    const [totalCredits, setCredtis] = useState(0);
 
     const saveChanges = (): void => {
         if (

@@ -59,3 +59,7 @@
     filter: alpha(opacity=20);
     opacity: 0.2;   
 } */
+.modifytheCreditsText {
+    color: rgb(41, 113, 53);
+    font-size: 30px;
+}

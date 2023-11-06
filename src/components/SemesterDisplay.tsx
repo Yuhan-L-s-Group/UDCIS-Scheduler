@@ -22,7 +22,11 @@ export const SemesterDisplay = ({
         <div className="semester_view">
             <h3>
                 {semester.season} {semester.year}
+                {" - "}
+                {semester.courses.reduce((acc, iter) => acc + iter.credits, 0)}
+                {" credits"}
             </h3>
+
             <Button
                 variant="danger"
                 onClick={() => deleteSemester(semester.season, semester.year)}
