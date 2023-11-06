@@ -37,6 +37,7 @@ export function AddtoSemester({
         //             : s
         //     )
         // );
+        //k
         console.log(semesters);
         closeAddSemester();
     };
