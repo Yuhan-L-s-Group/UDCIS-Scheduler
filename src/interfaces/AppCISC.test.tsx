@@ -1,12 +1,11 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import App from "./App";
-import Courses from "./data/course.json";
-import SemesterDisplay from "./components/SemesterDisplay";
-import { TwoModals } from "./components/TwoModals";
-import AddCourse from "./components/AddCourse";
-import CoursesTable from "./components/courseTable";
-import EditCourse from "./components/EditCourse";
+import Courses from "../data/course.json";
+import SemesterDisplay from "../components/SemesterDisplay";
+import { TwoModals } from "../components/TwoModals";
+import AddCourse from "../components/AddCourse";
+import CoursesTable from "../components/courseTable";
+import EditCourse from "../components/EditCourse";
 import { Season, Semester } from "./semester";
 import { Course } from "./course";
 
