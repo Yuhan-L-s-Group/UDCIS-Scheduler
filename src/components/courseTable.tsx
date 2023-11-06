@@ -72,7 +72,6 @@ const CoursesTable = ({
 
     return (
         <div>
-            <h1 style={{ textAlign: "left" }}>CoursesList</h1>
             {Object.entries(categorizedCourses).map(([prefix, listCourses]) => (
                 <div key={prefix} className="tableBetween">
                     <table className="Tablesize">

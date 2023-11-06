@@ -8,6 +8,7 @@ import CoursesTable from "./courseTable";
 import "./courseTable.css";
 import { AddtoSemester } from "./AddtoSemester";
 import { Season, Semester } from "../interfaces/semester";
+import { classicNameResolver } from "typescript";
 interface SemesterProps {
     semesters: Semester[];
     setSemester: React.Dispatch<React.SetStateAction<Semester[]>>;
@@ -27,8 +28,9 @@ export function TwoModals({ semesters, setSemester }: SemesterProps) {
     };
 
     return (
-        <div>
-            <div className="AdjustTitle">Add course to CourseList:</div>
+        <div style={{ textAlign: "left" }}>
+            <span className="modifyCourseList"> CoursesList </span>
+            {/* <div className="AdjustTitle">Add course to CourseList:</div> */}
             <Button variant="primary" onClick={openAddCourseWindow}>
                 Add Course
             </Button>
