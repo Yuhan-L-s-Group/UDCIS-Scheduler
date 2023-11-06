@@ -67,7 +67,7 @@ export const AddSemesterModal = ({
                                         <option value="Fall">Fall</option>
                                         <option value="Winter">Winter</option>
                                         <option value="Spring">Spring</option>
-                                        <option value="Winter">Winter</option>
+                                        <option value="Summer">Summer</option>
                                     </Form.Select>
                                 </Col>
                                 <Col>
