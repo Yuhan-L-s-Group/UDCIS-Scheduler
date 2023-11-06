@@ -22,7 +22,7 @@ td {
 }
 
 th {
-    background-color: #239fb2;
+    background-color: rgb(40, 151, 170);
     text-align: left;
 }
 
@@ -41,7 +41,7 @@ h2 {
     background-color: #239fb2;
 }
 .invisableText {
-    color: #1b0505;
+    color: #2c1111;
 }
 
 .Tablesize {
@@ -49,4 +49,11 @@ h2 {
 }
 .tableBetween {
     padding-bottom: 40px;
+}
+.AdjustTitle {
+    font-size: 30px;
+    color: #971038;
+}
+.adjustrow {
+    width: 18%;
 }

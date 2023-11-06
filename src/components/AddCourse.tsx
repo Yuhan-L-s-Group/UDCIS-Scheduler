@@ -80,9 +80,6 @@ export function AddCourse({
                 </Form>
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="secondary" onClick={onClose}>
-                    Close
-                </Button>
                 <Button variant="primary" onClick={handleConfirm}>
                     Save Changes
                 </Button>

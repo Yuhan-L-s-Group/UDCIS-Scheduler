@@ -3,33 +3,78 @@ import { Course } from "../interfaces/course";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import Courses from "../data/course.json";
 interface EditCourseProps {
     listCourses: Course[];
     setListCourses: (courses: Course[]) => void;
     closeEditCourse: () => void;
+    CourseSlected: Course;
+    ModifiedCourseList: Course[];
 }
 export default function EditCourse({
     listCourses,
     setListCourses,
-    closeEditCourse
+    closeEditCourse,
+    CourseSlected,
+    ModifiedCourseList
 }: EditCourseProps) {
-    const originalListCopy = listCourses;
-    const [originalList, setListCoursesR] =
-        useState<Course[]>(originalListCopy);
+    const [code, setCode] = useState(CourseSlected.code);
+    const [name, setName] = useState(CourseSlected.name);
+    const [description, setDescription] = useState(CourseSlected.description);
+    const [credits, setCredits] = useState(CourseSlected.credits);
+    const modifyCourse = {
+        code: CourseSlected.code,
+        name: CourseSlected.name,
+        description: CourseSlected.description,
+        credits: CourseSlected.credits,
+        preReq: [],
+        coreReq: []
+    };
+    const handleSaveChanges = () => {
+        if (CourseSlected.code !== code) {
+            modifyCourse.code = code;
+        }
+        if (CourseSlected.name !== name) {
+            modifyCourse.name = name;
+        }
+        if (CourseSlected.description !== description) {
+            modifyCourse.description = description;
+        }
+        if (CourseSlected.credits !== credits) {
+            modifyCourse.credits = credits;
+        }
 
-    const [code, setCode] = useState("test");
-    const [name, setName] = useState("test");
-    const [description, setDescription] = useState("test");
-    const [credits, setCredits] = useState(0);
+        const indexOfSelected = ModifiedCourseList.findIndex(
+            (course) => course.code === CourseSlected.code
+        );
+        ModifiedCourseList.splice(indexOfSelected, 1);
+        const update = [...ModifiedCourseList];
+
+        update.push(modifyCourse);
+        // setListCourses(update);
+        // ModifiedCourseList[indexOfSelected].code = code;
+        // ModifiedCourseList[indexOfSelected].name = name;
+        // ModifiedCourseList[indexOfSelected].description = description;
+        // ModifiedCourseList[indexOfSelected].credits = credits;
+        setListCourses(update);
+        console.log("test edit button save changes: ", modifyCourse);
+        closeEditCourse();
+    };
+    const handleReset = () => {
+        const update = [...Courses];
+        setListCourses(update);
+        console.log("test edit button reset: ", update);
+        closeEditCourse();
+    };
     return (
-        <Modal show={true} onHide={closeEditCourse}>
+        <Modal show={true} onHide={closeEditCourse} animation={false}>
             {" "}
             <Modal.Header closeButton>
                 <Modal.Title>Edit Course</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <Form>
-                    <Form.Group className="mb-3" controlId="code">
+                    <Form.Group controlId="code">
                         <Form.Label>Code</Form.Label>
                         <Form.Control
                             type="text"
@@ -54,9 +99,9 @@ export default function EditCourse({
                         />
                     </Form.Group>
                     <Form.Group controlId="credits">
-                        <Form.Label>Credits</Form.Label>
+                        <Form.Label>Credits (please enter number)</Form.Label>
                         <Form.Control
-                            type="text"
+                            type="number"
                             value={credits}
                             onChange={(e) => setCredits(Number(e.target.value))}
                         />
@@ -64,10 +109,10 @@ export default function EditCourse({
                 </Form>
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="secondary" onClick={closeEditCourse}>
-                    Close
+                <Button variant="secondary" onClick={handleReset}>
+                    Reset
                 </Button>
-                <Button variant="primary" onClick={closeEditCourse}>
+                <Button variant="primary" onClick={handleSaveChanges}>
                     Save Changes
                 </Button>
             </Modal.Footer>
