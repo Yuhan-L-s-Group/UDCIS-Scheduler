@@ -20,6 +20,7 @@ interface EditCourseProps {
     setListCourses: (courses: Course[]) => void;
     ModifiedCourseList: Course[];
     semesters: Semester[];
+    setSemester: React.Dispatch<React.SetStateAction<Semester[]>>;
 }
 
 const CoursesTable = ({
@@ -27,7 +28,8 @@ const CoursesTable = ({
     listCourses,
     setListCourses,
     ModifiedCourseList,
-    semesters
+    semesters,
+    setSemester
 }: EditCourseProps) => {
     const categorizedCourses = listCourses.reduce((acc, course) => {
         const prefix = course.code.substring(0, 4);
@@ -133,6 +135,7 @@ const CoursesTable = ({
                                                         closeAddSemester
                                                     }
                                                     semesters={semesters}
+                                                    setSemester={setSemester}
                                                 />
                                             </div>
                                         )}

@@ -10,8 +10,9 @@ import { AddtoSemester } from "./AddtoSemester";
 import { Season, Semester } from "../interfaces/semester";
 interface SemesterProps {
     semesters: Semester[];
+    setSemester: React.Dispatch<React.SetStateAction<Semester[]>>;
 }
-export function TwoModals({ semesters }: SemesterProps) {
+export function TwoModals({ semesters, setSemester }: SemesterProps) {
     const [isAddCourseOpen, setAddCourseOpen] = useState(false);
     const [listCourses, setListCourses] = useState<Course[]>(Courses);
 
@@ -37,6 +38,7 @@ export function TwoModals({ semesters }: SemesterProps) {
                 listCourses={listCourses}
                 setListCourses={setListCourses}
                 semesters={semesters}
+                setSemester={setSemester}
             />
             {isAddCourseOpen && (
                 <div>

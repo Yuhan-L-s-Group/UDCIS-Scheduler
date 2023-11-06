@@ -9,19 +9,35 @@ interface AddCoursetoSemesterProp {
     selectedCourse: Course;
     closeAddSemester: () => void;
     semesters: Semester[];
+    setSemester: React.Dispatch<React.SetStateAction<Semester[]>>;
 }
 export function AddtoSemester({
     selectedCourse,
     closeAddSemester,
-    semesters
+    semesters,
+    setSemester
 }: AddCoursetoSemesterProp) {
     const [selectedSemester, setSelectedSemester] = useState<Semester>();
     const handleAddtoSemester = (semester: Semester) => {
         setSelectedSemester(semester);
     };
     const handleChange = () => {
-        selectedSemester?.courses.push(selectedCourse);
-        console.log(selectedSemester?.courses);
+        const RepeatedSemester = semesters.filter((semeseter) =>
+            semeseter.courses.includes(selectedCourse)
+        );
+        if (RepeatedSemester.length === 0) {
+            selectedSemester?.courses.push(selectedCourse);
+            setSemester([...semesters]);
+        }
+
+        // setSemester(}
+        //     semesters.map((s) =>
+        //         s === selectedSemester
+        //             ? { ...s, courses: [...s.courses, selectedCourse] }
+        //             : s
+        //     )
+        // );
+        console.log(semesters);
         closeAddSemester();
     };
     return (

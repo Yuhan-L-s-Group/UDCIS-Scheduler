@@ -84,7 +84,10 @@ function App(): JSX.Element {
                 semesters={semesters}
                 setSemester={setSemester}
             ></TwoModals> */}
-            <TwoModals semesters={semesters}></TwoModals>
+            <TwoModals
+                semesters={semesters}
+                setSemester={setSemester}
+            ></TwoModals>
         </div>
     );
 }
