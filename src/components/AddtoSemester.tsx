@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Course } from "../interfaces/course";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
@@ -18,8 +18,15 @@ export function AddtoSemester({
     setSemester
 }: AddCoursetoSemesterProp) {
     const [selectedSemester, setSelectedSemester] = useState<Semester>();
+    // const [ErrorMessage, SetErrorMessage] = useState(false);
+    const [test, settest] = useState(0);
+    // let ErrorMessage = false;
     const handleAddtoSemester = (semester: Semester) => {
         setSelectedSemester(semester);
+    };
+
+    const handleTest = () => {
+        settest(1);
     };
     const handleChange = () => {
         const RepeatedSemester = semesters.filter((semeseter) =>
@@ -29,16 +36,18 @@ export function AddtoSemester({
             selectedSemester?.courses.push(selectedCourse);
             setSemester([...semesters]);
         }
+        // else {
+        //     ErrorMessage = true;
+        // }
 
-        // setSemester(}
-        //     semesters.map((s) =>
-        //         s === selectedSemester
-        //             ? { ...s, courses: [...s.courses, selectedCourse] }
-        //             : s
-        //     )
+        // semesters.map((s) =>
+        //     s === selectedSemester
+        //         ? { ...s, courses: [...s.courses, selectedCourse] }
+        //         : s
         // );
+
         //k
-        console.log(semesters);
+        // console.log(ErrorMessage);
         closeAddSemester();
     };
     return (
