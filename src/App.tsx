@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./App.css";
 
-import { Button } from "react-bootstrap";
+import { Button, Col, Container, Row } from "react-bootstrap";
 import { IntroModal } from "./components/IntroModal";
 import { SwitchPlan } from "./components/SwitchPlan";
 import { AddSemesterModal } from "./components/SemesterModal";
@@ -9,7 +9,10 @@ import { Season, Semester } from "./interfaces/semester";
 import { SemesterDisplay } from "./components/SemesterDisplay";
 import { SemesterList } from "./components/SemsterList";
 import { TwoModals } from "./components/TwoModals";
-
+import { Course } from "./interfaces/course";
+import Form from "react-bootstrap/Form";
+import InputGroup from "react-bootstrap/InputGroup";
+import logo1 from "./pictures/udlogo1.jpg";
 function App(): JSX.Element {
     //for Intro
     const [showIntro, setShowIntro] = useState<boolean>(true);
@@ -21,6 +24,17 @@ function App(): JSX.Element {
 
     const handleShowModal = () => setAddSemester(true);
     const handleCloseModal = () => setAddSemester(false);
+    //for store user's name
+    const [Name, setName] = useState("");
+    const [renderName, setrenderName] = useState(false);
+    const [isNameField, setNamefield] = useState(true);
+    //display welcome video
+    const [isPlay, setisPlay] = useState(true);
+    const ConfirmName = () => {
+        setrenderName(true);
+        setNamefield(false);
+        setisPlay(false);
+    };
 
     function addNewSemester(year: number, season: Season) {
         setSemester([
@@ -38,8 +52,6 @@ function App(): JSX.Element {
     }
 
     function deleteSemester(season: Season, year: number) {
-        console.log(semesters);
-
         const update = [
             ...semesters.filter(
                 (semester: Semester): boolean =>
@@ -56,30 +68,65 @@ function App(): JSX.Element {
     return (
         <div className="App">
             <IntroModal show={showIntro} handleClose={handleClose}></IntroModal>
-            <header className="App-header">Yuhan L‘s Group</header>
+            <header className="App-header">
+                <img src={logo1} alt="ud logo1" className="udlogo1" />
+            </header>
+            <br />
             <p>
-                Group Members: Yuhan Lin, Priyanka Chaudhuri, Zonglin Wu, Ziyi
-                Zhou, Henry Grant, Thern Diallo
+                {isNameField && (
+                    <InputGroup>
+                        <Form.Control
+                            placeholder="Your Name"
+                            value={Name}
+                            onChange={(e) => setName(e.target.value)}
+                        />
+                        <button onClick={ConfirmName}>Confirm</button>
+                    </InputGroup>
+                )}
             </p>
             <SwitchPlan></SwitchPlan>
-
-            <Button className="add_botton" onClick={handleShowModal}>
-                Add New Semester
-            </Button>
-            <SemesterList
+            <Container>
+                <Row>
+                    <Col>
+                        <TwoModals
+                            semesters={semesters}
+                            setSemester={setSemester}
+                        ></TwoModals>
+                    </Col>
+                    <Col>
+                        <br />
+                        <Button
+                            className="add_button"
+                            onClick={handleShowModal}
+                        >
+                            Add New Semester
+                        </Button>
+                        <SemesterList
+                            semesters={semesters}
+                            deleteSemester={deleteSemester}
+                            Name={Name}
+                            renderName={renderName}
+                        ></SemesterList>
+                        <Button
+                            className="clear_button"
+                            onClick={clearSemester}
+                        >
+                            Clear All
+                        </Button>
+                        <AddSemesterModal
+                            showAddSemester={showAddSemester}
+                            handleClose={handleCloseModal}
+                            addSemester={addNewSemester}
+                            semesters={semesters}
+                        ></AddSemesterModal>
+                        {/* <Button onClick={print}>Print</Button> */}
+                        {/* <TwoModals
                 semesters={semesters}
-                deleteSemester={deleteSemester}
-            ></SemesterList>
-            <Button className="clear_botton" onClick={clearSemester}>
-                Clear All
-            </Button>
-            <AddSemesterModal
-                show={showAddSemester}
-                handleClose={handleCloseModal}
-                addSemester={addNewSemester}
-            ></AddSemesterModal>
-            <Button onClick={print}>Print</Button>
-            <TwoModals></TwoModals>
+                setSemester={setSemester}
+            ></TwoModals> */}
+                    </Col>
+                </Row>
+            </Container>
         </div>
     );
 }

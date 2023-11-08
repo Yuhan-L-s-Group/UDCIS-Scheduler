@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Season, Semester } from "../interfaces/semester";
 import { Course } from "../interfaces/course";
 import { Button } from "react-bootstrap";
@@ -10,22 +10,44 @@ export const SemesterDisplay = ({
     semester: Semester;
     deleteSemester: (season: Season, year: number) => void;
 }): JSX.Element => {
+    const [isAddcourseOpen, setIsAddcourseOpen] = useState<boolean>(false);
+
+    const OpenAddCourse = () => {
+        setIsAddcourseOpen(true);
+    };
+    const closeAddCourse = () => {
+        setIsAddcourseOpen(false);
+    };
     return (
         <div className="semester_view">
             <h3>
                 {semester.season} {semester.year}
+                {" - "}
+                {semester.courses.reduce((acc, iter) => acc + iter.credits, 0)}
+                {" credits"}
             </h3>
+
             <Button
                 variant="danger"
                 onClick={() => deleteSemester(semester.season, semester.year)}
             >
                 X
             </Button>
+
             <div>
                 {semester.courses.length === 0 ? (
                     <span>Empty!</span>
                 ) : (
-                    <span>Not Empty!</span>
+                    <span>
+                        {semester.courses.map((course) => (
+                            <span key={course.code + course.name}>
+                                {course.code + " - "}
+                                {course.name + " - "}
+                                {course.credits + " credits"}
+                                <br />
+                            </span>
+                        ))}
+                    </span>
                 )}
             </div>
         </div>

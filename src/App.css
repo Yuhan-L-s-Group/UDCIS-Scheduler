@@ -49,3 +49,25 @@
     min-width: 150px;
     min-height: 150px;
 }
+/* .add_botton {
+    float: right;
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    filter: alpha(opacity=20);
+    opacity: 0.2;   
+} */
+.modifytheCreditsText {
+    color: rgb(41, 113, 53);
+    font-size: 30px;
+}
+.name {
+    color: rgb(0, 5, 1);
+    font-size: 25px;
+}
+.udlogo1 {
+    width: 1680px;
+    height: 600px;
+}

@@ -47,9 +47,8 @@ export default function EditCourse({
         const indexOfSelected = ModifiedCourseList.findIndex(
             (course) => course.code === CourseSlected.code
         );
-        ModifiedCourseList.splice(indexOfSelected, 1);
+        ModifiedCourseList.splice(indexOfSelected, 1, modifyCourse);
         const update = [...ModifiedCourseList];
-        update.push(modifyCourse);
         setListCourses(update);
         console.log("test edit button save changes: ", modifyCourse);
         closeEditCourse();
@@ -61,7 +60,7 @@ export default function EditCourse({
         closeEditCourse();
     };
     return (
-        <Modal show={true} onHide={closeEditCourse}>
+        <Modal show={true} onHide={closeEditCourse} animation={false}>
             {" "}
             <Modal.Header closeButton>
                 <Modal.Title>Edit Course</Modal.Title>
