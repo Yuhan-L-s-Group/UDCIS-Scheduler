@@ -68,7 +68,15 @@ render(
   });
 
   test("Entering valid data and submitting the form successfully adds a new course", () => {
-    render(<AddCourse onClose={() => {}} listCourses={[]} setListCourses={() => {}} });
+    const onCloseMock = jest.fn(); // Mock the onClose function
+    const setListCoursesMock = jest.fn(); // Mock the setListCourses function
+    render(
+      <AddCourse
+      onClose= {{}=> {}}
+      listCourses={[]}
+      setListCourses={()=> {}}
+      />
+    );
 
     const codeInput = screen.getByLabelText("Code");
     const nameInput = screen.getByLabelText("Name");
