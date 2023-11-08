@@ -5,10 +5,10 @@ import { AddCourse } from "./AddCourse";
 
 describe("AddCourse Component Tests", () => {
    test("To save changes when a new course is added", () => {
-    const onCloseMock = jest.fn(); // Mock the onClose function
+    const onMock = jest.fn(); // Mock the onClose function
     const setListCoursesMock = jest.fn(); // Mock the setListCourses function
 
-    render(<AddCourse onClose={onCloseMock} listCourses={[]} setListCourses={setListCoursesMock} />);
+    render(<AddCourse onClose={onMock} listCourses={[]} setListCourses={setListCoursesMock} />);
 
     // Find form input fields and button
     const cdIN = screen.getByLabelText("Code");
@@ -27,7 +27,7 @@ describe("AddCourse Component Tests", () => {
     userEvent.click(saveIT);
 
     // Assert that onCloseMock was called, indicating the modal was closed
-    expect(onCloseMock).toHaveBeenCalled();
+    expect(onMock).toHaveBeenCalled();
 
     // Assert that setListCoursesMock was called with the new course
     expect(setListCoursesMock).toHaveBeenCalledWith(
@@ -68,7 +68,7 @@ render(
   });
 
   test("Entering valid data and submitting the form successfully adds a new course", () => {
-    const onCloseMock = jest.fn(); // Mock the onClose function
+    const onMock = jest.fn(); // Mock the onClose function
     const setListCoursesMock = jest.fn(); // Mock the setListCourses function
     render(
       <AddCourse
@@ -122,12 +122,12 @@ render(
   });
 
   test("User can add a course with pre-requisites and corequisites", () => {
-  const onCloseMock = jest.fn();
+  const onMock = jest.fn();
   const setListCoursesMock = jest.fn();
 
   render(
     <AddCourse
-      onClose={onCloseMock}
+      onClose={onMock}
       listCourses={[]}
       setListCourses={setListCoursesMock}
     />
@@ -154,7 +154,7 @@ render(
   userEvent.click(saveButton);
 
   // Assert that onCloseMock function was called
-  expect(onCloseMock).toHaveBeenCalled();
+  expect(onMock).toHaveBeenCalled();
 
   // Assert that setListCoursesMock function was called with the new course
   expect(setListCoursesMock).toHaveBeenCalledWith(
