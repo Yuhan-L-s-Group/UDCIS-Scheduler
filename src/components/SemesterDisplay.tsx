@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Season, Semester } from "../interfaces/semester";
 import { Course } from "../interfaces/course";
 import { Button } from "react-bootstrap";
-import { AddtoSemester } from "./AddtoSemester";
 
 export const SemesterDisplay = ({
     semester,
@@ -12,6 +11,7 @@ export const SemesterDisplay = ({
     deleteSemester: (season: Season, year: number) => void;
 }): JSX.Element => {
     const [isAddcourseOpen, setIsAddcourseOpen] = useState<boolean>(false);
+
     const OpenAddCourse = () => {
         setIsAddcourseOpen(true);
     };

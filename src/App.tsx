@@ -10,7 +10,9 @@ import { SemesterDisplay } from "./components/SemesterDisplay";
 import { SemesterList } from "./components/SemsterList";
 import { TwoModals } from "./components/TwoModals";
 import { Course } from "./interfaces/course";
-
+import Form from "react-bootstrap/Form";
+import InputGroup from "react-bootstrap/InputGroup";
+import logo1 from "./pictures/udlogo1.jpg";
 function App(): JSX.Element {
     //for Intro
     const [showIntro, setShowIntro] = useState<boolean>(true);
@@ -22,6 +24,17 @@ function App(): JSX.Element {
 
     const handleShowModal = () => setAddSemester(true);
     const handleCloseModal = () => setAddSemester(false);
+    //for store user's name
+    const [Name, setName] = useState("");
+    const [renderName, setrenderName] = useState(false);
+    const [isNameField, setNamefield] = useState(true);
+    //display welcome video
+    const [isPlay, setisPlay] = useState(true);
+    const ConfirmName = () => {
+        setrenderName(true);
+        setNamefield(false);
+        setisPlay(false);
+    };
 
     function addNewSemester(year: number, season: Season) {
         setSemester([
@@ -55,10 +68,21 @@ function App(): JSX.Element {
     return (
         <div className="App">
             <IntroModal show={showIntro} handleClose={handleClose}></IntroModal>
-            <header className="App-header">Yuhan L‘s Group</header>
+            <header className="App-header">
+                <img src={logo1} alt="ud logo1" className="udlogo1" />
+            </header>
+            <br />
             <p>
-                Group Members: Yuhan Lin, Priyanka Chaudhuri, Zonglin Wu, Ziyi
-                Zhou, Henry Grant, Thern Diallo
+                {isNameField && (
+                    <InputGroup>
+                        <Form.Control
+                            placeholder="Your Name"
+                            value={Name}
+                            onChange={(e) => setName(e.target.value)}
+                        />
+                        <button onClick={ConfirmName}>Confirm</button>
+                    </InputGroup>
+                )}
             </p>
             <SwitchPlan></SwitchPlan>
             <Container>
@@ -80,6 +104,8 @@ function App(): JSX.Element {
                         <SemesterList
                             semesters={semesters}
                             deleteSemester={deleteSemester}
+                            Name={Name}
+                            renderName={renderName}
                         ></SemesterList>
                         <Button
                             className="clear_button"

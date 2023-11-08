@@ -6,13 +6,20 @@ import "../App.css";
 
 export const SemesterList = ({
     semesters,
-    deleteSemester
+    deleteSemester,
+    Name,
+    renderName
 }: {
     semesters: Semester[];
     deleteSemester: (season: Season, year: number) => void;
+    Name: string;
+    renderName: boolean;
 }) => {
     return (
         <>
+            <br />
+            <br />
+            {renderName && <div className="name"> {Name}</div>}
             <div className="modifytheCreditsText">
                 {"Cumulative credits: "}
                 {semesters.reduce(

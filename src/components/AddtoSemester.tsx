@@ -18,9 +18,7 @@ export function AddtoSemester({
     setSemester
 }: AddCoursetoSemesterProp) {
     const [selectedSemester, setSelectedSemester] = useState<Semester>();
-    // const [ErrorMessage, SetErrorMessage] = useState(false);
     const [test, settest] = useState(0);
-    // let ErrorMessage = false;
     const handleAddtoSemester = (semester: Semester) => {
         setSelectedSemester(semester);
     };
@@ -36,18 +34,6 @@ export function AddtoSemester({
             selectedSemester?.courses.push(selectedCourse);
             setSemester([...semesters]);
         }
-        // else {
-        //     ErrorMessage = true;
-        // }
-
-        // semesters.map((s) =>
-        //     s === selectedSemester
-        //         ? { ...s, courses: [...s.courses, selectedCourse] }
-        //         : s
-        // );
-
-        //k
-        // console.log(ErrorMessage);
         closeAddSemester();
     };
     return (
