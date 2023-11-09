@@ -3,7 +3,7 @@ import { Button } from "react-bootstrap";
 import { SemesterDisplay } from "./SemesterDisplay";
 import { Season, Semester } from "../interfaces/semester";
 import "../App.css";
-
+import horse from "../pictures/horse.jpg";
 export const SemesterList = ({
     semesters,
     deleteSemester,
@@ -21,7 +21,7 @@ export const SemesterList = ({
         <>
             <br />
             <br />
-            {renderName && <div className="name"> {Name}</div>}
+            {renderName && <div className="name"> Hi! {Name}</div>}
             <div className="modifytheCreditsText">
                 {"Cumulative credits: "}
                 {semesters.reduce(
@@ -33,7 +33,7 @@ export const SemesterList = ({
                         ),
                     0
                 )}
-                {" credits"}
+                {" credits"} {renderName && <img src={horse} alt="horse" />}
             </div>
             <div className="semester_list">
                 {semesters.map(
