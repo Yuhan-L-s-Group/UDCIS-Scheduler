@@ -45,7 +45,7 @@ describe("AddCourse Component Tests", () => {
 
   
 
-  test("Form fields are initially empty", () => {
+  test("Form fields when they are empty", () => {
 render(
     <AddCourse
       onClose={() => {}}
@@ -67,16 +67,17 @@ render(
   expect(creditsIn).toHaveValue("");
   });
 
-  test("Entering valid data and submitting the form successfully adds a new course", () => {
-    const onMock = jest.fn(); // Mock the onClose function
-    const setListCoursesMock = jest.fn(); // Mock the setListCourses function
-    render(
-      <AddCourse
-      onClose= {{}=> {}}
+  test("Entering data and adding the new course", () => {
+     const onCloseMock = jest.fn(); // Mock the onClose function
+  const setListCoursesMock = jest.fn(); // Mock the setListCourses function
+
+  render(
+    <AddCourse
+      onClose={onCloseMock}
       listCourses={[]}
-      setListCourses={()=> {}}
-      />
-    );
+      setListCourses={setListCoursesMock}
+    />
+  );
 
     const codeInput = screen.getByLabelText("Code");
     const nameInput = screen.getByLabelText("Name");
@@ -84,39 +85,50 @@ render(
     const creditsInput = screen.getByLabelText("Credits");
     const saveButton = screen.getByText("Save Changes");
 
-    userEvent.type(codeInput, "CS101");
-    userEvent.type(nameInput, "Introduction to Computer Science");
-    userEvent.type(descriptionInput, "A beginner-level course in CS.");
+    userEvent.type(codeInput, "CISC260");
+    userEvent.type(nameInput, "Machine Organization and Assembly Language");
+    userEvent.type(descriptionInput, "Introduction to the basics of machine organization. Programming tools and techniques at the machine and assembly levels. Assembly language programming and computer arithmetic techniques.");
     userEvent.type(creditsInput, "3");
     userEvent.click(saveButton);
 
-    // Add assertions to verify the new course is added to the listCourses prop
+    
   });
 
-  test("Entering invalid data shows appropriate validation errors", () => {
-    render(<AddCourse onClose={() => {}} listCourses={[]} setListCourses={() => {}} });
+  test("Entering data that is not valid and it shows errors", () => {
+    render(
+    <AddCourse
+      onClose={() => {}}
+      listCourses={[]}
+      setListCourses={() => {}}
+    />
+  );
 
     const codeInput = screen.getByLabelText("Code");
     const nameInput = screen.getByLabelText("Name");
     const creditsInput = screen.getByLabelText("Credits");
     const saveButton = screen.getByText("Save Changes");
 
-    // Submit the form with missing description field
-    userEvent.type(codeInput, "CISC101");
+    
+    userEvent.type(codeInput, "CISC121");
     userEvent.type(nameInput, "Introduction to Computer Science");
     userEvent.type(creditsInput, "3");
     userEvent.click(saveButton);
 
-    // Ensure validation errors are displayed
-    const errorMessages = screen.getAllByText("This field is required");
+    
+    const errorMessages = screen.getAllByText("Field cannot be empty");
     expect(errorMessages).toHaveLength(1);
   });
 
   test("User can cancel adding a course and modal is closed", () => {
-    render(<AddCourse onClose={() => {}} listCourses={[]} setListCourses={() => {}} });
+  const onCloseMock = jest.fn(); // Mock the onClose function
+  render(
+    <AddCourse onClose={onCloseMock} listCourses={[]} setListCourses={() => {}} />
+  );
+  const cancel = screen.getByText("Cancel");
+  userEvent.click(cancel);
 
-    const cancel = screen.getByText("Cancel");
-    userEvent.click(cancel);
+  // Assertions to check if the modal is closed
+  expect(onCloseMock).toHaveBeenCalled();
 
     // Add assertions to check if the modal is closed
   });
