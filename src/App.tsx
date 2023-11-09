@@ -6,10 +6,8 @@ import { IntroModal } from "./components/IntroModal";
 import { SwitchPlan } from "./components/SwitchPlan";
 import { AddSemesterModal } from "./components/SemesterModal";
 import { Season, Semester } from "./interfaces/semester";
-import { SemesterDisplay } from "./components/SemesterDisplay";
 import { SemesterList } from "./components/SemsterList";
 import { TwoModals } from "./components/TwoModals";
-import { Course } from "./interfaces/course";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import logo1 from "./pictures/udlogo1.jpg";
@@ -28,12 +26,10 @@ function App(): JSX.Element {
     const [Name, setName] = useState("");
     const [renderName, setrenderName] = useState(false);
     const [isNameField, setNamefield] = useState(true);
-    //display welcome video
-    const [isPlay, setisPlay] = useState(true);
+
     const ConfirmName = () => {
         setrenderName(true);
         setNamefield(false);
-        setisPlay(false);
     };
 
     function addNewSemester(year: number, season: Season) {
@@ -61,8 +57,8 @@ function App(): JSX.Element {
         setSemester([...update]);
     }
 
-    function print() {
-        console.log(semesters);
+    function deleteCourse(semester: Semester[]) {
+        setSemester(semester);
     }
 
     return (
@@ -106,7 +102,9 @@ function App(): JSX.Element {
                             deleteSemester={deleteSemester}
                             Name={Name}
                             renderName={renderName}
+                            deleteCourse={deleteCourse}
                         ></SemesterList>
+                        <br />
                         <Button
                             className="clear_button"
                             onClick={clearSemester}
@@ -119,11 +117,6 @@ function App(): JSX.Element {
                             addSemester={addNewSemester}
                             semesters={semesters}
                         ></AddSemesterModal>
-                        {/* <Button onClick={print}>Print</Button> */}
-                        {/* <TwoModals
-                semesters={semesters}
-                setSemester={setSemester}
-            ></TwoModals> */}
                     </Col>
                 </Row>
             </Container>

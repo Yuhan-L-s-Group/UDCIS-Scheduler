@@ -8,12 +8,14 @@ export const SemesterList = ({
     semesters,
     deleteSemester,
     Name,
-    renderName
+    renderName,
+    deleteCourse
 }: {
     semesters: Semester[];
     deleteSemester: (season: Season, year: number) => void;
     Name: string;
     renderName: boolean;
+    deleteCourse: (semester: Semester[]) => void;
 }) => {
     return (
         <>
@@ -36,11 +38,14 @@ export const SemesterList = ({
             <div className="semester_list">
                 {semesters.map(
                     (semester: Semester): JSX.Element => (
-                        <SemesterDisplay
-                            key={semester.year + semester.season}
-                            semester={semester}
-                            deleteSemester={deleteSemester}
-                        ></SemesterDisplay>
+                        <div key={semester.year + semester.season}>
+                            <SemesterDisplay
+                                semester={semester}
+                                deleteSemester={deleteSemester}
+                                deleteCourse={deleteCourse}
+                                semesters={semesters}
+                            ></SemesterDisplay>
+                        </div>
                     )
                 )}
             </div>
