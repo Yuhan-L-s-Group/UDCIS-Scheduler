@@ -1,14 +1,12 @@
+/* eslint-disable no-extra-parens */
 import React, { useState } from "react";
 import { AddCourse } from "./AddCourse";
-import EditCourse from "./EditCourse";
 import { Course } from "../interfaces/course";
 import Courses from "../data/course.json";
 import Button from "react-bootstrap/Button";
 import CoursesTable from "./courseTable";
 import "./courseTable.css";
-import { AddtoSemester } from "./AddtoSemester";
-import { Season, Semester } from "../interfaces/semester";
-import { classicNameResolver } from "typescript";
+import { Semester } from "../interfaces/semester";
 interface SemesterProps {
     semesters: Semester[];
     setSemester: React.Dispatch<React.SetStateAction<Semester[]>>;

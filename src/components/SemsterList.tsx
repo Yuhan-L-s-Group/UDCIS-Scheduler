@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Button } from "react-bootstrap";
+/* eslint-disable no-extra-parens */
+import React from "react";
 import { SemesterDisplay } from "./SemesterDisplay";
 import { Season, Semester } from "../interfaces/semester";
 import "../App.css";

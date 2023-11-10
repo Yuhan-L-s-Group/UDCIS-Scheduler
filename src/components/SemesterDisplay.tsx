@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+/* eslint-disable no-extra-parens */
+import React from "react";
 import { Season, Semester } from "../interfaces/semester";
 import { Course } from "../interfaces/course";
 import { Button } from "react-bootstrap";
 import "../App.css";
 export const SemesterDisplay = ({
     semester,
-    deleteSemester,
     deleteCourse,
     semesters
 }: {
@@ -14,14 +14,6 @@ export const SemesterDisplay = ({
     deleteCourse: (semester: Semester[]) => void;
     semesters: Semester[];
 }): JSX.Element => {
-    const [isAddcourseOpen, setIsAddcourseOpen] = useState<boolean>(false);
-    const [todelete, setdelete] = useState<Course>();
-    const OpenAddCourse = () => {
-        setIsAddcourseOpen(true);
-    };
-    const closeAddCourse = () => {
-        setIsAddcourseOpen(false);
-    };
     const deleteCourseFunc = (course: Course) => {
         const indexC = semester.courses.findIndex(
             (target) => target === course
@@ -31,12 +23,6 @@ export const SemesterDisplay = ({
         deleteCourse(update);
     };
 
-    // const deleteSingleSemester = (semester: Semester | null) => {
-    //     semester = null;
-    //     const update = [...semesters];
-    //     deleteCourse(update);
-    //     console.log(semesters);
-    // };
     const deleteSingleSemester = (semester: Semester | null) => {
         const indexS = semesters.findIndex((target) => target === semester);
         semesters.splice(indexS, 1);
@@ -58,13 +44,6 @@ export const SemesterDisplay = ({
                     X
                 </Button>
             </h3>
-
-            {/* <Button
-                variant="danger"
-                onClick={() => deleteSemester(semester.season, semester.year)}
-            >
-                X
-            </Button> */}
 
             <div>
                 {semester.courses.length === 0 ? (

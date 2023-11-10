@@ -1,3 +1,4 @@
+/* eslint-disable no-extra-parens */
 import React, { useState } from "react";
 import { Form } from "react-bootstrap";
 import "../App.css";
@@ -17,10 +18,6 @@ const DEFAULT_DEGREE = DEGREES[0];
 
 export function SwitchPlan(): JSX.Element {
     const [degree, setDegree] = useState<string>(DEFAULT_DEGREE);
-
-    function updateDegree(event: React.ChangeEvent<HTMLSelectElement>) {
-        setDegree(event.target.value);
-    }
 
     return (
         <div>
