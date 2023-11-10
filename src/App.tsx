@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./App.css";
+import "./";
 
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { IntroModal } from "./components/IntroModal";
@@ -107,28 +107,6 @@ function App(): JSX.Element {
                                 </InputGroup>
                             </div>
                         )}
-                        {/* <video
-                    id="heroVideoElement"
-                    width="100%"
-                    height="auto"
-                    loop
-                    autoPlay
-                    muted
-                >
-                    <source
-                        src="/Users/ziyizhou/Desktop/CISC275/Final-Project/UDCIS-Scheduler/src/pictures/video1463162740.mp4"
-                        type="video/mp4"
-                    ></source>
-                </video> */}
-                        {/*<iframe
-                    width="560"
-                    height="315"
-                    src="https://www.youtube.com/embed/6C5ABYo2_P4?si=fAM_PQ96JdT_z1o4?autoplay=1&mute=1"
-                    title="YouTube video player"
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowFullScreen
-                ></iframe>*/}
                     </div>
                     <SwitchPlan></SwitchPlan>
                     <Container>
