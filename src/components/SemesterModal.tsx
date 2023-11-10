@@ -69,11 +69,13 @@ export const AddSemesterModal = ({
                                         value={year}
                                         onChange={updateYear}
                                     >
-                                        {years.map((year: number) => (
-                                            <option key={year} value={year}>
-                                                {year}
-                                            </option>
-                                        ))}
+                                        {years.map((year: number) => {
+                                            return (
+                                                <option key={year} value={year}>
+                                                    {year}
+                                                </option>
+                                            );
+                                        })}
                                     </Form.Select>
                                 </Col>
                                 <p id="alert">{warn}</p>
