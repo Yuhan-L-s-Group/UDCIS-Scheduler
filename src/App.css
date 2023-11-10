@@ -75,3 +75,42 @@
 .courseSize {
     font-size: 24px;
 }
+.nameEntry {
+    width: 30%;
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    margin: auto;
+}
+.homepage {
+    background-image: url(https://ayerssaintgross.com/wp-content/uploads/2022/01/1_University-of-Delaware-Laird-Campus-Housing-Exterior-View.jpg);
+    min-height: 100vh;
+    width: 60;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.h5 {
+}
+.homebutton:hover {
+    background-color: #96c832;
+    font-size: 50px;
+}
+.homebutton {
+    background-color: rgb(55, 173, 179);
+    margin-top: 30px;
+    font-size: 35px;
+    transition: font-size 200ms;
+}
+.homepage2 {
+    text-align: center;
+    color: rgb(23, 107, 130);
+}
+.welcome {
+    font-size: 35px;
+    color: #cc7b12;
+}
+.degreeSelect {
+    align-items: center;
+}

@@ -51,11 +51,6 @@ export function TwoModals({ semesters, setSemester }: SemesterProps) {
                     />
                 </div>
             )}
-            {/* <AddtoSemester
-                ModifiedCourseList={ModifiedCourseList}
-                semesters={semesters}
-                setSemester={setSemester}
-            /> */}
         </div>
     );
 }

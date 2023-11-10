@@ -26,7 +26,11 @@ function App(): JSX.Element {
     const [Name, setName] = useState("");
     const [renderName, setrenderName] = useState(false);
     const [isNameField, setNamefield] = useState(true);
+    const [isHomepage, setHomepage] = useState(true);
 
+    const closeHome = () => {
+        setHomepage(false);
+    };
     const ConfirmName = () => {
         setrenderName(true);
         setNamefield(false);
@@ -60,67 +64,115 @@ function App(): JSX.Element {
     function deleteCourse(semester: Semester[]) {
         setSemester(semester);
     }
-
     return (
-        <div className="App">
-            <IntroModal show={showIntro} handleClose={handleClose}></IntroModal>
-            <header className="App-header">
-                <img src={logo1} alt="ud logo1" className="udlogo1" />
-            </header>
-            <br />
-            <p>
-                {isNameField && (
-                    <InputGroup>
-                        <Form.Control
-                            placeholder="Your Name"
-                            value={Name}
-                            onChange={(e) => setName(e.target.value)}
-                        />
-                        <button onClick={ConfirmName}>Confirm</button>
-                    </InputGroup>
-                )}
-            </p>
-            <SwitchPlan></SwitchPlan>
-            <Container>
-                <Row>
-                    <Col>
-                        <TwoModals
-                            semesters={semesters}
-                            setSemester={setSemester}
-                        ></TwoModals>
-                    </Col>
-                    <Col>
-                        <br />
-                        <Button
-                            className="add_button"
-                            onClick={handleShowModal}
-                        >
-                            Add New Semester
-                        </Button>
-                        <SemesterList
-                            semesters={semesters}
-                            deleteSemester={deleteSemester}
-                            Name={Name}
-                            renderName={renderName}
-                            deleteCourse={deleteCourse}
-                        ></SemesterList>
-                        <br />
-                        <Button
-                            className="clear_button"
-                            onClick={clearSemester}
-                        >
-                            Clear All
-                        </Button>
-                        <AddSemesterModal
-                            showAddSemester={showAddSemester}
-                            handleClose={handleCloseModal}
-                            addSemester={addNewSemester}
-                            semesters={semesters}
-                        ></AddSemesterModal>
-                    </Col>
-                </Row>
-            </Container>
-        </div>
+        <>
+            {isHomepage ? (
+                <div>
+                    <div className="homepage">
+                        <div className="homepage2">
+                            {" "}
+                            <h5 className="welcome">
+                                Welcome to the Best Schedule Class Web
+                            </h5>
+                            <button onClick={closeHome} className="homebutton">
+                                CLICK
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            ) : (
+                <div>
+                    <IntroModal
+                        show={showIntro}
+                        handleClose={handleClose}
+                    ></IntroModal>
+                    <header className="App-header">
+                        <img src={logo1} alt="ud logo1" className="udlogo1" />
+                    </header>
+                    <br />
+                    <div>
+                        {isNameField && (
+                            <div className="nameEntry">
+                                <InputGroup>
+                                    <Form.Control
+                                        placeholder="Your Name"
+                                        value={Name}
+                                        onChange={(e) =>
+                                            setName(e.target.value)
+                                        }
+                                    />
+                                    <button onClick={ConfirmName}>
+                                        Confirm
+                                    </button>
+                                </InputGroup>
+                            </div>
+                        )}
+                        {/* <video
+                    id="heroVideoElement"
+                    width="100%"
+                    height="auto"
+                    loop
+                    autoPlay
+                    muted
+                >
+                    <source
+                        src="/Users/ziyizhou/Desktop/CISC275/Final-Project/UDCIS-Scheduler/src/pictures/video1463162740.mp4"
+                        type="video/mp4"
+                    ></source>
+                </video> */}
+                        {/*<iframe
+                    width="560"
+                    height="315"
+                    src="https://www.youtube.com/embed/6C5ABYo2_P4?si=fAM_PQ96JdT_z1o4?autoplay=1&mute=1"
+                    title="YouTube video player"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                ></iframe>*/}
+                    </div>
+                    <SwitchPlan></SwitchPlan>
+                    <Container>
+                        <Row>
+                            <Col>
+                                <TwoModals
+                                    semesters={semesters}
+                                    setSemester={setSemester}
+                                ></TwoModals>
+                            </Col>
+                            <Col>
+                                <br />
+                                <Button
+                                    className="add_button"
+                                    onClick={handleShowModal}
+                                >
+                                    Add New Semester
+                                </Button>
+                                <SemesterList
+                                    semesters={semesters}
+                                    deleteSemester={deleteSemester}
+                                    Name={Name}
+                                    renderName={renderName}
+                                    deleteCourse={deleteCourse}
+                                ></SemesterList>
+                                <br />
+                                <Button
+                                    className="clear_button"
+                                    onClick={clearSemester}
+                                >
+                                    Clear All
+                                </Button>
+                                <AddSemesterModal
+                                    showAddSemester={showAddSemester}
+                                    handleClose={handleCloseModal}
+                                    addSemester={addNewSemester}
+                                    semesters={semesters}
+                                ></AddSemesterModal>
+                            </Col>
+                        </Row>
+                    </Container>
+                </div>
+            )}
+        </>
     );
 }
 

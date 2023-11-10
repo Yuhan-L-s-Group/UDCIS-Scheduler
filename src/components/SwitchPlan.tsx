@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Form } from "react-bootstrap";
-
+import "../App.css";
 const DEGREES = [
     "Bachelor of Arts",
     "Bachelor of Science(not ready)",
@@ -24,7 +24,7 @@ export function SwitchPlan(): JSX.Element {
 
     return (
         <div>
-            <Form.Group controlId="choseDegree">
+            <Form.Group controlId="choseDegree" className="degreeSelect">
                 <Form.Label></Form.Label>
                 <Form.Select
                     value={degree}
