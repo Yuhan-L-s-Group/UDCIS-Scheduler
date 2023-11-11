@@ -20,7 +20,9 @@ export function AddtoSemester({
     const [selectedSemester, setSelectedSemester] = useState<Semester>();
     const handleAddtoSemester = (semester: Semester) => {
         setSelectedSemester(semester);
+        setRenderSemester(true);
     };
+    const [isRenderSemester, setRenderSemester] = useState(false);
 
     const handleChange = () => {
         const RepeatedSemester = semesters.filter((semeseter) =>
@@ -45,17 +47,33 @@ export function AddtoSemester({
                             this button
                         </span>
                     ) : (
-                        semesters.map((semester) => (
-                            <Button
-                                variant="success"
-                                key={semester.year + semester.season}
-                                onClick={() => handleAddtoSemester(semester)}
-                            >
-                                {semester.year + " " + semester.season}
-                            </Button>
-                        ))
+                        <>
+                            {semesters.map((semester) => (
+                                <div key={semester.year + semester.season}>
+                                    <Button
+                                        variant="success"
+                                        onClick={() =>
+                                            handleAddtoSemester(semester)
+                                        }
+                                    >
+                                        {semester.year + " " + semester.season}
+                                    </Button>
+                                    <br />
+                                </div>
+                            ))}
+                            <div>
+                                {isRenderSemester && (
+                                    <div>
+                                        {"You just selected: "}{" "}
+                                        {selectedSemester?.year}{" "}
+                                        {selectedSemester?.season}
+                                    </div>
+                                )}
+                            </div>
+                        </>
                     )}
                 </Modal.Body>
+
                 <Modal.Footer>
                     <Button variant="primary" onClick={handleChange}>
                         Save Changes
