@@ -6,12 +6,14 @@ import { Button } from "react-bootstrap";
 import "../App.css";
 export const SemesterDisplay = ({
     semester,
+    deleteSemester,
+    modifysemster,
     deleteCourse,
     semesters
 }: {
     semester: Semester;
     deleteSemester: (season: Season, year: number) => void;
-    deleteCourse: (semester: Semester[]) => void;
+    modifysemster: (semester: Semester[]) => void;
     semesters: Semester[];
 }): JSX.Element => {
     const deleteCourseFunc = (course: Course) => {
@@ -20,14 +22,24 @@ export const SemesterDisplay = ({
         );
         semester.courses.splice(indexC, 1);
         const update = [...semesters];
-        deleteCourse(update);
+        modifysemster(update);
     };
 
+
+    const deleteSingleSemester = (semester: Semester) => {
+
     const deleteSingleSemester = (semester: Semester | null) => {
+
         const indexS = semesters.findIndex((target) => target === semester);
         semesters.splice(indexS, 1);
         const update = [...semesters];
-        deleteCourse(update);
+        modifysemster(update);
+    };
+    const deleteWholeSemester = (semester: Semester) => {
+        semester.courses.splice(0, semester.courses.length);
+        const update = [...semesters];
+        modifysemster(update);
+        console.log(semester);
     };
 
     return (
@@ -41,29 +53,44 @@ export const SemesterDisplay = ({
                     variant="danger"
                     onClick={() => deleteSingleSemester(semester)}
                 >
-                    X
+                    Delete Semester
                 </Button>
             </h3>
 
             <div>
                 {semester.courses.length === 0 ? (
-                    <span>Empty!</span>
+                    <span>
+                        This semester list is empty!
+                        <br />
+                    </span>
                 ) : (
-                    <span className="courseSize">
-                        {semester.courses.map((course) => (
-                            <span key={course.code + course.name}>
-                                {course.code + " - "}
-                                {course.name + " - "}
-                                {course.credits + " credits"}{" "}
-                                <Button
-                                    variant="danger"
-                                    onClick={() => deleteCourseFunc(course)}
-                                >
-                                    delete
-                                </Button>
-                                <br />
-                            </span>
-                        ))}
+                    <span>
+                        <span className="courseSize">
+                            {semester.courses.map((course) => (
+                                <span key={course.code + course.name}>
+                                    {course.code + " - "}
+                                    {course.name + " - "}
+                                    {course.credits + " credits"}{" "}
+                                    <Button
+                                        variant="danger"
+                                        onClick={() => deleteCourseFunc(course)}
+                                        className=""
+                                    >
+                                        delete
+                                    </Button>
+                                    <br />
+                                </span>
+                            ))}
+                        </span>
+                        <div>
+                            <br />
+                            <button
+                                className="emeptySemester"
+                                onClick={() => deleteWholeSemester(semester)}
+                            >
+                                Empty Semsester
+                            </button>
+                        </div>
                     </span>
                 )}
             </div>
