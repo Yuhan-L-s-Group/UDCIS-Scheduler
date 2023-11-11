@@ -4,8 +4,6 @@ import { SemesterDisplay } from "./SemesterDisplay";
 import { Semester } from "../interfaces/semester";
 import "../App.css";
 import horse from "../pictures/horse.jpg";
-import { TabContainer } from "react-bootstrap";
-import TabPanel from "@restart/ui/esm/TabPanel";
 import React from "react";
 
 export const SemesterList = ({
