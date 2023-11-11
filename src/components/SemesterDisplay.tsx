@@ -6,7 +6,6 @@ import { Button } from "react-bootstrap";
 import "../App.css";
 export const SemesterDisplay = ({
     semester,
-    deleteSemester,
     modifysemster,
     semesters
 }: {

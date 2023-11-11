@@ -6,7 +6,6 @@ import { Season, Semester } from "../interfaces/semester";
 export const AddSemesterModal = ({
     showAddSemester,
     handleClose,
-
     addSemester,
     semesters
 }: {
