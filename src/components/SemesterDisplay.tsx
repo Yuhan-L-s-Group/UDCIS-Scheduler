@@ -8,7 +8,6 @@ export const SemesterDisplay = ({
     semester,
     deleteSemester,
     modifysemster,
-    deleteCourse,
     semesters
 }: {
     semester: Semester;
@@ -25,11 +24,7 @@ export const SemesterDisplay = ({
         modifysemster(update);
     };
 
-
-    const deleteSingleSemester = (semester: Semester) => {
-
     const deleteSingleSemester = (semester: Semester | null) => {
-
         const indexS = semesters.findIndex((target) => target === semester);
         semesters.splice(indexS, 1);
         const update = [...semesters];
