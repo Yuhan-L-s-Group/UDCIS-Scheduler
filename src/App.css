@@ -56,14 +56,10 @@
     font-size: 25px;
 }
 .udlogo1 {
-    background-size: cover;
+    /* background-size: cover;
     background-position: center;
-    background-repeat: no-repeat;
-    width: 1500px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    max-width: 100%;
+    background-repeat: no-repeat; */
+    width: 1200px;
 }
 .courseSize {
     font-size: 24px;
