@@ -43,8 +43,6 @@ function App(): JSX.Element {
         setrenderName(true);
         setNamefield(false);
     };
-    // render semester list box
-    const [isRenderBox, setRenderBox] = useState(true);
 
     function addNewSemester(year: number, season: Season) {
         setSemester([
@@ -60,7 +58,6 @@ function App(): JSX.Element {
     function clearSemester() {
         setSemester([]);
         setDisplayEmpty(false);
-        setRenderBox(false);
     }
 
     function modifysemster(semester: Semester[]) {
