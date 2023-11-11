@@ -18,26 +18,25 @@ const DEFAULT_DEGREE = DEGREES[0];
 export function SwitchPlan(): JSX.Element {
     const [degree, setDegree] = useState<string>(DEFAULT_DEGREE);
 
-    function updateDegree(event: React.ChangeEvent<HTMLSelectElement>) {
-        setDegree(event.target.value);
-    }
-
     return (
         <div>
-            <Form.Group controlId="choseDegree" className="degreeSelect">
-                <Form.Label></Form.Label>
-                <Form.Select
-                    value={degree}
-                    onChange={(e) => setDegree(e.target.value)}
-                >
-                    {DEGREES.map((degree: string) => (
-                        <option key={degree} value={degree}>
-                            {degree}
-                        </option>
-                    ))}
-                </Form.Select>
+            <Form.Group controlId="choseDegree">
+                <Form.Label className="degreeSelect">
+                    <Form.Select
+                        value={degree}
+                        onChange={(e) => setDegree(e.target.value)}
+                    >
+                        {DEGREES.map((degree: string) => (
+                            <option key={degree} value={degree}>
+                                {degree}
+                            </option>
+                        ))}
+                    </Form.Select>
+                </Form.Label>
             </Form.Group>
-            <span>The current degree you are working with is {degree}.</span>
+            <span className="degreePrompt">
+                The current degree you are working with is {degree}.
+            </span>
         </div>
     );
 }

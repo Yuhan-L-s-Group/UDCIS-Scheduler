@@ -61,7 +61,7 @@ function App(): JSX.Element {
         setSemester([...update]);
     }
 
-    function deleteCourse(semester: Semester[]) {
+    function modifysemster(semester: Semester[]) {
         setSemester(semester);
     }
     return (
@@ -130,15 +130,17 @@ function App(): JSX.Element {
                                     deleteSemester={deleteSemester}
                                     Name={Name}
                                     renderName={renderName}
-                                    deleteCourse={deleteCourse}
+                                    modifysemster={modifysemster}
                                 ></SemesterList>
                                 <br />
-                                <Button
+
+                                <br />
+                                <button
                                     className="clear_button"
                                     onClick={clearSemester}
                                 >
                                     Clear All
-                                </Button>
+                                </button>
                                 <AddSemesterModal
                                     showAddSemester={showAddSemester}
                                     handleClose={handleCloseModal}

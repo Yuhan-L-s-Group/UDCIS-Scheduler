@@ -9,13 +9,13 @@ export const SemesterList = ({
     deleteSemester,
     Name,
     renderName,
-    deleteCourse
+    modifysemster
 }: {
     semesters: Semester[];
     deleteSemester: (season: Season, year: number) => void;
     Name: string;
     renderName: boolean;
-    deleteCourse: (semester: Semester[]) => void;
+    modifysemster: (semester: Semester[]) => void;
 }) => {
     return (
         <>
@@ -42,7 +42,7 @@ export const SemesterList = ({
                             <SemesterDisplay
                                 semester={semester}
                                 deleteSemester={deleteSemester}
-                                deleteCourse={deleteCourse}
+                                modifysemster={modifysemster}
                                 semesters={semesters}
                             ></SemesterDisplay>
                         </div>
