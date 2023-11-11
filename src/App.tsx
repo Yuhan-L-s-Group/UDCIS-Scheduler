@@ -43,6 +43,8 @@ function App(): JSX.Element {
         setrenderName(true);
         setNamefield(false);
     };
+    // render semester list box
+    const [isRenderBox, setRenderBox] = useState(true);
 
     function addNewSemester(year: number, season: Season) {
         setSemester([
@@ -58,6 +60,7 @@ function App(): JSX.Element {
     function clearSemester() {
         setSemester([]);
         setDisplayEmpty(false);
+        setRenderBox(false);
     }
 
     function modifysemster(semester: Semester[]) {
@@ -171,18 +174,13 @@ function App(): JSX.Element {
                                     Name={Name}
                                     renderName={renderName}
                                     modifysemster={modifysemster}
+                                    isDisplayEmpty={isDisplayEmpty}
+                                    clearSemester={clearSemester}
                                 ></SemesterList>
                                 <br />
 
                                 <br />
-                                {isDisplayEmpty && (
-                                    <button
-                                        className="clear_button"
-                                        onClick={clearSemester}
-                                    >
-                                        Clear All
-                                    </button>
-                                )}
+
                                 <AddSemesterModal
                                     showAddSemester={showAddSemester}
                                     handleClose={handleCloseModal}
