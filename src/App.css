@@ -97,7 +97,6 @@
 }
 
 .emeptySemester {
-    background-color: #e4fb61;
     font-size: 20px;
     transition: font-size 200ms;
 }
@@ -126,11 +125,11 @@
 .deleteEntireSemesterView {
     background-color: rgb(218, 225, 226) (0, 255, 157);
     transition: 200ms;
-    font-size: 25px;
+    font-size: 20px;
 }
 .deleteEntireSemesterView:hover {
     background-color: #ff0800;
-    font-size: 20px;
+    font-size: 25px;
 }
 .ConfirmNameView {
     transition: 200ms;

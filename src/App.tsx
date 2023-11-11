@@ -8,10 +8,14 @@ import { SwitchPlan } from "./components/SwitchPlan";
 import { AddSemesterModal } from "./components/SemesterModal";
 import { Season, Semester } from "./interfaces/semester";
 import { SemesterList } from "./components/SemsterList";
-import { TwoModals } from "./components/TwoModals";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import logo1 from "./pictures/udlogo1.jpg";
+import { AddCourse } from "./components/AddCourse";
+import CoursesTable from "./components/courseTable";
+import Courses from "./data/course.json";
+import { Course } from "./interfaces/course";
+
 function App(): JSX.Element {
     //for Intro
     const [showIntro, setShowIntro] = useState<boolean>(true);
@@ -22,7 +26,7 @@ function App(): JSX.Element {
     const [semesters, setSemester] = useState<Semester[]>([]);
     const handleShowModal = () => {
         setAddSemester(true);
-        setEmpty(true);
+        setDisplayEmpty(true);
     };
     const handleCloseModal = () => setAddSemester(false);
     //for store user's name
@@ -31,7 +35,7 @@ function App(): JSX.Element {
     const [isNameField, setNamefield] = useState(true);
     const [isHomepage, setHomepage] = useState(true);
     //render clear all button
-    const [isDisplayEmpty, setEmpty] = useState(false);
+    const [isDisplayEmpty, setDisplayEmpty] = useState(false);
     const closeHome = () => {
         setHomepage(false);
     };
@@ -53,11 +57,25 @@ function App(): JSX.Element {
 
     function clearSemester() {
         setSemester([]);
+        setDisplayEmpty(false);
     }
 
     function modifysemster(semester: Semester[]) {
         setSemester(semester);
     }
+    //for render course list
+    const [isAddCourseOpen, setAddCourseOpen] = useState(false);
+    const [listCourses, setListCourses] = useState<Course[]>(Courses);
+
+    const ModifiedCourseList = [...listCourses]; // this is for edit course component
+
+    const openAddCourseWindow = () => {
+        setAddCourseOpen(true);
+    };
+
+    const closeAddCourseWindow = () => {
+        setAddCourseOpen(false);
+    };
     return (
         <>
             {isHomepage ? (
@@ -110,10 +128,35 @@ function App(): JSX.Element {
                     <Container>
                         <Row>
                             <Col>
-                                <TwoModals
-                                    semesters={semesters}
-                                    setSemester={setSemester}
-                                ></TwoModals>
+                                <div style={{ textAlign: "left" }}>
+                                    <span className="modifyCourseList">
+                                        {" "}
+                                        CoursesList{" "}
+                                    </span>
+                                    <Button
+                                        variant="primary"
+                                        onClick={openAddCourseWindow}
+                                    >
+                                        Add Course
+                                    </Button>
+                                    <CoursesTable
+                                        ModifiedCourseList={ModifiedCourseList}
+                                        onClose={closeAddCourseWindow}
+                                        listCourses={listCourses}
+                                        setListCourses={setListCourses}
+                                        semesters={semesters}
+                                        setSemester={setSemester}
+                                    />
+                                    {isAddCourseOpen && (
+                                        <div>
+                                            <AddCourse
+                                                onClose={closeAddCourseWindow}
+                                                listCourses={listCourses}
+                                                setListCourses={setListCourses}
+                                            />
+                                        </div>
+                                    )}
+                                </div>
                             </Col>
                             <Col>
                                 <br />

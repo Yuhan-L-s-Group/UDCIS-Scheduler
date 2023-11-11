@@ -50,15 +50,17 @@ export const SemesterDisplay = ({
                                 0
                             )}
                         </th>
-                        <th>
-                            {" "}
-                            <button
-                                className="emeptySemester"
-                                onClick={() => EmptySemester(semester)}
-                            >
-                                Empty
-                            </button>
-                        </th>
+                        {semester.courses.length !== 0 && (
+                            <th>
+                                {" "}
+                                <button
+                                    className="emeptySemester"
+                                    onClick={() => EmptySemester(semester)}
+                                >
+                                    Empty
+                                </button>
+                            </th>
+                        )}
                     </tr>
                 </thead>
                 <tbody>
@@ -77,7 +79,7 @@ export const SemesterDisplay = ({
                                     onClick={() => deleteCourseFunc(course)}
                                     className=""
                                 >
-                                    delete
+                                    x
                                 </Button>
                             </td>
                         </tr>
