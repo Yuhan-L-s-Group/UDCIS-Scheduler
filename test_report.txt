@@ -25,10 +25,10 @@ Browserslist: caniuse-lite is outdated. Please run:
 FAIL src/components/courseTable.test.tsx
   CoursesTable component
     ✓ renders without crashing (24 ms)
-    ✕ renders table headers correctly (23 ms)
+    ✕ renders table headers correctly (22 ms)
     ✓ lists courses correctly (8 ms)
-    ✕ opens EditCourse modal on Edit button click (91 ms)
-    ✓ calls setListCourses on EditCourse modal interaction (67 ms)
+    ✕ opens EditCourse modal on Edit button click (96 ms)
+    ✓ calls setListCourses on EditCourse modal interaction (68 ms)
     ✕ shows error modal when adding a course already in a semester (1050 ms)
 
   ● CoursesTable component › renders table headers correctly
@@ -485,18 +485,18 @@ FAIL src/components/courseTable.test.tsx
 ----------------------|---------|----------|---------|---------|-------------------------
 File                  | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s       
 ----------------------|---------|----------|---------|---------|-------------------------
-All files             |   29.41 |       30 |   21.33 |   30.21 |                         
+All files             |   29.56 |    31.57 |   21.91 |   30.21 |                         
  src                  |       0 |        0 |       0 |       0 |                         
-  App.tsx             |       0 |        0 |       0 |       0 | 17-102                  
- src/components       |   34.16 |    35.29 |   25.39 |   34.59 |                         
+  App.tsx             |       0 |        0 |       0 |       0 | 17-95                   
+ src/components       |   34.16 |     37.5 |   25.39 |   34.59 |                         
   AddCourse.tsx       |       0 |      100 |       0 |       0 | 18-77                   
   AddtoSemester.tsx   |   38.46 |       25 |   33.33 |   38.46 | 22,26-33,52             
   EditCourse.tsx      |   61.29 |       50 |    37.5 |   61.29 | 34,37,40,43,56-59,74-98 
   IntroModal.tsx      |       0 |      100 |       0 |       0 | 11                      
-  SemesterDisplay.tsx |       0 |        0 |       0 |       0 | 7-83                    
+  SemesterDisplay.tsx |       0 |      100 |       0 |       0 | 7-88                    
   SemesterModal.tsx   |       0 |        0 |       0 |       0 | 6-96                    
-  SemsterList.tsx     |       0 |        0 |       0 |       0 | 7-41                    
-  SwitchPlan.tsx      |       0 |      100 |       0 |       0 | 5-31                    
+  SemsterList.tsx     |       0 |        0 |       0 |       0 | 7-39                    
+  SwitchPlan.tsx      |       0 |      100 |       0 |       0 | 5-32                    
   TwoModals.tsx       |       0 |        0 |       0 |       0 | 15-28                   
   courseTable.tsx     |   91.17 |       70 |   84.61 |   91.17 | 68,71,78                
  src/interfaces       |       0 |        0 |       0 |       0 |                         
@@ -506,5 +506,5 @@ All files             |   29.41 |       30 |   21.33 |   30.21 |
 Test Suites: 1 failed, 1 total
 Tests:       3 failed, 3 passed, 6 total
 Snapshots:   0 total
-Time:        4.373 s
+Time:        4.398 s
 Ran all test suites.
