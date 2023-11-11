@@ -20,15 +20,18 @@ function App(): JSX.Element {
     //for add semester button
     const [showAddSemester, setAddSemester] = useState(false);
     const [semesters, setSemester] = useState<Semester[]>([]);
-
-    const handleShowModal = () => setAddSemester(true);
+    const handleShowModal = () => {
+        setAddSemester(true);
+        setEmpty(true);
+    };
     const handleCloseModal = () => setAddSemester(false);
     //for store user's name
     const [Name, setName] = useState("");
     const [renderName, setrenderName] = useState(false);
     const [isNameField, setNamefield] = useState(true);
     const [isHomepage, setHomepage] = useState(true);
-
+    //render clear all button
+    const [isDisplayEmpty, setEmpty] = useState(false);
     const closeHome = () => {
         setHomepage(false);
     };
@@ -52,16 +55,6 @@ function App(): JSX.Element {
         setSemester([]);
     }
 
-    function deleteSemester(season: Season, year: number) {
-        const update = [
-            ...semesters.filter(
-                (semester: Semester): boolean =>
-                    !(season === semester.season && year === semester.year)
-            )
-        ];
-        setSemester([...update]);
-    }
-
     function modifysemster(semester: Semester[]) {
         setSemester(semester);
     }
@@ -82,7 +75,7 @@ function App(): JSX.Element {
                     </div>
                 </div>
             ) : (
-                <div>
+                <div className="mainBody">
                     <IntroModal
                         show={showIntro}
                         handleClose={handleClose}
@@ -102,13 +95,17 @@ function App(): JSX.Element {
                                             setName(e.target.value)
                                         }
                                     />
-                                    <button onClick={ConfirmName}>
+                                    <button
+                                        onClick={ConfirmName}
+                                        className="ConfirmNameView"
+                                    >
                                         Confirm
                                     </button>
                                 </InputGroup>
                             </div>
                         )}
                     </div>
+
                     <SwitchPlan></SwitchPlan>
                     <Container>
                         <Row>
@@ -128,7 +125,6 @@ function App(): JSX.Element {
                                 </Button>
                                 <SemesterList
                                     semesters={semesters}
-                                    deleteSemester={deleteSemester}
                                     Name={Name}
                                     renderName={renderName}
                                     modifysemster={modifysemster}
@@ -136,12 +132,14 @@ function App(): JSX.Element {
                                 <br />
 
                                 <br />
-                                <button
-                                    className="clear_button"
-                                    onClick={clearSemester}
-                                >
-                                    Clear All
-                                </button>
+                                {isDisplayEmpty && (
+                                    <button
+                                        className="clear_button"
+                                        onClick={clearSemester}
+                                    >
+                                        Clear All
+                                    </button>
+                                )}
                                 <AddSemesterModal
                                     showAddSemester={showAddSemester}
                                     handleClose={handleCloseModal}

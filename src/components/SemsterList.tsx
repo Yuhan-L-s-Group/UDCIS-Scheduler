@@ -1,18 +1,16 @@
 /* eslint-disable no-extra-parens */
 import React from "react";
 import { SemesterDisplay } from "./SemesterDisplay";
-import { Season, Semester } from "../interfaces/semester";
+import { Semester } from "../interfaces/semester";
 import "../App.css";
 import horse from "../pictures/horse.jpg";
 export const SemesterList = ({
     semesters,
-    deleteSemester,
     Name,
     renderName,
     modifysemster
 }: {
     semesters: Semester[];
-    deleteSemester: (season: Season, year: number) => void;
     Name: string;
     renderName: boolean;
     modifysemster: (semester: Semester[]) => void;
@@ -23,7 +21,7 @@ export const SemesterList = ({
             <br />
             {renderName && <div className="name"> Hi! {Name}</div>}
             <div className="modifytheCreditsText">
-                {"Cumulative credits: "}
+                {"Your Cumulative credits: "}
                 {semesters.reduce(
                     (acc, iter) =>
                         acc +
@@ -41,7 +39,6 @@ export const SemesterList = ({
                         <div key={semester.year + semester.season}>
                             <SemesterDisplay
                                 semester={semester}
-                                deleteSemester={deleteSemester}
                                 modifysemster={modifysemster}
                                 semesters={semesters}
                             ></SemesterDisplay>

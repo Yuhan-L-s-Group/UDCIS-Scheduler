@@ -1,6 +1,6 @@
 /* eslint-disable no-extra-parens */
 import React from "react";
-import { Season, Semester } from "../interfaces/semester";
+import { Semester } from "../interfaces/semester";
 import { Course } from "../interfaces/course";
 import { Button } from "react-bootstrap";
 import "../App.css";
@@ -10,7 +10,6 @@ export const SemesterDisplay = ({
     semesters
 }: {
     semester: Semester;
-    deleteSemester: (season: Season, year: number) => void;
     modifysemster: (semester: Semester[]) => void;
     semesters: Semester[];
 }): JSX.Element => {
@@ -23,13 +22,13 @@ export const SemesterDisplay = ({
         modifysemster(update);
     };
 
-    const deleteSingleSemester = (semester: Semester | null) => {
+    const deleteWholeSemester = (semester: Semester) => {
         const indexS = semesters.findIndex((target) => target === semester);
         semesters.splice(indexS, 1);
         const update = [...semesters];
         modifysemster(update);
     };
-    const deleteWholeSemester = (semester: Semester) => {
+    const EmptySemester = (semester: Semester) => {
         semester.courses.splice(0, semester.courses.length);
         const update = [...semesters];
         modifysemster(update);
@@ -38,56 +37,64 @@ export const SemesterDisplay = ({
 
     return (
         <div className="semester_view">
-            <h3>
-                {semester.season} {semester.year}
-                {" - "}
-                {semester.courses.reduce((acc, iter) => acc + iter.credits, 0)}
-                {" credits "}{" "}
-                <Button
-                    variant="danger"
-                    onClick={() => deleteSingleSemester(semester)}
-                >
-                    Delete Semester
-                </Button>
-            </h3>
-
-            <div>
-                {semester.courses.length === 0 ? (
-                    <span>
-                        This semester list is empty!
-                        <br />
-                    </span>
-                ) : (
-                    <span>
-                        <span className="courseSize">
-                            {semester.courses.map((course) => (
-                                <span key={course.code + course.name}>
-                                    {course.code + " - "}
-                                    {course.name + " - "}
-                                    {course.credits + " credits"}{" "}
-                                    <Button
-                                        variant="danger"
-                                        onClick={() => deleteCourseFunc(course)}
-                                        className=""
-                                    >
-                                        delete
-                                    </Button>
-                                    <br />
-                                </span>
-                            ))}
-                        </span>
-                        <div>
-                            <br />
+            <table>
+                <thead>
+                    <tr>
+                        <th>
+                            Semster: {semester.season} {semester.year}
+                        </th>
+                        <th>
+                            Total:{" "}
+                            {semester.courses.reduce(
+                                (acc, iter) => acc + iter.credits,
+                                0
+                            )}
+                        </th>
+                        <th>
+                            {" "}
                             <button
                                 className="emeptySemester"
-                                onClick={() => deleteWholeSemester(semester)}
+                                onClick={() => EmptySemester(semester)}
                             >
-                                Empty Semsester
+                                Empty
                             </button>
-                        </div>
-                    </span>
-                )}
-            </div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {semester.courses.map((course) => (
+                        <tr key={course.code + course.name}>
+                            <td>
+                                {course.code}
+                                {" - "}
+                                {course.name}
+                            </td>
+                            <td> {course.credits}</td>
+                            <td>
+                                {" "}
+                                <Button
+                                    variant="danger"
+                                    onClick={() => deleteCourseFunc(course)}
+                                    className=""
+                                >
+                                    delete
+                                </Button>
+                            </td>
+                        </tr>
+                    ))}
+                    {
+                        <tr>
+                            <button
+                                onClick={() => deleteWholeSemester(semester)}
+                                className="deleteEntireSemesterView"
+                            >
+                                {" "}
+                                Delete Entire Semester
+                            </button>
+                        </tr>
+                    }
+                </tbody>
+            </table>
         </div>
     );
 };

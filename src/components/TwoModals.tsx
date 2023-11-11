@@ -16,7 +16,7 @@ export function TwoModals({ semesters, setSemester }: SemesterProps) {
     const [listCourses, setListCourses] = useState<Course[]>(Courses);
 
     const ModifiedCourseList = [...listCourses]; // this is for edit course component
-    // console.log("test OriginalCourseList", OriginalCourseList);
+
     const openAddCourseWindow = () => {
         setAddCourseOpen(true);
     };
@@ -28,7 +28,6 @@ export function TwoModals({ semesters, setSemester }: SemesterProps) {
     return (
         <div style={{ textAlign: "left" }}>
             <span className="modifyCourseList"> CoursesList </span>
-            {/* <div className="AdjustTitle">Add course to CourseList:</div> */}
             <Button variant="primary" onClick={openAddCourseWindow}>
                 Add Course
             </Button>

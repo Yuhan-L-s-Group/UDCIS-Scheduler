@@ -21,6 +21,7 @@ export function SwitchPlan(): JSX.Element {
 
     return (
         <div>
+            <br />
             <Form.Group controlId="choseDegree">
                 <Form.Label className="degreeSelect">
                     <Form.Select
