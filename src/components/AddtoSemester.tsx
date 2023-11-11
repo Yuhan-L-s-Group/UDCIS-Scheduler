@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+/* eslint-disable no-extra-parens */
+import React, { useState } from "react";
 import { Course } from "../interfaces/course";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
-import { Season, Semester } from "../interfaces/semester";
+import { Semester } from "../interfaces/semester";
 
 interface AddCoursetoSemesterProp {
     selectedCourse: Course;
@@ -18,14 +18,10 @@ export function AddtoSemester({
     setSemester
 }: AddCoursetoSemesterProp) {
     const [selectedSemester, setSelectedSemester] = useState<Semester>();
-    const [test, settest] = useState(0);
     const handleAddtoSemester = (semester: Semester) => {
         setSelectedSemester(semester);
     };
 
-    const handleTest = () => {
-        settest(1);
-    };
     const handleChange = () => {
         const RepeatedSemester = semesters.filter((semeseter) =>
             semeseter.courses.includes(selectedCourse)

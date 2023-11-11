@@ -12,7 +12,6 @@ interface EditCourseProps {
     ModifiedCourseList: Course[];
 }
 export default function EditCourse({
-    listCourses,
     setListCourses,
     closeEditCourse,
     CourseSlected,

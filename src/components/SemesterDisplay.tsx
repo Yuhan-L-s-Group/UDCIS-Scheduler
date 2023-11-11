@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+/* eslint-disable no-extra-parens */
+import React from "react";
 import { Season, Semester } from "../interfaces/semester";
 import { Course } from "../interfaces/course";
 import { Button } from "react-bootstrap";
@@ -7,6 +8,7 @@ export const SemesterDisplay = ({
     semester,
     deleteSemester,
     modifysemster,
+    deleteCourse,
     semesters
 }: {
     semester: Semester;
@@ -14,14 +16,6 @@ export const SemesterDisplay = ({
     modifysemster: (semester: Semester[]) => void;
     semesters: Semester[];
 }): JSX.Element => {
-    const [isAddcourseOpen, setIsAddcourseOpen] = useState<boolean>(false);
-    const [todelete, setdelete] = useState<Course>();
-    const OpenAddCourse = () => {
-        setIsAddcourseOpen(true);
-    };
-    const closeAddCourse = () => {
-        setIsAddcourseOpen(false);
-    };
     const deleteCourseFunc = (course: Course) => {
         const indexC = semester.courses.findIndex(
             (target) => target === course
@@ -31,13 +25,11 @@ export const SemesterDisplay = ({
         modifysemster(update);
     };
 
-    // const deleteSingleSemester = (semester: Semester | null) => {
-    //     semester = null;
-    //     const update = [...semesters];
-    //     deleteCourse(update);
-    //     console.log(semesters);
-    // };
+
     const deleteSingleSemester = (semester: Semester) => {
+
+    const deleteSingleSemester = (semester: Semester | null) => {
+
         const indexS = semesters.findIndex((target) => target === semester);
         semesters.splice(indexS, 1);
         const update = [...semesters];
