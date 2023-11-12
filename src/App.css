@@ -129,7 +129,7 @@
 }
 .deleteEntireSemesterView:hover {
     background-color: #ff0800;
-    font-size: 25px;
+    font-size: 20px;
 }
 .ConfirmNameView {
     transition: 200ms;
