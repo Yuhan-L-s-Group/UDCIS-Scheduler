@@ -8,7 +8,11 @@ describe("Scheduler Tests", () => {
         render(<App />);
     });
 
-    test("Check welcome window", () => {
+    test("Check home page and welcome window", () => {
+        expect(screen.getByText(/Best/i)).toBeInTheDocument();
+        const closeHomePage = screen.getByText("CLICK");
+        userEvent.click(closeHomePage);
+
         //Check if the window was created correctly
         expect(
             screen.getByText(/Welcome to the UD CIS Scheduler/i)
@@ -25,6 +29,8 @@ describe("Scheduler Tests", () => {
     });
 
     test("Switch between different concentration (at this point, just check texts)", async () => {
+        const closeHomePage = screen.getByText("CLICK");
+        userEvent.click(closeHomePage);
         //initial value is BA
         expect(
             screen.getByText(
@@ -45,6 +51,9 @@ describe("Scheduler Tests", () => {
     });
 
     test("Try to add semester", async () => {
+        const closeHomePage = screen.getByText("CLICK");
+        userEvent.click(closeHomePage);
+
         //check if modal works
         const AddSemester = screen.getByText("Add New Semester");
         userEvent.click(AddSemester);
