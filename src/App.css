@@ -149,3 +149,36 @@
     position: absolute; /* Set the position property to absolute */
     top: 1px;
 }
+.input__wrapper {
+    margin: 20px;
+    text-align: center;
+}
+.coursePool_box {
+    border: 5px solid #000000;
+    border-radius: 40px;
+    padding: 100px;
+    margin-bottom: 100px;
+    width: 500px;
+}
+
+.searchBar1 {
+    margin-bottom: 600px;
+}
+.addcourseView {
+    margin-right: 100px;
+}
+.SwichButton {
+    margin-right: 100px;
+    background-color: rgb(136, 255, 0);
+    font-size: 20px;
+}
+.SwichButton:hover {
+    font-size: 25px;
+}
+.searchBar {
+    font-size: 20px;
+}
+.searchBar:hover {
+    font-size: 20px;
+    background-color: rgb(136, 255, 0);
+}
