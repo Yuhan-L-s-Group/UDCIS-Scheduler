@@ -110,7 +110,12 @@ const Search = ({
                     value={text}
                     onChange={(e) => setText(e.target.value)}
                 />
-                <button onClick={() => handleSearch(text)}>Search</button>
+                <button
+                    onClick={() => handleSearch(text)}
+                    className="searchBar"
+                >
+                    Search
+                </button>
             </div>
 
             {ErrorMessage2 && (

@@ -79,7 +79,7 @@ function App(): JSX.Element {
     const closeAddCourseWindow = () => {
         setAddCourseOpen(false);
     };
-    //for wwitch either search bar or Course list
+    //for switch either search bar or Course list
     const [Swicth, setSwicth] = useState(false);
     const handleSwitch = () => {
         setSwicth(!Swicth);
