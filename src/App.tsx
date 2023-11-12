@@ -79,7 +79,11 @@ function App(): JSX.Element {
     const closeAddCourseWindow = () => {
         setAddCourseOpen(false);
     };
-    //for search course bar
+    //for wwitch either search bar or Course list
+    const [Swicth, setSwicth] = useState(false);
+    const handleSwitch = () => {
+        setSwicth(!Swicth);
+    };
     return (
         <div className="App">
             {isHomepage ? (
@@ -135,40 +139,65 @@ function App(): JSX.Element {
                                 {" "}
                                 <br />
                                 <br />
-                                {
+                                <br />
+                                <button
+                                    className="SwichButton"
+                                    onClick={handleSwitch}
+                                >
+                                    Switch
+                                </button>
+                                <br />
+                                <br />
+                                <br />
+                                {Swicth ? (
                                     <span>
-                                        <Search></Search>
+                                        <Search
+                                            ModifiedCourseList={
+                                                ModifiedCourseList
+                                            }
+                                            listCourses={listCourses}
+                                            setListCourses={setListCourses}
+                                            semesters={semesters}
+                                            setSemester={setSemester}
+                                        ></Search>
                                     </span>
-                                }
-                                {/* <div style={{ textAlign: "left" }}>
-                                    <span className="modifyCourseList">
-                                        {" "}
-                                        CoursesList{" "}
-                                    </span>
-                                    <Button
-                                        variant="primary"
-                                        onClick={openAddCourseWindow}
-                                    >
-                                        Add Course
-                                    </Button>
-                                    <CoursesTable
-                                        ModifiedCourseList={ModifiedCourseList}
-                                        onClose={closeAddCourseWindow}
-                                        listCourses={listCourses}
-                                        setListCourses={setListCourses}
-                                        semesters={semesters}
-                                        setSemester={setSemester}
-                                    />
-                                    {isAddCourseOpen && (
-                                        <div>
-                                            <AddCourse
-                                                onClose={closeAddCourseWindow}
-                                                listCourses={listCourses}
-                                                setListCourses={setListCourses}
-                                            />
-                                        </div>
-                                    )}
-                                </div> */}
+                                ) : (
+                                    <div style={{ textAlign: "left" }}>
+                                        <span className="modifyCourseList">
+                                            {" "}
+                                            CoursesList{" "}
+                                        </span>
+                                        <Button
+                                            variant="primary"
+                                            onClick={openAddCourseWindow}
+                                        >
+                                            Add Course
+                                        </Button>
+                                        <CoursesTable
+                                            ModifiedCourseList={
+                                                ModifiedCourseList
+                                            }
+                                            onClose={closeAddCourseWindow}
+                                            listCourses={listCourses}
+                                            setListCourses={setListCourses}
+                                            semesters={semesters}
+                                            setSemester={setSemester}
+                                        />
+                                        {isAddCourseOpen && (
+                                            <div>
+                                                <AddCourse
+                                                    onClose={
+                                                        closeAddCourseWindow
+                                                    }
+                                                    listCourses={listCourses}
+                                                    setListCourses={
+                                                        setListCourses
+                                                    }
+                                                />
+                                            </div>
+                                        )}
+                                    </div>
+                                )}
                             </Col>
                             <Col>
                                 <br />
