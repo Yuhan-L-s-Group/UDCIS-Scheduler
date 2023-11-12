@@ -33,7 +33,7 @@ const Search = ({
 
     const handleSearch = (text: string) => {
         const upperText = text.toUpperCase();
-        const CourseIndex = courses.findIndex(
+        const CourseIndex = ModifiedCourseList.findIndex(
             (course) => upperText === course.code
         );
         if (CourseIndex === -1) {
@@ -61,10 +61,10 @@ const Search = ({
     };
     const gotYouCourse = (text: string) => {
         const upperText = text.toUpperCase();
-        const indexCourse = courses.findIndex(
+        const indexCourse = ModifiedCourseList.findIndex(
             (course) => upperText === course.code
         );
-        setselectedCourse(courses[indexCourse]);
+        setselectedCourse(ModifiedCourseList[indexCourse]);
         setEditCourseOpen(true);
     };
     const gotYouCourse2 = (course: Course) => {
@@ -123,17 +123,13 @@ const Search = ({
                 <div>Please make sure course code is correct!</div>
             )}
             <br />
-            {isCoursePool && (
-                <div>
-                    {" "}
-                    <Button
-                        onClick={openAddCourseWindow}
-                        className="addcourseView"
-                    >
-                        Add Course to Course List
-                    </Button>
-                </div>
-            )}
+            <div>
+                {" "}
+                <Button onClick={openAddCourseWindow} className="addcourseView">
+                    Add Course to Course List
+                </Button>
+            </div>
+
             {isAddCourseOpen && (
                 <div>
                     <AddCourse
