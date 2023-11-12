@@ -9,6 +9,7 @@ import "./courseTable.css";
 import { AddtoSemester } from "./AddtoSemester";
 import { Season, Semester } from "../interfaces/semester";
 import { classicNameResolver } from "typescript";
+
 interface SemesterProps {
     semesters: Semester[];
     setSemester: React.Dispatch<React.SetStateAction<Semester[]>>;
