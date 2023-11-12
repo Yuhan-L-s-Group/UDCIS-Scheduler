@@ -5,7 +5,10 @@
 Browserslist: caniuse-lite is outdated. Please run:
   npx browserslist@latest --update-db
   Why you should do it regularly: https://github.com/browserslist/browserslist#browsers-data-updating
-PASS src/App.test.tsx (5.202 s)
+Browserslist: caniuse-lite is outdated. Please run:
+  npx browserslist@latest --update-db
+  Why you should do it regularly: https://github.com/browserslist/browserslist#browsers-data-updating
+PASS src/App.test.tsx
   ● Console
 
     console.error
@@ -28,7 +31,7 @@ PASS src/App.test.tsx (5.202 s)
           at /home/runner/work/UDCIS-Scheduler/UDCIS-Scheduler/node_modules/react-bootstrap/cjs/Container.js:24:3
           at div
           at div
-          at App (/home/runner/work/UDCIS-Scheduler/UDCIS-Scheduler/src/App.tsx:21:39)
+          at App (/home/runner/work/UDCIS-Scheduler/UDCIS-Scheduler/src/App.tsx:22:39)
 
       at printWarning (node_modules/react-dom/cjs/react-dom.development.js:67:30)
       at error (node_modules/react-dom/cjs/react-dom.development.js:43:5)
@@ -140,10 +143,6 @@ FAIL src/components/courseTable.test.tsx
       at node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:52:17
       at getByText (node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:95:19)
       at Object.<anonymous> (src/components/courseTable.test.tsx:51:23)
-      at TestScheduler.scheduleTests (node_modules/@jest/core/build/TestScheduler.js:333:13)
-      at runJest (node_modules/@jest/core/build/runJest.js:404:19)
-      at _run10000 (node_modules/@jest/core/build/cli/index.js:320:7)
-      at runCLI (node_modules/@jest/core/build/cli/index.js:173:3)
 
   ● CoursesTable component › opens EditCourse modal on Edit button click
 
@@ -362,10 +361,6 @@ FAIL src/components/courseTable.test.tsx
       at node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:55:13
       at getByText (node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:95:19)
       at Object.<anonymous> (src/components/courseTable.test.tsx:69:23)
-      at TestScheduler.scheduleTests (node_modules/@jest/core/build/TestScheduler.js:333:13)
-      at runJest (node_modules/@jest/core/build/runJest.js:404:19)
-      at _run10000 (node_modules/@jest/core/build/cli/index.js:320:7)
-      at runCLI (node_modules/@jest/core/build/cli/index.js:173:3)
 
   ● CoursesTable component › shows error modal when adding a course already in a semester
 
@@ -509,22 +504,19 @@ FAIL src/components/courseTable.test.tsx
       at waitForWrapper (node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/wait-for.js:166:27)
       at findByText (node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:86:33)
       at Object.<anonymous> (src/components/courseTable.test.tsx:86:45)
-      at TestScheduler.scheduleTests (node_modules/@jest/core/build/TestScheduler.js:333:13)
-      at runJest (node_modules/@jest/core/build/runJest.js:404:19)
-      at _run10000 (node_modules/@jest/core/build/cli/index.js:320:7)
-      at runCLI (node_modules/@jest/core/build/cli/index.js:173:3)
 
 ----------------------|---------|----------|---------|---------|-------------------------
 File                  | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s       
 ----------------------|---------|----------|---------|---------|-------------------------
-All files             |   68.08 |    63.63 |   58.33 |   67.39 |                         
- src                  |   84.84 |    83.33 |   66.66 |   83.87 |                         
-  App.tsx             |   84.84 |    83.33 |   66.66 |   83.87 | 45-46,75,79,115         
- src/components       |   64.51 |    60.52 |   56.66 |   64.05 |                         
+All files             |   53.68 |    45.31 |   46.15 |   52.91 |                         
+ src                  |   83.33 |       75 |   61.53 |   82.35 |                         
+  App.tsx             |   83.33 |       75 |   61.53 |   82.35 | 46-47,76,80,85,121      
+ src/components       |   48.55 |    41.07 |   43.58 |   48.05 |                         
   AddCourse.tsx       |       0 |      100 |       0 |       0 | 18-77                   
   AddtoSemester.tsx   |      80 |       50 |   66.66 |      80 | 22-23,56                
   EditCourse.tsx      |   61.29 |       50 |    37.5 |   61.29 | 34,37,40,43,56-59,74-98 
   IntroModal.tsx      |     100 |      100 |     100 |     100 |                         
+  Search.tsx          |    1.88 |        0 |       0 |    1.88 | 25-191                  
   SemesterDisplay.tsx |   45.83 |       50 |   36.36 |   43.47 | 17-22,32-35,49-79       
   SemesterModal.tsx   |   68.18 |       25 |      50 |   66.66 | 25-28,39-43,94-96       
   SemsterList.tsx     |      80 |       75 |      75 |      80 | 35                      
@@ -537,5 +529,5 @@ All files             |   68.08 |    63.63 |   58.33 |   67.39 |
 Test Suites: 1 failed, 1 passed, 2 total
 Tests:       3 failed, 6 passed, 9 total
 Snapshots:   0 total
-Time:        8.103 s
+Time:        4.338 s
 Ran all test suites.
