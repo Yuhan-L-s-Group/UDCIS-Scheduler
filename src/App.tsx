@@ -15,7 +15,8 @@ import { AddCourse } from "./components/AddCourse";
 import CoursesTable from "./components/courseTable";
 import Courses from "./data/course.json";
 import { Course } from "./interfaces/course";
-
+import Search from "./components/Search";
+import { text } from "body-parser";
 function App(): JSX.Element {
     //for Intro
     const [showIntro, setShowIntro] = useState<boolean>(true);
@@ -76,6 +77,7 @@ function App(): JSX.Element {
     const closeAddCourseWindow = () => {
         setAddCourseOpen(false);
     };
+    //for search course bar
     return (
         <>
             {isHomepage ? (
@@ -128,7 +130,15 @@ function App(): JSX.Element {
                     <Container>
                         <Row>
                             <Col>
-                                <div style={{ textAlign: "left" }}>
+                                {" "}
+                                <br />
+                                <br />
+                                {
+                                    <span>
+                                        <Search></Search>
+                                    </span>
+                                }
+                                {/* <div style={{ textAlign: "left" }}>
                                     <span className="modifyCourseList">
                                         {" "}
                                         CoursesList{" "}
@@ -156,7 +166,7 @@ function App(): JSX.Element {
                                             />
                                         </div>
                                     )}
-                                </div>
+                                </div> */}
                             </Col>
                             <Col>
                                 <br />
