@@ -1,6 +1,6 @@
 /* eslint-disable no-extra-parens */
 import React, { useState } from "react";
-import "./";
+import "./App.css";
 
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { IntroModal } from "./components/IntroModal";
@@ -33,7 +33,7 @@ function App(): JSX.Element {
     const [Name, setName] = useState("");
     const [renderName, setrenderName] = useState(false);
     const [isNameField, setNamefield] = useState(true);
-    const [isHomepage, setHomepage] = useState(true);
+    const [isHomepage, setHomepage] = useState(false);
     //render clear all button
     const [isDisplayEmpty, setDisplayEmpty] = useState(false);
     const closeHome = () => {
@@ -77,7 +77,7 @@ function App(): JSX.Element {
         setAddCourseOpen(false);
     };
     return (
-        <>
+        <div className="App">
             {isHomepage ? (
                 <div>
                     <div className="homepage">
@@ -189,7 +189,7 @@ function App(): JSX.Element {
                     </Container>
                 </div>
             )}
-        </>
+        </div>
     );
 }
 

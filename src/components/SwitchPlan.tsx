@@ -1,18 +1,17 @@
-/* eslint-disable no-extra-parens */
 import React, { useState } from "react";
 import { Form } from "react-bootstrap";
 import "../App.css";
 const DEGREES = [
     "Bachelor of Arts",
-    "Bachelor of Science(not ready)",
-    "Artificial Intelligence and Robotics(not ready)",
-    "Bioinformatics(not ready)",
-    "Cybersecurity(not ready)",
-    "Data Science(not ready)",
-    "High Performance Computing(not ready)",
-    "Systems and Networks(not ready)",
-    "Theory and Computation(not ready)",
-    "Information Systems(not ready)"
+    "Bachelor of Science (not ready)",
+    "Artificial Intelligence and Robotics (not ready)",
+    "Bioinformatics (not ready)",
+    "Cybersecurity (not ready)",
+    "Data Science (not ready)",
+    "High Performance Computing (not ready)",
+    "Systems and Networks (not ready)",
+    "Theory and Computation (not ready)",
+    "Information Systems (not ready)"
 ];
 const DEFAULT_DEGREE = DEGREES[0];
 
@@ -28,11 +27,13 @@ export function SwitchPlan(): JSX.Element {
                         value={degree}
                         onChange={(e) => setDegree(e.target.value)}
                     >
-                        {DEGREES.map((degree: string) => (
-                            <option key={degree} value={degree}>
-                                {degree}
-                            </option>
-                        ))}
+                        {DEGREES.map((degree: string) => {
+                            return (
+                                <option key={degree} value={degree}>
+                                    {degree}
+                                </option>
+                            );
+                        })}
                     </Form.Select>
                 </Form.Label>
             </Form.Group>
