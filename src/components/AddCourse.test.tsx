@@ -180,75 +180,75 @@ test("User can add a course with pre-requisites and corequisites", () => {
             })
         ])
     );
+});
 
-    test("To edit existing course", () => {
-        const existingCourses = [
-            {
-                code: "CISC108",
-                name: "Introduction to Computer Science",
+test("To edit existing course", () => {
+    const existingCourses = [
+        {
+            code: "CISC108",
+            name: "Introduction to Computer Science",
+            description:
+                "Computing and principles of programming with an emphasis on systematic program design. Topics include functional programming, data abstraction, procedural abstraction, use of control and state, recursion, testing, and object-oriented programming concepts. Requires no prior programming experience, open to any major, but intended primarily for majors and minors in computer science or mathematics.",
+            credits: 3,
+            preReq: [],
+            coreReq: []
+        }
+    ];
+
+    const onCloseMock = jest.fn(); // Mock the onClose function
+    const setListCoursesMock = jest.fn(); // Mock the setListCourses function
+
+    render(
+        <AddCourse
+            onClose={onCloseMock}
+            listCourses={existingCourses}
+            setListCourses={setListCoursesMock}
+        />
+    );
+
+    const codeIn = screen.getByLabelText("Code");
+    const nameIn = screen.getByLabelText("Name");
+    const descriptionIn = screen.getByLabelText("Description");
+    const creditsIn = screen.getByLabelText("Credits");
+    const saveIT = screen.getByText("Save Changes");
+
+    expect(codeIn).toHaveValue("CISC108");
+    expect(nameIn).toHaveValue("Introduction to Computer Science");
+    expect(descriptionIn).toHaveValue(
+        "Computing and principles of programming with an emphasis on systematic program design. Topics include functional programming, data abstraction, procedural abstraction, use of control and state, recursion, testing, and object-oriented programming concepts. Requires no prior programming experience, open to any major, but intended primarily for majors and minors in computer science or mathematics."
+    );
+    expect(creditsIn).toHaveValue("3");
+
+    userEvent.clear(codeIn);
+    userEvent.type(codeIn, "CISC210");
+
+    userEvent.clear(nameIn);
+    userEvent.type(nameIn, "Introduction to Systems Programming");
+
+    userEvent.clear(descriptionIn);
+    userEvent.type(
+        descriptionIn,
+        "Principles of computer systems programming for software and hardware platforms to achieve efficient resource usage. Topics include the C programming language, memory management, and awareness of system constraints and interfacing. Projects include programming embedded systems and interactive objects."
+    );
+
+    userEvent.clear(creditsIn);
+    userEvent.type(creditsIn, "3");
+
+    userEvent.click(saveIT);
+
+    expect(onCloseMock).toHaveBeenCalled();
+
+    expect(setListCoursesMock).toHaveBeenCalledWith(
+        expect.arrayContaining([
+            expect.objectContaining({
+                code: "CISC210",
+                name: "Introduction to Systems Programming",
                 description:
-                    "Computing and principles of programming with an emphasis on systematic program design. Topics include functional programming, data abstraction, procedural abstraction, use of control and state, recursion, testing, and object-oriented programming concepts. Requires no prior programming experience, open to any major, but intended primarily for majors and minors in computer science or mathematics.",
+                    "Principles of computer systems programming for software and hardware platforms to achieve efficient resource usage. Topics include the C programming language, memory management, and awareness of system constraints and interfacing. Projects include programming embedded systems and interactive objects.",
                 credits: 3,
-                preReq: [],
-                coreReq: []
-            }
-        ];
-
-        const onCloseMock = jest.fn(); // Mock the onClose function
-        const setListCoursesMock = jest.fn(); // Mock the setListCourses function
-
-        render(
-            <AddCourse
-                onClose={onCloseMock}
-                listCourses={existingCourses}
-                setListCourses={setListCoursesMock}
-            />
-        );
-
-        const codeIn = screen.getByLabelText("Code");
-        const nameIn = screen.getByLabelText("Name");
-        const descriptionIn = screen.getByLabelText("Description");
-        const creditsIn = screen.getByLabelText("Credits");
-        const saveIT = screen.getByText("Save Changes");
-
-        expect(codeIn).toHaveValue("CISC108");
-        expect(nameIn).toHaveValue("Introduction to Computer Science");
-        expect(descriptionIn).toHaveValue(
-            "Computing and principles of programming with an emphasis on systematic program design. Topics include functional programming, data abstraction, procedural abstraction, use of control and state, recursion, testing, and object-oriented programming concepts. Requires no prior programming experience, open to any major, but intended primarily for majors and minors in computer science or mathematics."
-        );
-        expect(creditsIn).toHaveValue("3");
-
-        userEvent.clear(codeIn);
-        userEvent.type(codeIn, "CISC210");
-
-        userEvent.clear(nameIn);
-        userEvent.type(nameIn, "Introduction to Systems Programming");
-
-        userEvent.clear(descriptionIn);
-        userEvent.type(
-            descriptionIn,
-            "Principles of computer systems programming for software and hardware platforms to achieve efficient resource usage. Topics include the C programming language, memory management, and awareness of system constraints and interfacing. Projects include programming embedded systems and interactive objects."
-        );
-
-        userEvent.clear(creditsIn);
-        userEvent.type(creditsIn, "3");
-
-        userEvent.click(saveIT);
-
-        expect(onCloseMock).toHaveBeenCalled();
-
-        expect(setListCoursesMock).toHaveBeenCalledWith(
-            expect.arrayContaining([
-                expect.objectContaining({
-                    code: "CISC210",
-                    name: "Introduction to Systems Programming",
-                    description:
-                        "Principles of computer systems programming for software and hardware platforms to achieve efficient resource usage. Topics include the C programming language, memory management, and awareness of system constraints and interfacing. Projects include programming embedded systems and interactive objects.",
-                    credits: 3,
-                    preReq: ["CISC106 | CISC108"],
-                    coreReq: ["MATH221 | MATH241"]
-                })
-            ])
-        );
-    });
+                preReq: ["CISC106 | CISC108"],
+                coreReq: ["MATH221 | MATH241"]
+            })
+        ])
+    );
 });
