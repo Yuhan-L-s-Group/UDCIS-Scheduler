@@ -69,7 +69,7 @@
     margin: auto;
 }
 .homepage {
-    background-image: url(https://ayerssaintgross.com/wp-content/uploads/2022/01/1_University-of-Delaware-Laird-Campus-Housing-Exterior-View.jpg);
+    background-image: url(./pictures/udlogo2.jpg);
     min-height: 100vh;
     width: 60;
     background-size: cover;
@@ -80,7 +80,7 @@
 
 .homebutton {
     background-color: rgb(55, 173, 179);
-    margin-top: 30px;
+    margin-top: 610px;
     font-size: 35px;
     transition: font-size 200ms;
 }
@@ -90,11 +90,11 @@
 }
 .homepage2 {
     text-align: center;
-} 
+}
 .welcome {
     font-size: 55px;
-    color: rgb(14, 38, 43);
-} 
+    color: rgb(163, 180, 6);
+}
 
 .emeptySemester {
     font-size: 20px;
