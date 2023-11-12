@@ -24,5 +24,8 @@ describe("Quizzer Tests", () => {
         ).not.toBeInTheDocument();
     });
 
-    test("Switch between different concentration (at this point, just check texts)", () => {});
+    test("Switch between different concentration (at this point, just check texts)", () => {
+        //initial value is BA
+        expect(screen.getByText(/Bachelor of Arts/i)).toBeInTheDocument();
+    });
 });

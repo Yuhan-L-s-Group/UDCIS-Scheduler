@@ -1,21 +1,25 @@
-import React, { useState } from "react";
-import { Button } from "react-bootstrap";
+/* eslint-disable no-extra-parens */
+
 import { SemesterDisplay } from "./SemesterDisplay";
-import { Season, Semester } from "../interfaces/semester";
+import { Semester } from "../interfaces/semester";
 import "../App.css";
 import horse from "../pictures/horse.jpg";
+import React from "react";
+
 export const SemesterList = ({
     semesters,
-    deleteSemester,
     Name,
     renderName,
-    deleteCourse
+    modifysemster,
+    isDisplayEmpty,
+    clearSemester
 }: {
     semesters: Semester[];
-    deleteSemester: (season: Season, year: number) => void;
     Name: string;
     renderName: boolean;
-    deleteCourse: (semester: Semester[]) => void;
+    modifysemster: (semester: Semester[]) => void;
+    isDisplayEmpty: boolean;
+    clearSemester: () => void;
 }) => {
     return (
         <>
@@ -23,7 +27,7 @@ export const SemesterList = ({
             <br />
             {renderName && <div className="name"> Hi! {Name}</div>}
             <div className="modifytheCreditsText">
-                {"Cumulative credits: "}
+                {"Your Cumulative credits: "}
                 {semesters.reduce(
                     (acc, iter) =>
                         acc +
@@ -35,20 +39,32 @@ export const SemesterList = ({
                 )}
                 {" credits"} {renderName && <img src={horse} alt="horse" />}
             </div>
-            <div className="semester_list">
-                {semesters.map(
-                    (semester: Semester): JSX.Element => (
-                        <div key={semester.year + semester.season}>
-                            <SemesterDisplay
-                                semester={semester}
-                                deleteSemester={deleteSemester}
-                                deleteCourse={deleteCourse}
-                                semesters={semesters}
-                            ></SemesterDisplay>
-                        </div>
-                    )
-                )}
-            </div>
+            {isDisplayEmpty && (
+                <div>
+                    <div className="semester_box">
+                        <div className="semesterListName-view"> </div>
+                        {semesters.map(
+                            (semester: Semester): JSX.Element => (
+                                <div key={semester.year + semester.season}>
+                                    <SemesterDisplay
+                                        semester={semester}
+                                        modifysemster={modifysemster}
+                                        semesters={semesters}
+                                    />
+                                </div>
+                            )
+                        )}
+                        {isDisplayEmpty && (
+                            <button
+                                className="clear_button"
+                                onClick={clearSemester}
+                            >
+                                Clear All
+                            </button>
+                        )}
+                    </div>
+                </div>
+            )}
         </>
     );
 };

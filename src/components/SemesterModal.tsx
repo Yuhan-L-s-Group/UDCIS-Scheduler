@@ -1,3 +1,4 @@
+/* eslint-disable no-extra-parens */
 import React, { useState } from "react";
 import { Button, Modal, Col, Form, Container, Row } from "react-bootstrap";
 import { Season, Semester } from "../interfaces/semester";
@@ -5,7 +6,6 @@ import { Season, Semester } from "../interfaces/semester";
 export const AddSemesterModal = ({
     showAddSemester,
     handleClose,
-
     addSemester,
     semesters
 }: {
@@ -19,7 +19,6 @@ export const AddSemesterModal = ({
     const [season, setSeason] = useState<Season>("Fall");
     const [warn, setWarn] = useState<string>("");
     const years = Array.from(Array(30).keys()).map((x) => x + 2018);
-    const [totalCredits, setCredtis] = useState(0);
 
     const saveChanges = (): void => {
         if (
