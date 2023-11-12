@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/UDCIS-Scheduler/static/css/main.cec4ee95.css",
-    "main.js": "/UDCIS-Scheduler/static/js/main.5e850d53.js",
+    "main.js": "/UDCIS-Scheduler/static/js/main.1eb4adab.js",
     "static/js/787.4ef7427d.chunk.js": "/UDCIS-Scheduler/static/js/787.4ef7427d.chunk.js",
     "static/media/udlogo1.jpg": "/UDCIS-Scheduler/static/media/udlogo1.7521608addbc831693bc.jpg",
     "static/media/horse.jpg": "/UDCIS-Scheduler/static/media/horse.88273b9658806132d550.jpg",
     "index.html": "/UDCIS-Scheduler/index.html",
     "main.cec4ee95.css.map": "/UDCIS-Scheduler/static/css/main.cec4ee95.css.map",
-    "main.5e850d53.js.map": "/UDCIS-Scheduler/static/js/main.5e850d53.js.map",
+    "main.1eb4adab.js.map": "/UDCIS-Scheduler/static/js/main.1eb4adab.js.map",
     "787.4ef7427d.chunk.js.map": "/UDCIS-Scheduler/static/js/787.4ef7427d.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.cec4ee95.css",
-    "static/js/main.5e850d53.js"
+    "static/js/main.1eb4adab.js"
   ]
 }
