@@ -1,6 +1,6 @@
 /* eslint-disable no-extra-parens */
 import React, { useState } from "react";
-import "./";
+import "./App.css";
 
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { IntroModal } from "./components/IntroModal";
@@ -10,7 +10,7 @@ import { Season, Semester } from "./interfaces/semester";
 import { SemesterList } from "./components/SemsterList";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
-import logo1 from "./pictures/udlogo1.jpg";
+import logo1 from "./pictures/udlogo2.jpg";
 import { AddCourse } from "./components/AddCourse";
 import CoursesTable from "./components/courseTable";
 import Courses from "./data/course.json";
@@ -34,7 +34,9 @@ function App(): JSX.Element {
     const [Name, setName] = useState("");
     const [renderName, setrenderName] = useState(false);
     const [isNameField, setNamefield] = useState(true);
+
     const [isHomepage, setHomepage] = useState(true);
+
     //render clear all button
     const [isDisplayEmpty, setDisplayEmpty] = useState(false);
     const closeHome = () => {
@@ -79,7 +81,7 @@ function App(): JSX.Element {
     };
     //for search course bar
     return (
-        <>
+        <div className="App">
             {isHomepage ? (
                 <div>
                     <div className="homepage">
@@ -199,7 +201,7 @@ function App(): JSX.Element {
                     </Container>
                 </div>
             )}
-        </>
+        </div>
     );
 }
 
