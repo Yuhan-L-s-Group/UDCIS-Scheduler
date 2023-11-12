@@ -1,4 +1,3 @@
-/* eslint-disable no-extra-parens */
 import React, { useState } from "react";
 import { Form } from "react-bootstrap";
 import "../App.css";
@@ -28,11 +27,13 @@ export function SwitchPlan(): JSX.Element {
                         value={degree}
                         onChange={(e) => setDegree(e.target.value)}
                     >
-                        {DEGREES.map((degree: string) => (
-                            <option key={degree} value={degree}>
-                                {degree}
-                            </option>
-                        ))}
+                        {DEGREES.map((degree: string) => {
+                            return (
+                                <option key={degree} value={degree}>
+                                    {degree}
+                                </option>
+                            );
+                        })}
                     </Form.Select>
                 </Form.Label>
             </Form.Group>
