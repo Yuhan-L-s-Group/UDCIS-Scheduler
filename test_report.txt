@@ -24,12 +24,12 @@ Browserslist: caniuse-lite is outdated. Please run:
 
 FAIL src/components/courseTable.test.tsx
   CoursesTable component
-    ✓ renders without crashing (37 ms)
-    ✕ renders table headers correctly (33 ms)
-    ✓ lists courses correctly (12 ms)
-    ✕ opens EditCourse modal on Edit button click (140 ms)
-    ✓ calls setListCourses on EditCourse modal interaction (100 ms)
-    ✕ shows error modal when adding a course already in a semester (1079 ms)
+    ✓ renders without crashing (24 ms)
+    ✕ renders table headers correctly (21 ms)
+    ✓ lists courses correctly (7 ms)
+    ✕ opens EditCourse modal on Edit button click (92 ms)
+    ✓ calls setListCourses on EditCourse modal interaction (67 ms)
+    ✕ shows error modal when adding a course already in a semester (1046 ms)
 
   ● CoursesTable component › renders table headers correctly
 
@@ -509,5 +509,5 @@ All files             |   29.78 |    29.54 |   22.22 |   30.43 |
 Test Suites: 1 failed, 1 total
 Tests:       3 failed, 3 passed, 6 total
 Snapshots:   0 total
-Time:        5.386 s
+Time:        4.272 s
 Ran all test suites.
