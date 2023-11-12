@@ -16,7 +16,7 @@ import CoursesTable from "./components/courseTable";
 import Courses from "./data/course.json";
 import { Course } from "./interfaces/course";
 import Search from "./components/Search";
-import { text } from "body-parser";
+// import { text } from "body-parser";
 function App(): JSX.Element {
     //for Intro
     const [showIntro, setShowIntro] = useState<boolean>(true);

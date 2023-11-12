@@ -1,8 +1,9 @@
+/* eslint-disable no-extra-parens */
 import React, { useState } from "react";
 import { Course } from "../interfaces/course";
 import courses from "../data/course.json";
 import { Button } from "react-bootstrap";
-import { Season, Semester } from "../interfaces/semester";
+import { Semester } from "../interfaces/semester";
 import { AddtoSemester } from "./AddtoSemester";
 import Modal from "react-bootstrap/Modal";
 import EditCourse from "./EditCourse";
