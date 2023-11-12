@@ -33,7 +33,9 @@ function App(): JSX.Element {
     const [Name, setName] = useState("");
     const [renderName, setrenderName] = useState(false);
     const [isNameField, setNamefield] = useState(true);
-    const [isHomepage, setHomepage] = useState(false);
+
+    const [isHomepage, setHomepage] = useState(true);
+
     //render clear all button
     const [isDisplayEmpty, setDisplayEmpty] = useState(false);
     const closeHome = () => {
