@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { Course } from "../interfaces/course";
 import courses from "../data/course.json";
-import { Button, Container } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { Semester } from "../interfaces/semester";
 import { AddtoSemester } from "./AddtoSemester";
 import Modal from "react-bootstrap/Modal";
