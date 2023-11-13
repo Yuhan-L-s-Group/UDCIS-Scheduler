@@ -7,7 +7,7 @@ import { AddtoSemester } from "./AddtoSemester";
 import { Semester } from "../interfaces/semester";
 import { Form } from "react-bootstrap";
 import Modal from "react-bootstrap/Modal";
-
+// display course list (switch 1)
 interface Course {
     code: string;
     name: string;
