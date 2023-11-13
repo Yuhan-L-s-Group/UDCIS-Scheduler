@@ -80,12 +80,12 @@
 
 .homebutton {
     background-color: rgb(55, 173, 179);
-    margin-top: 600px;
+    margin-top: 610px;
     font-size: 35px;
     transition: font-size 200ms;
 }
 .homebutton:hover {
-    background-color: #060606;
+    background-color: #96c832;
     font-size: 55px;
 }
 .homepage2 {
@@ -93,7 +93,7 @@
 }
 .welcome {
     font-size: 55px;
-    color: rgba(10, 3, 32, 0.988);
+    color: rgb(163, 180, 6);
 }
 
 .emeptySemester {
@@ -148,4 +148,42 @@
 .semesterListName-view {
     position: absolute; /* Set the position property to absolute */
     top: 1px;
+}
+.input__wrapper {
+    margin: 20px;
+    text-align: center;
+}
+.coursePool_box {
+    border: 5px solid #000000;
+    border-radius: 40px;
+    padding: 100px;
+    margin-bottom: 100px;
+    width: 500px;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.searchBar1 {
+    margin-bottom: 600px;
+}
+.addcourseView {
+    margin-right: 100px;
+}
+.SwichButton {
+    margin-right: 100px;
+    background-color: rgb(136, 255, 0);
+    font-size: 20px;
+}
+.SwichButton:hover {
+    font-size: 25px;
+}
+.searchBar {
+    font-size: 20px;
+}
+.searchBar:hover {
+    font-size: 20px;
+    background-color: rgb(136, 255, 0);
+}
+.editButtonInSwitch {
+    margin-top: 10000px;
 }

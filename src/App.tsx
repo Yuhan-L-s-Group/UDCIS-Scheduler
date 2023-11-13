@@ -15,7 +15,8 @@ import { AddCourse } from "./components/AddCourse";
 import CoursesTable from "./components/courseTable";
 import Courses from "./data/course.json";
 import { Course } from "./interfaces/course";
-
+import Search from "./components/Search";
+// import { text } from "body-parser";
 function App(): JSX.Element {
     //for Intro
     const [showIntro, setShowIntro] = useState<boolean>(true);
@@ -78,6 +79,11 @@ function App(): JSX.Element {
     const closeAddCourseWindow = () => {
         setAddCourseOpen(false);
     };
+    //for switch either search bar or the Course list
+    const [Swicth, setSwicth] = useState(false);
+    const handleSwitch = () => {
+        setSwicth(!Swicth);
+    };
     return (
         <div className="App">
             {isHomepage ? (
@@ -130,35 +136,68 @@ function App(): JSX.Element {
                     <Container>
                         <Row>
                             <Col>
-                                <div style={{ textAlign: "left" }}>
-                                    <span className="modifyCourseList">
-                                        {" "}
-                                        CoursesList{" "}
+                                {" "}
+                                <br />
+                                <br />
+                                <br />
+                                <button
+                                    className="SwichButton"
+                                    onClick={handleSwitch}
+                                >
+                                    Switch
+                                </button>
+                                <br />
+                                <br />
+                                <br />
+                                {Swicth ? (
+                                    <span>
+                                        <Search
+                                            ModifiedCourseList={
+                                                ModifiedCourseList
+                                            }
+                                            listCourses={listCourses}
+                                            setListCourses={setListCourses}
+                                            semesters={semesters}
+                                            setSemester={setSemester}
+                                        ></Search>
                                     </span>
-                                    <Button
-                                        variant="primary"
-                                        onClick={openAddCourseWindow}
-                                    >
-                                        Add Course
-                                    </Button>
-                                    <CoursesTable
-                                        ModifiedCourseList={ModifiedCourseList}
-                                        onClose={closeAddCourseWindow}
-                                        listCourses={listCourses}
-                                        setListCourses={setListCourses}
-                                        semesters={semesters}
-                                        setSemester={setSemester}
-                                    />
-                                    {isAddCourseOpen && (
-                                        <div>
-                                            <AddCourse
-                                                onClose={closeAddCourseWindow}
-                                                listCourses={listCourses}
-                                                setListCourses={setListCourses}
-                                            />
-                                        </div>
-                                    )}
-                                </div>
+                                ) : (
+                                    <div style={{ textAlign: "left" }}>
+                                        <span className="modifyCourseList">
+                                            {" "}
+                                            CoursesList{" "}
+                                        </span>
+                                        <Button
+                                            variant="primary"
+                                            onClick={openAddCourseWindow}
+                                        >
+                                            Add Course
+                                        </Button>
+                                        <CoursesTable
+                                            ModifiedCourseList={
+                                                ModifiedCourseList
+                                            }
+                                            onClose={closeAddCourseWindow}
+                                            listCourses={listCourses}
+                                            setListCourses={setListCourses}
+                                            semesters={semesters}
+                                            setSemester={setSemester}
+                                        />
+                                        {isAddCourseOpen && (
+                                            <div>
+                                                <AddCourse
+                                                    onClose={
+                                                        closeAddCourseWindow
+                                                    }
+                                                    listCourses={listCourses}
+                                                    setListCourses={
+                                                        setListCourses
+                                                    }
+                                                />
+                                            </div>
+                                        )}
+                                    </div>
+                                )}
                             </Col>
                             <Col>
                                 <br />

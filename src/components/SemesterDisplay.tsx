@@ -4,6 +4,8 @@ import { Semester } from "../interfaces/semester";
 import { Course } from "../interfaces/course";
 import { Button } from "react-bootstrap";
 import "../App.css";
+// Display each individual semester
+// Addtionally it automatically caculates the each semester credits
 export const SemesterDisplay = ({
     semester,
     modifysemster,
