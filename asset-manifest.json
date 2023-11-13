@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/UDCIS-Scheduler/static/css/main.bb18112d.css",
-    "main.js": "/UDCIS-Scheduler/static/js/main.5eebb2b8.js",
+    "main.css": "/UDCIS-Scheduler/static/css/main.eac00f8d.css",
+    "main.js": "/UDCIS-Scheduler/static/js/main.d1fef0d4.js",
     "static/js/787.4ef7427d.chunk.js": "/UDCIS-Scheduler/static/js/787.4ef7427d.chunk.js",
     "static/media/udlogo2.jpg": "/UDCIS-Scheduler/static/media/udlogo2.9dbf809b271ff0f9683e.jpg",
     "static/media/horse.jpg": "/UDCIS-Scheduler/static/media/horse.88273b9658806132d550.jpg",
     "index.html": "/UDCIS-Scheduler/index.html",
-    "main.bb18112d.css.map": "/UDCIS-Scheduler/static/css/main.bb18112d.css.map",
-    "main.5eebb2b8.js.map": "/UDCIS-Scheduler/static/js/main.5eebb2b8.js.map",
+    "main.eac00f8d.css.map": "/UDCIS-Scheduler/static/css/main.eac00f8d.css.map",
+    "main.d1fef0d4.js.map": "/UDCIS-Scheduler/static/js/main.d1fef0d4.js.map",
     "787.4ef7427d.chunk.js.map": "/UDCIS-Scheduler/static/js/787.4ef7427d.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.bb18112d.css",
-    "static/js/main.5eebb2b8.js"
+    "static/css/main.eac00f8d.css",
+    "static/js/main.d1fef0d4.js"
   ]
 }
