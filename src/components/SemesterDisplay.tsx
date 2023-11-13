@@ -1,55 +1,104 @@
-import React, { useState } from "react";
-import { Season, Semester } from "../interfaces/semester";
+/* eslint-disable no-extra-parens */
+import React from "react";
+import { Semester } from "../interfaces/semester";
 import { Course } from "../interfaces/course";
 import { Button } from "react-bootstrap";
-
+import "../App.css";
+// Display each individual semester
+// Addtionally it automatically caculates the each semester credits
 export const SemesterDisplay = ({
     semester,
-    deleteSemester
+    modifysemster,
+    semesters
 }: {
     semester: Semester;
-    deleteSemester: (season: Season, year: number) => void;
+    modifysemster: (semester: Semester[]) => void;
+    semesters: Semester[];
 }): JSX.Element => {
-    const [isAddcourseOpen, setIsAddcourseOpen] = useState<boolean>(false);
+    const deleteCourseFunc = (course: Course) => {
+        const indexC = semester.courses.findIndex(
+            (target) => target === course
+        );
+        semester.courses.splice(indexC, 1);
+        const update = [...semesters];
+        modifysemster(update);
+    };
 
-    const OpenAddCourse = () => {
-        setIsAddcourseOpen(true);
+    const deleteWholeSemester = (semester: Semester) => {
+        const indexS = semesters.findIndex((target) => target === semester);
+        semesters.splice(indexS, 1);
+        const update = [...semesters];
+        modifysemster(update);
     };
-    const closeAddCourse = () => {
-        setIsAddcourseOpen(false);
+    const EmptySemester = (semester: Semester) => {
+        semester.courses.splice(0, semester.courses.length);
+        const update = [...semesters];
+        modifysemster(update);
+        console.log(semester);
     };
+
     return (
         <div className="semester_view">
-            <h3>
-                {semester.season} {semester.year}
-                {" - "}
-                {semester.courses.reduce((acc, iter) => acc + iter.credits, 0)}
-                {" credits"}
-            </h3>
-
-            <Button
-                variant="danger"
-                onClick={() => deleteSemester(semester.season, semester.year)}
-            >
-                X
-            </Button>
-
-            <div>
-                {semester.courses.length === 0 ? (
-                    <span>Empty!</span>
-                ) : (
-                    <span>
-                        {semester.courses.map((course) => (
-                            <span key={course.code + course.name}>
-                                {course.code + " - "}
-                                {course.name + " - "}
-                                {course.credits + " credits"}
-                                <br />
-                            </span>
-                        ))}
-                    </span>
-                )}
-            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>
+                            Semster: {semester.season} {semester.year}
+                        </th>
+                        <th>
+                            Total:{" "}
+                            {semester.courses.reduce(
+                                (acc, iter) => acc + iter.credits,
+                                0
+                            )}
+                        </th>
+                        {semester.courses.length !== 0 && (
+                            <th>
+                                {" "}
+                                <button
+                                    className="emeptySemester"
+                                    onClick={() => EmptySemester(semester)}
+                                >
+                                    Empty
+                                </button>
+                            </th>
+                        )}
+                    </tr>
+                </thead>
+                <tbody>
+                    {semester.courses.map((course) => (
+                        <tr key={course.code + course.name}>
+                            <td>
+                                {course.code}
+                                {" - "}
+                                {course.name}
+                            </td>
+                            <td> {course.credits}</td>
+                            <td>
+                                {" "}
+                                <Button
+                                    variant="danger"
+                                    onClick={() => deleteCourseFunc(course)}
+                                    className=""
+                                >
+                                    x
+                                </Button>
+                            </td>
+                        </tr>
+                    ))}
+                    {
+                        <tr>
+                            <button
+                                onClick={() => deleteWholeSemester(semester)}
+                                className="deleteEntireSemesterView"
+                            >
+                                {" "}
+                                Delete Entire Semester
+                            </button>
+                        </tr>
+                    }
+                </tbody>
+            </table>
         </div>
     );
 };

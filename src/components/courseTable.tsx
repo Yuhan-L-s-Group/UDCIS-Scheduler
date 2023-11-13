@@ -1,13 +1,13 @@
+/* eslint-disable no-extra-parens */
 import { Button } from "react-bootstrap";
-import courses from "../data/course.json";
 import "./courseTable.css";
 import EditCourse from "./EditCourse";
 import React, { useState } from "react";
 import { AddtoSemester } from "./AddtoSemester";
-import { Season, Semester } from "../interfaces/semester";
+import { Semester } from "../interfaces/semester";
 import { Form } from "react-bootstrap";
 import Modal from "react-bootstrap/Modal";
-
+// display course list (switch 1)
 interface Course {
     code: string;
     name: string;
@@ -26,7 +26,6 @@ interface EditCourseProps {
 }
 
 const CoursesTable = ({
-    onClose,
     listCourses,
     setListCourses,
     ModifiedCourseList,
@@ -52,9 +51,7 @@ const CoursesTable = ({
     });
     const [isAddSemesterOpen, SetAddSemester] = useState(false);
     const [ErrorMessage, setError] = useState(false);
-    const openEditCourse = () => {
-        setEditCourseOpen(true);
-    };
+
     const closeEditCourse = () => {
         setEditCourseOpen(false);
     };
@@ -66,9 +63,7 @@ const CoursesTable = ({
         setselectedCourse(course);
         SetAddSemester(true);
     };
-    const openAddSemester = () => {
-        SetAddSemester(true);
-    };
+
     const closeAddSemester = () => {
         SetAddSemester(false);
     };
