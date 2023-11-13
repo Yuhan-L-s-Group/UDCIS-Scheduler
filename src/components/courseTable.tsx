@@ -89,7 +89,7 @@ const CoursesTable = ({
                         <table className="Tablesize">
                             <thead>
                                 <tr>
-                                    <th>Code: {prefix}</th>
+                                    <th>Code:{prefix}</th>
                                     <th>Name</th>
                                     <th>Edit Course</th>
                                     <th>Add it to Semester</th>

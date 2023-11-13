@@ -199,7 +199,7 @@ describe("Scheduler Tests", () => {
         userEvent.type(searchBox, "CISC");
         userEvent.click(seachButton);
         expect(
-            screen.getByText("Please make sure course code is correct!")
+            screen.getByText("Please make sure the course code is correct!")
         ).toBeInTheDocument();
 
         //input in lower case

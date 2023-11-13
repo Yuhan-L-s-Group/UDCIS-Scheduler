@@ -36,9 +36,6 @@ describe("EditCourse Component", () => {
         expect(screen.getByLabelText("Name")).toHaveValue(
             mockCourseSelected.name
         );
-        expect(screen.getByLabelText("Description")).toHaveValue(
-            mockCourseSelected.description
-        );
         expect(
             screen.getByLabelText("Credits (please enter number)")
         ).toHaveValue(mockCourseSelected.credits);
