@@ -5,40 +5,9 @@
 Browserslist: caniuse-lite is outdated. Please run:
   npx browserslist@latest --update-db
   Why you should do it regularly: https://github.com/browserslist/browserslist#browsers-data-updating
-PASS src/App.test.tsx (5.447 s)
-  ● Console
-
-    console.error
-      Warning: validateDOMNesting(...): <button> cannot appear as a child of <tr>.
-          at button
-          at tr
-          at tbody
-          at table
-          at div
-          at SemesterDisplay (/home/runner/work/UDCIS-Scheduler/UDCIS-Scheduler/src/components/SemesterDisplay.tsx:8:5)
-          at div
-          at div
-          at div
-          at SemesterList (/home/runner/work/UDCIS-Scheduler/UDCIS-Scheduler/src/components/SemsterList.tsx:10:5)
-          at div
-          at /home/runner/work/UDCIS-Scheduler/UDCIS-Scheduler/node_modules/react-bootstrap/cjs/Col.js:72:8
-          at div
-          at /home/runner/work/UDCIS-Scheduler/UDCIS-Scheduler/node_modules/react-bootstrap/cjs/Row.js:22:3
-          at div
-          at /home/runner/work/UDCIS-Scheduler/UDCIS-Scheduler/node_modules/react-bootstrap/cjs/Container.js:24:3
-          at div
-          at div
-          at App (/home/runner/work/UDCIS-Scheduler/UDCIS-Scheduler/src/App.tsx:22:39)
-
-      at printWarning (node_modules/react-dom/cjs/react-dom.development.js:67:30)
-      at error (node_modules/react-dom/cjs/react-dom.development.js:43:5)
-      at validateDOMNesting (node_modules/react-dom/cjs/react-dom.development.js:10081:7)
-      at createInstance (node_modules/react-dom/cjs/react-dom.development.js:10181:5)
-      at completeWork (node_modules/react-dom/cjs/react-dom.development.js:19464:28)
-      at completeUnitOfWork (node_modules/react-dom/cjs/react-dom.development.js:22812:16)
-      at performUnitOfWork (node_modules/react-dom/cjs/react-dom.development.js:22787:5)
-      at workLoopSync (node_modules/react-dom/cjs/react-dom.development.js:22707:5)
-
+Browserslist: caniuse-lite is outdated. Please run:
+  npx browserslist@latest --update-db
+  Why you should do it regularly: https://github.com/browserslist/browserslist#browsers-data-updating
 FAIL src/components/courseTable.test.tsx
   ● Console
 
@@ -140,10 +109,6 @@ FAIL src/components/courseTable.test.tsx
       at node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:52:17
       at getByText (node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:95:19)
       at Object.<anonymous> (src/components/courseTable.test.tsx:51:23)
-      at TestScheduler.scheduleTests (node_modules/@jest/core/build/TestScheduler.js:333:13)
-      at runJest (node_modules/@jest/core/build/runJest.js:404:19)
-      at _run10000 (node_modules/@jest/core/build/cli/index.js:320:7)
-      at runCLI (node_modules/@jest/core/build/cli/index.js:173:3)
 
   ● CoursesTable component › opens EditCourse modal on Edit button click
 
@@ -362,10 +327,6 @@ FAIL src/components/courseTable.test.tsx
       at node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:55:13
       at getByText (node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:95:19)
       at Object.<anonymous> (src/components/courseTable.test.tsx:69:23)
-      at TestScheduler.scheduleTests (node_modules/@jest/core/build/TestScheduler.js:333:13)
-      at runJest (node_modules/@jest/core/build/runJest.js:404:19)
-      at _run10000 (node_modules/@jest/core/build/cli/index.js:320:7)
-      at runCLI (node_modules/@jest/core/build/cli/index.js:173:3)
 
   ● CoursesTable component › shows error modal when adding a course already in a semester
 
@@ -509,34 +470,379 @@ FAIL src/components/courseTable.test.tsx
       at waitForWrapper (node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/wait-for.js:166:27)
       at findByText (node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:86:33)
       at Object.<anonymous> (src/components/courseTable.test.tsx:86:45)
-      at TestScheduler.scheduleTests (node_modules/@jest/core/build/TestScheduler.js:333:13)
-      at runJest (node_modules/@jest/core/build/runJest.js:404:19)
-      at _run10000 (node_modules/@jest/core/build/cli/index.js:320:7)
-      at runCLI (node_modules/@jest/core/build/cli/index.js:173:3)
 
-----------------------|---------|----------|---------|---------|-------------------------
-File                  | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s       
-----------------------|---------|----------|---------|---------|-------------------------
-All files             |   53.68 |    46.77 |   46.15 |   52.91 |                         
- src                  |   83.33 |       75 |   61.53 |   82.35 |                         
-  App.tsx             |   83.33 |       75 |   61.53 |   82.35 | 46-47,76,80,85,121      
- src/components       |   48.55 |    42.59 |   43.58 |   48.05 |                         
-  AddCourse.tsx       |       0 |      100 |       0 |       0 | 18-77                   
-  AddtoSemester.tsx   |      80 |       50 |   66.66 |      80 | 22-23,56                
-  EditCourse.tsx      |   61.29 |       50 |    37.5 |   61.29 | 34,37,40,43,56-59,74-98 
-  IntroModal.tsx      |     100 |      100 |     100 |     100 |                         
-  Search.tsx          |    1.88 |        0 |       0 |    1.88 | 25-187                  
-  SemesterDisplay.tsx |   45.83 |       50 |   36.36 |   43.47 | 17-22,32-35,49-79       
-  SemesterModal.tsx   |   68.18 |       25 |      50 |   66.66 | 25-28,39-43,94-96       
-  SemsterList.tsx     |      80 |       75 |      75 |      80 | 35                      
-  SwitchPlan.tsx      |     100 |      100 |     100 |     100 |                         
-  courseTable.tsx     |   94.11 |       80 |    92.3 |   94.11 | 71,78                   
- src/interfaces       |       0 |        0 |       0 |       0 |                         
-  course.ts           |       0 |        0 |       0 |       0 |                         
-  semester.ts         |       0 |        0 |       0 |       0 |                         
-----------------------|---------|----------|---------|---------|-------------------------
+PASS src/App.test.tsx
+  ● Console
+
+    console.error
+      Warning: validateDOMNesting(...): <button> cannot appear as a child of <tr>.
+          at button
+          at tr
+          at tbody
+          at table
+          at div
+          at SemesterDisplay (/home/runner/work/UDCIS-Scheduler/UDCIS-Scheduler/src/components/SemesterDisplay.tsx:8:5)
+          at div
+          at div
+          at div
+          at SemesterList (/home/runner/work/UDCIS-Scheduler/UDCIS-Scheduler/src/components/SemsterList.tsx:10:5)
+          at div
+          at /home/runner/work/UDCIS-Scheduler/UDCIS-Scheduler/node_modules/react-bootstrap/cjs/Col.js:72:8
+          at div
+          at /home/runner/work/UDCIS-Scheduler/UDCIS-Scheduler/node_modules/react-bootstrap/cjs/Row.js:22:3
+          at div
+          at /home/runner/work/UDCIS-Scheduler/UDCIS-Scheduler/node_modules/react-bootstrap/cjs/Container.js:24:3
+          at div
+          at div
+          at App (/home/runner/work/UDCIS-Scheduler/UDCIS-Scheduler/src/App.tsx:22:39)
+
+      at printWarning (node_modules/react-dom/cjs/react-dom.development.js:67:30)
+      at error (node_modules/react-dom/cjs/react-dom.development.js:43:5)
+      at validateDOMNesting (node_modules/react-dom/cjs/react-dom.development.js:10081:7)
+      at createInstance (node_modules/react-dom/cjs/react-dom.development.js:10181:5)
+      at completeWork (node_modules/react-dom/cjs/react-dom.development.js:19464:28)
+      at completeUnitOfWork (node_modules/react-dom/cjs/react-dom.development.js:22812:16)
+      at performUnitOfWork (node_modules/react-dom/cjs/react-dom.development.js:22787:5)
+      at workLoopSync (node_modules/react-dom/cjs/react-dom.development.js:22707:5)
+
+    console.log
+      Entered Course Data: {
+        code: 'JAPN105',
+        name: 'Japanese I - Elementary',
+        description: '',
+        credits: 4,
+        preReq: [],
+        coreReq: []
+      }
+
+      at handleConfirm (src/components/AddCourse.tsx:35:17)
+
+    console.log
+      [
+        {
+          code: 'CISC108',
+          name: 'Introduction to Computer Science I',
+          description: 'Computing and principles of programming with an emphasis on systematic program design. Topics include functional programming, data abstraction, procedural abstraction, use of control and state, recursion, testing, and object-oriented programming concepts. Requires no prior programming experience, open to any major, but intended primarily for majors and minors in computer science or mathematics.',
+          credits: 3,
+          preReq: [],
+          coreReq: []
+        },
+        {
+          code: 'CISC181',
+          name: 'Introduction to Computer Science II',
+          description: 'Principles of computer science illustrated and applied through programming in an object oriented language. Programming projects illustrate computational problems, styles and issues that arise in computer systems development and in all application areas of computation.',
+          credits: 3,
+          preReq: [ 'CISC106|CISC108' ],
+          coreReq: [ 'MATH241|MATH221' ]
+        },
+        {
+          code: 'CISC210',
+          name: 'Introduction to Systems Programming',
+          description: 'Principles of computer systems programming for software and hardware platforms to achieve efficient resource usage. Topics include the C programming language, memory management, and awareness of system constraints and interfacing. Projects include programming embedded systems and interactive objects.',
+          credits: 3,
+          preReq: [ 'CISC106|CISC108' ],
+          coreReq: [ 'MATH221|MATH241' ]
+        },
+        {
+          code: 'CISC220',
+          name: 'Data Structures',
+          description: 'Review of data type abstraction, recursion, arrays, stacks, queues, multiple stacks and linked lists. Emphasis on dynamic storage management, garbage collection, trees, graphs, tables, sorting and searching.',
+          credits: 3,
+          preReq: [ 'CISC210' ],
+          coreReq: [ 'MATH210|MATH241' ]
+        },
+        {
+          code: 'CISC260',
+          name: 'Machine Organization and Assembly Language',
+          description: 'Introduction to the basics of machine organization. Programming tools and techniques at the machine and assembly levels. Assembly language programming and computer arithmetic techniques.',
+          credits: 3,
+          preReq: [ 'CISC210' ],
+          coreReq: []
+        },
+        {
+          code: 'CISC275',
+          name: 'Introduction to Software Engineering',
+          description: 'Object oriented software design and development through use of an object oriented programming language. Topics include team programming, design patterns, graphical user interfaces, software engineering tools (e.g., integrated development environments, version control, build management, bug tracking, automated testing).',
+          credits: 3,
+          preReq: [ 'CISC181', 'CISC220' ],
+          coreReq: []
+        },
+        {
+          code: 'CISC300-1',
+          name: '300-Level Technology Elective I',
+          description: 'Computer science technical electives numbered 301 or above, except for CISC 355, CISC 356, CISC 357, CISC 366, CISC 465, and CISC 466. Because of their very nature, Experimental Courses (courses with an x67 number) must be approved beforehand by the CIS Undergraduate Committee before being accepted toward the technical elective requirement.',
+          credits: 3,
+          preReq: [ 'CISC220' ],
+          coreReq: []
+        },
+        {
+          code: 'CISC300-2',
+          name: '300-Level Technology Elective II',
+          description: 'Computer science technical electives numbered 301 or above, except for CISC 355, CISC 356, CISC 357, CISC 366, CISC 465, and CISC 466. Because of their very nature, Experimental Courses (courses with an x67 number) must be approved beforehand by the CIS Undergraduate Committee before being accepted toward the technical elective requirement.',
+          credits: 3,
+          preReq: [ 'CISC220' ],
+          coreReq: []
+        },
+        {
+          code: 'CISC300-3',
+          name: '300-Level Technology Elective III',
+          description: 'Computer science technical electives numbered 301 or above, except for CISC 355, CISC 356, CISC 357, CISC 366, CISC 465, and CISC 466. Because of their very nature, Experimental Courses (courses with an x67 number) must be approved beforehand by the CIS Undergraduate Committee before being accepted toward the technical elective requirement.',
+          credits: 3,
+          preReq: [ 'CISC220' ],
+          coreReq: []
+        },
+        {
+          code: 'CISC300-4',
+          name: '300-Level Technology Elective IV',
+          description: 'Computer science technical electives numbered 301 or above, except for CISC 355, CISC 356, CISC 357, CISC 366, CISC 465, and CISC 466. Because of their very nature, Experimental Courses (courses with an x67 number) must be approved beforehand by the CIS Undergraduate Committee before being accepted toward the technical elective requirement.',
+          credits: 3,
+          preReq: [ 'CISC220' ],
+          coreReq: []
+        },
+        {
+          code: 'CISC300-5',
+          name: '300-Level Technology Elective V',
+          description: 'Computer science technical electives numbered 301 or above, except for CISC 355, CISC 356, CISC 357, CISC 366, CISC 465, and CISC 466. Because of their very nature, Experimental Courses (courses with an x67 number) must be approved beforehand by the CIS Undergraduate Committee before being accepted toward the technical elective requirement.',
+          credits: 3,
+          preReq: [ 'CISC220' ],
+          coreReq: []
+        },
+        {
+          code: 'CISC498',
+          name: 'Computer Science Senior Design Project I',
+          description: 'First semester of two-semester senior software design course.  Students work in teams to develop solutions to real-world problems for a client.  Application of a modern software engineering process; requirement solicitation, analysis, and specification; prototyping; design; incremental development; testing and verification; client interaction; and presentation. Offered in Fall only.',
+          credits: 3,
+          preReq: [ 'CISC275', 'CISC320' ],
+          coreReq: []
+        },
+        {
+          code: 'CISC499',
+          name: 'Computer Science Senior Design Project II',
+          description: 'Continuation of CISC 498.',
+          credits: 3,
+          preReq: [ 'CISC498' ],
+          coreReq: []
+        },
+        {
+          code: 'MATH210',
+          name: 'Discrete Mathematics I',
+          description: 'Elements of sets and logic. Relations, functions. Integers. Induction and recursion. Principles and techniques of counting. Graphs. Paths and circuits.',
+          credits: 3,
+          preReq: [ 'MATH241', 'MATH242|MATH232' ],
+          coreReq: []
+        },
+        {
+          code: 'MATH241',
+          name: 'Analytic Geometry and Calculus A',
+          description: 'Functions, limits, continuity, derivatives. Polynomial, rational, exponential, hyperbolic, logarithmic, trigonometric and inverse trigonometric functions. Definite and indefinite integrals and the Fundamental Theorem of Calculus. Simple differential equations (separable ODE, linear ODE). ODE models leading to exponential growth and decay.',
+          credits: 3,
+          preReq: [],
+          coreReq: []
+        },
+        {
+          code: 'ENGL110',
+          name: 'First-Year Writing',
+          description: 'Introduction to the process of academic writing that centers on the composition of analytical, research-based essays.',
+          credits: 3,
+          preReq: [],
+          coreReq: []
+        },
+        {
+          code: 'EGGG101',
+          name: 'Introduction to Engineering',
+          description: 'Introduction to profession, including disciplines of chemical, civil, computer, electrical, environmental, and mechanical engineering. Prepares students for success through integration of: technical problem solving and engineering design, ethical decision-making, teamwork, and communicating to diverse audiences.',
+          credits: 2,
+          preReq: [],
+          coreReq: []
+        },
+        {
+          code: 'UCAH',
+          name: 'Breadth: Creative Arts and Humanities',
+          description: 'University breadth requirements: creative arts and humanities. Check this list for courses: https://catalog.udel.edu/preview_program.php?catoid=47&poid=34821.',
+          credits: 3,
+          preReq: [],
+          coreReq: []
+        },
+        {
+          code: 'UHCC',
+          name: 'Breadth: History and Cultural Change',
+          description: 'University breadth requirements: history and cultural change. Check this list for courses: https://catalog.udel.edu/preview_program.php?catoid=47&poid=34822.',
+          credits: 3,
+          preReq: [],
+          coreReq: []
+        },
+        {
+          code: 'USBS',
+          name: 'Breadth: Social and Behavioral Science',
+          description: 'University breadth requirements: social and behavioral science. Check this list for courses: https://catalog.udel.edu/preview_program.php?catoid=47&poid=34825.',
+          credits: 3,
+          preReq: [],
+          coreReq: []
+        },
+        {
+          code: 'UMNST',
+          name: 'Breadth: Math, Natural Science, and Technology',
+          description: 'University breadth requirements: math, natural science, and technology. Check this list for courses: https://catalog.udel.edu/preview_program.php?catoid=47&poid=34826.',
+          credits: 3,
+          preReq: [],
+          coreReq: []
+        },
+        {
+          code: 'CCAH-1',
+          name: 'Breadth: Creative Arts and Humanities I',
+          description: 'College breadth requirements: creative arts and humanities. Check this list for courses: https://catalog.udel.edu/preview_program.php?catoid=47&poid=34821.',
+          credits: 3,
+          preReq: [],
+          coreReq: []
+        },
+        {
+          code: 'CCAH-2',
+          name: 'Breadth: Creative Arts and Humanities II',
+          description: 'College breadth requirements: creative arts and humanities. Check this list for courses: https://catalog.udel.edu/preview_program.php?catoid=47&poid=34821.',
+          credits: 3,
+          preReq: [],
+          coreReq: []
+        },
+        {
+          code: 'CHCC-1',
+          name: 'Breadth: History and Cultural Change I',
+          description: 'College breadth requirements: history and cultural change. Check this list for courses: https://catalog.udel.edu/preview_program.php?catoid=47&poid=34822.',
+          credits: 3,
+          preReq: [],
+          coreReq: []
+        },
+        {
+          code: 'CHCC-2',
+          name: 'Breadth: History and Cultural Change II',
+          description: 'College breadth requirements: history and cultural change. Check this list for courses: https://catalog.udel.edu/preview_program.php?catoid=47&poid=34822.',
+          credits: 3,
+          preReq: [],
+          coreReq: []
+        },
+        {
+          code: 'CSBS-1',
+          name: 'Breadth: Social and Behavioral Science I',
+          description: 'College breadth requirements: social and behavioral science. Check this list for courses: https://catalog.udel.edu/preview_program.php?catoid=47&poid=34825.',
+          credits: 3,
+          preReq: [],
+          coreReq: []
+        },
+        {
+          code: 'CSBS-2',
+          name: 'Breadth: Social and Behavioral Science II',
+          description: 'College breadth requirements: social and behavioral science. Check this list for courses: https://catalog.udel.edu/preview_program.php?catoid=47&poid=34825.',
+          credits: 3,
+          preReq: [],
+          coreReq: []
+        },
+        {
+          code: 'CMNST-1',
+          name: 'Breadth: Math, Natural Science, and Technology',
+          description: 'College breadth requirements: math, natural science, and technology. Check this list for courses: https://catalog.udel.edu/preview_program.php?catoid=47&poid=34826.',
+          credits: 3,
+          preReq: [],
+          coreReq: []
+        },
+        {
+          code: 'CMNST-2',
+          name: 'Breadth: Math, Natural Science, and Technology (with Lab)',
+          description: 'College breadth requirements: math, natural science, and technology. Must be in the form of a science course with an associated lab. Check this list for courses: https://catalog.udel.edu/preview_program.php?catoid=47&poid=34826.',
+          credits: 4,
+          preReq: [],
+          coreReq: []
+        },
+        {
+          code: 'SWR',
+          name: 'Second Writing',
+          description: 'Second Writing approved by the College of Arts and Sciences. The course must be taken after 60 credits have been completed with a minimum grade of C-, and the elective portion of the course must be designated as fulfilling the requirements of the completed academic year. Check this list for courses: https://catalog.udel.edu/preview_program.php?catoid=47&poid=34800.',
+          credits: 3,
+          preReq: [],
+          coreReq: []
+        },
+        {
+          code: 'FL',
+          name: 'Foreign Language',
+          description: 'Completion of the intermediate-level course (107,112, or 202) in an ancient or modern language. Students with four or more years of high school work in a single foreign language, or who have gained proficiency in a foreign language by other means, may attempt to fulfill the requirement in that language by taking an exemption examination through the Languages, Literatures and Cultures Department.',
+          credits: 4,
+          preReq: [],
+          coreReq: []
+        },
+        {
+          code: 'MC',
+          name: 'Multicultural',
+          description: 'Check this list for courses: https://catalog.udel.edu/preview_program.php?catoid=47&poid=34918.',
+          credits: 3,
+          preReq: [],
+          coreReq: []
+        },
+        {
+          code: 'DLE',
+          name: 'Discovery Learning Experience',
+          description: 'Check this list for courses: https://catalog.udel.edu/preview_program.php?catoid=47&poid=34919',
+          credits: 3,
+          preReq: [],
+          coreReq: []
+        },
+        {
+          code: 'JAPN105',
+          name: 'Japanese I - Elementary',
+          description: '',
+          credits: 4,
+          preReq: [],
+          coreReq: []
+        }
+      ]
+
+      at handleConfirm (src/components/AddCourse.tsx:36:17)
+
+    console.log
+      {
+        code: 'CISC108',
+        name: 'Introduction to Computer Science I',
+        description: 'Computing and principles of programming with an emphasis on systematic program design. Topics include functional programming, data abstraction, procedural abstraction, use of control and state, recursion, testing, and object-oriented programming concepts. Requires no prior programming experience, open to any major, but intended primarily for majors and minors in computer science or mathematics.',
+        credits: 3,
+        preReq: [],
+        coreReq: []
+      }
+
+      at handleSearch (src/components/Search.tsx:43:21)
+
+    console.log
+      {
+        code: 'CISC108',
+        name: 'Introduction to Computer Science I',
+        description: 'Computing and principles of programming with an emphasis on systematic program design. Topics include functional programming, data abstraction, procedural abstraction, use of control and state, recursion, testing, and object-oriented programming concepts. Requires no prior programming experience, open to any major, but intended primarily for majors and minors in computer science or mathematics.',
+        credits: 3,
+        preReq: [],
+        coreReq: []
+      }
+
+      at handleSearch (src/components/Search.tsx:43:21)
+
+----------------------|---------|----------|---------|---------|-----------------------------
+File                  | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s           
+----------------------|---------|----------|---------|---------|-----------------------------
+All files             |   77.86 |    70.96 |   65.93 |    77.5 |                             
+ src                  |   91.66 |      100 |   84.61 |   91.17 |                             
+  App.tsx             |   91.66 |      100 |   84.61 |   91.17 | 46-47,121                   
+ src/components       |   75.48 |    66.66 |   62.82 |   75.24 |                             
+  AddCourse.tsx       |   94.11 |      100 |   83.33 |   94.11 | 69                          
+  AddtoSemester.tsx   |      80 |    66.66 |   66.66 |      80 | 22-23,56                    
+  EditCourse.tsx      |   61.29 |       50 |    37.5 |   61.29 | 34,37,40,43,56-59,74-98     
+  IntroModal.tsx      |     100 |      100 |     100 |     100 |                             
+  Search.tsx          |   77.35 |       75 |   55.55 |   77.35 | 60,63-68,80,83,89,93,97,187 
+  SemesterDisplay.tsx |   45.83 |       50 |   36.36 |   43.47 | 17-22,32-35,49-79           
+  SemesterModal.tsx   |   68.18 |       25 |      50 |   66.66 | 25-28,39-43,94-96           
+  SemsterList.tsx     |      80 |       75 |      75 |      80 | 35                          
+  SwitchPlan.tsx      |     100 |      100 |     100 |     100 |                             
+  courseTable.tsx     |   94.11 |       80 |    92.3 |   94.11 | 71,78                       
+ src/interfaces       |       0 |        0 |       0 |       0 |                             
+  course.ts           |       0 |        0 |       0 |       0 |                             
+  semester.ts         |       0 |        0 |       0 |       0 |                             
+----------------------|---------|----------|---------|---------|-----------------------------
+
 Test Suites: 1 failed, 1 passed, 2 total
-Tests:       3 failed, 6 passed, 9 total
+Tests:       3 failed, 9 passed, 12 total
 Snapshots:   0 total
-Time:        8.394 s
+Time:        5.299 s
 Ran all test suites.
