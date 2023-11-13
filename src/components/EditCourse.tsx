@@ -20,7 +20,6 @@ export default function EditCourse({
 }: EditCourseProps) {
     const [code, setCode] = useState(CourseSlected.code);
     const [name, setName] = useState(CourseSlected.name);
-    const [description, setDescription] = useState(CourseSlected.description);
     const [credits, setCredits] = useState(CourseSlected.credits);
     const modifyCourse = {
         code: CourseSlected.code,
@@ -37,9 +36,7 @@ export default function EditCourse({
         if (CourseSlected.name !== name) {
             modifyCourse.name = name;
         }
-        if (CourseSlected.description !== description) {
-            modifyCourse.description = description;
-        }
+
         if (CourseSlected.credits !== credits) {
             modifyCourse.credits = credits;
         }
@@ -81,14 +78,6 @@ export default function EditCourse({
                             type="text"
                             value={name}
                             onChange={(e) => setName(e.target.value)}
-                        />
-                    </Form.Group>
-                    <Form.Group controlId="description">
-                        <Form.Label>Description</Form.Label>
-                        <Form.Control
-                            type="text"
-                            value={description}
-                            onChange={(e) => setDescription(e.target.value)}
                         />
                     </Form.Group>
                     <Form.Group controlId="credits">
