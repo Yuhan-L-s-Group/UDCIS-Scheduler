@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Form } from "react-bootstrap";
 import "../App.css";
+// Dropdown menu for users selecting different concentrations but it doesnt work so far
 const DEGREES = [
     "Bachelor of Arts",
     "Bachelor of Science (not ready)",

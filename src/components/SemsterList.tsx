@@ -5,7 +5,8 @@ import { Semester } from "../interfaces/semester";
 import "../App.css";
 import horse from "../pictures/horse.jpg";
 import React from "react";
-
+// It contains all the semesters into "semesters" varible and iterate each semester into "SemesterDisplay" component
+// Addtionally it automatically caculates the cumulative credits
 export const SemesterList = ({
     semesters,
     Name,

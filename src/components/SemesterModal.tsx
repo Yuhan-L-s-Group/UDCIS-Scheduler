@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { Button, Modal, Col, Form, Container, Row } from "react-bootstrap";
 import { Season, Semester } from "../interfaces/semester";
-
+//The adding semester modal when user clicks add new semester it pops up
 export const AddSemesterModal = ({
     showAddSemester,
     handleClose,

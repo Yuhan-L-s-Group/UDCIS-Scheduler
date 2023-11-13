@@ -8,6 +8,7 @@ import { AddtoSemester } from "./AddtoSemester";
 import Modal from "react-bootstrap/Modal";
 import EditCourse from "./EditCourse";
 import { AddCourse } from "./AddCourse";
+// Search course bar (switch 2)
 interface SearchProps {
     listCourses: Course[];
     setListCourses: (courses: Course[]) => void;
@@ -127,7 +128,7 @@ const Search = ({
             </div>
 
             {ErrorMessage2 && (
-                <div>Please make sure course code is correct!</div>
+                <div>Please make sure the course code is correct!</div>
             )}
             <br />
 

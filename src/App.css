@@ -71,7 +71,7 @@
 .homepage {
     background-image: url(./pictures/udlogo2.jpg);
     min-height: 100vh;
-    width: 60;
+    /* width: 195vb; */
     background-size: cover;
     display: flex;
     justify-content: center;
@@ -101,7 +101,7 @@
     transition: font-size 200ms;
 }
 .emeptySemester:hover {
-    background-color: #ff0800;
+    background-color: #0044ff;
     font-size: 20px;
 }
 .clear_button {
