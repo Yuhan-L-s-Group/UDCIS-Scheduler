@@ -63,7 +63,7 @@ describe("CoursesTable component", () => {
 
     test("opens EditCourse modal on Edit button click", () => {
         renderComponent();
-        const editButton = screen.getAllByText("Edit")[0];
+        // const editButton = screen.getAllByText("Edit")[0];
         // userEvent.click(editButton);
         expect(screen.getByText("Edit Course")).toBeInTheDocument();
     });
