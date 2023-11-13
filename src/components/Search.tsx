@@ -30,7 +30,7 @@ const Search = ({
     const [isCoursePool, setCoursePool] = useState(false);
     const [isEditCourseOpen, setEditCourseOpen] = useState(false);
     const [isAddCourseOpen, setAddCourseOpen] = useState(false);
-
+    const [isAddCourseButton, setAddcoursebutton] = useState(true);
     const handleSearch = (text: string) => {
         const upperText = text.toUpperCase();
         const CourseIndex = ModifiedCourseList.findIndex(
@@ -40,9 +40,16 @@ const Search = ({
             setError2(true);
         } else {
             setcourseIndex(CourseIndex);
-            console.log(courses[CourseIndex]);
+            // console.log(courses[CourseIndex]);
             setCoursePool(true);
             setError2(false);
+            //check if the new course is in original course list
+            if (!courses.includes(ModifiedCourseList[CourseIndex])) {
+                setAddcoursebutton(false);
+            } else {
+                setAddcoursebutton(true);
+            }
+            console.log(isAddCourseButton);
         }
     };
     const [selectedCourse, setselectedCourse] = useState<Course>({
@@ -123,12 +130,18 @@ const Search = ({
                 <div>Please make sure course code is correct!</div>
             )}
             <br />
-            <div>
-                {" "}
-                <Button onClick={openAddCourseWindow} className="addcourseView">
-                    Add Course to Course List
-                </Button>
-            </div>
+
+            {
+                <div>
+                    {" "}
+                    <Button
+                        onClick={openAddCourseWindow}
+                        className="addcourseView"
+                    >
+                        Add Course to Course List
+                    </Button>
+                </div>
+            }
 
             {isAddCourseOpen && (
                 <div>
@@ -167,9 +180,14 @@ const Search = ({
                         {listCourses[courseIndex].description}
                     </div>
                     <br />
-                    <Button variant="success" onClick={() => handleError(text)}>
-                        Add to Semester
-                    </Button>
+                    {isAddCourseButton && (
+                        <Button
+                            variant="success"
+                            onClick={() => handleError(text)}
+                        >
+                            Add to Semester
+                        </Button>
+                    )}
                     <div>
                         {isAddSemesterOpen ? (
                             <div>
@@ -191,7 +209,7 @@ const Search = ({
                                 </span>
                                 {isEditCourseOpen && (
                                     <>
-                                        <div>
+                                        <div className="editButtonInSwitch">
                                             <EditCourse
                                                 listCourses={listCourses}
                                                 setListCourses={setListCourses}

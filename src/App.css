@@ -159,6 +159,8 @@
     padding: 100px;
     margin-bottom: 100px;
     width: 500px;
+    font-size: 18px;
+    font-weight: 500;
 }
 
 .searchBar1 {
@@ -181,4 +183,7 @@
 .searchBar:hover {
     font-size: 20px;
     background-color: rgb(136, 255, 0);
+}
+.editButtonInSwitch {
+    margin-top: 10000px;
 }
