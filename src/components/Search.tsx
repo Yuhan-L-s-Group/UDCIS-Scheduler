@@ -33,7 +33,6 @@ const Search = ({
     const [isAddCourseOpen, setAddCourseOpen] = useState(false);
     const [isAddCourseButton, setAddcoursebutton] = useState(true);
     const [filterCourses, setfilterCourses] = useState<Course[]>();
-    const [isclickCourse, setIsClickCourse] = useState<boolean>(false);
     const handleSearch = (text: string) => {
         const upperText = text.toUpperCase();
         const CourseIndex = ModifiedCourseList.findIndex(
@@ -119,7 +118,6 @@ const Search = ({
     //click course in the dropdown menu
     const handleClickCourse = (course: Course) => {
         setText(course.code);
-        setIsClickCourse(true);
     };
     return (
         <div className="searchBar1">
