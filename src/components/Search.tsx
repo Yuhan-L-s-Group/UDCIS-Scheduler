@@ -8,7 +8,7 @@ import { AddtoSemester } from "./AddtoSemester";
 import Modal from "react-bootstrap/Modal";
 import EditCourse from "./EditCourse";
 import { AddCourse } from "./AddCourse";
-// Search course bar (switch 2)
+// Search course bar (switch 2q)
 interface SearchProps {
     listCourses: Course[];
     setListCourses: (courses: Course[]) => void;
@@ -33,6 +33,7 @@ const Search = ({
     const [isAddCourseOpen, setAddCourseOpen] = useState(false);
     const [isAddCourseButton, setAddcoursebutton] = useState(true);
     const [filterCourses, setfilterCourses] = useState<Course[]>();
+    const [isclickCourse, setIsClickCourse] = useState<boolean>(false);
     const handleSearch = (text: string) => {
         const upperText = text.toUpperCase();
         const CourseIndex = ModifiedCourseList.findIndex(
@@ -115,12 +116,17 @@ const Search = ({
         );
         setfilterCourses(filteritems);
     };
+    //click course in the dropdown menu
+    const handleClickCourse = (course: Course) => {
+        setText(course.code);
+        setIsClickCourse(true);
+    };
     return (
         <div className="searchBar1">
             <div
                 style={{
                     display: "flex",
-                    marginLeft: "130px"
+                    marginLeft: "100px"
                 }}
             >
                 <input
@@ -128,18 +134,25 @@ const Search = ({
                     pattern="Course Code"
                     value={text}
                     onChange={handleInputChange}
-                    placeholder="type to search"
+                    placeholder={"type to search"}
+                    className="searchInput"
                 />
                 <button
                     onClick={() => handleSearch(text)}
                     className="searchBar"
                 >
-                    Search
+                    Searchs
                 </button>
             </div>
-            <div>
+            <div className="searchMenu">
                 {filterCourses?.map((course) => (
-                    <div key={course.code}>{course.code}</div>
+                    <div key={course.code} className="eachCourseinDropDown">
+                        <button onClick={() => handleClickCourse(course)}>
+                            {course.code}
+                            {"-"}
+                            {course.name}
+                        </button>
+                    </div>
                 ))}
             </div>
 

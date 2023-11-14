@@ -4,7 +4,7 @@ import { Course } from "../interfaces/course";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-
+// Add new courses into current course list
 interface AddCourseWindowProps {
     onClose: () => void;
     listCourses: Course[];
