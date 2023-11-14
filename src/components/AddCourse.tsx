@@ -92,7 +92,9 @@ export function AddCourse({
             </Modal.Body>
             <Modal.Footer>
                 {isAdded && (
-                    <div>You already added this course to course list! </div>
+                    <div>
+                        You have already added this course to course list!{" "}
+                    </div>
                 )}
                 <Button variant="primary" onClick={handleConfirm}>
                     Save Changes

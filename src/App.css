@@ -163,9 +163,6 @@
     font-weight: 500;
 }
 
-.searchBar1 {
-    margin-bottom: 600px;
-}
 .addcourseView {
     margin-right: 100px;
 }
@@ -179,6 +176,7 @@
 }
 .searchBar {
     font-size: 20px;
+    border-radius: 20px;
 }
 .searchBar:hover {
     font-size: 20px;
@@ -205,12 +203,19 @@
 .searchInput {
     width: 300px;
     height: 60px;
-
-    /* Adjust other styles as desired */
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 20px;
     background-color: #fff;
     color: #333;
     cursor: pointer;
     font-size: 30px;
+}
+.eachCourseButton {
+    font-size: 30px;
+}
+.eachCourseButton:hover {
+    background-color: rgb(0, 174, 255);
+}
+.WholeSearch {
+    margin-bottom: 600px;
 }
