@@ -5,7 +5,22 @@
 Browserslist: caniuse-lite is outdated. Please run:
   npx browserslist@latest --update-db
   Why you should do it regularly: https://github.com/browserslist/browserslist#browsers-data-updating
-FAIL src/App.test.tsx (5.325 s)
+Browserslist: caniuse-lite is outdated. Please run:
+  npx browserslist@latest --update-db
+  Why you should do it regularly: https://github.com/browserslist/browserslist#browsers-data-updating
+Browserslist: caniuse-lite is outdated. Please run:
+  npx browserslist@latest --update-db
+  Why you should do it regularly: https://github.com/browserslist/browserslist#browsers-data-updating
+PASS src/components/EditCourse.test.tsx
+PASS src/components/courseTable.test.tsx
+  ● Console
+
+    console.log
+      <div><div><div class="tableBetween"><div><table class="Tablesize"><thead><tr><th>Code:CS10</th><th>Name</th><th>Edit Course</th><th>Add it to Semester</th></tr></thead><tbody><tr><td>CS108</td><td>Intro to Computer Science I</td><td><button type="button" class="btn btn-primary">Edit</button></td><td class="adjustrow"><button type="button" class="btn btn-success">Add to Semester</button><div><div></div></div></td></tr></tbody></table></div></div></div></div><div class="fade modal-backdrop show"></div><div role="dialog" aria-modal="true" class="fade modal show" tabindex="-1" style="display: block; padding-right: 0px;"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><div class="modal-title h4">Choose One Semester</div><button type="button" class="btn-close" aria-label="Close"></button></div><div class="modal-body"><div><button type="button" class="btn btn-success">2023 Fall</button><br></div><div></div></div><div class="modal-footer"><button type="button" class="btn btn-primary">Save Changes</button></div></div></div></div>
+
+      at Object.<anonymous> (src/components/courseTable.test.tsx:84:17)
+
+PASS src/App.test.tsx
   ● Console
 
     console.error
@@ -44,310 +59,40 @@ FAIL src/App.test.tsx (5.325 s)
 
       at handleConfirm (src/components/AddCourse.tsx:48:17)
 
-  ● Scheduler Tests › Test search bar
+    console.log
+      true
 
-    TestingLibraryElementError: Unable to find an element with the text: Search. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
-
-    Ignored nodes: comments, script, style
-    [36m<body[39m
-      [33mclass[39m=[32m"modal-open"[39m
-      [33mdata-rr-ui-modal-open[39m=[32m""[39m
-      [33mstyle[39m=[32m"padding-right: 2048px;"[39m
-    [36m>[39m
-      [36m<div>[39m
-        [36m<div[39m
-          [33mclass[39m=[32m"App"[39m
-        [36m>[39m
-          [36m<div[39m
-            [33mclass[39m=[32m"mainBody"[39m
-          [36m>[39m
-            [36m<div />[39m
-            [36m<header[39m
-              [33mclass[39m=[32m"App-header"[39m
-            [36m>[39m
-              [36m<img[39m
-                [33malt[39m=[32m"ud logo1"[39m
-                [33mclass[39m=[32m"udlogo1"[39m
-                [33msrc[39m=[32m"udlogo2.jpg"[39m
-              [36m/>[39m
-            [36m</header>[39m
-            [36m<br />[39m
-            [36m<div>[39m
-              [36m<div[39m
-                [33mclass[39m=[32m"nameEntry"[39m
-              [36m>[39m
-                [36m<div[39m
-                  [33mclass[39m=[32m"input-group"[39m
-                [36m>[39m
-                  [36m<input[39m
-                    [33mclass[39m=[32m"form-control"[39m
-                    [33mplaceholder[39m=[32m"Your Name"[39m
-                    [33mvalue[39m=[32m""[39m
-                  [36m/>[39m
-                  [36m<button[39m
-                    [33mclass[39m=[32m"ConfirmNameView"[39m
-                  [36m>[39m
-                    [0mConfirm[0m
-                  [36m</button>[39m
-                [36m</div>[39m
-              [36m</div>[39m
-            [36m</div>[39m
-            [36m<div>[39m
-              [36m<br />[39m
-              [36m<div>[39m
-                [36m<label[39m
-                  [33mclass[39m=[32m"degreeSelect form-label"[39m
-                  [33mfor[39m=[32m"choseDegree"[39m
-                [36m>[39m
-                  [36m<select[39m
-                    [33mclass[39m=[32m"form-select"[39m
-                    [33mid[39m=[32m"choseDegree"[39m
-                  [36m>[39m
-                    [36m<option[39m
-                      [33mvalue[39m=[32m"Bachelor of Arts"[39m
-                    [36m>[39m
-                      [0mBachelor of Arts[0m
-                    [36m</option>[39m
-                    [36m<option[39m
-                      [33mvalue[39m=[32m"Bachelor of Science (not ready)"[39m
-                    [36m>[39m
-                      [0mBachelor of Science (not ready)[0m
-                    [36m</option>[39m
-                    [36m<option[39m
-                      [33mvalue[39m=[32m"Artificial Intelligence and Robotics (not ready)"[39m
-                    [36m>[39m
-                      [0mArtificial Intelligence and Robotics (not ready)[0m
-                    [36m</option>[39m
-                    [36m<option[39m
-                      [33mvalue[39m=[32m"Bioinformatics (not ready)"[39m
-                    [36m>[39m
-                      [0mBioinformatics (not ready)[0m
-                    [36m</option>[39m
-                    [36m<option[39m
-                      [33mvalue[39m=[32m"Cybersecurity (not ready)"[39m
-                    [36m>[39m
-                      [0mCybersecurity (not ready)[0m
-                    [36m</option>[39m
-                    [36m<option[39m
-                      [33mvalue[39m=[32m"Data Science (not ready)"[39m
-                    [36m>[39m
-                      [0mData Science (not ready)[0m
-                    [36m</option>[39m
-                    [36m<option[39m
-                      [33mvalue[39m=[32m"High Performance Computing (not ready)"[39m
-                    [36m>[39m
-                      [0mHigh Performance Computing (not ready)[0m
-                    [36m</option>[39m
-                    [36m<option[39m
-                      [33mvalue[39m=[32m"Systems and Networks (not ready)"[39m
-                    [36m>[39m
-                      [0mSystems and Networks (not ready)[0m
-                    [36m</option>[39m
-                    [36m<option[39m
-                      [33mvalue[39m=[32m"Theory and Computation (not ready)"[39m
-                    [36m>[39m
-                      [0mTheory and Computation (not ready)[0m
-                    [36m</option>[39m
-                    [36m<option[39m
-                      [33mvalue[39m=[32m"Information Systems (not ready)"[39m
-                    [36m>[39m
-                      [0mInformation Systems (not ready)[0m
-                    [36m</option>[39m
-                  [36m</select>[39m
-                [36m</label>[39m
-              [36m</div>[39m
-              [36m<span[39m
-                [33mclass[39m=[32m"degreePrompt"[39m
-              [36m>[39m
-                [0mThe current degree you are working with is [0m
-                [0mBachelor of Arts[0m
-                [0m.[0m
-              [36m</span>[39m
-            [36m</div>[39m
-            [36m<div[39m
-              [33mclass[39m=[32m"container"[39m
-            [36m>[39m
-              [36m<div[39m
-                [33mclass[39m=[32m"row"[39m
-              [36m>[39m
-                [36m<div[39m
-                  [33mclass[39m=[32m"col"[39m
-                [36m>[39m
-                  [0m [0m
-                  [36m<br />[39m
-                  [36m<br />[39m
-                  [36m<br />[39m
-                  [36m<button[39m
-                    [33mclass[39m=[32m"SwichButton"[39m
-                  [36m>[39m
-                    [0mSwitch[0m
-                  [36m</button>[39m
-                  [36m<br />[39m
-                  [36m<br />[39m
-                  [36m<br />[39m
-                  [36m<span>[39m
-                    [36m<div[39m
-                      [33mclass[39m=[32m"searchBar1"[39m
-                    [36m>[39m
-                      [36m<div[39m
-                        [33mstyle[39m=[32m"display: flex; margin-left: 100px;"[39m
-                      [36m>[39m
-                        [36m<input[39m
-                          [33mclass[39m=[32m"searchInput"[39m
-                          [33mpattern[39m=[32m"Course Code"[39m
-                          [33mplaceholder[39m=[32m"type to search"[39m
-                          [33mtype[39m=[32m"text"[39m
-                          [33mvalue[39m=[32m""[39m
-                        [36m/>[39m
-                        [36m<button[39m
-                          [33mclass[39m=[32m"searchBar"[39m
-                        [36m>[39m
-                          [0mSearchs[0m
-                        [36m</button>[39m
-                      [36m</div>[39m
-                      [36m<div[39m
-                        [33mclass[39m=[32m"searchMenu"[39m
-                      [36m/>[39m
-                      [36m<br />[39m
-                      [36m<div>[39m
-                        [0m [0m
-                        [36m<button[39m
-                          [33mclass[39m=[32m"addcourseView btn btn-primary"[39m
-                          [33mtype[39m=[32m"button"[39m
-                        [36m>[39m
-                          [0mAdd Course to Course List[0m
-                        [36m</button>[39m
-                      [36m</div>[39m
-                      [36m<br />[39m
-                    [36m</div>[39m
-                  [36m</span>[39m
-                [36m</div>[39m
-                [36m<div[39m
-                  [33mclass[39m=[32m"col"[39m
-                [36m>[39m
-                  [36m<br />[39m
-                  [36m<button[39m
-                    [33mclass[39m=[32m"add_button btn btn-primary"[39m
-                    [33mtype[39m=[32m"button"[39m
-                  [36m>[39m
-                    [0mAdd New Semester[0m
-                  [36m</button>[39m
-                  [36m<br />[39m
-                  [36m<br />[39m
-                  [36m<div[39m
-                    [33mclass[39m=[32m"modifytheCreditsText"[39m
-                  [36m>[39m
-                    [0mYour Cumulative credits: [0m
-                    [0m0[0m
-                    [0m credits[0m
-                    [0m [0m
-                  [36m</div>[39m
-                  [36m<br />[39m
-                  [36m<br />[39m
-                  [36m<div />[39m
-                [36m</div>[39m
-              [36m</div>[39m
-            [36m</div>[39m
-          [36m</div>[39m
-        [36m</div>[39m
-      [36m</div>[39m
-      [36m<div[39m
-        [33mclass[39m=[32m"fade modal-backdrop show"[39m
-      [36m/>[39m
-      [36m<div[39m
-        [33maria-modal[39m=[32m"true"[39m
-        [33mclass[39m=[32m"fade modal show"[39m
-        [33mrole[39m=[32m"dialog"[39m
-        [33mstyle[39m=[32m"display: block; padding-right: 0px;"[39m
-        [33mtabindex[39m=[32m"-1"[39m
-      [36m>[39m
-        [36m<div[39m
-          [33mclass[39m=[32m"modal-dialog"[39m
-        [36m>[39m
-          [36m<div[39m
-            [33mclass[39m=[32m"modal-content"[39m
-          [36m>[39m
-            [36m<div[39m
-              [33mclass[39m=[32m"modal-header"[39m
-            [36m>[39m
-              [36m<div[39m
-                [33mclass[39m=[32m"modal-title h4"[39m
-              [36m>[39m
-                [0mWelcome to the UD CIS Scheduler[0m
-              [36m</div>[39m
-              [36m<button[39m
-                [33maria-label[39m=[32m"Close"[39m
-                [33mclass[39m=[32m"btn-close"[39m
-                [33mtype[39m=[32m"button"[39m
-              [36m/>[39m
-            [36m</div>[39m
-            [36m<div[39m
-              [33mclass[39m=[32m"modal-body"[39m
-            [36m>[39m
-              [0mThis website allows you to create your own computer science major degree plan at University of Delaware. The menu on the left shows all the required courses for the major, and you can easily edit them. You can also add custom courses if there are none that meet your needs. You can switch between concentrations in the drop-down menu at the top to make the list of courses more relevant to your concentration needs. Have fun![0m
-            [36m</div>[39m
-            [36m<div[39m
-              [33mclass[39m=[32m"modal-footer"[39m
-            [36m>[39m
-              [36m<button[39m
-                [33mclass[39m=[32m"btn btn-secondary"[39m
-                [33mtype[39m=[32m"button"[39m
-              [36m>[39m
-                [0mOK![0m
-              [36m</button>[39m
-            [36m</div>[39m
-          [36m</div>[39m
-        [36m</div>[39m
-      [36m</div>[39m
-    [36m</body>[39m
-
-      180 |         //search CISC108
-      181 |         const searchBox = screen.getAllByRole("textbox")[1];
-    > 182 |         const seachButton = screen.getByText("Search");
-          |                                    ^
-      183 |         userEvent.type(searchBox, "CISC108");
-      184 |         userEvent.click(seachButton);
-      185 |         expect(screen.getByText("Course Code: CISC108")).toBeInTheDocument();
-
-      at Object.getElementError (node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/config.js:37:19)
-      at node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:76:38
-      at node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:52:17
-      at getByText (node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:95:19)
-      at Object.<anonymous> (src/App.test.tsx:182:36)
-
-PASS src/components/courseTable.test.tsx
-  ● Console
+      at handleSearch (src/components/Search.tsx:54:21)
 
     console.log
-      <div><div><div class="tableBetween"><div><table class="Tablesize"><thead><tr><th>Code:CS10</th><th>Name</th><th>Edit Course</th><th>Add it to Semester</th></tr></thead><tbody><tr><td>CS108</td><td>Intro to Computer Science I</td><td><button type="button" class="btn btn-primary">Edit</button></td><td class="adjustrow"><button type="button" class="btn btn-success">Add to Semester</button><div><div></div></div></td></tr></tbody></table></div></div></div></div><div class="fade modal-backdrop show"></div><div role="dialog" aria-modal="true" class="fade modal show" tabindex="-1" style="display: block; padding-right: 0px;"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><div class="modal-title h4">Choose One Semester</div><button type="button" class="btn-close" aria-label="Close"></button></div><div class="modal-body"><div><button type="button" class="btn btn-success">2023 Fall</button><br></div><div></div></div><div class="modal-footer"><button type="button" class="btn btn-primary">Save Changes</button></div></div></div></div>
+      true
 
-      at Object.<anonymous> (src/components/courseTable.test.tsx:84:17)
+      at handleSearch (src/components/Search.tsx:54:21)
 
-PASS src/components/EditCourse.test.tsx
-----------------------|---------|----------|---------|---------|--------------------------------------------------------------
-File                  | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s                                            
-----------------------|---------|----------|---------|---------|--------------------------------------------------------------
-All files             |   69.26 |    51.38 |   56.84 |   68.77 |                                                              
- src                  |   91.66 |      100 |   84.61 |   91.17 |                                                              
-  App.tsx             |   91.66 |      100 |   84.61 |   91.17 | 46-47,121                                                    
- src/components       |   65.61 |    45.31 |   52.43 |   65.29 |                                                              
-  AddCourse.tsx       |   90.47 |     37.5 |   85.71 |   90.47 | 41,80                                                        
-  AddtoSemester.tsx   |      80 |       50 |   66.66 |      80 | 22-23,56                                                     
-  EditCourse.tsx      |      84 |    66.66 |   71.42 |      84 | 37,41,78-86                                                  
-  IntroModal.tsx      |     100 |      100 |     100 |     100 |                                                              
-  Search.tsx          |   35.29 |       15 |    4.54 |   35.29 | 37-54,66,69,72-77,80-81,84-94,98,102,106,110-116,120,139-233 
-  SemesterDisplay.tsx |   45.83 |       50 |   36.36 |   43.47 | 19-24,34-37,51-81                                            
-  SemesterModal.tsx   |   68.18 |       25 |      50 |   66.66 | 25-28,39-43,94-96                                            
-  SemsterList.tsx     |      80 |       75 |      75 |      80 | 36                                                           
-  SwitchPlan.tsx      |     100 |      100 |     100 |     100 |                                                              
-  courseTable.tsx     |   94.11 |       80 |    92.3 |   94.11 | 71,78                                                        
- src/interfaces       |       0 |        0 |       0 |       0 |                                                              
-  course.ts           |       0 |        0 |       0 |       0 |                                                              
-  semester.ts         |       0 |        0 |       0 |       0 |                                                              
-----------------------|---------|----------|---------|---------|--------------------------------------------------------------
+----------------------|---------|----------|---------|---------|------------------------------------------
+File                  | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s                        
+----------------------|---------|----------|---------|---------|------------------------------------------
+All files             |   80.54 |    69.44 |   68.42 |   80.23 |                                          
+ src                  |   91.66 |      100 |   84.61 |   91.17 |                                          
+  App.tsx             |   91.66 |      100 |   84.61 |   91.17 | 46-47,121                                
+ src/components       |   78.73 |    65.62 |   65.85 |   78.53 |                                          
+  AddCourse.tsx       |   90.47 |     37.5 |   85.71 |   90.47 | 41,80                                    
+  AddtoSemester.tsx   |      80 |    66.66 |   66.66 |      80 | 22-23,56                                 
+  EditCourse.tsx      |      84 |    66.66 |   71.42 |      84 | 37,41,78-86                              
+  IntroModal.tsx      |     100 |      100 |     100 |     100 |                                          
+  Search.tsx          |   77.94 |       75 |   54.54 |   77.94 | 50,69,72-77,89,92,98,102,106,120,149,236 
+  SemesterDisplay.tsx |   45.83 |       50 |   36.36 |   43.47 | 19-24,34-37,51-81                        
+  SemesterModal.tsx   |   68.18 |       25 |      50 |   66.66 | 25-28,39-43,94-96                        
+  SemsterList.tsx     |      80 |       75 |      75 |      80 | 36                                       
+  SwitchPlan.tsx      |     100 |      100 |     100 |     100 |                                          
+  courseTable.tsx     |   94.11 |       80 |    92.3 |   94.11 | 71,78                                    
+ src/interfaces       |       0 |        0 |       0 |       0 |                                          
+  course.ts           |       0 |        0 |       0 |       0 |                                          
+  semester.ts         |       0 |        0 |       0 |       0 |                                          
+----------------------|---------|----------|---------|---------|------------------------------------------
 
-Test Suites: 1 failed, 2 passed, 3 total
-Tests:       1 failed, 15 passed, 16 total
+Test Suites: 3 passed, 3 total
+Tests:       16 passed, 16 total
 Snapshots:   0 total
-Time:        7.47 s
+Time:        5.798 s
 Ran all test suites.
