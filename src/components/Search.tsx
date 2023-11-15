@@ -51,7 +51,6 @@ const Search = ({
             } else {
                 setAddcoursebutton(true);
             }
-            console.log(isAddCourseButton);
         }
     };
     const [selectedCourse, setselectedCourse] = useState<Course>({
@@ -82,7 +81,7 @@ const Search = ({
     };
     const handleAddCourseToSemester = (text: string) => {
         const upperText = text.toUpperCase();
-        const indexCourse = courses.findIndex(
+        const indexCourse = ModifiedCourseList.findIndex(
             (course) => upperText === course.code
         );
         const repeatedCourse = semesters.filter((semester) =>
@@ -92,8 +91,10 @@ const Search = ({
         if (repeatedCourse.length !== 0) {
             setError(true);
         } else {
-            gotYouCourse2(courses[indexCourse]);
+            gotYouCourse2(ModifiedCourseList[indexCourse]);
         }
+        console.log(selectedCourse);
+        // console.log(indexCourse);
     };
     const closeEditCourse = () => {
         setEditCourseOpen(false);
