@@ -16,6 +16,32 @@ PASS src/components/courseTable.test.tsx
   ● Console
 
     console.log
+      {
+        code: '',
+        name: '',
+        description: '',
+        credits: 0,
+        preReq: [],
+        coreReq: []
+      }
+
+      at handleAddCourseToSemester (src/components/courseTable.tsx:82:17)
+
+    console.log
+      [
+        {
+          code: 'CS108',
+          name: 'Intro to Computer Science I',
+          description: '...',
+          credits: 3,
+          preReq: [],
+          coreReq: []
+        }
+      ]
+
+      at handleAddCourseToSemester (src/components/courseTable.tsx:83:17)
+
+    console.log
       <div><div><div class="tableBetween"><div><table class="Tablesize"><thead><tr><th>Code:CS10</th><th>Name</th><th>Edit Course</th><th>Add it to Semester</th></tr></thead><tbody><tr><td>CS108</td><td>Intro to Computer Science I</td><td><button type="button" class="btn btn-primary">Edit</button></td><td class="adjustrow"><button type="button" class="btn btn-success">Add to Semester</button><div><div></div></div></td></tr></tbody></table></div></div></div></div><div class="fade modal-backdrop show"></div><div role="dialog" aria-modal="true" class="fade modal show" tabindex="-1" style="display: block; padding-right: 0px;"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><div class="modal-title h4">Choose One Semester</div><button type="button" class="btn-close" aria-label="Close"></button></div><div class="modal-body"><div><button type="button" class="btn btn-success">2023 Fall</button><br></div><div></div></div><div class="modal-footer"><button type="button" class="btn btn-primary">Save Changes</button></div></div></div></div>
 
       at Object.<anonymous> (src/components/courseTable.test.tsx:84:17)
@@ -55,44 +81,328 @@ PASS src/App.test.tsx
       at workLoopSync (node_modules/react-dom/cjs/react-dom.development.js:22707:5)
 
     console.log
+      {
+        code: '',
+        name: '',
+        description: '',
+        credits: 0,
+        preReq: [],
+        coreReq: []
+      }
+
+      at handleAddCourseToSemester (src/components/courseTable.tsx:82:17)
+
+    console.log
+      [
+        {
+          code: 'CISC108',
+          name: 'Introduction to Computer Science I',
+          description: 'Computing and principles of programming with an emphasis on systematic program design. Topics include functional programming, data abstraction, procedural abstraction, use of control and state, recursion, testing, and object-oriented programming concepts. Requires no prior programming experience, open to any major, but intended primarily for majors and minors in computer science or mathematics.',
+          credits: 3,
+          preReq: [],
+          coreReq: []
+        },
+        {
+          code: 'CISC181',
+          name: 'Introduction to Computer Science II',
+          description: 'Principles of computer science illustrated and applied through programming in an object oriented language. Programming projects illustrate computational problems, styles and issues that arise in computer systems development and in all application areas of computation.',
+          credits: 3,
+          preReq: [ 'CISC106|CISC108' ],
+          coreReq: [ 'MATH241|MATH221' ]
+        },
+        {
+          code: 'CISC210',
+          name: 'Introduction to Systems Programming',
+          description: 'Principles of computer systems programming for software and hardware platforms to achieve efficient resource usage. Topics include the C programming language, memory management, and awareness of system constraints and interfacing. Projects include programming embedded systems and interactive objects.',
+          credits: 3,
+          preReq: [ 'CISC106|CISC108' ],
+          coreReq: [ 'MATH221|MATH241' ]
+        },
+        {
+          code: 'CISC220',
+          name: 'Data Structures',
+          description: 'Review of data type abstraction, recursion, arrays, stacks, queues, multiple stacks and linked lists. Emphasis on dynamic storage management, garbage collection, trees, graphs, tables, sorting and searching.',
+          credits: 3,
+          preReq: [ 'CISC210' ],
+          coreReq: [ 'MATH210|MATH241' ]
+        },
+        {
+          code: 'CISC260',
+          name: 'Machine Organization and Assembly Language',
+          description: 'Introduction to the basics of machine organization. Programming tools and techniques at the machine and assembly levels. Assembly language programming and computer arithmetic techniques.',
+          credits: 3,
+          preReq: [ 'CISC210' ],
+          coreReq: []
+        },
+        {
+          code: 'CISC275',
+          name: 'Introduction to Software Engineering',
+          description: 'Object oriented software design and development through use of an object oriented programming language. Topics include team programming, design patterns, graphical user interfaces, software engineering tools (e.g., integrated development environments, version control, build management, bug tracking, automated testing).',
+          credits: 3,
+          preReq: [ 'CISC181', 'CISC220' ],
+          coreReq: []
+        },
+        {
+          code: 'CISC300-1',
+          name: '300-Level Technology Elective I',
+          description: 'Computer science technical electives numbered 301 or above, except for CISC 355, CISC 356, CISC 357, CISC 366, CISC 465, and CISC 466. Because of their very nature, Experimental Courses (courses with an x67 number) must be approved beforehand by the CIS Undergraduate Committee before being accepted toward the technical elective requirement.',
+          credits: 3,
+          preReq: [ 'CISC220' ],
+          coreReq: []
+        },
+        {
+          code: 'CISC300-2',
+          name: '300-Level Technology Elective II',
+          description: 'Computer science technical electives numbered 301 or above, except for CISC 355, CISC 356, CISC 357, CISC 366, CISC 465, and CISC 466. Because of their very nature, Experimental Courses (courses with an x67 number) must be approved beforehand by the CIS Undergraduate Committee before being accepted toward the technical elective requirement.',
+          credits: 3,
+          preReq: [ 'CISC220' ],
+          coreReq: []
+        },
+        {
+          code: 'CISC300-3',
+          name: '300-Level Technology Elective III',
+          description: 'Computer science technical electives numbered 301 or above, except for CISC 355, CISC 356, CISC 357, CISC 366, CISC 465, and CISC 466. Because of their very nature, Experimental Courses (courses with an x67 number) must be approved beforehand by the CIS Undergraduate Committee before being accepted toward the technical elective requirement.',
+          credits: 3,
+          preReq: [ 'CISC220' ],
+          coreReq: []
+        },
+        {
+          code: 'CISC300-4',
+          name: '300-Level Technology Elective IV',
+          description: 'Computer science technical electives numbered 301 or above, except for CISC 355, CISC 356, CISC 357, CISC 366, CISC 465, and CISC 466. Because of their very nature, Experimental Courses (courses with an x67 number) must be approved beforehand by the CIS Undergraduate Committee before being accepted toward the technical elective requirement.',
+          credits: 3,
+          preReq: [ 'CISC220' ],
+          coreReq: []
+        },
+        {
+          code: 'CISC300-5',
+          name: '300-Level Technology Elective V',
+          description: 'Computer science technical electives numbered 301 or above, except for CISC 355, CISC 356, CISC 357, CISC 366, CISC 465, and CISC 466. Because of their very nature, Experimental Courses (courses with an x67 number) must be approved beforehand by the CIS Undergraduate Committee before being accepted toward the technical elective requirement.',
+          credits: 3,
+          preReq: [ 'CISC220' ],
+          coreReq: []
+        },
+        {
+          code: 'CISC498',
+          name: 'Computer Science Senior Design Project I',
+          description: 'First semester of two-semester senior software design course.  Students work in teams to develop solutions to real-world problems for a client.  Application of a modern software engineering process; requirement solicitation, analysis, and specification; prototyping; design; incremental development; testing and verification; client interaction; and presentation. Offered in Fall only.',
+          credits: 3,
+          preReq: [ 'CISC275', 'CISC320' ],
+          coreReq: []
+        },
+        {
+          code: 'CISC499',
+          name: 'Computer Science Senior Design Project II',
+          description: 'Continuation of CISC 498.',
+          credits: 3,
+          preReq: [ 'CISC498' ],
+          coreReq: []
+        },
+        {
+          code: 'MATH210',
+          name: 'Discrete Mathematics I',
+          description: 'Elements of sets and logic. Relations, functions. Integers. Induction and recursion. Principles and techniques of counting. Graphs. Paths and circuits.',
+          credits: 3,
+          preReq: [ 'MATH241', 'MATH242|MATH232' ],
+          coreReq: []
+        },
+        {
+          code: 'MATH241',
+          name: 'Analytic Geometry and Calculus A',
+          description: 'Functions, limits, continuity, derivatives. Polynomial, rational, exponential, hyperbolic, logarithmic, trigonometric and inverse trigonometric functions. Definite and indefinite integrals and the Fundamental Theorem of Calculus. Simple differential equations (separable ODE, linear ODE). ODE models leading to exponential growth and decay.',
+          credits: 3,
+          preReq: [],
+          coreReq: []
+        },
+        {
+          code: 'ENGL110',
+          name: 'First-Year Writing',
+          description: 'Introduction to the process of academic writing that centers on the composition of analytical, research-based essays.',
+          credits: 3,
+          preReq: [],
+          coreReq: []
+        },
+        {
+          code: 'EGGG101',
+          name: 'Introduction to Engineering',
+          description: 'Introduction to profession, including disciplines of chemical, civil, computer, electrical, environmental, and mechanical engineering. Prepares students for success through integration of: technical problem solving and engineering design, ethical decision-making, teamwork, and communicating to diverse audiences.',
+          credits: 2,
+          preReq: [],
+          coreReq: []
+        },
+        {
+          code: 'UCAH',
+          name: 'Breadth: Creative Arts and Humanities',
+          description: 'University breadth requirements: creative arts and humanities. Check this list for courses: https://catalog.udel.edu/preview_program.php?catoid=47&poid=34821.',
+          credits: 3,
+          preReq: [],
+          coreReq: []
+        },
+        {
+          code: 'UHCC',
+          name: 'Breadth: History and Cultural Change',
+          description: 'University breadth requirements: history and cultural change. Check this list for courses: https://catalog.udel.edu/preview_program.php?catoid=47&poid=34822.',
+          credits: 3,
+          preReq: [],
+          coreReq: []
+        },
+        {
+          code: 'USBS',
+          name: 'Breadth: Social and Behavioral Science',
+          description: 'University breadth requirements: social and behavioral science. Check this list for courses: https://catalog.udel.edu/preview_program.php?catoid=47&poid=34825.',
+          credits: 3,
+          preReq: [],
+          coreReq: []
+        },
+        {
+          code: 'UMNST',
+          name: 'Breadth: Math, Natural Science, and Technology',
+          description: 'University breadth requirements: math, natural science, and technology. Check this list for courses: https://catalog.udel.edu/preview_program.php?catoid=47&poid=34826.',
+          credits: 3,
+          preReq: [],
+          coreReq: []
+        },
+        {
+          code: 'CCAH-1',
+          name: 'Breadth: Creative Arts and Humanities I',
+          description: 'College breadth requirements: creative arts and humanities. Check this list for courses: https://catalog.udel.edu/preview_program.php?catoid=47&poid=34821.',
+          credits: 3,
+          preReq: [],
+          coreReq: []
+        },
+        {
+          code: 'CCAH-2',
+          name: 'Breadth: Creative Arts and Humanities II',
+          description: 'College breadth requirements: creative arts and humanities. Check this list for courses: https://catalog.udel.edu/preview_program.php?catoid=47&poid=34821.',
+          credits: 3,
+          preReq: [],
+          coreReq: []
+        },
+        {
+          code: 'CHCC-1',
+          name: 'Breadth: History and Cultural Change I',
+          description: 'College breadth requirements: history and cultural change. Check this list for courses: https://catalog.udel.edu/preview_program.php?catoid=47&poid=34822.',
+          credits: 3,
+          preReq: [],
+          coreReq: []
+        },
+        {
+          code: 'CHCC-2',
+          name: 'Breadth: History and Cultural Change II',
+          description: 'College breadth requirements: history and cultural change. Check this list for courses: https://catalog.udel.edu/preview_program.php?catoid=47&poid=34822.',
+          credits: 3,
+          preReq: [],
+          coreReq: []
+        },
+        {
+          code: 'CSBS-1',
+          name: 'Breadth: Social and Behavioral Science I',
+          description: 'College breadth requirements: social and behavioral science. Check this list for courses: https://catalog.udel.edu/preview_program.php?catoid=47&poid=34825.',
+          credits: 3,
+          preReq: [],
+          coreReq: []
+        },
+        {
+          code: 'CSBS-2',
+          name: 'Breadth: Social and Behavioral Science II',
+          description: 'College breadth requirements: social and behavioral science. Check this list for courses: https://catalog.udel.edu/preview_program.php?catoid=47&poid=34825.',
+          credits: 3,
+          preReq: [],
+          coreReq: []
+        },
+        {
+          code: 'CMNST-1',
+          name: 'Breadth: Math, Natural Science, and Technology',
+          description: 'College breadth requirements: math, natural science, and technology. Check this list for courses: https://catalog.udel.edu/preview_program.php?catoid=47&poid=34826.',
+          credits: 3,
+          preReq: [],
+          coreReq: []
+        },
+        {
+          code: 'CMNST-2',
+          name: 'Breadth: Math, Natural Science, and Technology (with Lab)',
+          description: 'College breadth requirements: math, natural science, and technology. Must be in the form of a science course with an associated lab. Check this list for courses: https://catalog.udel.edu/preview_program.php?catoid=47&poid=34826.',
+          credits: 4,
+          preReq: [],
+          coreReq: []
+        },
+        {
+          code: 'SWR',
+          name: 'Second Writing',
+          description: 'Second Writing approved by the College of Arts and Sciences. The course must be taken after 60 credits have been completed with a minimum grade of C-, and the elective portion of the course must be designated as fulfilling the requirements of the completed academic year. Check this list for courses: https://catalog.udel.edu/preview_program.php?catoid=47&poid=34800.',
+          credits: 3,
+          preReq: [],
+          coreReq: []
+        },
+        {
+          code: 'FL',
+          name: 'Foreign Language',
+          description: 'Completion of the intermediate-level course (107,112, or 202) in an ancient or modern language. Students with four or more years of high school work in a single foreign language, or who have gained proficiency in a foreign language by other means, may attempt to fulfill the requirement in that language by taking an exemption examination through the Languages, Literatures and Cultures Department.',
+          credits: 4,
+          preReq: [],
+          coreReq: []
+        },
+        {
+          code: 'MC',
+          name: 'Multicultural',
+          description: 'Check this list for courses: https://catalog.udel.edu/preview_program.php?catoid=47&poid=34918.',
+          credits: 3,
+          preReq: [],
+          coreReq: []
+        },
+        {
+          code: 'DLE',
+          name: 'Discovery Learning Experience',
+          description: 'Check this list for courses: https://catalog.udel.edu/preview_program.php?catoid=47&poid=34919',
+          credits: 3,
+          preReq: [],
+          coreReq: []
+        }
+      ]
+
+      at handleAddCourseToSemester (src/components/courseTable.tsx:83:17)
+
+    console.log
       -1
 
       at handleConfirm (src/components/AddCourse.tsx:48:17)
 
     console.log
-      true
+      {
+        code: '',
+        name: '',
+        description: '',
+        credits: 0,
+        preReq: [],
+        coreReq: []
+      }
 
-      at handleSearch (src/components/Search.tsx:54:21)
+      at handleAddCourseToSemester (src/components/Search.tsx:89:17)
 
-    console.log
-      true
-
-      at handleSearch (src/components/Search.tsx:54:21)
-
-----------------------|---------|----------|---------|---------|------------------------------------------
-File                  | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s                        
-----------------------|---------|----------|---------|---------|------------------------------------------
-All files             |   80.54 |    68.57 |   68.42 |   80.23 |                                          
- src                  |   91.66 |      100 |   84.61 |   91.17 |                                          
-  App.tsx             |   91.66 |      100 |   84.61 |   91.17 | 46-47,121                                
- src/components       |   78.73 |    64.51 |   65.85 |   78.53 |                                          
-  AddCourse.tsx       |   90.47 |     37.5 |   85.71 |   90.47 | 41,80                                    
-  AddtoSemester.tsx   |      80 |    66.66 |   66.66 |      80 | 22-23,56                                 
-  EditCourse.tsx      |      84 |    66.66 |   71.42 |      84 | 37,41,78-86                              
-  IntroModal.tsx      |     100 |      100 |     100 |     100 |                                          
-  Search.tsx          |   77.94 |    72.22 |   54.54 |   77.94 | 50,69,72-77,89,93,99,103,107,121,152,237 
-  SemesterDisplay.tsx |   45.83 |       50 |   36.36 |   43.47 | 19-24,34-37,51-81                        
-  SemesterModal.tsx   |   68.18 |       25 |      50 |   66.66 | 25-28,39-43,94-96                        
-  SemsterList.tsx     |      80 |       75 |      75 |      80 | 36                                       
-  SwitchPlan.tsx      |     100 |      100 |     100 |     100 |                                          
-  courseTable.tsx     |   94.11 |       80 |    92.3 |   94.11 | 71,78                                    
- src/interfaces       |       0 |        0 |       0 |       0 |                                          
-  course.ts           |       0 |        0 |       0 |       0 |                                          
-  semester.ts         |       0 |        0 |       0 |       0 |                                          
-----------------------|---------|----------|---------|---------|------------------------------------------
+----------------------|---------|----------|---------|---------|--------------------------------------
+File                  | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s                    
+----------------------|---------|----------|---------|---------|--------------------------------------
+All files             |   80.78 |    69.11 |   68.42 |   80.47 |                                      
+ src                  |   91.66 |      100 |   84.61 |   91.17 |                                      
+  App.tsx             |   91.66 |      100 |   84.61 |   91.17 | 46-47,121                            
+ src/components       |   78.99 |       65 |   65.85 |    78.8 |                                      
+  AddCourse.tsx       |   90.47 |     37.5 |   85.71 |   90.47 | 41,80                                
+  AddtoSemester.tsx   |      80 |    66.66 |   66.66 |      80 | 22-23,56                             
+  EditCourse.tsx      |      84 |    66.66 |   71.42 |      84 | 37,41,78-86                          
+  IntroModal.tsx      |     100 |      100 |     100 |     100 |                                      
+  Search.tsx          |   78.12 |       75 |   54.54 |   78.12 | 61,64-69,81,85,93,97,101,115,146,231 
+  SemesterDisplay.tsx |   45.83 |       50 |   36.36 |   43.47 | 19-24,34-37,51-81                    
+  SemesterModal.tsx   |   68.18 |       25 |      50 |   66.66 | 25-28,39-43,94-96                    
+  SemsterList.tsx     |      80 |       75 |      75 |      80 | 36                                   
+  SwitchPlan.tsx      |     100 |      100 |     100 |     100 |                                      
+  courseTable.tsx     |   94.44 |       80 |    92.3 |   94.44 | 71,78                                
+ src/interfaces       |       0 |        0 |       0 |       0 |                                      
+  course.ts           |       0 |        0 |       0 |       0 |                                      
+  semester.ts         |       0 |        0 |       0 |       0 |                                      
+----------------------|---------|----------|---------|---------|--------------------------------------
 
 Test Suites: 3 passed, 3 total
 Tests:       16 passed, 16 total
 Snapshots:   0 total
-Time:        5.721 s
+Time:        5.654 s
 Ran all test suites.
