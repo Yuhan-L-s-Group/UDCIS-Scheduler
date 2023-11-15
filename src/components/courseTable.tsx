@@ -70,7 +70,7 @@ const CoursesTable = ({
     const CloseError = () => {
         setError(false);
     };
-    const handleError = (course: Course) => {
+    const handleAddCourseToSemester = (course: Course) => {
         const repeatedCourse = semesters.filter((semester) =>
             semester.courses.includes(course)
         );
@@ -134,7 +134,9 @@ const CoursesTable = ({
                                         <td className="adjustrow">
                                             <Button
                                                 onClick={() =>
-                                                    handleError(course)
+                                                    handleAddCourseToSemester(
+                                                        course
+                                                    )
                                                 }
                                                 variant="success"
                                             >
