@@ -79,6 +79,8 @@ const CoursesTable = ({
         } else {
             gotYouCourse2(course);
         }
+        console.log(selectedCourse);
+        console.log(ModifiedCourseList);
     };
 
     return (
