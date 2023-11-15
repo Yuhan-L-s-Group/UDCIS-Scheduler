@@ -80,7 +80,7 @@ const Search = ({
         setselectedCourse(course);
         SetAddSemester(true);
     };
-    const handleError = (text: string) => {
+    const handleAddCourseToSemester = (text: string) => {
         const upperText = text.toUpperCase();
         const indexCourse = courses.findIndex(
             (course) => upperText === course.code
@@ -88,6 +88,7 @@ const Search = ({
         const repeatedCourse = semesters.filter((semester) =>
             semester.courses.includes(courses[indexCourse])
         );
+
         if (repeatedCourse.length !== 0) {
             setError(true);
         } else {
@@ -143,25 +144,26 @@ const Search = ({
                 </button>
             </div>
             <div className="searchMenu">
-                {filterCourses?.map((course) => (
-                    <div key={course.code} className="eachCourseinDropDown">
-                        <button
-                            onClick={() => handleClickCourse(course)}
-                            className="eachCourseButton"
-                        >
-                            {course.code}
-                            {"-"}
-                            {course.name}
-                        </button>
-                    </div>
-                ))}
+                {filterCourses?.map(
+                    //iterate each course in the filter course list and display in the drop down menu
+                    (course) => (
+                        <div key={course.code} className="eachCourseinDropDown">
+                            <button
+                                onClick={() => handleClickCourse(course)}
+                                className="eachCourseButton"
+                            >
+                                {course.code}
+                                {"-"}
+                                {course.name}
+                            </button>
+                        </div>
+                    )
+                )}
             </div>
 
-            {ErrorMessage2 && (
+            {ErrorMessage2 && ( //error message pops up when user does not search the correct course code
                 <div>Please make sure the course code is correct!</div>
             )}
-            <br />
-
             {
                 <div>
                     {" "}
@@ -174,7 +176,7 @@ const Search = ({
                 </div>
             }
 
-            {isAddCourseOpen && (
+            {isAddCourseOpen && ( // create new course button
                 <div>
                     <AddCourse
                         onClose={closeAddCourseWindow}
@@ -183,9 +185,8 @@ const Search = ({
                     />
                 </div>
             )}
-
             <br />
-            {isCoursePool && (
+            {isCoursePool && ( //CoursePool
                 <div className="coursePool_box">
                     <div>
                         {"Course Code: "}
@@ -211,16 +212,16 @@ const Search = ({
                         {listCourses[courseIndex].description}
                     </div>
                     <br />
-                    {isAddCourseButton && (
-                        <Button
-                            variant="success"
-                            onClick={() => handleError(text)}
-                        >
-                            Add to Semester
-                        </Button>
-                    )}
+                    {/* {isAddCourseButton && ( */}
+                    <Button
+                        variant="success"
+                        onClick={() => handleAddCourseToSemester(text)}
+                    >
+                        Add to Semester
+                    </Button>
+                    {/* )} */}
                     <div>
-                        {isAddSemesterOpen ? (
+                        {isAddSemesterOpen ? ( // add course to semester list
                             <div>
                                 <AddtoSemester
                                     selectedCourse={selectedCourse}
@@ -238,7 +239,7 @@ const Search = ({
                                         Edit
                                     </Button>
                                 </span>
-                                {isEditCourseOpen && (
+                                {isEditCourseOpen && ( // edit course
                                     <>
                                         <div className="editButtonInSwitch">
                                             <EditCourse
@@ -255,7 +256,7 @@ const Search = ({
                                         </div>
                                     </>
                                 )}
-                                {ErrorMessage && (
+                                {ErrorMessage && ( // error message when user trys to add the course which has already been selceted into the semester list
                                     <Modal show={true} onHide={CloseError}>
                                         <Modal.Header closeButton>
                                             <Modal.Title className="modifyErrorTitle">
