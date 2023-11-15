@@ -31,7 +31,6 @@ const Search = ({
     const [isCoursePool, setCoursePool] = useState(false);
     const [isEditCourseOpen, setEditCourseOpen] = useState(false);
     const [isAddCourseOpen, setAddCourseOpen] = useState(false);
-    const [isAddCourseButton, setAddcoursebutton] = useState(true);
     const [filterCourses, setfilterCourses] = useState<Course[]>();
     const handleSearch = (text: string) => {
         const upperText = text.toUpperCase();
@@ -45,12 +44,6 @@ const Search = ({
             // console.log(courses[CourseIndex]);
             setCoursePool(true);
             setError2(false);
-            //check if the new course is in original course list
-            if (!courses.includes(ModifiedCourseList[CourseIndex])) {
-                setAddcoursebutton(false);
-            } else {
-                setAddcoursebutton(true);
-            }
         }
     };
     const [selectedCourse, setselectedCourse] = useState<Course>({
