@@ -32,6 +32,7 @@ const Search = ({
     const [isEditCourseOpen, setEditCourseOpen] = useState(false);
     const [isAddCourseOpen, setAddCourseOpen] = useState(false);
     const [filterCourses, setfilterCourses] = useState<Course[]>();
+    const [isDropdown, setDropDown] = useState(false);
     const handleSearch = (text: string) => {
         const upperText = text.toUpperCase();
         const CourseIndex = ModifiedCourseList.findIndex(
@@ -44,6 +45,7 @@ const Search = ({
             // console.log(courses[CourseIndex]);
             setCoursePool(true);
             setError2(false);
+            setDropDown(false);
         }
     };
     const [selectedCourse, setselectedCourse] = useState<Course>({
@@ -109,6 +111,7 @@ const Search = ({
             course.code.includes(upperText)
         );
         setfilterCourses(filteritems);
+        setDropDown(true);
     };
     //click course in the dropdown menu
     const handleClickCourse = (course: Course) => {
@@ -137,27 +140,33 @@ const Search = ({
                     Search
                 </button>
             </div>
-            <div className="searchMenu">
-                {filterCourses?.map(
-                    //iterate each course in the filter course list and display in the drop down menu
-                    (course) => (
-                        <div key={course.code} className="eachCourseinDropDown">
-                            <button
-                                onClick={() => handleClickCourse(course)}
-                                className="eachCourseButton"
+            {isDropdown && (
+                <div className="searchMenu">
+                    {filterCourses?.map(
+                        //iterate each course in the filter course list and display in the drop down menu
+                        (course) => (
+                            <div
+                                key={course.code}
+                                className="eachCourseinDropDown"
                             >
-                                {course.code}
-                                {"-"}
-                                {course.name}
-                            </button>
-                        </div>
-                    )
-                )}
-            </div>
+                                <button
+                                    onClick={() => handleClickCourse(course)}
+                                    className="eachCourseButton"
+                                >
+                                    {course.code}
+                                    {"-"}
+                                    {course.name}
+                                </button>
+                            </div>
+                        )
+                    )}
+                </div>
+            )}
 
             {ErrorMessage2 && ( //error message pops up when user does not search the correct course code
                 <div>Please make sure the course code is correct!</div>
             )}
+            <br />
             {
                 <div>
                     {" "}

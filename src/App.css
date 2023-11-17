@@ -67,7 +67,8 @@
 }
 .nameEntry {
     width: 30%;
-    margin: auto;
+    margin-top: 610px;
+    margin-left: 350px;
 }
 .homepage {
     background-image: url(./pictures/udlogo2.jpg);
