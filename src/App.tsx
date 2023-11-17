@@ -45,6 +45,7 @@ function App(): JSX.Element {
     const ConfirmName = () => {
         setrenderName(true);
         setNamefield(false);
+        setHomepage(false);
     };
 
     function addNewSemester(year: number, season: Season) {
@@ -94,9 +95,30 @@ function App(): JSX.Element {
                             <h5 className="welcome">
                                 Welcome to the Best Schedule Class Web
                             </h5>
-                            <button onClick={closeHome} className="homebutton">
+                            {/* <button onClick={closeHome} className="homebutton">
                                 CLICK
-                            </button>
+                            </button> */}
+                            <div>
+                                {isNameField && (
+                                    <div className="nameEntry">
+                                        <InputGroup>
+                                            <Form.Control
+                                                placeholder="Your Name"
+                                                value={Name}
+                                                onChange={(e) =>
+                                                    setName(e.target.value)
+                                                }
+                                            />
+                                            <button
+                                                onClick={ConfirmName}
+                                                className="ConfirmNameView"
+                                            >
+                                                Confirm
+                                            </button>
+                                        </InputGroup>
+                                    </div>
+                                )}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -110,27 +132,6 @@ function App(): JSX.Element {
                         <img src={logo1} alt="ud logo1" className="udlogo1" />
                     </header>
                     <br />
-                    <div>
-                        {isNameField && (
-                            <div className="nameEntry">
-                                <InputGroup>
-                                    <Form.Control
-                                        placeholder="Your Name"
-                                        value={Name}
-                                        onChange={(e) =>
-                                            setName(e.target.value)
-                                        }
-                                    />
-                                    <button
-                                        onClick={ConfirmName}
-                                        className="ConfirmNameView"
-                                    >
-                                        Confirm
-                                    </button>
-                                </InputGroup>
-                            </div>
-                        )}
-                    </div>
 
                     <SwitchPlan></SwitchPlan>
                     <Container>
