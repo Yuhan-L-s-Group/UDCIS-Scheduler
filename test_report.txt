@@ -46,363 +46,414 @@ PASS src/components/courseTable.test.tsx
 
       at Object.<anonymous> (src/components/courseTable.test.tsx:84:17)
 
-PASS src/App.test.tsx
-  ● Console
+FAIL src/App.test.tsx
+  ● Scheduler Tests › Check home page and welcome window
 
-    console.error
-      Warning: validateDOMNesting(...): <button> cannot appear as a child of <tr>.
-          at button
-          at tr
-          at tbody
-          at table
-          at div
-          at SemesterDisplay (/home/runner/work/UDCIS-Scheduler/UDCIS-Scheduler/src/components/SemesterDisplay.tsx:10:5)
-          at div
-          at div
-          at div
-          at SemesterList (/home/runner/work/UDCIS-Scheduler/UDCIS-Scheduler/src/components/SemsterList.tsx:11:5)
-          at div
-          at /home/runner/work/UDCIS-Scheduler/UDCIS-Scheduler/node_modules/react-bootstrap/cjs/Col.js:72:8
-          at div
-          at /home/runner/work/UDCIS-Scheduler/UDCIS-Scheduler/node_modules/react-bootstrap/cjs/Row.js:22:3
-          at div
-          at /home/runner/work/UDCIS-Scheduler/UDCIS-Scheduler/node_modules/react-bootstrap/cjs/Container.js:24:3
-          at div
-          at div
-          at App (/home/runner/work/UDCIS-Scheduler/UDCIS-Scheduler/src/App.tsx:22:39)
+    TestingLibraryElementError: Unable to find an element with the text: CLICK. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
 
-      at printWarning (node_modules/react-dom/cjs/react-dom.development.js:67:30)
-      at error (node_modules/react-dom/cjs/react-dom.development.js:43:5)
-      at validateDOMNesting (node_modules/react-dom/cjs/react-dom.development.js:10081:7)
-      at createInstance (node_modules/react-dom/cjs/react-dom.development.js:10181:5)
-      at completeWork (node_modules/react-dom/cjs/react-dom.development.js:19464:28)
-      at completeUnitOfWork (node_modules/react-dom/cjs/react-dom.development.js:22812:16)
-      at performUnitOfWork (node_modules/react-dom/cjs/react-dom.development.js:22787:5)
-      at workLoopSync (node_modules/react-dom/cjs/react-dom.development.js:22707:5)
+    Ignored nodes: comments, script, style
+    [36m<body>[39m
+      [36m<div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"App"[39m
+        [36m>[39m
+          [36m<div>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"homepage"[39m
+            [36m>[39m
+              [36m<div[39m
+                [33mclass[39m=[32m"homepage2"[39m
+              [36m>[39m
+                [0m [0m
+                [36m<h5[39m
+                  [33mclass[39m=[32m"welcome"[39m
+                [36m>[39m
+                  [0mWelcome to the Best Schedule Class Web[0m
+                [36m</h5>[39m
+                [36m<div>[39m
+                  [36m<div[39m
+                    [33mclass[39m=[32m"nameEntry"[39m
+                  [36m>[39m
+                    [36m<div[39m
+                      [33mclass[39m=[32m"input-group"[39m
+                    [36m>[39m
+                      [36m<input[39m
+                        [33mclass[39m=[32m"form-control"[39m
+                        [33mplaceholder[39m=[32m"Your Name"[39m
+                        [33mvalue[39m=[32m""[39m
+                      [36m/>[39m
+                      [36m<button[39m
+                        [33mclass[39m=[32m"ConfirmNameView"[39m
+                      [36m>[39m
+                        [0mConfirm[0m
+                      [36m</button>[39m
+                    [36m</div>[39m
+                  [36m</div>[39m
+                [36m</div>[39m
+              [36m</div>[39m
+            [36m</div>[39m
+          [36m</div>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+    [36m</body>[39m
 
-    console.log
-      {
-        code: '',
-        name: '',
-        description: '',
-        credits: 0,
-        preReq: [],
-        coreReq: []
-      }
+      19 |     test("Check home page and welcome window", () => {
+      20 |         expect(screen.getByText(/Best/i)).toBeInTheDocument();
+    > 21 |         const closeHomePage = screen.getByText("CLICK");
+         |                                      ^
+      22 |         userEvent.click(closeHomePage);
+      23 |
+      24 |         //Check if the window was created correctly
 
-      at handleAddCourseToSemester (src/components/courseTable.tsx:82:17)
+      at Object.getElementError (node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/config.js:37:19)
+      at node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+      at node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+      at getByText (node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:95:19)
+      at Object.<anonymous> (src/App.test.tsx:21:38)
 
-    console.log
-      [
-        {
-          code: 'CISC108',
-          name: 'Introduction to Computer Science I',
-          description: 'Computing and principles of programming with an emphasis on systematic program design. Topics include functional programming, data abstraction, procedural abstraction, use of control and state, recursion, testing, and object-oriented programming concepts. Requires no prior programming experience, open to any major, but intended primarily for majors and minors in computer science or mathematics.',
-          credits: 3,
-          preReq: [],
-          coreReq: []
-        },
-        {
-          code: 'CISC181',
-          name: 'Introduction to Computer Science II',
-          description: 'Principles of computer science illustrated and applied through programming in an object oriented language. Programming projects illustrate computational problems, styles and issues that arise in computer systems development and in all application areas of computation.',
-          credits: 3,
-          preReq: [ 'CISC106|CISC108' ],
-          coreReq: [ 'MATH241|MATH221' ]
-        },
-        {
-          code: 'CISC210',
-          name: 'Introduction to Systems Programming',
-          description: 'Principles of computer systems programming for software and hardware platforms to achieve efficient resource usage. Topics include the C programming language, memory management, and awareness of system constraints and interfacing. Projects include programming embedded systems and interactive objects.',
-          credits: 3,
-          preReq: [ 'CISC106|CISC108' ],
-          coreReq: [ 'MATH221|MATH241' ]
-        },
-        {
-          code: 'CISC220',
-          name: 'Data Structures',
-          description: 'Review of data type abstraction, recursion, arrays, stacks, queues, multiple stacks and linked lists. Emphasis on dynamic storage management, garbage collection, trees, graphs, tables, sorting and searching.',
-          credits: 3,
-          preReq: [ 'CISC210' ],
-          coreReq: [ 'MATH210|MATH241' ]
-        },
-        {
-          code: 'CISC260',
-          name: 'Machine Organization and Assembly Language',
-          description: 'Introduction to the basics of machine organization. Programming tools and techniques at the machine and assembly levels. Assembly language programming and computer arithmetic techniques.',
-          credits: 3,
-          preReq: [ 'CISC210' ],
-          coreReq: []
-        },
-        {
-          code: 'CISC275',
-          name: 'Introduction to Software Engineering',
-          description: 'Object oriented software design and development through use of an object oriented programming language. Topics include team programming, design patterns, graphical user interfaces, software engineering tools (e.g., integrated development environments, version control, build management, bug tracking, automated testing).',
-          credits: 3,
-          preReq: [ 'CISC181', 'CISC220' ],
-          coreReq: []
-        },
-        {
-          code: 'CISC300-1',
-          name: '300-Level Technology Elective I',
-          description: 'Computer science technical electives numbered 301 or above, except for CISC 355, CISC 356, CISC 357, CISC 366, CISC 465, and CISC 466. Because of their very nature, Experimental Courses (courses with an x67 number) must be approved beforehand by the CIS Undergraduate Committee before being accepted toward the technical elective requirement.',
-          credits: 3,
-          preReq: [ 'CISC220' ],
-          coreReq: []
-        },
-        {
-          code: 'CISC300-2',
-          name: '300-Level Technology Elective II',
-          description: 'Computer science technical electives numbered 301 or above, except for CISC 355, CISC 356, CISC 357, CISC 366, CISC 465, and CISC 466. Because of their very nature, Experimental Courses (courses with an x67 number) must be approved beforehand by the CIS Undergraduate Committee before being accepted toward the technical elective requirement.',
-          credits: 3,
-          preReq: [ 'CISC220' ],
-          coreReq: []
-        },
-        {
-          code: 'CISC300-3',
-          name: '300-Level Technology Elective III',
-          description: 'Computer science technical electives numbered 301 or above, except for CISC 355, CISC 356, CISC 357, CISC 366, CISC 465, and CISC 466. Because of their very nature, Experimental Courses (courses with an x67 number) must be approved beforehand by the CIS Undergraduate Committee before being accepted toward the technical elective requirement.',
-          credits: 3,
-          preReq: [ 'CISC220' ],
-          coreReq: []
-        },
-        {
-          code: 'CISC300-4',
-          name: '300-Level Technology Elective IV',
-          description: 'Computer science technical electives numbered 301 or above, except for CISC 355, CISC 356, CISC 357, CISC 366, CISC 465, and CISC 466. Because of their very nature, Experimental Courses (courses with an x67 number) must be approved beforehand by the CIS Undergraduate Committee before being accepted toward the technical elective requirement.',
-          credits: 3,
-          preReq: [ 'CISC220' ],
-          coreReq: []
-        },
-        {
-          code: 'CISC300-5',
-          name: '300-Level Technology Elective V',
-          description: 'Computer science technical electives numbered 301 or above, except for CISC 355, CISC 356, CISC 357, CISC 366, CISC 465, and CISC 466. Because of their very nature, Experimental Courses (courses with an x67 number) must be approved beforehand by the CIS Undergraduate Committee before being accepted toward the technical elective requirement.',
-          credits: 3,
-          preReq: [ 'CISC220' ],
-          coreReq: []
-        },
-        {
-          code: 'CISC498',
-          name: 'Computer Science Senior Design Project I',
-          description: 'First semester of two-semester senior software design course.  Students work in teams to develop solutions to real-world problems for a client.  Application of a modern software engineering process; requirement solicitation, analysis, and specification; prototyping; design; incremental development; testing and verification; client interaction; and presentation. Offered in Fall only.',
-          credits: 3,
-          preReq: [ 'CISC275', 'CISC320' ],
-          coreReq: []
-        },
-        {
-          code: 'CISC499',
-          name: 'Computer Science Senior Design Project II',
-          description: 'Continuation of CISC 498.',
-          credits: 3,
-          preReq: [ 'CISC498' ],
-          coreReq: []
-        },
-        {
-          code: 'MATH210',
-          name: 'Discrete Mathematics I',
-          description: 'Elements of sets and logic. Relations, functions. Integers. Induction and recursion. Principles and techniques of counting. Graphs. Paths and circuits.',
-          credits: 3,
-          preReq: [ 'MATH241', 'MATH242|MATH232' ],
-          coreReq: []
-        },
-        {
-          code: 'MATH241',
-          name: 'Analytic Geometry and Calculus A',
-          description: 'Functions, limits, continuity, derivatives. Polynomial, rational, exponential, hyperbolic, logarithmic, trigonometric and inverse trigonometric functions. Definite and indefinite integrals and the Fundamental Theorem of Calculus. Simple differential equations (separable ODE, linear ODE). ODE models leading to exponential growth and decay.',
-          credits: 3,
-          preReq: [],
-          coreReq: []
-        },
-        {
-          code: 'ENGL110',
-          name: 'First-Year Writing',
-          description: 'Introduction to the process of academic writing that centers on the composition of analytical, research-based essays.',
-          credits: 3,
-          preReq: [],
-          coreReq: []
-        },
-        {
-          code: 'EGGG101',
-          name: 'Introduction to Engineering',
-          description: 'Introduction to profession, including disciplines of chemical, civil, computer, electrical, environmental, and mechanical engineering. Prepares students for success through integration of: technical problem solving and engineering design, ethical decision-making, teamwork, and communicating to diverse audiences.',
-          credits: 2,
-          preReq: [],
-          coreReq: []
-        },
-        {
-          code: 'UCAH',
-          name: 'Breadth: Creative Arts and Humanities',
-          description: 'University breadth requirements: creative arts and humanities. Check this list for courses: https://catalog.udel.edu/preview_program.php?catoid=47&poid=34821.',
-          credits: 3,
-          preReq: [],
-          coreReq: []
-        },
-        {
-          code: 'UHCC',
-          name: 'Breadth: History and Cultural Change',
-          description: 'University breadth requirements: history and cultural change. Check this list for courses: https://catalog.udel.edu/preview_program.php?catoid=47&poid=34822.',
-          credits: 3,
-          preReq: [],
-          coreReq: []
-        },
-        {
-          code: 'USBS',
-          name: 'Breadth: Social and Behavioral Science',
-          description: 'University breadth requirements: social and behavioral science. Check this list for courses: https://catalog.udel.edu/preview_program.php?catoid=47&poid=34825.',
-          credits: 3,
-          preReq: [],
-          coreReq: []
-        },
-        {
-          code: 'UMNST',
-          name: 'Breadth: Math, Natural Science, and Technology',
-          description: 'University breadth requirements: math, natural science, and technology. Check this list for courses: https://catalog.udel.edu/preview_program.php?catoid=47&poid=34826.',
-          credits: 3,
-          preReq: [],
-          coreReq: []
-        },
-        {
-          code: 'CCAH-1',
-          name: 'Breadth: Creative Arts and Humanities I',
-          description: 'College breadth requirements: creative arts and humanities. Check this list for courses: https://catalog.udel.edu/preview_program.php?catoid=47&poid=34821.',
-          credits: 3,
-          preReq: [],
-          coreReq: []
-        },
-        {
-          code: 'CCAH-2',
-          name: 'Breadth: Creative Arts and Humanities II',
-          description: 'College breadth requirements: creative arts and humanities. Check this list for courses: https://catalog.udel.edu/preview_program.php?catoid=47&poid=34821.',
-          credits: 3,
-          preReq: [],
-          coreReq: []
-        },
-        {
-          code: 'CHCC-1',
-          name: 'Breadth: History and Cultural Change I',
-          description: 'College breadth requirements: history and cultural change. Check this list for courses: https://catalog.udel.edu/preview_program.php?catoid=47&poid=34822.',
-          credits: 3,
-          preReq: [],
-          coreReq: []
-        },
-        {
-          code: 'CHCC-2',
-          name: 'Breadth: History and Cultural Change II',
-          description: 'College breadth requirements: history and cultural change. Check this list for courses: https://catalog.udel.edu/preview_program.php?catoid=47&poid=34822.',
-          credits: 3,
-          preReq: [],
-          coreReq: []
-        },
-        {
-          code: 'CSBS-1',
-          name: 'Breadth: Social and Behavioral Science I',
-          description: 'College breadth requirements: social and behavioral science. Check this list for courses: https://catalog.udel.edu/preview_program.php?catoid=47&poid=34825.',
-          credits: 3,
-          preReq: [],
-          coreReq: []
-        },
-        {
-          code: 'CSBS-2',
-          name: 'Breadth: Social and Behavioral Science II',
-          description: 'College breadth requirements: social and behavioral science. Check this list for courses: https://catalog.udel.edu/preview_program.php?catoid=47&poid=34825.',
-          credits: 3,
-          preReq: [],
-          coreReq: []
-        },
-        {
-          code: 'CMNST-1',
-          name: 'Breadth: Math, Natural Science, and Technology',
-          description: 'College breadth requirements: math, natural science, and technology. Check this list for courses: https://catalog.udel.edu/preview_program.php?catoid=47&poid=34826.',
-          credits: 3,
-          preReq: [],
-          coreReq: []
-        },
-        {
-          code: 'CMNST-2',
-          name: 'Breadth: Math, Natural Science, and Technology (with Lab)',
-          description: 'College breadth requirements: math, natural science, and technology. Must be in the form of a science course with an associated lab. Check this list for courses: https://catalog.udel.edu/preview_program.php?catoid=47&poid=34826.',
-          credits: 4,
-          preReq: [],
-          coreReq: []
-        },
-        {
-          code: 'SWR',
-          name: 'Second Writing',
-          description: 'Second Writing approved by the College of Arts and Sciences. The course must be taken after 60 credits have been completed with a minimum grade of C-, and the elective portion of the course must be designated as fulfilling the requirements of the completed academic year. Check this list for courses: https://catalog.udel.edu/preview_program.php?catoid=47&poid=34800.',
-          credits: 3,
-          preReq: [],
-          coreReq: []
-        },
-        {
-          code: 'FL',
-          name: 'Foreign Language',
-          description: 'Completion of the intermediate-level course (107,112, or 202) in an ancient or modern language. Students with four or more years of high school work in a single foreign language, or who have gained proficiency in a foreign language by other means, may attempt to fulfill the requirement in that language by taking an exemption examination through the Languages, Literatures and Cultures Department.',
-          credits: 4,
-          preReq: [],
-          coreReq: []
-        },
-        {
-          code: 'MC',
-          name: 'Multicultural',
-          description: 'Check this list for courses: https://catalog.udel.edu/preview_program.php?catoid=47&poid=34918.',
-          credits: 3,
-          preReq: [],
-          coreReq: []
-        },
-        {
-          code: 'DLE',
-          name: 'Discovery Learning Experience',
-          description: 'Check this list for courses: https://catalog.udel.edu/preview_program.php?catoid=47&poid=34919',
-          credits: 3,
-          preReq: [],
-          coreReq: []
-        }
-      ]
+  ● Scheduler Tests › Switch between different concentration (at this point, just check texts)
 
-      at handleAddCourseToSemester (src/components/courseTable.tsx:83:17)
+    TestingLibraryElementError: Unable to find an element with the text: CLICK. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
 
-    console.log
-      -1
+    Ignored nodes: comments, script, style
+    [36m<body>[39m
+      [36m<div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"App"[39m
+        [36m>[39m
+          [36m<div>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"homepage"[39m
+            [36m>[39m
+              [36m<div[39m
+                [33mclass[39m=[32m"homepage2"[39m
+              [36m>[39m
+                [0m [0m
+                [36m<h5[39m
+                  [33mclass[39m=[32m"welcome"[39m
+                [36m>[39m
+                  [0mWelcome to the Best Schedule Class Web[0m
+                [36m</h5>[39m
+                [36m<div>[39m
+                  [36m<div[39m
+                    [33mclass[39m=[32m"nameEntry"[39m
+                  [36m>[39m
+                    [36m<div[39m
+                      [33mclass[39m=[32m"input-group"[39m
+                    [36m>[39m
+                      [36m<input[39m
+                        [33mclass[39m=[32m"form-control"[39m
+                        [33mplaceholder[39m=[32m"Your Name"[39m
+                        [33mvalue[39m=[32m""[39m
+                      [36m/>[39m
+                      [36m<button[39m
+                        [33mclass[39m=[32m"ConfirmNameView"[39m
+                      [36m>[39m
+                        [0mConfirm[0m
+                      [36m</button>[39m
+                    [36m</div>[39m
+                  [36m</div>[39m
+                [36m</div>[39m
+              [36m</div>[39m
+            [36m</div>[39m
+          [36m</div>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+    [36m</body>[39m
 
-      at handleConfirm (src/components/AddCourse.tsx:48:17)
+      38 |
+      39 |     test("Switch between different concentration (at this point, just check texts)", async () => {
+    > 40 |         const closeHomePage = screen.getByText("CLICK");
+         |                                      ^
+      41 |         userEvent.click(closeHomePage);
+      42 |         //initial value is BA
+      43 |         expect(
 
-    console.log
-      {
-        code: '',
-        name: '',
-        description: '',
-        credits: 0,
-        preReq: [],
-        coreReq: []
-      }
+      at Object.getElementError (node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/config.js:37:19)
+      at node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+      at node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+      at getByText (node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:95:19)
+      at Object.<anonymous> (src/App.test.tsx:40:38)
 
-      at handleAddCourseToSemester (src/components/Search.tsx:89:17)
+  ● Scheduler Tests › Try to add and delete semester
 
-----------------------|---------|----------|---------|---------|--------------------------------------
-File                  | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s                    
-----------------------|---------|----------|---------|---------|--------------------------------------
-All files             |   80.78 |    69.11 |   68.42 |   80.47 |                                      
- src                  |   91.66 |      100 |   84.61 |   91.17 |                                      
-  App.tsx             |   91.66 |      100 |   84.61 |   91.17 | 46-47,121                            
- src/components       |   78.99 |       65 |   65.85 |    78.8 |                                      
-  AddCourse.tsx       |   90.47 |     37.5 |   85.71 |   90.47 | 41,80                                
-  AddtoSemester.tsx   |      80 |    66.66 |   66.66 |      80 | 22-23,56                             
-  EditCourse.tsx      |      84 |    66.66 |   71.42 |      84 | 37,41,78-86                          
-  IntroModal.tsx      |     100 |      100 |     100 |     100 |                                      
-  Search.tsx          |   78.12 |       75 |   54.54 |   78.12 | 61,64-69,81,85,93,97,101,115,146,231 
-  SemesterDisplay.tsx |   45.83 |       50 |   36.36 |   43.47 | 19-24,34-37,51-81                    
-  SemesterModal.tsx   |   68.18 |       25 |      50 |   66.66 | 25-28,39-43,94-96                    
-  SemsterList.tsx     |      80 |       75 |      75 |      80 | 36                                   
-  SwitchPlan.tsx      |     100 |      100 |     100 |     100 |                                      
-  courseTable.tsx     |   94.44 |       80 |    92.3 |   94.44 | 71,78                                
- src/interfaces       |       0 |        0 |       0 |       0 |                                      
-  course.ts           |       0 |        0 |       0 |       0 |                                      
-  semester.ts         |       0 |        0 |       0 |       0 |                                      
-----------------------|---------|----------|---------|---------|--------------------------------------
+    TestingLibraryElementError: Unable to find an element with the text: CLICK. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
 
-Test Suites: 3 passed, 3 total
-Tests:       16 passed, 16 total
+    Ignored nodes: comments, script, style
+    [36m<body>[39m
+      [36m<div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"App"[39m
+        [36m>[39m
+          [36m<div>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"homepage"[39m
+            [36m>[39m
+              [36m<div[39m
+                [33mclass[39m=[32m"homepage2"[39m
+              [36m>[39m
+                [0m [0m
+                [36m<h5[39m
+                  [33mclass[39m=[32m"welcome"[39m
+                [36m>[39m
+                  [0mWelcome to the Best Schedule Class Web[0m
+                [36m</h5>[39m
+                [36m<div>[39m
+                  [36m<div[39m
+                    [33mclass[39m=[32m"nameEntry"[39m
+                  [36m>[39m
+                    [36m<div[39m
+                      [33mclass[39m=[32m"input-group"[39m
+                    [36m>[39m
+                      [36m<input[39m
+                        [33mclass[39m=[32m"form-control"[39m
+                        [33mplaceholder[39m=[32m"Your Name"[39m
+                        [33mvalue[39m=[32m""[39m
+                      [36m/>[39m
+                      [36m<button[39m
+                        [33mclass[39m=[32m"ConfirmNameView"[39m
+                      [36m>[39m
+                        [0mConfirm[0m
+                      [36m</button>[39m
+                    [36m</div>[39m
+                  [36m</div>[39m
+                [36m</div>[39m
+              [36m</div>[39m
+            [36m</div>[39m
+          [36m</div>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+    [36m</body>[39m
+
+      60 |
+      61 |     test("Try to add and delete semester", async () => {
+    > 62 |         const closeHomePage = screen.getByText("CLICK");
+         |                                      ^
+      63 |         userEvent.click(closeHomePage);
+      64 |
+      65 |         //check if modal works
+
+      at Object.getElementError (node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/config.js:37:19)
+      at node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+      at node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+      at getByText (node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:95:19)
+      at Object.<anonymous> (src/App.test.tsx:62:38)
+
+  ● Scheduler Tests › Add a course that does not exist in the list
+
+    TestingLibraryElementError: Unable to find an element with the text: CLICK. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+    Ignored nodes: comments, script, style
+    [36m<body>[39m
+      [36m<div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"App"[39m
+        [36m>[39m
+          [36m<div>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"homepage"[39m
+            [36m>[39m
+              [36m<div[39m
+                [33mclass[39m=[32m"homepage2"[39m
+              [36m>[39m
+                [0m [0m
+                [36m<h5[39m
+                  [33mclass[39m=[32m"welcome"[39m
+                [36m>[39m
+                  [0mWelcome to the Best Schedule Class Web[0m
+                [36m</h5>[39m
+                [36m<div>[39m
+                  [36m<div[39m
+                    [33mclass[39m=[32m"nameEntry"[39m
+                  [36m>[39m
+                    [36m<div[39m
+                      [33mclass[39m=[32m"input-group"[39m
+                    [36m>[39m
+                      [36m<input[39m
+                        [33mclass[39m=[32m"form-control"[39m
+                        [33mplaceholder[39m=[32m"Your Name"[39m
+                        [33mvalue[39m=[32m""[39m
+                      [36m/>[39m
+                      [36m<button[39m
+                        [33mclass[39m=[32m"ConfirmNameView"[39m
+                      [36m>[39m
+                        [0mConfirm[0m
+                      [36m</button>[39m
+                    [36m</div>[39m
+                  [36m</div>[39m
+                [36m</div>[39m
+              [36m</div>[39m
+            [36m</div>[39m
+          [36m</div>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+    [36m</body>[39m
+
+      114 |     test("Add a course that does not exist in the list", () => {
+      115 |         expect(screen.getByText(/Best/i)).toBeInTheDocument();
+    > 116 |         const closeHomePage = screen.getByText("CLICK");
+          |                                      ^
+      117 |         userEvent.click(closeHomePage);
+      118 |
+      119 |         const addNewCourse = screen.getByText(/Add Course/i);
+
+      at Object.getElementError (node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/config.js:37:19)
+      at node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+      at node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+      at getByText (node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:95:19)
+      at Object.<anonymous> (src/App.test.tsx:116:38)
+
+  ● Scheduler Tests › Replace with test details
+
+    TestingLibraryElementError: Unable to find an element with the text: CLICK. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+    Ignored nodes: comments, script, style
+    [36m<body>[39m
+      [36m<div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"App"[39m
+        [36m>[39m
+          [36m<div>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"homepage"[39m
+            [36m>[39m
+              [36m<div[39m
+                [33mclass[39m=[32m"homepage2"[39m
+              [36m>[39m
+                [0m [0m
+                [36m<h5[39m
+                  [33mclass[39m=[32m"welcome"[39m
+                [36m>[39m
+                  [0mWelcome to the Best Schedule Class Web[0m
+                [36m</h5>[39m
+                [36m<div>[39m
+                  [36m<div[39m
+                    [33mclass[39m=[32m"nameEntry"[39m
+                  [36m>[39m
+                    [36m<div[39m
+                      [33mclass[39m=[32m"input-group"[39m
+                    [36m>[39m
+                      [36m<input[39m
+                        [33mclass[39m=[32m"form-control"[39m
+                        [33mplaceholder[39m=[32m"Your Name"[39m
+                        [33mvalue[39m=[32m""[39m
+                      [36m/>[39m
+                      [36m<button[39m
+                        [33mclass[39m=[32m"ConfirmNameView"[39m
+                      [36m>[39m
+                        [0mConfirm[0m
+                      [36m</button>[39m
+                    [36m</div>[39m
+                  [36m</div>[39m
+                [36m</div>[39m
+              [36m</div>[39m
+            [36m</div>[39m
+          [36m</div>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+    [36m</body>[39m
+
+      139 |     test("Replace with test details", () => {
+      140 |         expect(screen.getByText(/Best/i)).toBeInTheDocument();
+    > 141 |         const closeHomePage = screen.getByText("CLICK");
+          |                                      ^
+      142 |         userEvent.click(closeHomePage);
+      143 |
+      144 |         //try to edit CISC108
+
+      at Object.getElementError (node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/config.js:37:19)
+      at node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+      at node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+      at getByText (node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:95:19)
+      at Object.<anonymous> (src/App.test.tsx:141:38)
+
+  ● Scheduler Tests › Test search bar
+
+    TestingLibraryElementError: Unable to find an element with the text: CLICK. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+    Ignored nodes: comments, script, style
+    [36m<body>[39m
+      [36m<div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"App"[39m
+        [36m>[39m
+          [36m<div>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"homepage"[39m
+            [36m>[39m
+              [36m<div[39m
+                [33mclass[39m=[32m"homepage2"[39m
+              [36m>[39m
+                [0m [0m
+                [36m<h5[39m
+                  [33mclass[39m=[32m"welcome"[39m
+                [36m>[39m
+                  [0mWelcome to the Best Schedule Class Web[0m
+                [36m</h5>[39m
+                [36m<div>[39m
+                  [36m<div[39m
+                    [33mclass[39m=[32m"nameEntry"[39m
+                  [36m>[39m
+                    [36m<div[39m
+                      [33mclass[39m=[32m"input-group"[39m
+                    [36m>[39m
+                      [36m<input[39m
+                        [33mclass[39m=[32m"form-control"[39m
+                        [33mplaceholder[39m=[32m"Your Name"[39m
+                        [33mvalue[39m=[32m""[39m
+                      [36m/>[39m
+                      [36m<button[39m
+                        [33mclass[39m=[32m"ConfirmNameView"[39m
+                      [36m>[39m
+                        [0mConfirm[0m
+                      [36m</button>[39m
+                    [36m</div>[39m
+                  [36m</div>[39m
+                [36m</div>[39m
+              [36m</div>[39m
+            [36m</div>[39m
+          [36m</div>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+    [36m</body>[39m
+
+      172 |     test("Test search bar", () => {
+      173 |         expect(screen.getByText(/Best/i)).toBeInTheDocument();
+    > 174 |         const closeHomePage = screen.getByText("CLICK");
+          |                                      ^
+      175 |         userEvent.click(closeHomePage);
+      176 |
+      177 |         const switchToSeach = screen.getByText("Switch");
+
+      at Object.getElementError (node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/config.js:37:19)
+      at node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+      at node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+      at getByText (node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:95:19)
+      at Object.<anonymous> (src/App.test.tsx:174:38)
+
+----------------------|---------|----------|---------|---------|--------------------------
+File                  | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s        
+----------------------|---------|----------|---------|---------|--------------------------
+All files             |   33.46 |    22.85 |   20.21 |   33.99 |                          
+ src                  |   57.14 |     37.5 |    8.33 |    60.6 |                          
+  App.tsx             |   57.14 |     37.5 |    8.33 |    60.6 | 29-30,44-66,75,79,84,107 
+ src/components       |   29.72 |    20.96 |   21.95 |      30 |                          
+  AddCourse.tsx       |       0 |        0 |       0 |       0 | 19-88                    
+  AddtoSemester.tsx   |      40 |    33.33 |   33.33 |      40 | 22-23,28-35,56           
+  EditCourse.tsx      |      84 |    66.66 |   71.42 |      84 | 37,41,78-86              
+  IntroModal.tsx      |       0 |      100 |       0 |       0 | 11                       
+  Search.tsx          |    1.49 |        0 |       0 |    1.49 | 26-240                   
+  SemesterDisplay.tsx |    4.16 |        0 |       0 |    4.34 | 18-92                    
+  SemesterModal.tsx   |    4.54 |        0 |       0 |    4.76 | 18-96                    
+  SemsterList.tsx     |      20 |        0 |       0 |      20 | 25-49                    
+  SwitchPlan.tsx      |   33.33 |      100 |       0 |   33.33 | 20-32                    
+  courseTable.tsx     |   91.66 |       70 |   84.61 |   91.66 | 68,71,78                 
+ src/interfaces       |       0 |        0 |       0 |       0 |                          
+  course.ts           |       0 |        0 |       0 |       0 |                          
+  semester.ts         |       0 |        0 |       0 |       0 |                          
+----------------------|---------|----------|---------|---------|--------------------------
+Test Suites: 1 failed, 2 passed, 3 total
+Tests:       6 failed, 10 passed, 16 total
 Snapshots:   0 total
-Time:        5.798 s
+Time:        4.182 s
 Ran all test suites.
