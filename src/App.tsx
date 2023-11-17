@@ -39,9 +39,7 @@ function App(): JSX.Element {
 
     //render clear all button
     const [isDisplayEmpty, setDisplayEmpty] = useState(false);
-    const closeHome = () => {
-        setHomepage(false);
-    };
+
     const ConfirmName = () => {
         setrenderName(true);
         setNamefield(false);
