@@ -7,3 +7,11 @@ import { Button } from "react-bootstrap";
 interface MovableCourse {
     semesters: Semester[];
 }
+
+const MovableCourses = ({ semesters }: MovableCourse) => {
+    const [selectedCourse, setSelectedCourse] = useState<Course | null>(null);
+
+    const handleCourseSelection = (course: Course) => {
+        setSelectedCourse(course);
+    };
+};
