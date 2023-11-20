@@ -33,7 +33,7 @@ export const SemesterList = ({
                     (acc, iter) =>
                         acc +
                         iter.courses.reduce(
-                            (acc1, iter1) => acc1 + iter1.credits,
+                            (acc1, iter1) => acc1 + parseInt(iter1.credits),
                             0
                         ),
                     0

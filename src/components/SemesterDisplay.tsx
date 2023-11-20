@@ -36,7 +36,7 @@ export const SemesterDisplay = ({
         modifysemster(update);
         console.log(semester);
     };
-
+    // const handleSwicthCourse
     return (
         <div className="semester_view">
             <table>
@@ -48,10 +48,11 @@ export const SemesterDisplay = ({
                         <th>
                             Total:{" "}
                             {semester.courses.reduce(
-                                (acc, iter) => acc + iter.credits,
+                                (acc, iter) => acc + parseInt(iter.credits),
                                 0
                             )}
                         </th>
+                        <th>Switch Course</th>
                         {semester.courses.length !== 0 && (
                             <th>
                                 {" "}
@@ -75,11 +76,17 @@ export const SemesterDisplay = ({
                             </td>
                             <td> {course.credits}</td>
                             <td>
+                                <button
+                                // onClick={() => handleSwicthCourse(course)}
+                                >
+                                    Switch
+                                </button>
+                            </td>
+                            <td>
                                 {" "}
                                 <Button
                                     variant="danger"
                                     onClick={() => deleteCourseFunc(course)}
-                                    className=""
                                 >
                                     x
                                 </Button>

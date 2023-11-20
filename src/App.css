@@ -199,6 +199,7 @@
     font-size: 32px;
     max-height: 300px;
     overflow-y: auto;
+    overflow-x: hidden;
 }
 .eachCourseinDropDown {
     border: 1px solid #000000;
@@ -216,10 +217,31 @@
 }
 .eachCourseButton {
     font-size: 30px;
+    width: 361.5px;
 }
 .eachCourseButton:hover {
     background-color: rgb(0, 174, 255);
 }
 .WholeSearch {
     margin-bottom: 600px;
+}
+table {
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+table,
+th,
+td {
+    border: 1px solid black;
+}
+
+th,
+td {
+    padding: 8px 12px;
+}
+
+th {
+    background-color: rgb(40, 151, 170);
+    text-align: left;
 }

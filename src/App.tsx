@@ -12,8 +12,8 @@ import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import logo1 from "./pictures/udlogo2.jpg";
 import { AddCourse } from "./components/AddCourse";
-import CoursesTable from "./components/courseTable";
-import Courses from "./data/course.json";
+// import CoursesTable from "./components/courseTable";
+import Courses from "./data/CourseList.json";
 import { Course } from "./interfaces/course";
 import Search from "./components/Search";
 // import { text } from "body-parser";
@@ -139,16 +139,16 @@ function App(): JSX.Element {
                                 <br />
                                 <br />
                                 <br />
-                                <button
+                                {/* <button
                                     className="SwichButton"
                                     onClick={handleSwitch}
                                 >
                                     Switch
-                                </button>
+                                </button> */}
                                 <br />
                                 <br />
                                 <br />
-                                {Swicth ? (
+                                {
                                     <span>
                                         <Search
                                             ModifiedCourseList={
@@ -160,43 +160,7 @@ function App(): JSX.Element {
                                             setSemester={setSemester}
                                         ></Search>
                                     </span>
-                                ) : (
-                                    <div style={{ textAlign: "left" }}>
-                                        <span className="modifyCourseList">
-                                            {" "}
-                                            CoursesList{" "}
-                                        </span>
-                                        <Button
-                                            variant="primary"
-                                            onClick={openAddCourseWindow}
-                                        >
-                                            Add Course
-                                        </Button>
-                                        <CoursesTable
-                                            ModifiedCourseList={
-                                                ModifiedCourseList
-                                            }
-                                            onClose={closeAddCourseWindow}
-                                            listCourses={listCourses}
-                                            setListCourses={setListCourses}
-                                            semesters={semesters}
-                                            setSemester={setSemester}
-                                        />
-                                        {isAddCourseOpen && (
-                                            <div>
-                                                <AddCourse
-                                                    onClose={
-                                                        closeAddCourseWindow
-                                                    }
-                                                    listCourses={listCourses}
-                                                    setListCourses={
-                                                        setListCourses
-                                                    }
-                                                />
-                                            </div>
-                                        )}
-                                    </div>
-                                )}
+                                }
                             </Col>
                             <Col>
                                 <br />

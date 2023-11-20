@@ -1,7 +1,7 @@
 /* eslint-disable no-extra-parens */
 import React, { useState } from "react";
 import { Course } from "../interfaces/course";
-import courses from "../data/course.json";
+import courses from "../data/CourseList.json";
 import { Button } from "react-bootstrap";
 import { Semester } from "../interfaces/semester";
 import { AddtoSemester } from "./AddtoSemester";
@@ -51,10 +51,12 @@ const Search = ({
     const [selectedCourse, setselectedCourse] = useState<Course>({
         code: "",
         name: "",
-        description: "",
-        credits: 0,
-        preReq: [],
-        coreReq: []
+        descr: "",
+        credits: "",
+        preReq: "",
+        restrict: "",
+        breadth: "",
+        typ: ""
     });
     const closeAddSemester = () => {
         SetAddSemester(false);
@@ -105,7 +107,8 @@ const Search = ({
     //filter the course user type in
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const theText = e.target.value;
-        const upperText = theText.toUpperCase();
+        const trimmedText = theText.trim();
+        const upperText = trimmedText.toUpperCase();
         setText(upperText);
         const filteritems = ModifiedCourseList.filter((course) =>
             course.code.includes(upperText)
@@ -153,9 +156,10 @@ const Search = ({
                                     onClick={() => handleClickCourse(course)}
                                     className="eachCourseButton"
                                 >
+                                    {" "}
                                     {course.code}
                                     {"-"}
-                                    {course.name}
+                                    {course.name}{" "}
                                 </button>
                             </div>
                         )
@@ -212,7 +216,7 @@ const Search = ({
                     <div>
                         {" "}
                         {"Course description: "}
-                        {listCourses[courseIndex].description}
+                        {listCourses[courseIndex].descr}
                     </div>
                     <br />
                     {/* {isAddCourseButton && ( */}

@@ -19,23 +19,25 @@ export function AddCourse({
     const [code, setCode] = useState("");
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
-    const [credits, setCredits] = useState(0);
+    const [credits, setCredits] = useState("");
     const [isAdded, setAdded] = useState(false);
     const handleConfirm = () => {
         const courseObject = {
-            code: code,
-            name: name,
-            description: description,
-            credits: credits,
-            preReq: [],
-            coreReq: []
+            code: "",
+            name: "",
+            descr: "",
+            credits: "",
+            preReq: "",
+            restrict: "",
+            breadth: "",
+            typ: ""
         };
         const indexCourse = listCourses.findIndex(
             (course) =>
                 courseObject.code === course.code &&
                 courseObject.name === course.name &&
-                courseObject.credits === course.credits &&
-                courseObject.description === course.description
+                parseInt(courseObject.credits) === parseInt(course.credits) &&
+                courseObject.descr === course.descr
         );
         if (indexCourse !== -1) {
             setAdded(true);
@@ -83,9 +85,9 @@ export function AddCourse({
                     <Form.Group controlId="credits">
                         <Form.Label>Credits</Form.Label>
                         <Form.Control
-                            type="text"
+                            type="number"
                             value={credits}
-                            onChange={(e) => setCredits(Number(e.target.value))}
+                            onChange={(e) => setCredits(e.target.value)}
                         />
                     </Form.Group>
                 </Form>
