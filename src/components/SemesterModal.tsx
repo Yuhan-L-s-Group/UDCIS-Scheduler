@@ -1,7 +1,7 @@
-/* eslint-disable no-extra-parens */
 import React, { useState } from "react";
 import { Button, Modal, Col, Form, Container, Row } from "react-bootstrap";
 import { Season, Semester } from "../interfaces/semester";
+
 //The adding semester modal when user clicks add new semester it pops up
 export const AddSemesterModal = ({
     showAddSemester,
@@ -75,11 +75,13 @@ export const AddSemesterModal = ({
                                         value={year}
                                         onChange={updateYear}
                                     >
-                                        {years.map((year: number) => (
-                                            <option key={year} value={year}>
-                                                {year}
-                                            </option>
-                                        ))}
+                                        {years.map((year: number) => {
+                                            return (
+                                                <option key={year} value={year}>
+                                                    {year}
+                                                </option>
+                                            );
+                                        })}
                                     </Form.Select>
                                 </Col>
                                 <p id="alert">{warn}</p>

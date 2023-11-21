@@ -16,6 +16,9 @@ import { AddCourse } from "./components/AddCourse";
 import Courses from "./data/CourseList.json";
 import { Course } from "./interfaces/course";
 import Search from "./components/Search";
+import { AddPlanModal } from "./components/AddPlanModal";
+import { Concentration, DegreePlan } from "./interfaces/degreePlan";
+
 // import { text } from "body-parser";
 function App(): JSX.Element {
     //for Intro
@@ -30,6 +33,15 @@ function App(): JSX.Element {
         setDisplayEmpty(true);
     };
     const handleCloseModal = () => setAddSemester(false);
+
+    //for add degree button
+    const [showAddPlan, setAddPlan] = useState(false);
+    const [degreePlan, setPlan] = useState<DegreePlan[]>([]);
+    const handleShowPlanModal = () => {
+        setAddPlan(true);
+    };
+    const handleClosePlanmModal = () => setAddPlan(false);
+
     //for store user's name
     const [Name, setName] = useState("");
     const [renderName, setrenderName] = useState(false);
@@ -53,6 +65,17 @@ function App(): JSX.Element {
                 season: season,
                 year: year,
                 courses: []
+            }
+        ]);
+    }
+
+    function addNewPlan(name: string, concentration: Concentration) {
+        setPlan([
+            ...degreePlan,
+            {
+                name: name,
+                concentration: concentration,
+                semesters: []
             }
         ]);
     }
@@ -130,8 +153,19 @@ function App(): JSX.Element {
                         <img src={logo1} alt="ud logo1" className="udlogo1" />
                     </header>
                     <br />
-
+                    <Button
+                        className="add_plan_button"
+                        onClick={handleShowPlanModal}
+                    >
+                        New Degree Plan
+                    </Button>
                     <SwitchPlan></SwitchPlan>
+                    <AddPlanModal
+                        show={showAddPlan}
+                        handleClose={handleClosePlanmModal}
+                        addPlan={addNewPlan}
+                        degreePlans={degreePlan}
+                    ></AddPlanModal>
                     <Container>
                         <Row>
                             <Col>
