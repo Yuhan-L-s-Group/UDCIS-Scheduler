@@ -76,6 +76,7 @@ function App(): JSX.Element {
                 name: name,
                 concentration: concentration,
                 semesters: []
+                //credit: 0
             }
         ]);
     }
