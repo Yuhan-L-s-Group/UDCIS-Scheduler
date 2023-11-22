@@ -73,7 +73,7 @@ export function AddCourse({
                         />
                     </Form.Group>
                     <Form.Group controlId="name">
-                        <Form.Label>Name</Form.Label>
+                        <Form.Label>Name:</Form.Label>
                         <Form.Control
                             type="text"
                             value={name}
@@ -81,7 +81,7 @@ export function AddCourse({
                         />
                     </Form.Group>
                     <Form.Group controlId="description">
-                        <Form.Label>Description</Form.Label>
+                        <Form.Label>Description:</Form.Label>
                         <Form.Control
                             type="text"
                             value={description}
@@ -89,11 +89,19 @@ export function AddCourse({
                         />
                     </Form.Group>
                     <Form.Group controlId="credits">
-                        <Form.Label>Credits</Form.Label>
+                        <Form.Label>Credits:</Form.Label>
                         <Form.Control
                             type="number"
                             value={credits}
                             onChange={(e) => setCredits(e.target.value)}
+                        />
+                    </Form.Group>
+                    <Form.Group controlId="breadth">
+                        <Form.Label>Breadth Requirements:</Form.Label>
+                        <Form.Control
+                            type="text"
+                            value={description}
+                            onChange={(e) => setDescription(e.target.value)}
                         />
                     </Form.Group>
                 </Form>

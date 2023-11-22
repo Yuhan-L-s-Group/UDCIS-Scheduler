@@ -41,6 +41,23 @@ export const DegreePlanDetail = ({
         ]);
     }
 
+    setNewQuiz({
+        ...newQuiz,
+        questionList: [
+            ...newQuiz.questionList,
+            {
+                id: newQuiz.questionList.length,
+                body: "Example Question",
+                type: "short_answer_question",
+                options: [],
+                submission: "",
+                expected: "Example Answer",
+                points: 1,
+                published: false
+            }
+        ]
+    });
+
     return (
         <div>
             <Button className="add_button" onClick={handleShowModal}>
