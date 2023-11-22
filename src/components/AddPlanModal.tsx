@@ -19,8 +19,8 @@ export const AddPlanModal = ({
     );
     const [warn, setWarn] = useState<string>("");
 
-    const saveChanges = (): void => {
-        if (degreePlans.filter((plan) => plan.name === name)) {
+    const savePlan = (): void => {
+        if (degreePlans.filter((plan) => plan.name === name).length > 0) {
             setWarn("Please enter a different name for your degree plan!");
         } else {
             addPlan(name, concentration);
@@ -83,12 +83,13 @@ export const AddPlanModal = ({
                         onClick={() => {
                             setName("Default Degree Plan");
                             setConcentration("Bachelor of Science");
+                            setWarn("");
                             handleClose();
                         }}
                     >
                         Close
                     </Button>
-                    <Button variant="primary" onClick={saveChanges}>
+                    <Button variant="primary" onClick={savePlan}>
                         Save
                     </Button>
                 </Modal.Footer>

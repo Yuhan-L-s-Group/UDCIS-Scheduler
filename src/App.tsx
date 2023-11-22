@@ -18,6 +18,7 @@ import { Course } from "./interfaces/course";
 import Search from "./components/Search";
 import { AddPlanModal } from "./components/AddPlanModal";
 import { Concentration, DegreePlan } from "./interfaces/degreePlan";
+import { PoolList } from "./components/PoolList";
 
 // import { text } from "body-parser";
 function App(): JSX.Element {
@@ -36,11 +37,11 @@ function App(): JSX.Element {
 
     //for add degree button
     const [showAddPlan, setAddPlan] = useState(false);
-    const [degreePlan, setPlan] = useState<DegreePlan[]>([]);
+    const [degreePlans, setPlan] = useState<DegreePlan[]>([]);
     const handleShowPlanModal = () => {
         setAddPlan(true);
     };
-    const handleClosePlanmModal = () => setAddPlan(false);
+    const handleClosePlanModal = () => setAddPlan(false);
 
     //for store user's name
     const [Name, setName] = useState("");
@@ -51,6 +52,9 @@ function App(): JSX.Element {
 
     //render clear all button
     const [isDisplayEmpty, setDisplayEmpty] = useState(false);
+
+    //pool of courses
+    const [pool, setPool] = useState<Course[]>([]);
 
     const ConfirmName = () => {
         setrenderName(true);
@@ -71,7 +75,7 @@ function App(): JSX.Element {
 
     function addNewPlan(name: string, concentration: Concentration) {
         setPlan([
-            ...degreePlan,
+            ...degreePlans,
             {
                 name: name,
                 concentration: concentration,
@@ -107,6 +111,15 @@ function App(): JSX.Element {
     const handleSwitch = () => {
         setSwicth(!Swicth);
     };
+
+    const printAll = () => {
+        console.log(degreePlans);
+    };
+
+    const printPool = () => {
+        console.log(pool);
+    };
+
     return (
         <div className="App">
             {isHomepage ? (
@@ -160,12 +173,15 @@ function App(): JSX.Element {
                     >
                         New Degree Plan
                     </Button>
+                    {renderName && <div className="name"> Hi! {Name}</div>}
+                    <Button onClick={printAll}>Print</Button>
+                    <Button onClick={printPool}>Print Pool</Button>
                     <SwitchPlan></SwitchPlan>
                     <AddPlanModal
                         show={showAddPlan}
-                        handleClose={handleClosePlanmModal}
+                        handleClose={handleClosePlanModal}
                         addPlan={addNewPlan}
-                        degreePlans={degreePlan}
+                        degreePlans={degreePlans}
                     ></AddPlanModal>
                     <Container>
                         <Row>
@@ -193,9 +209,12 @@ function App(): JSX.Element {
                                             setListCourses={setListCourses}
                                             semesters={semesters}
                                             setSemester={setSemester}
+                                            pool={pool}
+                                            setPool={setPool}
                                         ></Search>
                                     </span>
                                 }
+                                <PoolList pool={pool}></PoolList>
                             </Col>
                             <Col>
                                 <br />
@@ -207,7 +226,6 @@ function App(): JSX.Element {
                                 </Button>
                                 <SemesterList
                                     semesters={semesters}
-                                    Name={Name}
                                     renderName={renderName}
                                     modifysemster={modifysemster}
                                     isDisplayEmpty={isDisplayEmpty}

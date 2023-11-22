@@ -39,7 +39,7 @@ export const DegreePlanCard = ({
                 </h3>
                 <p>Total credits: {totalCredit(semesters)}</p>
             </div>
-            <p>{degreePlan.concentration}</p>
+            <p>Concentration: {degreePlan.concentration}</p>
         </div>
     );
 };

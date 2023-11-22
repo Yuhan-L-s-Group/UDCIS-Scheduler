@@ -15,13 +15,17 @@ interface SearchProps {
     ModifiedCourseList: Course[];
     semesters: Semester[];
     setSemester: React.Dispatch<React.SetStateAction<Semester[]>>;
+    pool: Course[];
+    setPool: (courses: Course[]) => void;
 }
 const Search = ({
     listCourses,
     setListCourses,
     ModifiedCourseList,
     semesters,
-    setSemester
+    setSemester,
+    pool,
+    setPool
 }: SearchProps) => {
     const [text, setText] = useState<string>("");
     const [courseIndex, setcourseIndex] = useState<number>(0);
@@ -189,6 +193,8 @@ const Search = ({
                         onClose={closeAddCourseWindow}
                         listCourses={listCourses}
                         setListCourses={setListCourses}
+                        pool={pool}
+                        setPool={setPool}
                     />
                 </div>
             )}

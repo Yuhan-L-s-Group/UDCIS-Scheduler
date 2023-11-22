@@ -9,12 +9,16 @@ interface AddCourseWindowProps {
     onClose: () => void;
     listCourses: Course[];
     setListCourses: (courses: Course[]) => void;
+    pool: Course[];
+    setPool: (courses: Course[]) => void;
 }
 
 export function AddCourse({
     onClose,
     listCourses,
-    setListCourses
+    setListCourses,
+    pool,
+    setPool
 }: AddCourseWindowProps) {
     const [code, setCode] = useState("");
     const [name, setName] = useState("");
@@ -23,10 +27,10 @@ export function AddCourse({
     const [isAdded, setAdded] = useState(false);
     const handleConfirm = () => {
         const courseObject = {
-            code: "",
-            name: "",
+            code: code,
+            name: name,
             descr: "",
-            credits: "",
+            credits: credits,
             preReq: "",
             restrict: "",
             breadth: "",
@@ -42,9 +46,11 @@ export function AddCourse({
         if (indexCourse !== -1) {
             setAdded(true);
         } else {
-            const updated = [...listCourses];
+            //const updated = [...listCourses];
+            const updated = [...pool];
             updated.push(courseObject);
-            setListCourses(updated);
+            //setListCourses(updated);
+            setPool(updated);
             onClose();
         }
         console.log(indexCourse);
