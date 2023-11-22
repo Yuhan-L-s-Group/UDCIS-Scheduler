@@ -95,13 +95,17 @@ export const SemesterDisplay = ({
                     ))}
                     {
                         <tr>
-                            <button
-                                onClick={() => deleteWholeSemester(semester)}
-                                className="deleteEntireSemesterView"
-                            >
-                                {" "}
-                                Delete Entire Semester
-                            </button>
+                            <td colSpan={4}>
+                                <button
+                                    onClick={() =>
+                                        deleteWholeSemester(semester)
+                                    }
+                                    className="deleteEntireSemesterView"
+                                >
+                                    {" "}
+                                    Delete Entire Semester
+                                </button>
+                            </td>
                         </tr>
                     }
                 </tbody>
