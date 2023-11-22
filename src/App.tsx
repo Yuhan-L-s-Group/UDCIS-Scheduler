@@ -5,9 +5,7 @@ import "./App.css";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { IntroModal } from "./components/IntroModal";
 import { SwitchPlan } from "./components/SwitchPlan";
-import { AddSemesterModal } from "./components/SemesterModal";
 import { Season, Semester } from "./interfaces/semester";
-import { SemesterList } from "./components/SemsterList";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import logo1 from "./pictures/udlogo2.jpg";
@@ -27,13 +25,13 @@ function App(): JSX.Element {
     const handleClose = () => setShowIntro(false);
 
     //for add semester button
-    const [showAddSemester, setAddSemester] = useState(false);
+    /* const [showAddSemester, setAddSemester] = useState(false);
     const [semesters, setSemester] = useState<Semester[]>([]);
     const handleShowModal = () => {
         setAddSemester(true);
         setDisplayEmpty(true);
     };
-    const handleCloseModal = () => setAddSemester(false);
+    const handleCloseModal = () => setAddSemester(false); */
 
     //for add degree button
     const [showAddPlan, setAddPlan] = useState(false);
@@ -51,7 +49,7 @@ function App(): JSX.Element {
     const [isHomepage, setHomepage] = useState(true);
 
     //render clear all button
-    const [isDisplayEmpty, setDisplayEmpty] = useState(false);
+    //const [isDisplayEmpty, setDisplayEmpty] = useState(false);
 
     //pool of courses
     const [pool, setPool] = useState<Course[]>([]);
@@ -61,17 +59,6 @@ function App(): JSX.Element {
         setNamefield(false);
         setHomepage(false);
     };
-
-    function addNewSemester(year: number, season: Season) {
-        setSemester([
-            ...semesters,
-            {
-                season: season,
-                year: year,
-                courses: []
-            }
-        ]);
-    }
 
     function addNewPlan(name: string, concentration: Concentration) {
         setPlan([
@@ -85,14 +72,14 @@ function App(): JSX.Element {
         ]);
     }
 
-    function clearSemester() {
+    /* function clearSemester() {
         setSemester([]);
         setDisplayEmpty(false);
     }
 
     function modifysemster(semester: Semester[]) {
         setSemester(semester);
-    }
+    } */
     //for render course list
     const [isAddCourseOpen, setAddCourseOpen] = useState(false);
     const [listCourses, setListCourses] = useState<Course[]>(Courses);
@@ -167,22 +154,10 @@ function App(): JSX.Element {
                         <img src={logo1} alt="ud logo1" className="udlogo1" />
                     </header>
                     <br />
-                    <Button
-                        className="add_plan_button"
-                        onClick={handleShowPlanModal}
-                    >
-                        New Degree Plan
-                    </Button>
                     {renderName && <div className="name"> Hi! {Name}</div>}
                     <Button onClick={printAll}>Print</Button>
                     <Button onClick={printPool}>Print Pool</Button>
                     <SwitchPlan></SwitchPlan>
-                    <AddPlanModal
-                        show={showAddPlan}
-                        handleClose={handleClosePlanModal}
-                        addPlan={addNewPlan}
-                        degreePlans={degreePlans}
-                    ></AddPlanModal>
                     <Container>
                         <Row>
                             <Col>
@@ -219,28 +194,17 @@ function App(): JSX.Element {
                             <Col>
                                 <br />
                                 <Button
-                                    className="add_button"
-                                    onClick={handleShowModal}
+                                    className="add_plan_button"
+                                    onClick={handleShowPlanModal}
                                 >
-                                    Add New Semester
+                                    New Degree Plan
                                 </Button>
-                                <SemesterList
-                                    semesters={semesters}
-                                    renderName={renderName}
-                                    modifysemster={modifysemster}
-                                    isDisplayEmpty={isDisplayEmpty}
-                                    clearSemester={clearSemester}
-                                ></SemesterList>
-                                <br />
-
-                                <br />
-
-                                <AddSemesterModal
-                                    showAddSemester={showAddSemester}
-                                    handleClose={handleCloseModal}
-                                    addSemester={addNewSemester}
-                                    semesters={semesters}
-                                ></AddSemesterModal>
+                                <AddPlanModal
+                                    show={showAddPlan}
+                                    handleClose={handleClosePlanModal}
+                                    addPlan={addNewPlan}
+                                    degreePlans={degreePlans}
+                                ></AddPlanModal>
                             </Col>
                         </Row>
                     </Container>
