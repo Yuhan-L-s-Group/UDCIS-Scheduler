@@ -6,14 +6,24 @@ import { Button } from "react-bootstrap";
 import "../App.css";
 // Display each individual semester
 // Addtionally it automatically caculates the each semester credits
+
+interface SemesterDisplayProps {
+    semester: Semester;
+    modifysemster: (semester: Semester[]) => void;
+    semesters: Semester[];
+    handleCourseMove: (course: Course, targetSemesterId: string) => void; // 添加这行
+}
+
 export const SemesterDisplay = ({
     semester,
     modifysemster,
-    semesters
+    semesters,
+    handleCourseMove
 }: {
     semester: Semester;
     modifysemster: (semester: Semester[]) => void;
     semesters: Semester[];
+    handleCourseMove: (course: Course, targetSemesterId: string) => void;
 }): JSX.Element => {
     const deleteCourseFunc = (course: Course) => {
         const indexC = semester.courses.findIndex(
@@ -43,19 +53,18 @@ export const SemesterDisplay = ({
                 <thead>
                     <tr>
                         <th>
-                            Semster: {semester.season} {semester.year}
+                            Semester: {semester.season} {semester.year}
                         </th>
                         <th>
                             Total:{" "}
                             {semester.courses.reduce(
-                                (acc, iter) => acc + parseInt(iter.credits),
+                                (acc, iter) => acc + parseInt(iter.credits, 10),
                                 0
                             )}
                         </th>
                         <th>Switch Course</th>
                         {semester.courses.length !== 0 && (
                             <th>
-                                {" "}
                                 <button
                                     className="emeptySemester"
                                     onClick={() => EmptySemester(semester)}
@@ -70,20 +79,27 @@ export const SemesterDisplay = ({
                     {semester.courses.map((course) => (
                         <tr key={course.code + course.name}>
                             <td>
-                                {course.code}
-                                {" - "}
-                                {course.name}
+                                {course.code} - {course.name}
                             </td>
-                            <td> {course.credits}</td>
+                            <td>{course.credits}</td>
                             <td>
-                                <button
-                                // onClick={() => handleSwicthCourse(course)}
+                                <select
+                                    onChange={(e) =>
+                                        handleCourseMove(course, e.target.value)
+                                    }
                                 >
-                                    Switch
-                                </button>
+                                    <option value="">Move to...</option>
+                                    {semesters.map((s) => (
+                                        <option
+                                            key={s.season + s.year}
+                                            value={s.season + s.year}
+                                        >
+                                            {s.season} {s.year}
+                                        </option>
+                                    ))}
+                                </select>
                             </td>
                             <td>
-                                {" "}
                                 <Button
                                     variant="danger"
                                     onClick={() => deleteCourseFunc(course)}
@@ -93,17 +109,20 @@ export const SemesterDisplay = ({
                             </td>
                         </tr>
                     ))}
-                    {
+                    {semester.courses.length > 0 && (
                         <tr>
-                            <button
-                                onClick={() => deleteWholeSemester(semester)}
-                                className="deleteEntireSemesterView"
-                            >
-                                {" "}
-                                Delete Entire Semester
-                            </button>
+                            <td colSpan={4}>
+                                <button
+                                    onClick={() =>
+                                        deleteWholeSemester(semester)
+                                    }
+                                    className="deleteEntireSemesterView"
+                                >
+                                    Delete Entire Semester
+                                </button>
+                            </td>
                         </tr>
-                    }
+                    )}
                 </tbody>
             </table>
         </div>
