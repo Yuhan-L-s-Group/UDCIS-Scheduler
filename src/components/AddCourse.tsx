@@ -24,6 +24,7 @@ export function AddCourse({
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [credits, setCredits] = useState("");
+    const [breadth, setBreadth] = useState("");
     const [isAdded, setAdded] = useState(false);
     const handleConfirm = () => {
         const courseObject = {
@@ -33,7 +34,7 @@ export function AddCourse({
             credits: credits,
             preReq: "",
             restrict: "",
-            breadth: "",
+            breadth: breadth,
             typ: ""
         };
         const indexCourse = listCourses.findIndex(
@@ -55,6 +56,9 @@ export function AddCourse({
         }
         console.log(indexCourse);
     };
+    function updateBreadth(event: React.ChangeEvent<HTMLSelectElement>) {
+        setBreadth(event.target.value);
+    }
 
     return (
         <Modal show={true} onHide={onClose}>
@@ -65,7 +69,7 @@ export function AddCourse({
             <Modal.Body>
                 <Form>
                     <Form.Group>
-                        <Form.Label>Code</Form.Label>
+                        <Form.Label>Code:</Form.Label>
                         <Form.Control
                             type="text"
                             value={code}
@@ -73,7 +77,7 @@ export function AddCourse({
                         />
                     </Form.Group>
                     <Form.Group controlId="name">
-                        <Form.Label>Name</Form.Label>
+                        <Form.Label>Name:</Form.Label>
                         <Form.Control
                             type="text"
                             value={name}
@@ -81,7 +85,7 @@ export function AddCourse({
                         />
                     </Form.Group>
                     <Form.Group controlId="description">
-                        <Form.Label>Description</Form.Label>
+                        <Form.Label>Description:</Form.Label>
                         <Form.Control
                             type="text"
                             value={description}
@@ -89,12 +93,30 @@ export function AddCourse({
                         />
                     </Form.Group>
                     <Form.Group controlId="credits">
-                        <Form.Label>Credits</Form.Label>
+                        <Form.Label>Credits:</Form.Label>
                         <Form.Control
                             type="number"
                             value={credits}
                             onChange={(e) => setCredits(e.target.value)}
                         />
+                    </Form.Group>
+                    <Form.Group controlId="breadth">
+                        <Form.Label>Breadth Requirements:</Form.Label>
+                        <Form.Select value={breadth} onChange={updateBreadth}>
+                            {[
+                                "Creative Arts and Humanities",
+                                "History and Cultural Change",
+                                "Social and Behavioral Sciences",
+                                "Math, Natural Science and Technology",
+                                "N/A"
+                            ].map((breadth: string) => {
+                                return (
+                                    <option key={breadth} value={breadth}>
+                                        {breadth}
+                                    </option>
+                                );
+                            })}
+                        </Form.Select>
                     </Form.Group>
                 </Form>
             </Modal.Body>
