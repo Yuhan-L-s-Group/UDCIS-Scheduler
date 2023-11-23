@@ -62,7 +62,7 @@ export const DegreePlanDetail = ({
                 Add New Semester
             </Button>
             <SemesterList
-                semesters={degreePlan.semesters}
+                semesters={newDegreePlan.semesters}
                 modifysemster={modifysemster}
                 isDisplayEmpty={isDisplayEmpty}
                 clearSemester={clearSemester}
@@ -73,9 +73,8 @@ export const DegreePlanDetail = ({
                 showAddSemester={showAddSemester}
                 handleClose={handleCloseModal}
                 addSemester={addNewSemester}
-                semesters={degreePlan.semesters}
+                semesters={newDegreePlan.semesters}
             ></AddSemesterModal>
-            ;
         </div>
     );
 };
