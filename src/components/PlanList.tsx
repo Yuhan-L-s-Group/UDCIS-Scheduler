@@ -17,7 +17,7 @@ export const PlanList = ({
         setDisplayId(id);
     };
 
-    const resetQuizView = () => {
+    const resetView = () => {
         setDisplayId(null);
     };
 
@@ -35,9 +35,6 @@ export const PlanList = ({
                             ></DegreePlanCard>
                         );
                     })}
-                    <Button className="add_btn" onClick={showModal}>
-                        Add New Quiz
-                    </Button>
                 </>
             )}
             {degreePlans.map((degreePlan: DegreePlan): JSX.Element | null => {
@@ -46,6 +43,7 @@ export const PlanList = ({
                         <DegreePlanDetail
                             key={degreePlan.name}
                             degreePlan={degreePlan}
+                            resetView={resetView}
                         ></DegreePlanDetail>
                     );
                 }
