@@ -17,6 +17,7 @@ import Search from "./components/Search";
 import { AddPlanModal } from "./components/AddPlanModal";
 import { Concentration, DegreePlan } from "./interfaces/degreePlan";
 import { PoolList } from "./components/PoolList";
+import { PlanList } from "./components/PlanList";
 
 // import { text } from "body-parser";
 function App(): JSX.Element {
@@ -176,7 +177,7 @@ function App(): JSX.Element {
                                 <br />
                                 {
                                     <span>
-                                        <Search
+                                        {/*<Search
                                             ModifiedCourseList={
                                                 ModifiedCourseList
                                             }
@@ -186,13 +187,17 @@ function App(): JSX.Element {
                                             setSemester={setSemester}
                                             pool={pool}
                                             setPool={setPool}
-                                        ></Search>
+                                        ></Search>*/}
                                     </span>
                                 }
                                 <PoolList pool={pool}></PoolList>
                             </Col>
                             <Col>
                                 <br />
+                                <PlanList
+                                    degreePlans={degreePlans}
+                                    showModal={handleShowPlanModal}
+                                ></PlanList>
                                 <Button
                                     className="add_plan_button"
                                     onClick={handleShowPlanModal}

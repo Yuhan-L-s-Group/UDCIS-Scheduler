@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
-import { Semester } from "../interfaces/semester";
+import { Semester, Season } from "../interfaces/semester";
 import { DegreePlan } from "../interfaces/degreePlan";
 import { AddSemesterModal } from "./SemesterModal";
 import { SemesterList } from "./SemsterList";
@@ -8,12 +8,12 @@ import { SemesterList } from "./SemsterList";
 //import "./css";
 
 export const DegreePlanDetail = ({
-    //degreePlan
+    degreePlan
 }: {
-    //degreePlan: DegreePlan[];
+    degreePlan: DegreePlan;
 }) => {
+    const [newDegreePlan, setNewPlan] = useState<DegreePlan>({ ...degreePlan });
     const [showAddSemester, setAddSemester] = useState(false);
-    const [semesters, setSemester] = useState<Semester[]>([]);
     const [isDisplayEmpty, setDisplayEmpty] = useState(false);
     const handleShowModal = () => {
         setAddSemester(true);
@@ -22,41 +22,30 @@ export const DegreePlanDetail = ({
     const handleCloseModal = () => setAddSemester(false);
 
     function clearSemester() {
-        setSemester([]);
+        setNewPlan({
+            ...newDegreePlan,
+            semesters: []
+        });
         setDisplayEmpty(false);
     }
 
     function modifysemster(semester: Semester[]) {
-        setSemester(semester);
+        //setSemester(semester);
     }
 
     function addNewSemester(year: number, season: Season) {
-        setSemester([
-            ...semesters,
-            {
-                season: season,
-                year: year,
-                courses: []
-            }
-        ]);
+        setNewPlan({
+            ...newDegreePlan,
+            semesters: [
+                ...newDegreePlan.semesters,
+                {
+                    season: season,
+                    year: year,
+                    courses: []
+                }
+            ]
+        });
     }
-
-    setNewQuiz({
-        ...newQuiz,
-        questionList: [
-            ...newQuiz.questionList,
-            {
-                id: newQuiz.questionList.length,
-                body: "Example Question",
-                type: "short_answer_question",
-                options: [],
-                submission: "",
-                expected: "Example Answer",
-                points: 1,
-                published: false
-            }
-        ]
-    });
 
     return (
         <div>
@@ -64,7 +53,7 @@ export const DegreePlanDetail = ({
                 Add New Semester
             </Button>
             <SemesterList
-                semesters={semesters}
+                semesters={degreePlan.semesters}
                 modifysemster={modifysemster}
                 isDisplayEmpty={isDisplayEmpty}
                 clearSemester={clearSemester}
@@ -75,7 +64,7 @@ export const DegreePlanDetail = ({
                 showAddSemester={showAddSemester}
                 handleClose={handleCloseModal}
                 addSemester={addNewSemester}
-                semesters={semesters}
+                semesters={degreePlan.semesters}
             ></AddSemesterModal>
             ;
         </div>
