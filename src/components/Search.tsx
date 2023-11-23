@@ -28,12 +28,14 @@ const Search = ({
     const [isAddSemesterOpen, SetAddSemester] = useState(false);
     const [ErrorMessage, setError] = useState(false);
     const [ErrorMessage2, setError2] = useState(false);
-    const [isCoursePool, setCoursePool] = useState(false);
+    const [isCourseBar, setCourseBar] = useState(false);
     const [isEditCourseOpen, setEditCourseOpen] = useState(false);
     const [isAddCourseOpen, setAddCourseOpen] = useState(false);
     const [filterCourses, setfilterCourses] = useState<Course[]>();
     const [isDropdown, setDropDown] = useState(false);
-    const [countEdit, setCountEdit] = useState(0);
+    const [countTool, setCount] = useState(0);
+    const [coursePool, setCoursePool] = useState<Course[]>([]);
+    const [isCoursePool, setIsCoursePool] = useState(false);
     const handleSearch = (text: string) => {
         const upperText = text.toUpperCase();
         const CourseIndex = ModifiedCourseList.findIndex(
@@ -44,11 +46,12 @@ const Search = ({
         } else {
             setcourseIndex(CourseIndex);
             // console.log(courses[CourseIndex]);
-            setCoursePool(true);
+            setCourseBar(true);
             setError2(false);
             setDropDown(false);
         }
-        setCountEdit(0);
+        setCount(0);
+        setIsCoursePool(true);
     };
     const [selectedCourse, setselectedCourse] = useState<Course>({
         code: "",
@@ -69,20 +72,19 @@ const Search = ({
     //handle click edit course
     const gotYouCourse = (text: string) => {
         const upperText = text.toUpperCase();
-        if (countEdit === 0) {
+        if (countTool === 0) {
             const indexCourse = ModifiedCourseList.findIndex(
                 (course) => upperText === course.code
             );
             setselectedCourse(ModifiedCourseList[indexCourse]);
-            setEditCourseOpen(true);
         } else {
             const indexCourse = ModifiedCourseList.findIndex(
                 (course) => listCourses[courseIndex].code === course.code
             );
             setselectedCourse(ModifiedCourseList[indexCourse]);
-            setEditCourseOpen(true);
         }
-        setCountEdit(1);
+        setEditCourseOpen(true);
+        setCount(1);
     };
     const gotYouCourse2 = (course: Course) => {
         setselectedCourse(course);
@@ -90,19 +92,35 @@ const Search = ({
     };
     const handleAddCourseToSemester = (text: string) => {
         const upperText = text.toUpperCase();
-        const indexCourse = ModifiedCourseList.findIndex(
-            (course) => upperText === course.code
-        );
-        const repeatedCourse = semesters.filter((semester) =>
-            semester.courses.includes(courses[indexCourse])
-        );
+        if (countTool === 0) {
+            const indexCourse = ModifiedCourseList.findIndex(
+                (course) => upperText === course.code
+            );
+            const repeatedCourse = semesters.filter((semester) =>
+                semester.courses.includes(ModifiedCourseList[indexCourse])
+            );
 
-        if (repeatedCourse.length !== 0) {
-            setError(true);
+            if (repeatedCourse.length !== 0) {
+                setError(true);
+            } else {
+                gotYouCourse2(ModifiedCourseList[indexCourse]);
+            }
         } else {
-            gotYouCourse2(ModifiedCourseList[indexCourse]);
+            const indexCourse = ModifiedCourseList.findIndex(
+                (course) => listCourses[courseIndex].code === course.code
+            );
+            const repeatedCourse = semesters.filter((semester) =>
+                semester.courses.includes(ModifiedCourseList[indexCourse])
+            );
+            if (repeatedCourse.length !== 0) {
+                setError(true);
+            } else {
+                gotYouCourse2(ModifiedCourseList[indexCourse]);
+            }
+            console.log(ModifiedCourseList[indexCourse]);
         }
-        console.log(selectedCourse);
+        console.log(ModifiedCourseList);
+
         // console.log(indexCourse);
     };
     const closeEditCourse = () => {
@@ -132,6 +150,29 @@ const Search = ({
     //click course in the dropdown menu
     const handleClickCourse = (course: Course) => {
         setText(course.code);
+    };
+    // add courses from course bar into courses pool
+    const handleClickPool = () => {
+        const update = [...coursePool];
+        const indexCourse = ModifiedCourseList.findIndex(
+            (course) => listCourses[courseIndex].code === course.code
+        );
+        const repeatedCourse = coursePool.includes(listCourses[courseIndex]);
+        if (!repeatedCourse) {
+            update.push(ModifiedCourseList[indexCourse]);
+            setCoursePool(update);
+            console.log(update);
+        }
+        console.log(listCourses[courseIndex].code);
+    };
+    //delete courses from courses pool
+    const deletePool = (deleteCourse: Course) => {
+        const indexCourse = coursePool.findIndex(
+            (course) => deleteCourse.code === course.code
+        );
+        coursePool.splice(indexCourse, 1);
+        const update = [...coursePool];
+        setCoursePool(update);
     };
     return (
         <div className="WholeSearch">
@@ -206,8 +247,8 @@ const Search = ({
                 </div>
             )}
             <br />
-            {isCoursePool && ( //CoursePool
-                <div className="coursePool_box">
+            {isCourseBar && (
+                <div className="courseBar_box">
                     <div>
                         {"Course Code: "}
                         {listCourses[courseIndex].code}
@@ -233,12 +274,15 @@ const Search = ({
                     </div>
                     <br />
                     {/* {isAddCourseButton && ( */}
-                    <Button
+                    <Button variant="success" onClick={handleClickPool}>
+                        Add to Course Pool
+                    </Button>
+                    {/* <Button
                         variant="success"
                         onClick={() => handleAddCourseToSemester(text)}
                     >
                         Add to Semester
-                    </Button>
+                    </Button> */}
                     {/* )} */}
                     <div>
                         {isAddSemesterOpen ? ( // add course to semester list
@@ -301,6 +345,51 @@ const Search = ({
                             </div>
                         )}
                     </div>
+                </div>
+            )}
+            {isCoursePool && (
+                <div className="coursePool_box">
+                    <span className="Pool_Titile">{"Pool of Courses"}</span>
+                    <table>
+                        <thead>
+                            {" "}
+                            <tr>
+                                <th> Course Code</th>
+                                <th> Course Credits</th>
+                                <th> Add to Semester</th>
+                                <th> Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {coursePool.map((course) => (
+                                <tr key={course.code}>
+                                    {" "}
+                                    <td>{course.code}</td>
+                                    <td>{course.credits}</td>
+                                    <td>
+                                        {" "}
+                                        <Button
+                                            variant="success"
+                                            onClick={() =>
+                                                handleAddCourseToSemester(text)
+                                            }
+                                        >
+                                            Add to Semester
+                                        </Button>
+                                    </td>
+                                    <td>
+                                        {" "}
+                                        <Button
+                                            variant="danger"
+                                            onClick={() => deletePool(course)}
+                                        >
+                                            X
+                                        </Button>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
                 </div>
             )}
         </div>
