@@ -33,6 +33,7 @@ const Search = ({
     const [isAddCourseOpen, setAddCourseOpen] = useState(false);
     const [filterCourses, setfilterCourses] = useState<Course[]>();
     const [isDropdown, setDropDown] = useState(false);
+    const [countEdit, setCountEdit] = useState(0);
     const handleSearch = (text: string) => {
         const upperText = text.toUpperCase();
         const CourseIndex = ModifiedCourseList.findIndex(
@@ -47,6 +48,7 @@ const Search = ({
             setError2(false);
             setDropDown(false);
         }
+        setCountEdit(0);
     };
     const [selectedCourse, setselectedCourse] = useState<Course>({
         code: "",
@@ -64,13 +66,23 @@ const Search = ({
     const CloseError = () => {
         setError(false);
     };
+    //handle click edit course
     const gotYouCourse = (text: string) => {
         const upperText = text.toUpperCase();
-        const indexCourse = ModifiedCourseList.findIndex(
-            (course) => upperText === course.code
-        );
-        setselectedCourse(ModifiedCourseList[indexCourse]);
-        setEditCourseOpen(true);
+        if (countEdit === 0) {
+            const indexCourse = ModifiedCourseList.findIndex(
+                (course) => upperText === course.code
+            );
+            setselectedCourse(ModifiedCourseList[indexCourse]);
+            setEditCourseOpen(true);
+        } else {
+            const indexCourse = ModifiedCourseList.findIndex(
+                (course) => listCourses[courseIndex].code === course.code
+            );
+            setselectedCourse(ModifiedCourseList[indexCourse]);
+            setEditCourseOpen(true);
+        }
+        setCountEdit(1);
     };
     const gotYouCourse2 = (course: Course) => {
         setselectedCourse(course);
@@ -99,6 +111,7 @@ const Search = ({
 
     const openAddCourseWindow = () => {
         setAddCourseOpen(true);
+        console.log();
     };
 
     const closeAddCourseWindow = () => {

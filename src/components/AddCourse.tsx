@@ -23,10 +23,10 @@ export function AddCourse({
     const [isAdded, setAdded] = useState(false);
     const handleConfirm = () => {
         const courseObject = {
-            code: "",
-            name: "",
-            descr: "",
-            credits: "",
+            code: code,
+            name: name,
+            descr: description,
+            credits: credits,
             preReq: "",
             restrict: "",
             breadth: "",
