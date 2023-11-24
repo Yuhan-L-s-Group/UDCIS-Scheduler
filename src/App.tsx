@@ -16,6 +16,9 @@ import { AddCourse } from "./components/AddCourse";
 import Courses from "./data/CourseList.json";
 import { Course } from "./interfaces/course";
 import Search from "./components/Search";
+import DegreeManage from "./components/DegreeManage";
+import { Concentration, DegreePlan } from "./interfaces/degreePlan";
+import EditDegreePlan from "./components/EditDegreePlan";
 // import { text } from "body-parser";
 function App(): JSX.Element {
     //for Intro
@@ -83,6 +86,27 @@ function App(): JSX.Element {
     const handleSwitch = () => {
         setSwicth(!Swicth);
     };
+    //for degree plan modal
+    const [isDegreePlanOpen, setisDegreePlanOpen] = useState(false);
+    const handleClickAddDegreePlan = () => {
+        setisDegreePlanOpen(true);
+    };
+    const [degreeList, setDegreeList] = useState<DegreePlan[]>([]);
+    const [isAddDegreeButton, setIsaddDegreeButton] = useState(true);
+    // for rendering degree plan list
+    const [isDegreeList, setIsdegreeList] = useState(true);
+    // const [selectedDegreePlan, setSelectedDegreePlan] = useState<DegreePlan>({
+    //     name: "",
+    //     concentration: "" as Concentration,
+    //     semesters: []
+    // });
+    const [isEditDegreeOpen, setIsEditDegreeOpen] = useState(false);
+    const handleClickEdit = (selectedDegreePlan: DegreePlan) => {
+        setIsEditDegreeOpen(true);
+        setIsdegreeList(false);
+        setIsaddDegreeButton(false);
+    };
+    //pass selected degree plan to search
     return (
         <div className="App">
             {isHomepage ? (
@@ -93,9 +117,6 @@ function App(): JSX.Element {
                             <h5 className="welcome">
                                 Welcome to the Best Schedule Class Web
                             </h5>
-                            {/* <button onClick={closeHome} className="homebutton">
-                                CLICK
-                            </button> */}
                             <div>
                                 {isNameField && (
                                     <div className="nameEntry">
@@ -139,14 +160,6 @@ function App(): JSX.Element {
                                 <br />
                                 <br />
                                 <br />
-                                {/* <button
-                                    className="SwichButton"
-                                    onClick={handleSwitch}
-                                >
-                                    Switch
-                                </button> */}
-                                <br />
-                                <br />
                                 <br />
                                 {
                                     <span>
@@ -158,36 +171,99 @@ function App(): JSX.Element {
                                             setListCourses={setListCourses}
                                             semesters={semesters}
                                             setSemester={setSemester}
+                                            degreeList={degreeList}
+                                            setDegreeList={setDegreeList}
                                         ></Search>
                                     </span>
                                 }
                             </Col>
                             <Col>
                                 <br />
-                                <Button
-                                    className="add_button"
-                                    onClick={handleShowModal}
-                                >
-                                    Add New Semester
-                                </Button>
-                                <SemesterList
-                                    semesters={semesters}
-                                    Name={Name}
-                                    renderName={renderName}
-                                    modifysemster={modifysemster}
-                                    isDisplayEmpty={isDisplayEmpty}
-                                    clearSemester={clearSemester}
-                                ></SemesterList>
                                 <br />
-
                                 <br />
-
-                                <AddSemesterModal
-                                    showAddSemester={showAddSemester}
-                                    handleClose={handleCloseModal}
-                                    addSemester={addNewSemester}
-                                    semesters={semesters}
-                                ></AddSemesterModal>
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                {isAddDegreeButton && (
+                                    <Button onClick={handleClickAddDegreePlan}>
+                                        Add New Degree Plan
+                                    </Button>
+                                )}
+                                {isDegreePlanOpen && (
+                                    <div>
+                                        <DegreeManage
+                                            setisDegreePlanOpen={
+                                                setisDegreePlanOpen
+                                            }
+                                            degreeList={degreeList}
+                                            setDegreeList={setDegreeList}
+                                        />
+                                    </div>
+                                )}
+                                <br />
+                                <br />
+                                <br />
+                                {isDegreeList && (
+                                    <div className="semester_box">
+                                        <table>
+                                            <thead>
+                                                {" "}
+                                                <tr>
+                                                    <th>Degree Name</th>{" "}
+                                                    <th>Concentration</th>
+                                                    <th>Modify</th>
+                                                </tr>
+                                            </thead>
+                                            {degreeList.map((degreePlan) => (
+                                                <tr key={degreePlan.name}>
+                                                    <td> {degreePlan.name}</td>
+                                                    <td>
+                                                        {" "}
+                                                        {
+                                                            degreePlan.concentration
+                                                        }
+                                                    </td>
+                                                    <td>
+                                                        <button
+                                                            onClick={() =>
+                                                                handleClickEdit(
+                                                                    degreePlan
+                                                                )
+                                                            }
+                                                        >
+                                                            Edit
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            ))}
+                                        </table>
+                                    </div>
+                                )}
+                                {isEditDegreeOpen && (
+                                    <div>
+                                        <EditDegreePlan
+                                            isEditDegreeOpen={isEditDegreeOpen}
+                                            semesters={semesters}
+                                            Name={Name}
+                                            renderName={renderName}
+                                            modifysemster={modifysemster}
+                                            isDisplayEmpty={isDisplayEmpty}
+                                            clearSemester={clearSemester}
+                                            handleShowModal={handleShowModal}
+                                            showAddSemester={showAddSemester}
+                                            handleClose={handleCloseModal}
+                                            addSemester={addNewSemester}
+                                            setIsEditDegreeOpen={
+                                                setIsEditDegreeOpen
+                                            }
+                                            setIsdegreeList={setIsdegreeList}
+                                            setIsaddDegreeButton={
+                                                setIsaddDegreeButton
+                                            }
+                                        />
+                                    </div>
+                                )}
                             </Col>
                         </Row>
                     </Container>

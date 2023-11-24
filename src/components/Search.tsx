@@ -2,12 +2,14 @@
 import React, { useState } from "react";
 import { Course } from "../interfaces/course";
 import courses from "../data/CourseList.json";
-import { Button } from "react-bootstrap";
 import { Semester } from "../interfaces/semester";
 import { AddtoSemester } from "./AddtoSemester";
-import Modal from "react-bootstrap/Modal";
 import EditCourse from "./EditCourse";
 import { AddCourse } from "./AddCourse";
+import { Concentration, DegreePlan } from "../interfaces/degreePlan";
+// import AddCourseToDegreePlanModal from "./AddCourseToDegreePlanModal";
+import { Button, Modal, Col, Form, Container, Row } from "react-bootstrap";
+
 // Search course bar (switch 2)
 interface SearchProps {
     listCourses: Course[];
@@ -15,13 +17,16 @@ interface SearchProps {
     ModifiedCourseList: Course[];
     semesters: Semester[];
     setSemester: React.Dispatch<React.SetStateAction<Semester[]>>;
+    degreeList: DegreePlan[];
+    setDegreeList: React.Dispatch<React.SetStateAction<DegreePlan[]>>;
 }
 const Search = ({
     listCourses,
     setListCourses,
     ModifiedCourseList,
     semesters,
-    setSemester
+    setSemester,
+    degreeList
 }: SearchProps) => {
     const [text, setText] = useState<string>("");
     const [courseIndex, setcourseIndex] = useState<number>(0);
@@ -129,7 +134,6 @@ const Search = ({
 
     const openAddCourseWindow = () => {
         setAddCourseOpen(true);
-        console.log();
     };
 
     const closeAddCourseWindow = () => {
@@ -173,6 +177,48 @@ const Search = ({
         coursePool.splice(indexCourse, 1);
         const update = [...coursePool];
         setCoursePool(update);
+    };
+    // add course from course pool into degree plan
+
+    const [isCourseToDegreePlanOpen, setisCourseToDegreePlanOpen] =
+        useState(false);
+    const [theCourse, setTheCourse] = useState({
+        code: "",
+        name: "",
+        descr: "",
+        credits: "",
+        preReq: "",
+        restrict: "",
+        breadth: "",
+        typ: ""
+    });
+    //course the user selected from courses pool for adding to degree plan
+    const AddCourseToDegreePlan = (course: Course) => {
+        setTheCourse(course);
+        setisCourseToDegreePlanOpen(true);
+    };
+    const [selectedDegreePlan, setselectedDegreePlan] = useState<DegreePlan>({
+        name: degreeList.length === 1 ? degreeList[0].name : "",
+        concentration: "" as Concentration,
+        semesters: []
+    });
+    const [DegreeName, setDegreeName] = useState<string>("");
+    const [IsAddCourseToSemester2Open, setIsAddCourseToSemester2Open] =
+        useState(false);
+    const ONchangeDegreeName = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        degreeList.length === 1
+            ? setDegreeName(degreeList[0].name)
+            : setDegreeName(e.target.value);
+    };
+    const handleAddCourseToDegreePlanClick1 = () => {
+        setIsAddCourseToSemester2Open(true);
+        setisCourseToDegreePlanOpen(false);
+        // const findDegreePlan = degreeList.find(
+        //     (degreePlan) => degreePlan.name === DegreeName
+        // );
+        console.log(degreeList.length);
+        console.log(DegreeName);
+        // console.log(degreeList[0].name);
     };
     return (
         <div className="WholeSearch">
@@ -220,7 +266,6 @@ const Search = ({
                     )}
                 </div>
             )}
-
             {ErrorMessage2 && ( //error message pops up when user does not search the correct course code
                 <div>Please make sure the course code is correct!</div>
             )}
@@ -236,7 +281,6 @@ const Search = ({
                     </Button>
                 </div>
             }
-
             {isAddCourseOpen && ( // create new course button
                 <div>
                     <AddCourse
@@ -273,17 +317,9 @@ const Search = ({
                         {listCourses[courseIndex].descr}
                     </div>
                     <br />
-                    {/* {isAddCourseButton && ( */}
                     <Button variant="success" onClick={handleClickPool}>
                         Add to Course Pool
                     </Button>
-                    {/* <Button
-                        variant="success"
-                        onClick={() => handleAddCourseToSemester(text)}
-                    >
-                        Add to Semester
-                    </Button> */}
-                    {/* )} */}
                     <div>
                         {isAddSemesterOpen ? ( // add course to semester list
                             <div>
@@ -347,6 +383,52 @@ const Search = ({
                     </div>
                 </div>
             )}
+            {isCourseToDegreePlanOpen && (
+                <Modal
+                    show={true}
+                    onHide={() => setisCourseToDegreePlanOpen(false)}
+                >
+                    {" "}
+                    <Modal.Header closeButton>
+                        {" "}
+                        <Modal.Title>Add Course to Degree Plan</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <Form.Group controlId="Add-Course-To-Degree-Plan">
+                            {" "}
+                            <Row>
+                                <Col>
+                                    <Form.Label>Plan: </Form.Label>
+                                    <Form.Select
+                                        key={DegreeName}
+                                        value={DegreeName}
+                                        onChange={ONchangeDegreeName}
+                                    >
+                                        {degreeList.map((degreePlan) => (
+                                            <option
+                                                value={degreePlan.name}
+                                                key={
+                                                    degreePlan.name +
+                                                    degreePlan.concentration
+                                                }
+                                            >
+                                                {degreePlan.name}
+                                            </option>
+                                        ))}
+                                    </Form.Select>
+                                </Col>
+                            </Row>
+                        </Form.Group>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        {" "}
+                        <Button onClick={handleAddCourseToDegreePlanClick1}>
+                            Next
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
+            )}
+            {}
             {isCoursePool && (
                 <div className="coursePool_box">
                     <span className="Pool_Titile">{"Pool of Courses"}</span>
@@ -356,8 +438,8 @@ const Search = ({
                             <tr>
                                 <th> Course Code</th>
                                 <th> Course Credits</th>
-                                <th> Add to Semester</th>
                                 <th> Delete</th>
+                                <th> Add to Degree Plan</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -369,21 +451,20 @@ const Search = ({
                                     <td>
                                         {" "}
                                         <Button
-                                            variant="success"
-                                            onClick={() =>
-                                                handleAddCourseToSemester(text)
-                                            }
-                                        >
-                                            Add to Semester
-                                        </Button>
-                                    </td>
-                                    <td>
-                                        {" "}
-                                        <Button
                                             variant="danger"
                                             onClick={() => deletePool(course)}
                                         >
                                             X
+                                        </Button>
+                                    </td>
+                                    <td>
+                                        <Button
+                                            variant="success"
+                                            onClick={() =>
+                                                AddCourseToDegreePlan(course)
+                                            }
+                                        >
+                                            Add to Degree Plan
                                         </Button>
                                     </td>
                                 </tr>

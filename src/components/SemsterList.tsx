@@ -13,7 +13,10 @@ export const SemesterList = ({
     renderName,
     modifysemster,
     isDisplayEmpty,
-    clearSemester
+    clearSemester,
+    setIsEditDegreeOpen,
+    setIsdegreeList,
+    setIsaddDegreeButton
 }: {
     semesters: Semester[];
     Name: string;
@@ -21,7 +24,15 @@ export const SemesterList = ({
     modifysemster: (semester: Semester[]) => void;
     isDisplayEmpty: boolean;
     clearSemester: () => void;
+    setIsEditDegreeOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    setIsdegreeList: React.Dispatch<React.SetStateAction<boolean>>;
+    setIsaddDegreeButton: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
+    const handleBack = () => {
+        setIsEditDegreeOpen(false);
+        setIsdegreeList(true);
+        setIsaddDegreeButton(true);
+    };
     return (
         <>
             <br />
@@ -40,7 +51,7 @@ export const SemesterList = ({
                 )}
                 {" credits"} {renderName && <img src={horse} alt="horse" />}
             </div>
-            {isDisplayEmpty && (
+            {
                 <div>
                     <div className="semester_box">
                         <div className="semesterListName-view"> </div>
@@ -63,9 +74,14 @@ export const SemesterList = ({
                                 Clear All
                             </button>
                         )}
+                        <br />
+                        <br />
+                        <div>
+                            <button onClick={handleBack}>Back</button>
+                        </div>
                     </div>
                 </div>
-            )}
+            }
         </>
     );
 };
