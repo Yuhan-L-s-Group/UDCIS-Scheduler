@@ -9,14 +9,16 @@ import { SemesterList } from "./SemsterList";
 
 export const DegreePlanDetail = ({
     degreePlan,
-    resetView
+    resetView,
+    updatePlan
 }: {
     degreePlan: DegreePlan;
     resetView: () => void;
+    updatePlan: (newPlan: DegreePlan) => void;
 }) => {
     const [newDegreePlan, setNewPlan] = useState<DegreePlan>({ ...degreePlan });
     const [showAddSemester, setAddSemester] = useState(false);
-    const [isDisplayEmpty, setDisplayEmpty] = useState(false);
+    const [isDisplayEmpty, setDisplayEmpty] = useState(true);
     const handleShowModal = () => {
         setAddSemester(true);
         setDisplayEmpty(true);
@@ -54,7 +56,10 @@ export const DegreePlanDetail = ({
             <Button
                 className="go_back_to plan_list"
                 variant="danger"
-                onClick={resetView}
+                onClick={() => {
+                    resetView();
+                    updatePlan(newDegreePlan);
+                }}
             >
                 {"Exit"}
             </Button>

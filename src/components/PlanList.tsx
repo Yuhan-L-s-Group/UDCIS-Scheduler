@@ -6,10 +6,12 @@ import { DegreePlanDetail } from "./DegreePlanDetail";
 
 export const PlanList = ({
     degreePlans,
-    showModal
+    showModal,
+    updatePlan
 }: {
     degreePlans: DegreePlan[];
     showModal: () => void;
+    updatePlan: (newPlan: DegreePlan) => void;
 }) => {
     const [displayId, setDisplayId] = useState<null | string>(null);
 
@@ -44,6 +46,7 @@ export const PlanList = ({
                             key={degreePlan.name}
                             degreePlan={degreePlan}
                             resetView={resetView}
+                            updatePlan={updatePlan}
                         ></DegreePlanDetail>
                     );
                 }

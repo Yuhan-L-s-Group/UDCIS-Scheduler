@@ -107,6 +107,15 @@ function App(): JSX.Element {
         console.log(pool);
     };
 
+    const updatePlan = (newPlan: DegreePlan): void => {
+        const newPlans = degreePlans.map((plan: DegreePlan): DegreePlan => {
+            return plan.name === newPlan.name
+                ? { ...newPlan, semesters: [...newPlan.semesters] }
+                : { ...plan };
+        });
+        setPlan([...newPlans]);
+    };
+
     return (
         <div className="App">
             {isHomepage ? (
@@ -196,6 +205,7 @@ function App(): JSX.Element {
                                 <PlanList
                                     degreePlans={degreePlans}
                                     showModal={handleShowPlanModal}
+                                    updatePlan={updatePlan}
                                 ></PlanList>
                                 <Button
                                     className="add_plan_button"
