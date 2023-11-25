@@ -17,7 +17,6 @@ interface EditDegreePlanProps {
     handleShowModal: () => void;
     showAddSemester: boolean;
     handleClose: () => void;
-    addSemester: (year: number, season: Season) => void;
     setIsEditDegreeOpen: React.Dispatch<React.SetStateAction<boolean>>;
     setIsdegreeList: React.Dispatch<React.SetStateAction<boolean>>;
     setIsaddDegreeButton: React.Dispatch<React.SetStateAction<boolean>>;
@@ -36,7 +35,6 @@ const EditDegreePlan = ({
     handleShowModal,
     showAddSemester,
     handleClose,
-    addSemester,
     setIsEditDegreeOpen,
     setIsdegreeList,
     setIsaddDegreeButton,
@@ -67,11 +65,11 @@ const EditDegreePlan = ({
             <SemesterModal
                 showAddSemester={showAddSemester}
                 handleClose={handleClose}
-                addSemester={addSemester}
                 semesters={semesters}
                 SelecetedEditdDegreePlan={SelecetedEditdDegreePlan}
                 degreeList={degreeList}
                 setDegreeList={setDegreeList}
+                modifysemster={modifysemster}
             ></SemesterModal>
         </div>
     );

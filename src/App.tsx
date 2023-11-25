@@ -48,17 +48,6 @@ function App(): JSX.Element {
         setHomepage(false);
     };
 
-    function addNewSemester(year: number, season: Season) {
-        setSemester([
-            ...semesters,
-            {
-                season: season,
-                year: year,
-                courses: []
-            }
-        ]);
-    }
-
     function clearSemester() {
         setSemester([]);
         setDisplayEmpty(false);
@@ -105,7 +94,13 @@ function App(): JSX.Element {
         setIsEditDegreeOpen(true);
         setIsdegreeList(false);
         setIsaddDegreeButton(false);
-        setSelecetedEditdDegreePlan(EditdDegreePlan);
+        setSelecetedEditdDegreePlan(() => {
+            return EditdDegreePlan;
+        });
+        const updatedSemesters = [...SelecetedEditdDegreePlan.semesters];
+        setSemester(() => {
+            return updatedSemesters;
+        });
     };
     //pass selected degree plan to search
     return (
@@ -253,7 +248,6 @@ function App(): JSX.Element {
                                             handleShowModal={handleShowModal}
                                             showAddSemester={showAddSemester}
                                             handleClose={handleCloseModal}
-                                            addSemester={addNewSemester}
                                             setIsEditDegreeOpen={
                                                 setIsEditDegreeOpen
                                             }

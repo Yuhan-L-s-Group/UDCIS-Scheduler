@@ -7,19 +7,19 @@ import { DegreePlan } from "../interfaces/degreePlan";
 export const SemesterModal = ({
     showAddSemester,
     handleClose,
-    addSemester,
     semesters,
     SelecetedEditdDegreePlan,
     degreeList,
-    setDegreeList
+    setDegreeList,
+    modifysemster
 }: {
     showAddSemester: boolean;
     handleClose: () => void;
-    addSemester: (year: number, season: Season) => void;
     semesters: Semester[];
     SelecetedEditdDegreePlan: DegreePlan;
     degreeList: DegreePlan[];
     setDegreeList: React.Dispatch<React.SetStateAction<DegreePlan[]>>;
+    modifysemster: (semester: Semester[]) => void;
 }) => {
     const [year, setYear] = useState<number>(2023);
     const [season, setSeason] = useState<Season>("Fall");
@@ -42,7 +42,6 @@ export const SemesterModal = ({
         ) {
             setWarn("Semester already in your plan!");
         } else {
-            // addSemester(year, season);
             handleClose();
 
             newSemester.year = year;
@@ -52,9 +51,11 @@ export const SemesterModal = ({
                 (degreePlan) => degreePlan === SelecetedEditdDegreePlan
             );
             degreeList[findIndex].semesters.push(newSemester);
-
             setDegreeList(update);
+            const updatedSemesters = [...SelecetedEditdDegreePlan.semesters];
+            modifysemster(updatedSemesters);
         }
+        console.log(semesters);
         console.log(degreeList);
     };
 

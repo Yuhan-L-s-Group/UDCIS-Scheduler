@@ -57,19 +57,17 @@ export const SemesterList = ({
                 <div>
                     <div className="semester_box">
                         <div className="semesterListName-view"> </div>
-                        {degreeList.map((degreePlan) => (
-                            <div key={degreePlan.name}>
-                                {degreePlan.semesters.map((semester) => (
-                                    <div key={semester.season + semester.year}>
-                                        <SemesterDisplay
-                                            semester={semester}
-                                            modifysemster={modifysemster}
-                                            semesters={semesters}
-                                        />
-                                    </div>
-                                ))}
-                            </div>
-                        ))}
+                        {semesters.map(
+                            (semester: Semester): JSX.Element => (
+                                <div key={semester.year + semester.season}>
+                                    <SemesterDisplay
+                                        semester={semester}
+                                        modifysemster={modifysemster}
+                                        semesters={semesters}
+                                    />
+                                </div>
+                            )
+                        )}
                         {isDisplayEmpty && (
                             <button
                                 className="clear_button"
