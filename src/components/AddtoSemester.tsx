@@ -47,7 +47,7 @@ export function AddtoSemester({
                             this button
                         </span>
                     ) : (
-                        <>
+                        <div>
                             {semesters.map((semester) => (
                                 <div key={semester.year + semester.season}>
                                     <Button
@@ -70,7 +70,7 @@ export function AddtoSemester({
                                     </div>
                                 )}
                             </div>
-                        </>
+                        </div>
                     )}
                 </Modal.Body>
 

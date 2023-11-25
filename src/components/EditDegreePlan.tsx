@@ -5,7 +5,7 @@ import { Concentration, DegreePlan } from "../interfaces/degreePlan";
 import { Button, Modal, Col, Form, Container, Row } from "react-bootstrap";
 import { Semester, Season } from "../interfaces/semester";
 import { SemesterList } from "./SemsterList";
-import { AddSemesterModal } from "./SemesterModal";
+import { SemesterModal } from "./SemesterModal";
 interface EditDegreePlanProps {
     isEditDegreeOpen: boolean;
     semesters: Semester[];
@@ -21,6 +21,9 @@ interface EditDegreePlanProps {
     setIsEditDegreeOpen: React.Dispatch<React.SetStateAction<boolean>>;
     setIsdegreeList: React.Dispatch<React.SetStateAction<boolean>>;
     setIsaddDegreeButton: React.Dispatch<React.SetStateAction<boolean>>;
+    SelecetedEditdDegreePlan: DegreePlan;
+    degreeList: DegreePlan[];
+    setDegreeList: React.Dispatch<React.SetStateAction<DegreePlan[]>>;
 }
 const EditDegreePlan = ({
     isEditDegreeOpen,
@@ -36,7 +39,10 @@ const EditDegreePlan = ({
     addSemester,
     setIsEditDegreeOpen,
     setIsdegreeList,
-    setIsaddDegreeButton
+    setIsaddDegreeButton,
+    SelecetedEditdDegreePlan,
+    degreeList,
+    setDegreeList
 }: EditDegreePlanProps) => {
     return (
         <div>
@@ -54,15 +60,19 @@ const EditDegreePlan = ({
                 setIsEditDegreeOpen={setIsEditDegreeOpen}
                 setIsdegreeList={setIsdegreeList}
                 setIsaddDegreeButton={setIsaddDegreeButton}
+                degreeList={degreeList}
             ></SemesterList>
             <br />
             <br />
-            <AddSemesterModal
+            <SemesterModal
                 showAddSemester={showAddSemester}
                 handleClose={handleClose}
                 addSemester={addSemester}
                 semesters={semesters}
-            ></AddSemesterModal>
+                SelecetedEditdDegreePlan={SelecetedEditdDegreePlan}
+                degreeList={degreeList}
+                setDegreeList={setDegreeList}
+            ></SemesterModal>
         </div>
     );
 };

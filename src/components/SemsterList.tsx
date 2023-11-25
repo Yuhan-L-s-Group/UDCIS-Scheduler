@@ -1,10 +1,10 @@
 /* eslint-disable no-extra-parens */
-
 import { SemesterDisplay } from "./SemesterDisplay";
-import { Semester } from "../interfaces/semester";
+import { Season, Semester } from "../interfaces/semester";
 import "../App.css";
 import horse from "../pictures/horse.jpg";
 import React from "react";
+import { DegreePlan } from "../interfaces/degreePlan";
 // It contains all the semesters into "semesters" varible and iterate each semester into "SemesterDisplay" component
 // Addtionally it automatically caculates the cumulative credits
 export const SemesterList = ({
@@ -16,7 +16,8 @@ export const SemesterList = ({
     clearSemester,
     setIsEditDegreeOpen,
     setIsdegreeList,
-    setIsaddDegreeButton
+    setIsaddDegreeButton,
+    degreeList
 }: {
     semesters: Semester[];
     Name: string;
@@ -27,6 +28,7 @@ export const SemesterList = ({
     setIsEditDegreeOpen: React.Dispatch<React.SetStateAction<boolean>>;
     setIsdegreeList: React.Dispatch<React.SetStateAction<boolean>>;
     setIsaddDegreeButton: React.Dispatch<React.SetStateAction<boolean>>;
+    degreeList: DegreePlan[];
 }) => {
     const handleBack = () => {
         setIsEditDegreeOpen(false);
@@ -55,17 +57,19 @@ export const SemesterList = ({
                 <div>
                     <div className="semester_box">
                         <div className="semesterListName-view"> </div>
-                        {semesters.map(
-                            (semester: Semester): JSX.Element => (
-                                <div key={semester.year + semester.season}>
-                                    <SemesterDisplay
-                                        semester={semester}
-                                        modifysemster={modifysemster}
-                                        semesters={semesters}
-                                    />
-                                </div>
-                            )
-                        )}
+                        {degreeList.map((degreePlan) => (
+                            <div key={degreePlan.name}>
+                                {degreePlan.semesters.map((semester) => (
+                                    <div key={semester.season + semester.year}>
+                                        <SemesterDisplay
+                                            semester={semester}
+                                            modifysemster={modifysemster}
+                                            semesters={semesters}
+                                        />
+                                    </div>
+                                ))}
+                            </div>
+                        ))}
                         {isDisplayEmpty && (
                             <button
                                 className="clear_button"

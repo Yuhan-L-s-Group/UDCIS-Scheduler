@@ -1,9 +1,10 @@
 /* eslint-disable no-extra-parens */
 import React from "react";
-import { Semester } from "../interfaces/semester";
 import { Course } from "../interfaces/course";
 import { Button } from "react-bootstrap";
 import "../App.css";
+import { Season, Semester } from "../interfaces/semester";
+
 // Display each individual semester
 // Addtionally it automatically caculates the each semester credits
 export const SemesterDisplay = ({

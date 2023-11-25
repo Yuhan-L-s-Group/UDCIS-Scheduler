@@ -5,7 +5,6 @@ import "./App.css";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { IntroModal } from "./components/IntroModal";
 import { SwitchPlan } from "./components/SwitchPlan";
-import { AddSemesterModal } from "./components/SemesterModal";
 import { Season, Semester } from "./interfaces/semester";
 import { SemesterList } from "./components/SemsterList";
 import Form from "react-bootstrap/Form";
@@ -95,16 +94,18 @@ function App(): JSX.Element {
     const [isAddDegreeButton, setIsaddDegreeButton] = useState(true);
     // for rendering degree plan list
     const [isDegreeList, setIsdegreeList] = useState(true);
-    // const [selectedDegreePlan, setSelectedDegreePlan] = useState<DegreePlan>({
-    //     name: "",
-    //     concentration: "" as Concentration,
-    //     semesters: []
-    // });
+    const [SelecetedEditdDegreePlan, setSelecetedEditdDegreePlan] =
+        useState<DegreePlan>({
+            name: "",
+            concentration: "" as Concentration,
+            semesters: []
+        });
     const [isEditDegreeOpen, setIsEditDegreeOpen] = useState(false);
-    const handleClickEdit = (selectedDegreePlan: DegreePlan) => {
+    const handleClickEdit = (EditdDegreePlan: DegreePlan) => {
         setIsEditDegreeOpen(true);
         setIsdegreeList(false);
         setIsaddDegreeButton(false);
+        setSelecetedEditdDegreePlan(EditdDegreePlan);
     };
     //pass selected degree plan to search
     return (
@@ -151,7 +152,6 @@ function App(): JSX.Element {
                         <img src={logo1} alt="ud logo1" className="udlogo1" />
                     </header>
                     <br />
-
                     <SwitchPlan></SwitchPlan>
                     <Container>
                         <Row>
@@ -261,6 +261,11 @@ function App(): JSX.Element {
                                             setIsaddDegreeButton={
                                                 setIsaddDegreeButton
                                             }
+                                            SelecetedEditdDegreePlan={
+                                                SelecetedEditdDegreePlan
+                                            }
+                                            degreeList={degreeList}
+                                            setDegreeList={setDegreeList}
                                         />
                                     </div>
                                 )}
