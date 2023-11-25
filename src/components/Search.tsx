@@ -230,17 +230,16 @@ const Search = ({
             setselectedDegreePlan(findDegreePlan);
             setDegreelistLength(() => {
                 const listLength = findDegreePlan.semesters.length;
-                console.log(listLength);
                 return listLength;
             });
             setSelectedDegreeIndex(() => {
                 const findIndex = degreeList.findIndex(
                     (degreePlan) => selectedDegreePlan === degreePlan
                 );
-                console.log(findIndex);
                 return findIndex;
             });
         }
+        console.log(degreeListLength);
     };
     // add course from course pool into degree plan modal 2
     const [IsAddCourseToSemesterOpen, setIsAddCourseToSemesterOpen] =
@@ -481,12 +480,7 @@ const Search = ({
                         </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        {degreeListLength === 0 ? (
-                            <div>
-                                Please add at least one semester into your
-                                degree plan before you pick this button!
-                            </div>
-                        ) : (
+                        {
                             <div>
                                 <div>
                                     You will add {theCourse.code + " "} into{" "}
@@ -506,6 +500,7 @@ const Search = ({
                                                         semester
                                                     )
                                                 }
+                                                className="eachCourseButton"
                                             >
                                                 {" "}
                                                 {semester.year +
@@ -516,7 +511,7 @@ const Search = ({
                                     )
                                 )}
                             </div>
-                        )}
+                        }
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={HandleBack}>

@@ -1,5 +1,5 @@
 /* eslint-disable no-extra-parens */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 
 import { Button, Col, Container, Row } from "react-bootstrap";
@@ -89,19 +89,18 @@ function App(): JSX.Element {
             concentration: "" as Concentration,
             semesters: []
         });
+
     const [isEditDegreeOpen, setIsEditDegreeOpen] = useState(false);
+
     const handleClickEdit = (EditdDegreePlan: DegreePlan) => {
         setIsEditDegreeOpen(true);
         setIsdegreeList(false);
         setIsaddDegreeButton(false);
-        setSelecetedEditdDegreePlan(() => {
-            return EditdDegreePlan;
-        });
+        setSelecetedEditdDegreePlan(EditdDegreePlan);
         const updatedSemesters = [...SelecetedEditdDegreePlan.semesters];
-        setSemester(() => {
-            return updatedSemesters;
-        });
+        setSemester(updatedSemesters);
     };
+
     //pass selected degree plan to search
     return (
         <div className="App">
