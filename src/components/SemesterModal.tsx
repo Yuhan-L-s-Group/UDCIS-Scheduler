@@ -55,8 +55,6 @@ export const SemesterModal = ({
             const updatedSemesters = [...SelecetedEditdDegreePlan.semesters];
             modifysemster(updatedSemesters);
         }
-        console.log(semesters);
-        console.log(degreeList);
     };
 
     function updateSeason(event: React.ChangeEvent<HTMLSelectElement>) {

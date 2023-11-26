@@ -91,13 +91,18 @@ function App(): JSX.Element {
         });
 
     const [isEditDegreeOpen, setIsEditDegreeOpen] = useState(false);
+    const [selectedDegreePlan, setselectedDegreePlan] = useState<DegreePlan>({
+        name: degreeList.length === 1 ? degreeList[0].name : "",
+        concentration: "" as Concentration,
+        semesters: []
+    });
 
     const handleClickEdit = (EditdDegreePlan: DegreePlan) => {
         setIsEditDegreeOpen(true);
         setIsdegreeList(false);
         setIsaddDegreeButton(false);
         setSelecetedEditdDegreePlan(EditdDegreePlan);
-        const updatedSemesters = [...SelecetedEditdDegreePlan.semesters];
+        const updatedSemesters = [...EditdDegreePlan.semesters];
         setSemester(updatedSemesters);
     };
 
@@ -167,6 +172,17 @@ function App(): JSX.Element {
                                             setSemester={setSemester}
                                             degreeList={degreeList}
                                             setDegreeList={setDegreeList}
+                                            setAddSemester={setAddSemester}
+                                            setDisplayEmpty={setDisplayEmpty}
+                                            setIsEditDegreeOpen={
+                                                setIsEditDegreeOpen
+                                            }
+                                            selectedDegreePlan={
+                                                selectedDegreePlan
+                                            }
+                                            setselectedDegreePlan={
+                                                setselectedDegreePlan
+                                            }
                                         ></Search>
                                     </span>
                                 }
@@ -220,11 +236,11 @@ function App(): JSX.Element {
                                                     </td>
                                                     <td>
                                                         <button
-                                                            onClick={() =>
+                                                            onClick={() => {
                                                                 handleClickEdit(
                                                                     degreePlan
-                                                                )
-                                                            }
+                                                                );
+                                                            }}
                                                         >
                                                             Edit
                                                         </button>
@@ -259,6 +275,9 @@ function App(): JSX.Element {
                                             }
                                             degreeList={degreeList}
                                             setDegreeList={setDegreeList}
+                                            selectedDegreePlan={
+                                                selectedDegreePlan
+                                            }
                                         />
                                     </div>
                                 )}

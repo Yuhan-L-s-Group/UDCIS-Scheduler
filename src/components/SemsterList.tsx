@@ -17,7 +17,9 @@ export const SemesterList = ({
     setIsEditDegreeOpen,
     setIsdegreeList,
     setIsaddDegreeButton,
-    degreeList
+    degreeList,
+    setDegreeList,
+    selectedDegreePlan
 }: {
     semesters: Semester[];
     Name: string;
@@ -29,6 +31,8 @@ export const SemesterList = ({
     setIsdegreeList: React.Dispatch<React.SetStateAction<boolean>>;
     setIsaddDegreeButton: React.Dispatch<React.SetStateAction<boolean>>;
     degreeList: DegreePlan[];
+    setDegreeList: React.Dispatch<React.SetStateAction<DegreePlan[]>>;
+    selectedDegreePlan: DegreePlan;
 }) => {
     const handleBack = () => {
         setIsEditDegreeOpen(false);
@@ -64,6 +68,9 @@ export const SemesterList = ({
                                         semester={semester}
                                         modifysemster={modifysemster}
                                         semesters={semesters}
+                                        degreeList={degreeList}
+                                        setDegreeList={setDegreeList}
+                                        selectedDegreePlan={selectedDegreePlan}
                                     />
                                 </div>
                             )

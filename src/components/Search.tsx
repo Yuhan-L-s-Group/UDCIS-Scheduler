@@ -20,6 +20,11 @@ interface SearchProps {
     setSemester: React.Dispatch<React.SetStateAction<Semester[]>>;
     degreeList: DegreePlan[];
     setDegreeList: React.Dispatch<React.SetStateAction<DegreePlan[]>>;
+    setAddSemester: React.Dispatch<React.SetStateAction<boolean>>;
+    setDisplayEmpty: React.Dispatch<React.SetStateAction<boolean>>;
+    setIsEditDegreeOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    selectedDegreePlan: DegreePlan;
+    setselectedDegreePlan: React.Dispatch<React.SetStateAction<DegreePlan>>;
 }
 const Search = ({
     listCourses,
@@ -27,7 +32,13 @@ const Search = ({
     ModifiedCourseList,
     semesters,
     setSemester,
-    degreeList
+    degreeList,
+    setDegreeList,
+    setAddSemester,
+    setDisplayEmpty,
+    setIsEditDegreeOpen,
+    selectedDegreePlan,
+    setselectedDegreePlan
 }: SearchProps) => {
     const [text, setText] = useState<string>("");
     const [courseIndex, setcourseIndex] = useState<number>(0);
@@ -202,30 +213,22 @@ const Search = ({
         setTheCourse(course);
         setisCourseToDegreePlanOpen(true);
     };
-    const [selectedDegreePlan, setselectedDegreePlan] = useState<DegreePlan>({
-        name: degreeList.length === 1 ? degreeList[0].name : "",
-        concentration: "" as Concentration,
-        semesters: []
-    });
     const [DegreeName, setDegreeName] = useState<string>("");
     const ONchangeDegreeName = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        degreeList.length === 1
-            ? setDegreeName(degreeList[0].name)
-            : setDegreeName(e.target.value);
+        setDegreeName(e.target.value);
+        console.log(DegreeName);
     };
     const [SelectedDegreeIndex, setSelectedDegreeIndex] = useState(-1);
+    const [
+        isRenderChoseRepeatedCourseIndegreePlan,
+        setIsRenderChoseRepeatedCourseIndegreePlan
+    ] = useState(false);
+    const [IsSelectedRepeatedCourse, setIsSelectedRepeatedCourse] =
+        useState(false);
     const handleAddCourseToDegreePlanClick1 = () => {
-        setIsAddCourseToSemesterOpen(true);
-        setisCourseToDegreePlanOpen(false);
-
-        if (degreeList.length === 1) {
-            setDegreeName(degreeList[0].name);
-        }
-
         const findDegreePlan = degreeList.find(
             (degreePlan) => degreePlan.name === DegreeName
         );
-
         if (findDegreePlan) {
             setselectedDegreePlan(findDegreePlan);
             setDegreelistLength(() => {
@@ -234,32 +237,71 @@ const Search = ({
             });
             setSelectedDegreeIndex(() => {
                 const findIndex = degreeList.findIndex(
-                    (degreePlan) => selectedDegreePlan === degreePlan
+                    (degreePlan) => findDegreePlan === degreePlan
                 );
                 return findIndex;
             });
         }
-        console.log(degreeListLength);
+        setIsRenderSelectedDegreeplan(false);
+        const repeatedCourse = selectedDegreePlan.semesters.filter((semester) =>
+            semester.courses.includes(theCourse)
+        );
+        if (repeatedCourse.length === 0) {
+            setIsAddCourseToSemesterOpen(true);
+            setisCourseToDegreePlanOpen(false);
+        } else {
+            setIsSelectedRepeatedCourse(true);
+        }
+
+        console.log(repeatedCourse.length);
+    };
+    const handleCLickDegreePlan = (degreePlan: DegreePlan) => {
+        setDegreeName(degreePlan.name);
+        setIsRenderSelectedDegreeplan(true);
+    };
+    const [IsRenderSelectedDegreeplan, setIsRenderSelectedDegreeplan] =
+        useState(false);
+    const FunctionSetisCourseToDegreePlanOpen = () => {
+        setisCourseToDegreePlanOpen(false);
+        setIsSelectedRepeatedCourse(false);
     };
     // add course from course pool into degree plan modal 2
     const [IsAddCourseToSemesterOpen, setIsAddCourseToSemesterOpen] =
         useState(false);
     const handleCLickAddCourseToDegreePlanSave = () => {
         setIsAddCourseToSemesterOpen(false);
+        setIsRenderSelctedSemester(false);
+        setDisplayEmpty(true);
+        const semesterIndex = selectedDegreePlan.semesters.findIndex(
+            (theSemester) => theSemester === renderSelectedSemester
+        );
+        const DegreePlanIndex = degreeList.findIndex(
+            (degreeplan) => degreeplan === selectedDegreePlan
+        );
+        const update = [...degreeList];
+        update[DegreePlanIndex].semesters[semesterIndex].courses.push(
+            theCourse
+        );
+        setDegreeList(update);
     };
-    const [renderSelectedSemester, setRenderSelectedSemester] = useState({
-        year: 2023,
-        season: "fall" as Season,
-        courses: []
-    });
+    const [renderSelectedSemester, setRenderSelectedSemester] =
+        useState<Semester>({
+            year: 2023,
+            season: "fall" as Season,
+            courses: []
+        });
     const handleClickSemesterInCoursePoolModal2 = (semester: Semester) => {
-        setRenderSelectedSemester(renderSelectedSemester);
+        setRenderSelectedSemester(semester);
+        setIsRenderSelctedSemester(true);
     };
     const HandleBack = () => {
         setIsAddCourseToSemesterOpen(false);
         setisCourseToDegreePlanOpen(true);
+        setIsRenderSelctedSemester(false);
     };
     const [degreeListLength, setDegreelistLength] = useState(0);
+    const [IsRenderSelctedSemester, setIsRenderSelctedSemester] =
+        useState(false);
     return (
         <div className="WholeSearch">
             <div
@@ -424,10 +466,7 @@ const Search = ({
                 </div>
             )}
             {isCourseToDegreePlanOpen && ( //Add course from pool of courses to degree plan modal 1
-                <Modal
-                    show={true}
-                    onHide={() => setisCourseToDegreePlanOpen(false)}
-                >
+                <Modal show={true} onHide={FunctionSetisCourseToDegreePlanOpen}>
                     {" "}
                     <Modal.Header closeButton>
                         {" "}
@@ -438,30 +477,40 @@ const Search = ({
                             {" "}
                             <Row>
                                 <Col>
-                                    <Form.Label>Plan: </Form.Label>
-                                    <Form.Select
-                                        key={DegreeName}
-                                        value={DegreeName}
-                                        onChange={ONchangeDegreeName}
-                                    >
-                                        {degreeList.map((degreePlan) => (
-                                            <option
-                                                value={degreePlan.name}
-                                                key={
-                                                    degreePlan.name +
-                                                    degreePlan.concentration
-                                                }
-                                            >
-                                                {degreePlan.name}
-                                            </option>
-                                        ))}
-                                    </Form.Select>
+                                    {degreeList.map((degreePlan) => (
+                                        <button
+                                            className="eachCourseButton"
+                                            value={degreePlan.name}
+                                            key={
+                                                degreePlan.name +
+                                                degreePlan.concentration
+                                            }
+                                            onClick={() =>
+                                                handleCLickDegreePlan(
+                                                    degreePlan
+                                                )
+                                            }
+                                        >
+                                            {degreePlan.name}
+                                        </button>
+                                    ))}
+                                    {IsRenderSelectedDegreeplan && (
+                                        <div>
+                                            {"You just selected: "} {DegreeName}
+                                        </div>
+                                    )}
                                 </Col>
                             </Row>
                         </Form.Group>
                     </Modal.Body>
                     <Modal.Footer>
-                        {" "}
+                        {IsSelectedRepeatedCourse && (
+                            <div>
+                                {
+                                    "You already selected this course for this degreeplan, please pick another one!"
+                                }
+                            </div>
+                        )}
                         <Button onClick={handleAddCourseToDegreePlanClick1}>
                             Next
                         </Button>
@@ -514,6 +563,14 @@ const Search = ({
                         }
                     </Modal.Body>
                     <Modal.Footer>
+                        {IsRenderSelctedSemester && (
+                            <div>
+                                {"You just selcted: "}
+                                {renderSelectedSemester.year +
+                                    " " +
+                                    renderSelectedSemester.season}
+                            </div>
+                        )}
                         <Button variant="secondary" onClick={HandleBack}>
                             Back
                         </Button>
