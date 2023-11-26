@@ -5,6 +5,7 @@ import "../App.css";
 import horse from "../pictures/horse.jpg";
 import React from "react";
 import { DegreePlan } from "../interfaces/degreePlan";
+import { Button, Modal, Col, Form, Container, Row } from "react-bootstrap";
 // It contains all the semesters into "semesters" varible and iterate each semester into "SemesterDisplay" component
 // Addtionally it automatically caculates the cumulative credits
 export const SemesterList = ({
@@ -19,7 +20,8 @@ export const SemesterList = ({
     setIsaddDegreeButton,
     degreeList,
     setDegreeList,
-    selectedDegreePlan
+    selectedDegreePlan,
+    handleShowModal
 }: {
     semesters: Semester[];
     Name: string;
@@ -33,6 +35,7 @@ export const SemesterList = ({
     degreeList: DegreePlan[];
     setDegreeList: React.Dispatch<React.SetStateAction<DegreePlan[]>>;
     selectedDegreePlan: DegreePlan;
+    handleShowModal: () => void;
 }) => {
     const handleBack = () => {
         setIsEditDegreeOpen(false);
@@ -61,6 +64,19 @@ export const SemesterList = ({
                 <div>
                     <div className="semester_box">
                         <div className="semesterListName-view"> </div>
+                        <div className="DegreeListTitle-view">
+                            Semesters List
+                        </div>
+                        <br />
+                        <Button
+                            className="add_button"
+                            onClick={handleShowModal}
+                        >
+                            {" "}
+                            Add New Semester
+                        </Button>
+                        <br />
+                        <br />
                         {semesters.map(
                             (semester: Semester): JSX.Element => (
                                 <div key={semester.year + semester.season}>
@@ -86,7 +102,12 @@ export const SemesterList = ({
                         <br />
                         <br />
                         <div>
-                            <button onClick={handleBack}>Back</button>
+                            <button
+                                onClick={handleBack}
+                                className="backTodegreeListView"
+                            >
+                                Back
+                            </button>
                         </div>
                     </div>
                 </div>

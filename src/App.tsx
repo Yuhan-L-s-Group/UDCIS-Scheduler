@@ -195,11 +195,6 @@ function App(): JSX.Element {
                                 <br />
                                 <br />
                                 <br />
-                                {isAddDegreeButton && (
-                                    <Button onClick={handleClickAddDegreePlan}>
-                                        Add New Degree Plan
-                                    </Button>
-                                )}
                                 {isDegreePlanOpen && (
                                     <div>
                                         <DegreeManage
@@ -216,38 +211,66 @@ function App(): JSX.Element {
                                 <br />
                                 {isDegreeList && (
                                     <div className="semester_box">
-                                        <table>
-                                            <thead>
-                                                {" "}
-                                                <tr>
-                                                    <th>Degree Name</th>{" "}
-                                                    <th>Concentration</th>
-                                                    <th>Modify</th>
-                                                </tr>
-                                            </thead>
-                                            {degreeList.map((degreePlan) => (
-                                                <tr key={degreePlan.name}>
-                                                    <td> {degreePlan.name}</td>
-                                                    <td>
-                                                        {" "}
-                                                        {
-                                                            degreePlan.concentration
-                                                        }
-                                                    </td>
-                                                    <td>
-                                                        <button
-                                                            onClick={() => {
-                                                                handleClickEdit(
-                                                                    degreePlan
-                                                                );
-                                                            }}
+                                        <div className="DegreeListTitle-view">
+                                            {"Degree List"}
+                                        </div>
+                                        <br />
+                                        {isAddDegreeButton && (
+                                            <Button
+                                                onClick={
+                                                    handleClickAddDegreePlan
+                                                }
+                                            >
+                                                Add New Degree Plan
+                                            </Button>
+                                        )}
+                                        <br />
+                                        {
+                                            <table>
+                                                <thead>
+                                                    {" "}
+                                                    <tr>
+                                                        <th>Degree Name</th>{" "}
+                                                        <th>Concentration</th>
+                                                        <th>Modify</th>
+                                                    </tr>
+                                                </thead>
+                                                {degreeList.map(
+                                                    (degreePlan) => (
+                                                        <tr
+                                                            key={
+                                                                degreePlan.name
+                                                            }
                                                         >
-                                                            Edit
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                            ))}
-                                        </table>
+                                                            <td>
+                                                                {" "}
+                                                                {
+                                                                    degreePlan.name
+                                                                }
+                                                            </td>
+                                                            <td>
+                                                                {" "}
+                                                                {
+                                                                    degreePlan.concentration
+                                                                }
+                                                            </td>
+                                                            <td>
+                                                                <button
+                                                                    onClick={() => {
+                                                                        handleClickEdit(
+                                                                            degreePlan
+                                                                        );
+                                                                    }}
+                                                                    className="EditDegreePlanView"
+                                                                >
+                                                                    Edit
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                    )
+                                                )}
+                                            </table>
+                                        }
                                     </div>
                                 )}
                                 {isEditDegreeOpen && (

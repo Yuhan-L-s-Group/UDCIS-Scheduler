@@ -185,6 +185,7 @@ const Search = ({
             setCoursePool(update);
             setselectedCourseForDegreePlan(ModifiedCourseList[indexCourse]);
         }
+        setIsAddedCourseTopool(true);
     };
     //delete courses from courses pool
     const deletePool = (deleteCourse: Course) => {
@@ -194,9 +195,10 @@ const Search = ({
         coursePool.splice(indexCourse, 1);
         const update = [...coursePool];
         setCoursePool(update);
+        setIsAddedCourseTopool(false);
     };
     // add course from course pool into degree plan modal 1
-
+    const [isAddedCourseTopool, setIsAddedCourseTopool] = useState(false);
     const [isCourseToDegreePlanOpen, setisCourseToDegreePlanOpen] =
         useState(false);
     const [theCourse, setTheCourse] = useState({
@@ -212,6 +214,7 @@ const Search = ({
     const AddCourseToDegreePlan = (course: Course) => {
         setTheCourse(course);
         setisCourseToDegreePlanOpen(true);
+        setIsAddedCourseTopool(false);
     };
     const [DegreeName, setDegreeName] = useState<string>("");
     const ONchangeDegreeName = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -375,8 +378,14 @@ const Search = ({
             <br />
             {isCourseBar && (
                 <div className="courseBar_box">
+                    <div className="DegreeListTitle-view">
+                        {"Course Information"}
+                    </div>
+                    <br />
+                    <br />
                     <div>
                         {"Course Code: "}
+                        <></>
                         {listCourses[courseIndex].code}
                     </div>
                     <br />
@@ -421,6 +430,12 @@ const Search = ({
                                         Edit
                                     </Button>
                                 </span>
+                                <br />
+                                <br />
+                                <div className="addedCourseTopoolPropmt">
+                                    {isAddedCourseTopool &&
+                                        "You have already added it to the pool of courses"}
+                                </div>
                                 {isEditCourseOpen && ( // edit course
                                     <>
                                         <div className="editButtonInSwitch">
@@ -507,7 +522,7 @@ const Search = ({
                         {IsSelectedRepeatedCourse && (
                             <div>
                                 {
-                                    "You already selected this course for this degreeplan, please pick another one!"
+                                    "You already added this course for this degreeplan, please pick another one!"
                                 }
                             </div>
                         )}

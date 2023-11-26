@@ -46,10 +46,10 @@ const EditDegreePlan = ({
 }: EditDegreePlanProps) => {
     return (
         <div>
-            <Button className="add_button" onClick={handleShowModal}>
+            {/* <Button className="add_button" onClick={handleShowModal}>
                 {" "}
                 Add New Semester
-            </Button>
+            </Button> */}
             <SemesterList
                 semesters={semesters}
                 Name={Name}
@@ -63,6 +63,7 @@ const EditDegreePlan = ({
                 degreeList={degreeList}
                 setDegreeList={setDegreeList}
                 selectedDegreePlan={selectedDegreePlan}
+                handleShowModal={handleShowModal}
             ></SemesterList>
             <br />
             <br />
