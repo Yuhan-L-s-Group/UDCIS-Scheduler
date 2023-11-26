@@ -79,10 +79,9 @@ const MovableCourses = ({ semesters }: MovableCourse) => {
                         <SemesterDisplay
                             semester={semester}
                             deleteSemester={() => ToDeleteCourse}
-                            //                          onClick={CourseSelection}
                         />
                         <Button onClick={() => MoveCourse(semester)}>
-                            Move Selected Course Here
+                            Move the course
                         </Button>
                     </div>
                 ))}
