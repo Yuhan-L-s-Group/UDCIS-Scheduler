@@ -4,7 +4,6 @@ import "./App.css";
 
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { IntroModal } from "./components/IntroModal";
-import { SwitchPlan } from "./components/SwitchPlan";
 import { Season, Semester } from "./interfaces/semester";
 import { SemesterList } from "./components/SemsterList";
 import Form from "react-bootstrap/Form";
@@ -151,7 +150,6 @@ function App(): JSX.Element {
                         <img src={logo1} alt="ud logo1" className="udlogo1" />
                     </header>
                     <br />
-                    <SwitchPlan></SwitchPlan>
                     <Container>
                         <Row>
                             <Col>
