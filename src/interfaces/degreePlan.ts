@@ -1,8 +1,9 @@
 import { Semester } from "./semester";
+import ImportCSVComponent from "./ImportCSV";
 
 export type Concentration =
     | "Bachelor of Arts"
-    | "Bachelor of Science"
+\    | "Bachelor of Science"
     | "Artificial Intelligence and Robotics"
     | "Bioinformatics"
     | "Cybersecurity"
