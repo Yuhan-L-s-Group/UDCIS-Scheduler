@@ -2,6 +2,15 @@ import Papa from 'papaparse';
 import degreePlan from '/.degreePlan';
 import React, { useState } from "react";
 
+export const ExportCSV = ({
+    degreePlan,
+    showModal,
+    updatePlan
+}: {
+    degreePlans: DegreePlan[];
+    showModal: () => void;
+}) => {
+
 const degreePlanData = () => {
   const [degreePlan, setDegreePlan] = useState([]); ;
 
