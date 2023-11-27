@@ -32,6 +32,7 @@ const Search = ({
     const [isEditCourseOpen, setEditCourseOpen] = useState(false);
     const [isAddCourseOpen, setAddCourseOpen] = useState(false);
     const [isAddCourseButton, setAddcoursebutton] = useState(true);
+    const [filterCourses, setfilterCourses] = useState<Course[]>();
     const handleSearch = (text: string) => {
         const upperText = text.toUpperCase();
         const CourseIndex = ModifiedCourseList.findIndex(
@@ -104,7 +105,16 @@ const Search = ({
     const closeAddCourseWindow = () => {
         setAddCourseOpen(false);
     };
-
+    //filter the course user type in
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const theText = e.target.value;
+        const upperText = theText.toUpperCase();
+        setText(upperText);
+        const filteritems = ModifiedCourseList.filter((course) =>
+            course.code.includes(upperText)
+        );
+        setfilterCourses(filteritems);
+    };
     return (
         <div className="searchBar1">
             <div
@@ -117,7 +127,8 @@ const Search = ({
                     type="text"
                     pattern="Course Code"
                     value={text}
-                    onChange={(e) => setText(e.target.value)}
+                    onChange={handleInputChange}
+                    placeholder="type to search"
                 />
                 <button
                     onClick={() => handleSearch(text)}
@@ -125,6 +136,11 @@ const Search = ({
                 >
                     Search
                 </button>
+            </div>
+            <div>
+                {filterCourses?.map((course) => (
+                    <div key={course.code}>{course.code}</div>
+                ))}
             </div>
 
             {ErrorMessage2 && (
