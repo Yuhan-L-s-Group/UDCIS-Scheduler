@@ -258,7 +258,7 @@ const Search = ({
         setIsSelectedRepeatedCourse(false);
 
         setDegreelistLength(() => {
-            const listLength = selectedDegreePlan.semesters.length;
+            const listLength = degreePlan.semesters.length;
             return listLength;
         });
     };
