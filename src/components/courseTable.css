@@ -57,3 +57,11 @@ h2 {
 .adjustrow {
     width: 18%;
 }
+.modifyCourseList {
+    text-align: left;
+    color: #000000;
+    font-size: 28px;
+}
+.modifyErrorTitle {
+    color: rgb(255, 0, 76);
+}

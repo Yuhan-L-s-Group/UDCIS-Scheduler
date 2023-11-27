@@ -1,3 +1,4 @@
+/* eslint-disable no-extra-parens */
 import React, { useState } from "react";
 import { Course } from "../interfaces/course";
 import Modal from "react-bootstrap/Modal";
@@ -19,7 +20,7 @@ export function AddCourse({
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [credits, setCredits] = useState(0);
-
+    const [isAdded, setAdded] = useState(false);
     const handleConfirm = () => {
         const courseObject = {
             code: code,
@@ -29,12 +30,22 @@ export function AddCourse({
             preReq: [],
             coreReq: []
         };
-        const updated = [...listCourses];
-        updated.push(courseObject);
-        setListCourses(updated);
-        console.log("Entered Course Data:", courseObject);
-        console.log(updated);
-        onClose();
+        const indexCourse = listCourses.findIndex(
+            (course) =>
+                courseObject.code === course.code &&
+                courseObject.name === course.name &&
+                courseObject.credits === course.credits &&
+                courseObject.description === course.description
+        );
+        if (indexCourse !== -1) {
+            setAdded(true);
+        } else {
+            const updated = [...listCourses];
+            updated.push(courseObject);
+            setListCourses(updated);
+            onClose();
+        }
+        console.log(indexCourse);
     };
 
     return (
@@ -80,6 +91,9 @@ export function AddCourse({
                 </Form>
             </Modal.Body>
             <Modal.Footer>
+                {isAdded && (
+                    <div>You already added this course to course list! </div>
+                )}
                 <Button variant="primary" onClick={handleConfirm}>
                     Save Changes
                 </Button>

@@ -14,15 +14,11 @@
 }
 
 .App-header {
-    width: 100%;
-    background-color: #282c34;
-    min-height: 40vh;
+    background-color: rgb(10, 11, 85);
+
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
 }
 
 .App-link {
@@ -49,13 +45,145 @@
     min-width: 150px;
     min-height: 150px;
 }
-/* .add_botton {
-    float: right;
-    font-size: 21px;
-    font-weight: 700;
-    line-height: 1;
-    color: #000;
-    text-shadow: 0 1px 0 #fff;
-    filter: alpha(opacity=20);
-    opacity: 0.2;   
-} */
+
+.modifytheCreditsText {
+    color: rgb(41, 113, 53);
+    font-size: 30px;
+    font-weight: bold;
+}
+.name {
+    color: rgb(0, 5, 1);
+    font-size: 25px;
+}
+.udlogo1 {
+    /* background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat; */
+    width: 1200px;
+}
+.courseSize {
+    font-size: 24px;
+}
+.nameEntry {
+    width: 30%;
+    margin: auto;
+}
+.homepage {
+    background-image: url(./pictures/udlogo2.jpg);
+    min-height: 100vh;
+    /* width: 195vb; */
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.homebutton {
+    background-color: rgb(55, 173, 179);
+    margin-top: 610px;
+    font-size: 35px;
+    transition: font-size 200ms;
+}
+.homebutton:hover {
+    background-color: #96c832;
+    font-size: 55px;
+}
+.homepage2 {
+    text-align: center;
+}
+.welcome {
+    font-size: 55px;
+    color: rgb(163, 180, 6);
+}
+
+.emeptySemester {
+    font-size: 20px;
+    transition: font-size 200ms;
+}
+.emeptySemester:hover {
+    background-color: #0044ff;
+    font-size: 20px;
+}
+.clear_button {
+    background-color: #617dfb;
+    font-size: 20px;
+    transition: font-size 200ms;
+}
+.clear_button:hover {
+    background-color: red;
+    font-size: 30px;
+}
+.degreePrompt {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.degreeSelect {
+    width: 2500px;
+}
+
+.deleteEntireSemesterView {
+    background-color: rgb(218, 225, 226) (0, 255, 157);
+    transition: 200ms;
+    font-size: 20px;
+}
+.deleteEntireSemesterView:hover {
+    background-color: #ff0800;
+    font-size: 20px;
+}
+.ConfirmNameView {
+    transition: 200ms;
+}
+.ConfirmNameView:hover {
+    font-size: 20px;
+    background-color: #96c832;
+}
+.semester_box {
+    border: 4px solid #000000;
+    border-radius: 40px;
+    padding: 100px;
+    margin-bottom: 100px;
+    width: 550px;
+}
+.semesterListName-view {
+    position: absolute; /* Set the position property to absolute */
+    top: 1px;
+}
+.input__wrapper {
+    margin: 20px;
+    text-align: center;
+}
+.coursePool_box {
+    border: 5px solid #000000;
+    border-radius: 40px;
+    padding: 100px;
+    margin-bottom: 100px;
+    width: 500px;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.searchBar1 {
+    margin-bottom: 600px;
+}
+.addcourseView {
+    margin-right: 100px;
+}
+.SwichButton {
+    margin-right: 100px;
+    background-color: rgb(136, 255, 0);
+    font-size: 20px;
+}
+.SwichButton:hover {
+    font-size: 25px;
+}
+.searchBar {
+    font-size: 20px;
+}
+.searchBar:hover {
+    font-size: 20px;
+    background-color: rgb(136, 255, 0);
+}
+.editButtonInSwitch {
+    margin-top: 10000px;
+}

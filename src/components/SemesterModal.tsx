@@ -1,11 +1,11 @@
+/* eslint-disable no-extra-parens */
 import React, { useState } from "react";
 import { Button, Modal, Col, Form, Container, Row } from "react-bootstrap";
 import { Season, Semester } from "../interfaces/semester";
-
+//The adding semester modal when user clicks add new semester it pops up
 export const AddSemesterModal = ({
     showAddSemester,
     handleClose,
-
     addSemester,
     semesters
 }: {
@@ -66,7 +66,7 @@ export const AddSemesterModal = ({
                                         <option value="Fall">Fall</option>
                                         <option value="Winter">Winter</option>
                                         <option value="Spring">Spring</option>
-                                        <option value="Winter">Winter</option>
+                                        <option value="Summer">Summer</option>
                                     </Form.Select>
                                 </Col>
                                 <Col>

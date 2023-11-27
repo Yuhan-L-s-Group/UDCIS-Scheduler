@@ -1,27 +1,37 @@
+/* eslint-disable no-extra-parens */
 import React, { useState } from "react";
 import { Course } from "../interfaces/course";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
-import { Season, Semester } from "../interfaces/semester";
-
+import { Semester } from "../interfaces/semester";
+// Add courses from current course list into semester list
 interface AddCoursetoSemesterProp {
     selectedCourse: Course;
     closeAddSemester: () => void;
     semesters: Semester[];
+    setSemester: React.Dispatch<React.SetStateAction<Semester[]>>;
 }
 export function AddtoSemester({
     selectedCourse,
     closeAddSemester,
-    semesters
+    semesters,
+    setSemester
 }: AddCoursetoSemesterProp) {
     const [selectedSemester, setSelectedSemester] = useState<Semester>();
     const handleAddtoSemester = (semester: Semester) => {
         setSelectedSemester(semester);
+        setRenderSemester(true);
     };
+    const [isRenderSemester, setRenderSemester] = useState(false);
+
     const handleChange = () => {
-        selectedSemester?.courses.push(selectedCourse);
-        console.log(selectedSemester?.courses);
+        const RepeatedSemester = semesters.filter((semeseter) =>
+            semeseter.courses.includes(selectedCourse)
+        );
+        if (RepeatedSemester.length === 0) {
+            selectedSemester?.courses.push(selectedCourse);
+            setSemester([...semesters]);
+        }
         closeAddSemester();
     };
     return (
@@ -37,17 +47,33 @@ export function AddtoSemester({
                             this button
                         </span>
                     ) : (
-                        semesters.map((semester) => (
-                            <Button
-                                variant="success"
-                                key={semester.year + semester.season}
-                                onClick={() => handleAddtoSemester(semester)}
-                            >
-                                {semester.year + " " + semester.season}
-                            </Button>
-                        ))
+                        <>
+                            {semesters.map((semester) => (
+                                <div key={semester.year + semester.season}>
+                                    <Button
+                                        variant="success"
+                                        onClick={() =>
+                                            handleAddtoSemester(semester)
+                                        }
+                                    >
+                                        {semester.year + " " + semester.season}
+                                    </Button>
+                                    <br />
+                                </div>
+                            ))}
+                            <div>
+                                {isRenderSemester && (
+                                    <div>
+                                        {"You just selected: "}{" "}
+                                        {selectedSemester?.year}{" "}
+                                        {selectedSemester?.season}
+                                    </div>
+                                )}
+                            </div>
+                        </>
                     )}
                 </Modal.Body>
+
                 <Modal.Footer>
                     <Button variant="primary" onClick={handleChange}>
                         Save Changes

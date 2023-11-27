@@ -4,6 +4,7 @@ import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Courses from "../data/course.json";
+//Edit current courses information
 interface EditCourseProps {
     listCourses: Course[];
     setListCourses: (courses: Course[]) => void;
@@ -12,7 +13,6 @@ interface EditCourseProps {
     ModifiedCourseList: Course[];
 }
 export default function EditCourse({
-    listCourses,
     setListCourses,
     closeEditCourse,
     CourseSlected,
@@ -20,7 +20,6 @@ export default function EditCourse({
 }: EditCourseProps) {
     const [code, setCode] = useState(CourseSlected.code);
     const [name, setName] = useState(CourseSlected.name);
-    const [description, setDescription] = useState(CourseSlected.description);
     const [credits, setCredits] = useState(CourseSlected.credits);
     const modifyCourse = {
         code: CourseSlected.code,
@@ -37,9 +36,7 @@ export default function EditCourse({
         if (CourseSlected.name !== name) {
             modifyCourse.name = name;
         }
-        if (CourseSlected.description !== description) {
-            modifyCourse.description = description;
-        }
+
         if (CourseSlected.credits !== credits) {
             modifyCourse.credits = credits;
         }
@@ -47,23 +44,14 @@ export default function EditCourse({
         const indexOfSelected = ModifiedCourseList.findIndex(
             (course) => course.code === CourseSlected.code
         );
-        ModifiedCourseList.splice(indexOfSelected, 1);
+        ModifiedCourseList.splice(indexOfSelected, 1, modifyCourse);
         const update = [...ModifiedCourseList];
-
-        update.push(modifyCourse);
-        // setListCourses(update);
-        // ModifiedCourseList[indexOfSelected].code = code;
-        // ModifiedCourseList[indexOfSelected].name = name;
-        // ModifiedCourseList[indexOfSelected].description = description;
-        // ModifiedCourseList[indexOfSelected].credits = credits;
         setListCourses(update);
-        console.log("test edit button save changes: ", modifyCourse);
         closeEditCourse();
     };
     const handleReset = () => {
         const update = [...Courses];
         setListCourses(update);
-        console.log("test edit button reset: ", update);
         closeEditCourse();
     };
     return (
@@ -88,14 +76,6 @@ export default function EditCourse({
                             type="text"
                             value={name}
                             onChange={(e) => setName(e.target.value)}
-                        />
-                    </Form.Group>
-                    <Form.Group controlId="description">
-                        <Form.Label>Description</Form.Label>
-                        <Form.Control
-                            type="text"
-                            value={description}
-                            onChange={(e) => setDescription(e.target.value)}
                         />
                     </Form.Group>
                     <Form.Group controlId="credits">

@@ -1,6 +1,6 @@
 import React from "react";
 import { Modal, Button } from "react-bootstrap";
-
+// A friendly welcome messgae introducing how to use this web
 export function IntroModal({
     show,
     handleClose
