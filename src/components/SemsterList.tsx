@@ -92,14 +92,14 @@ export const SemesterList = ({
                                 </div>
                             )
                         )}
-                        {isDisplayEmpty && (
+                        {/* {isDisplayEmpty && (
                             <button
                                 className="clear_button"
                                 onClick={clearSemester}
                             >
                                 Clear All
                             </button>
-                        )}
+                        )} */}
                         <br />
                         <br />
                         <div>

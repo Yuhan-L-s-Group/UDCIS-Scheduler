@@ -91,12 +91,12 @@ export const SemesterDisplay = ({
                         {semester.courses.length !== 0 && (
                             <th>
                                 {" "}
-                                <button
+                                {/* <button
                                     className="emeptySemester"
                                     onClick={() => EmptySemester(semester)}
                                 >
                                     Empty
-                                </button>
+                                </button> */}
                             </th>
                         )}
                     </tr>
@@ -111,11 +111,11 @@ export const SemesterDisplay = ({
                             </td>
                             <td> {course.credits}</td>
                             <td>
-                                <button
+                                {/* <button
                                 // onClick={() => handleSwicthCourse(course)}
                                 >
                                     Switch
-                                </button>
+                                </button> */}
                             </td>
                             <td>
                                 {" "}
@@ -131,13 +131,13 @@ export const SemesterDisplay = ({
                     {
                         <tr>
                             <td colSpan={4}>
-                                <button
+                                {/* <button
                                     onClick={() => deleteWholeSemester()}
                                     className="deleteEntireSemesterView"
                                 >
                                     {" "}
                                     Delete Entire Semester
-                                </button>
+                                </button> */}
                             </td>
                         </tr>
                     }
