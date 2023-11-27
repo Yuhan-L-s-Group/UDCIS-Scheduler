@@ -304,9 +304,12 @@ function App(): JSX.Element {
                                         />
                                     </div>
                                 )}
-                            </Col>
+                            </Col>{" "}
                         </Row>
                     </Container>
+                    <Row className="bottom-view">
+                        @2023 Fall Univerisity Of Delaware
+                    </Row>
                 </div>
             )}
         </div>

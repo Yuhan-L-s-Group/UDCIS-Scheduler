@@ -229,18 +229,11 @@ const Search = ({
     const [IsSelectedRepeatedCourse, setIsSelectedRepeatedCourse] =
         useState(false);
     const handleAddCourseToDegreePlanClick1 = () => {
-        const findDegreePlan = degreeList.find(
-            (degreePlan) => degreePlan.name === DegreeName
-        );
-        if (findDegreePlan) {
-            setselectedDegreePlan(findDegreePlan);
-            setDegreelistLength(() => {
-                const listLength = findDegreePlan.semesters.length;
-                return listLength;
-            });
+        //click next button in modal 1 of courses pool
+        if (DegreeName !== "") {
             setSelectedDegreeIndex(() => {
                 const findIndex = degreeList.findIndex(
-                    (degreePlan) => findDegreePlan === degreePlan
+                    (degreePlan) => selectedDegreePlan === degreePlan
                 );
                 return findIndex;
             });
@@ -255,12 +248,19 @@ const Search = ({
         } else {
             setIsSelectedRepeatedCourse(true);
         }
-
-        console.log(repeatedCourse.length);
+        // console.log(IsSelectedRepeatedCourse);
     };
     const handleCLickDegreePlan = (degreePlan: DegreePlan) => {
+        // click degre plan in modal 1
         setDegreeName(degreePlan.name);
         setIsRenderSelectedDegreeplan(true);
+        setselectedDegreePlan(degreePlan);
+        setIsSelectedRepeatedCourse(false);
+
+        setDegreelistLength(() => {
+            const listLength = selectedDegreePlan.semesters.length;
+            return listLength;
+        });
     };
     const [IsRenderSelectedDegreeplan, setIsRenderSelectedDegreeplan] =
         useState(false);
@@ -272,6 +272,7 @@ const Search = ({
     const [IsAddCourseToSemesterOpen, setIsAddCourseToSemesterOpen] =
         useState(false);
     const handleCLickAddCourseToDegreePlanSave = () => {
+        // save button
         setIsAddCourseToSemesterOpen(false);
         setIsRenderSelctedSemester(false);
         setDisplayEmpty(true);
@@ -411,6 +412,9 @@ const Search = ({
                     <Button variant="success" onClick={handleClickPool}>
                         Add to Course Pool
                     </Button>
+                    <br />
+                    <br />
+
                     <div>
                         {isAddSemesterOpen ? ( // add course to semester list
                             <div>
@@ -520,7 +524,7 @@ const Search = ({
                     </Modal.Body>
                     <Modal.Footer>
                         {IsSelectedRepeatedCourse && (
-                            <div>
+                            <div className="warning-view">
                                 {
                                     "You already added this course for this degreeplan, please pick another one!"
                                 }
@@ -532,24 +536,22 @@ const Search = ({
                     </Modal.Footer>
                 </Modal>
             )}
-            {IsAddCourseToSemesterOpen && ( //Add course from pool of courses to degree plan modal 2 (after clicking next)
+            {IsAddCourseToSemesterOpen && (
                 <Modal
                     show={true}
                     onHide={() => setIsAddCourseToSemesterOpen(false)}
                 >
-                    {" "}
                     <Modal.Header closeButton>
                         <Modal.Title>
                             Choose One Semester for {DegreeName}
                         </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        {
+                        {degreeListLength > 0 ? (
                             <div>
                                 <div>
                                     You will add {theCourse.code + " "} into{" "}
                                     {DegreeName + " "}
-                                    {/* {renderSelectedSemester} */}
                                 </div>
                                 {selectedDegreePlan.semesters.map(
                                     (semester) => (
@@ -566,7 +568,6 @@ const Search = ({
                                                 }
                                                 className="eachCourseButton"
                                             >
-                                                {" "}
                                                 {semester.year +
                                                     " " +
                                                     semester.season}
@@ -575,12 +576,17 @@ const Search = ({
                                     )
                                 )}
                             </div>
-                        }
+                        ) : (
+                            <div className="warning-view">
+                                Please add at least one semester before you
+                                adding course into this degree plan
+                            </div>
+                        )}
                     </Modal.Body>
                     <Modal.Footer>
                         {IsRenderSelctedSemester && (
                             <div>
-                                {"You just selcted: "}
+                                {"You just selected: "}
                                 {renderSelectedSemester.year +
                                     " " +
                                     renderSelectedSemester.season}
@@ -589,15 +595,18 @@ const Search = ({
                         <Button variant="secondary" onClick={HandleBack}>
                             Back
                         </Button>
-                        <Button
-                            variant="primary"
-                            onClick={handleCLickAddCourseToDegreePlanSave}
-                        >
-                            Save
-                        </Button>
+                        {degreeListLength ? (
+                            <Button
+                                variant="primary"
+                                onClick={handleCLickAddCourseToDegreePlanSave}
+                            >
+                                Save
+                            </Button>
+                        ) : null}
                     </Modal.Footer>
                 </Modal>
             )}
+
             {isCoursePool && (
                 <div className="coursePool_box">
                     <span className="Pool_Titile">{"Pool of Courses"}</span>

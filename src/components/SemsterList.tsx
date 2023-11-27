@@ -48,7 +48,7 @@ export const SemesterList = ({
             <br />
             {renderName && <div className="name"> Hi! {Name}</div>}
             <div className="modifytheCreditsText">
-                {"Your Cumulative credits: "}
+                {"Your Cureent Degree Plan Cumulative Credits: "}
                 {semesters.reduce(
                     (acc, iter) =>
                         acc +
@@ -58,7 +58,8 @@ export const SemesterList = ({
                         ),
                     0
                 )}
-                {" credits"} {renderName && <img src={horse} alt="horse" />}
+                {" credits"}
+                {/* // {renderName && <img src={horse} alt="horse" />} */}
             </div>
             {
                 <div>
