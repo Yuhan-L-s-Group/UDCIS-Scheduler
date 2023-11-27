@@ -9,15 +9,11 @@ import React from "react";
 // Addtionally it automatically caculates the cumulative credits
 export const SemesterList = ({
     semesters,
-    Name,
-    renderName,
     modifysemster,
     isDisplayEmpty,
     clearSemester
 }: {
     semesters: Semester[];
-    Name: string;
-    renderName: boolean;
     modifysemster: (semester: Semester[]) => void;
     isDisplayEmpty: boolean;
     clearSemester: () => void;
@@ -26,19 +22,18 @@ export const SemesterList = ({
         <>
             <br />
             <br />
-            {renderName && <div className="name"> Hi! {Name}</div>}
             <div className="modifytheCreditsText">
                 {"Your Cumulative credits: "}
                 {semesters.reduce(
                     (acc, iter) =>
                         acc +
                         iter.courses.reduce(
-                            (acc1, iter1) => acc1 + iter1.credits,
+                            (acc1, iter1) => acc1 + parseInt(iter1.credits),
                             0
                         ),
                     0
                 )}
-                {" credits"} {renderName && <img src={horse} alt="horse" />}
+                {" credits"} {<img src={horse} alt="horse" />}
             </div>
             {isDisplayEmpty && (
                 <div>
