@@ -115,6 +115,7 @@ export const SemesterModal = ({
                         onClick={() => {
                             setYear(2023);
                             setSeason("Fall");
+                            setWarn("");
                             handleClose();
                         }}
                     >

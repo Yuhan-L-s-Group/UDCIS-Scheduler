@@ -4,13 +4,10 @@ import "./App.css";
 
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { IntroModal } from "./components/IntroModal";
-import { Season, Semester } from "./interfaces/semester";
-import { SemesterList } from "./components/SemsterList";
+import { Semester } from "./interfaces/semester";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import logo1 from "./pictures/udlogo2.jpg";
-import { AddCourse } from "./components/AddCourse";
-// import CoursesTable from "./components/courseTable";
 import Courses from "./data/CourseList.json";
 import { Course } from "./interfaces/course";
 import Search from "./components/Search";
@@ -70,18 +67,6 @@ function App(): JSX.Element {
 
     const ModifiedCourseList = [...listCourses]; // this is for edit course component
 
-    const openAddCourseWindow = () => {
-        setAddCourseOpen(true);
-    };
-
-    const closeAddCourseWindow = () => {
-        setAddCourseOpen(false);
-    };
-    //for switch either search bar or the Course list
-    const [Swicth, setSwicth] = useState(false);
-    const handleSwitch = () => {
-        setSwicth(!Swicth);
-    };
     //for degree plan modal
     const [isDegreePlanOpen, setisDegreePlanOpen] = useState(false);
     const handleClickAddDegreePlan = () => {

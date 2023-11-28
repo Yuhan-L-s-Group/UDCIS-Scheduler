@@ -6,6 +6,8 @@ import { Button, Modal, Col, Form, Container, Row } from "react-bootstrap";
 import { Semester, Season } from "../interfaces/semester";
 import { SemesterList } from "./SemsterList";
 import { SemesterModal } from "./SemesterModal";
+import { Requirement } from "./Requirement";
+
 interface EditDegreePlanProps {
     isEditDegreeOpen: boolean;
     semesters: Semester[];
@@ -73,6 +75,7 @@ const EditDegreePlan = ({
                 setDegreeList={setDegreeList}
                 modifysemster={modifysemster}
             ></SemesterModal>
+            <Requirement degreePlan={SelecetedEditdDegreePlan}></Requirement>
         </div>
     );
 };

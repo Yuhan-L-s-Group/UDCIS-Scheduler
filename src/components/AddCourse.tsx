@@ -8,28 +8,30 @@ import Form from "react-bootstrap/Form";
 interface AddCourseWindowProps {
     onClose: () => void;
     listCourses: Course[];
-    setListCourses: (courses: Course[]) => void;
+    pool: Course[];
+    setPool: (courses: Course[]) => void;
 }
 
 export function AddCourse({
     onClose,
     listCourses,
-    setListCourses
+    pool,
+    setPool
 }: AddCourseWindowProps) {
-    const [code, setCode] = useState("");
-    const [name, setName] = useState("");
-    const [description, setDescription] = useState("");
-    const [credits, setCredits] = useState("");
+    const [code, setCode] = useState<string>("");
+    const [name, setName] = useState<string>("");
+    const [credits, setCredits] = useState<string>("");
+    const [breadth, setBreadth] = useState<string>("");
     const [isAdded, setAdded] = useState(false);
     const handleConfirm = () => {
         const courseObject = {
             code: code,
             name: name,
-            descr: description,
+            descr: "",
             credits: credits,
             preReq: "",
             restrict: "",
-            breadth: "",
+            breadth: breadth,
             typ: ""
         };
         const indexCourse = listCourses.findIndex(
@@ -42,13 +44,17 @@ export function AddCourse({
         if (indexCourse !== -1) {
             setAdded(true);
         } else {
-            const updated = [...listCourses];
+            //const updated = [...listCourses];
+            const updated = [...pool];
             updated.push(courseObject);
-            setListCourses(updated);
+            //setListCourses(updated);
+            setPool(updated);
             onClose();
         }
-        console.log(indexCourse);
     };
+    function updateBreadth(event: React.ChangeEvent<HTMLSelectElement>) {
+        setBreadth(event.target.value);
+    }
 
     return (
         <Modal show={true} onHide={onClose}>
@@ -59,7 +65,7 @@ export function AddCourse({
             <Modal.Body>
                 <Form>
                     <Form.Group>
-                        <Form.Label>Code</Form.Label>
+                        <Form.Label>Code:</Form.Label>
                         <Form.Control
                             type="text"
                             value={code}
@@ -67,35 +73,45 @@ export function AddCourse({
                         />
                     </Form.Group>
                     <Form.Group controlId="name">
-                        <Form.Label>Name</Form.Label>
+                        <Form.Label>Name:</Form.Label>
                         <Form.Control
                             type="text"
                             value={name}
                             onChange={(e) => setName(e.target.value)}
                         />
                     </Form.Group>
-                    <Form.Group controlId="description">
-                        <Form.Label>Description</Form.Label>
-                        <Form.Control
-                            type="text"
-                            value={description}
-                            onChange={(e) => setDescription(e.target.value)}
-                        />
-                    </Form.Group>
                     <Form.Group controlId="credits">
-                        <Form.Label>Credits</Form.Label>
+                        <Form.Label>Credits:</Form.Label>
                         <Form.Control
                             type="number"
                             value={credits}
                             onChange={(e) => setCredits(e.target.value)}
                         />
                     </Form.Group>
+                    <Form.Group controlId="breadth">
+                        <Form.Label>Breadth Requirements:</Form.Label>
+                        <Form.Select value={breadth} onChange={updateBreadth}>
+                            {[
+                                "Creative Arts and Humanities",
+                                "History and Cultural Change",
+                                "Social and Behavioral Sciences",
+                                "Math, Natural Science and Technology",
+                                "N/A"
+                            ].map((breadth: string) => {
+                                return (
+                                    <option key={breadth} value={breadth}>
+                                        {breadth}
+                                    </option>
+                                );
+                            })}
+                        </Form.Select>
+                    </Form.Group>
                 </Form>
             </Modal.Body>
             <Modal.Footer>
                 {isAdded && (
                     <div>
-                        You have already added this course to course list!{" "}
+                        You have already added this course to course pool!{" "}
                     </div>
                 )}
                 <Button variant="primary" onClick={handleConfirm}>
