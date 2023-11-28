@@ -13,7 +13,7 @@ interface EditDegreePlanProps {
     renderName: boolean;
     modifysemster: (semester: Semester[]) => void;
     isDisplayEmpty: boolean;
-    clearSemester: () => void;
+    clearAllinDegreePlan: () => void;
     handleShowModal: () => void;
     showAddSemester: boolean;
     handleClose: () => void;
@@ -32,7 +32,7 @@ const EditDegreePlan = ({
     renderName,
     modifysemster,
     isDisplayEmpty,
-    clearSemester,
+    clearAllinDegreePlan,
     handleShowModal,
     showAddSemester,
     handleClose,
@@ -46,17 +46,13 @@ const EditDegreePlan = ({
 }: EditDegreePlanProps) => {
     return (
         <div>
-            {/* <Button className="add_button" onClick={handleShowModal}>
-                {" "}
-                Add New Semester
-            </Button> */}
             <SemesterList
                 semesters={semesters}
                 Name={Name}
                 renderName={renderName}
                 modifysemster={modifysemster}
                 isDisplayEmpty={isDisplayEmpty}
-                clearSemester={clearSemester}
+                clearAllinDegreePlan={clearAllinDegreePlan}
                 setIsEditDegreeOpen={setIsEditDegreeOpen}
                 setIsdegreeList={setIsdegreeList}
                 setIsaddDegreeButton={setIsaddDegreeButton}
@@ -64,6 +60,7 @@ const EditDegreePlan = ({
                 setDegreeList={setDegreeList}
                 selectedDegreePlan={selectedDegreePlan}
                 handleShowModal={handleShowModal}
+                SelecetedEditdDegreePlan={SelecetedEditdDegreePlan}
             ></SemesterList>
             <br />
             <br />

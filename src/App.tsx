@@ -47,9 +47,18 @@ function App(): JSX.Element {
         setHomepage(false);
     };
 
-    function clearSemester() {
+    function clearAllinDegreePlan() {
+        // clear all semester in degree plan so there will be no semesters in degree plan
         setSemester([]);
         setDisplayEmpty(false);
+        SelecetedEditdDegreePlan.semesters = [];
+        const findDegreeIndex = degreeList.findIndex(
+            (degreePlan) => degreePlan === SelecetedEditdDegreePlan
+        );
+        degreeList[findDegreeIndex] = SelecetedEditdDegreePlan;
+        const update = [...degreeList];
+        setDegreeList(update);
+        // console.log(degreeList[findDegreeIndex]);
     }
 
     function modifysemster(semester: Semester[]) {
@@ -280,7 +289,9 @@ function App(): JSX.Element {
                                             renderName={renderName}
                                             modifysemster={modifysemster}
                                             isDisplayEmpty={isDisplayEmpty}
-                                            clearSemester={clearSemester}
+                                            clearAllinDegreePlan={
+                                                clearAllinDegreePlan
+                                            }
                                             handleShowModal={handleShowModal}
                                             showAddSemester={showAddSemester}
                                             handleClose={handleCloseModal}
@@ -306,7 +317,7 @@ function App(): JSX.Element {
                         </Row>
                     </Container>
                     <Row className="bottom-view">
-                        @2023 Fall Univerisity Of Delaware
+                        @2023 Fall Univerisity of Delaware
                     </Row>
                 </div>
             )}

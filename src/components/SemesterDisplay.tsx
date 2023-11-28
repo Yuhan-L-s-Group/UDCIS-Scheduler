@@ -14,7 +14,8 @@ export const SemesterDisplay = ({
     semesters,
     degreeList,
     setDegreeList,
-    selectedDegreePlan
+    selectedDegreePlan,
+    SelecetedEditdDegreePlan
 }: {
     semester: Semester;
     modifysemster: (semester: Semester[]) => void;
@@ -22,15 +23,10 @@ export const SemesterDisplay = ({
     degreeList: DegreePlan[];
     setDegreeList: React.Dispatch<React.SetStateAction<DegreePlan[]>>;
     selectedDegreePlan: DegreePlan;
+    SelecetedEditdDegreePlan: DegreePlan;
 }): JSX.Element => {
     const deleteCourseFunc = (course: Course) => {
-        // const indexC = semester.courses.findIndex(
-        //     (target) => target === course
-        // );
-        // semester.courses.splice(indexC, 1);
-        // const update = [...semesters];
-        // modifysemster(update);
-
+        // delete a course from a semester
         const findDegreeIndex = degreeList.findIndex(
             (degreeplan) => degreeplan === selectedDegreePlan
         );
@@ -44,34 +40,43 @@ export const SemesterDisplay = ({
             findCourseIndex,
             1
         );
-        const update2 = [...degreeList];
-        setDegreeList(update2);
+        const update = [...degreeList];
+        setDegreeList(update);
         console.log(selectedDegreePlan);
     };
 
     const deleteWholeSemester = () => {
-        // const indexS = semesters.findIndex((target) => target === semester);
-        // semesters.splice(indexS, 1);
-        // const update = [...semesters];
-        // modifysemster(update);
-        // const findDegreeIndex = degreeList.findIndex(
-        //     (degreeplan) => degreeplan === selectedDegreePlan
-        // );
-        // const findSemesterIndex = selectedDegreePlan.semesters.findIndex(
-        //     (s) => s === semester
-        // );
-        // degreeList[findDegreeIndex].semesters.splice(findSemesterIndex, 1);
-        // const update2 = [...degreeList];
-        console.log(selectedDegreePlan);
-        // setDegreeList(update2);
+        //delete everything of a single semester from semester list
+        const findDegreeIndex = degreeList.findIndex(
+            (degreeplan) => degreeplan === SelecetedEditdDegreePlan
+        );
+        const findSemesterIndex = SelecetedEditdDegreePlan.semesters.findIndex(
+            (s) => s === semester
+        );
+        degreeList[findDegreeIndex].semesters.splice(findSemesterIndex, 1);
+        const update = [...degreeList];
+        setDegreeList(update);
+        semesters.splice(findSemesterIndex, 1);
+        const update2 = [...semesters];
+        modifysemster(update2);
+        console.log(degreeList);
+        // console.log(findDegreeIndex);
     };
     const EmptySemester = (semester: Semester) => {
-        semester.courses.splice(0, semester.courses.length);
-        const update = [...semesters];
-        modifysemster(update);
-        console.log(selectedDegreePlan);
+        const findDegreeIndex = degreeList.findIndex(
+            (degreeplan) => degreeplan === SelecetedEditdDegreePlan
+        );
+        const findSemesterIndex = SelecetedEditdDegreePlan.semesters.findIndex(
+            (s) => s === semester
+        );
+        degreeList[findDegreeIndex].semesters[findSemesterIndex].courses = [];
+        const update = [...degreeList];
+        setDegreeList(update);
+        semesters[findSemesterIndex].courses = [];
+        const update2 = [...semesters];
+        modifysemster(update2);
+        console.log(degreeList);
     };
-    // const handleSwicthCourse
     return (
         <div className="semester_view">
             <table>
@@ -91,12 +96,12 @@ export const SemesterDisplay = ({
                         {semester.courses.length !== 0 && (
                             <th>
                                 {" "}
-                                {/* <button
+                                <button
                                     className="emeptySemester"
                                     onClick={() => EmptySemester(semester)}
                                 >
                                     Empty
-                                </button> */}
+                                </button>
                             </th>
                         )}
                     </tr>
@@ -131,13 +136,13 @@ export const SemesterDisplay = ({
                     {
                         <tr>
                             <td colSpan={4}>
-                                {/* <button
+                                <button
                                     onClick={() => deleteWholeSemester()}
                                     className="deleteEntireSemesterView"
                                 >
                                     {" "}
                                     Delete Entire Semester
-                                </button> */}
+                                </button>
                             </td>
                         </tr>
                     }

@@ -14,21 +14,22 @@ export const SemesterList = ({
     renderName,
     modifysemster,
     isDisplayEmpty,
-    clearSemester,
+    clearAllinDegreePlan,
     setIsEditDegreeOpen,
     setIsdegreeList,
     setIsaddDegreeButton,
     degreeList,
     setDegreeList,
     selectedDegreePlan,
-    handleShowModal
+    handleShowModal,
+    SelecetedEditdDegreePlan
 }: {
     semesters: Semester[];
     Name: string;
     renderName: boolean;
     modifysemster: (semester: Semester[]) => void;
     isDisplayEmpty: boolean;
-    clearSemester: () => void;
+    clearAllinDegreePlan: () => void;
     setIsEditDegreeOpen: React.Dispatch<React.SetStateAction<boolean>>;
     setIsdegreeList: React.Dispatch<React.SetStateAction<boolean>>;
     setIsaddDegreeButton: React.Dispatch<React.SetStateAction<boolean>>;
@@ -36,6 +37,7 @@ export const SemesterList = ({
     setDegreeList: React.Dispatch<React.SetStateAction<DegreePlan[]>>;
     selectedDegreePlan: DegreePlan;
     handleShowModal: () => void;
+    SelecetedEditdDegreePlan: DegreePlan;
 }) => {
     const handleBack = () => {
         setIsEditDegreeOpen(false);
@@ -88,18 +90,21 @@ export const SemesterList = ({
                                         degreeList={degreeList}
                                         setDegreeList={setDegreeList}
                                         selectedDegreePlan={selectedDegreePlan}
+                                        SelecetedEditdDegreePlan={
+                                            SelecetedEditdDegreePlan
+                                        }
                                     />
                                 </div>
                             )
                         )}
-                        {/* {isDisplayEmpty && (
+                        {isDisplayEmpty && (
                             <button
                                 className="clear_button"
-                                onClick={clearSemester}
+                                onClick={clearAllinDegreePlan}
                             >
                                 Clear All
                             </button>
-                        )} */}
+                        )}
                         <br />
                         <br />
                         <div>
