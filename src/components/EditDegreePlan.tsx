@@ -46,10 +46,6 @@ const EditDegreePlan = ({
     setDegreeList,
     selectedDegreePlan
 }: EditDegreePlanProps) => {
-    const printAll = () => {
-        console.log(selectedDegreePlan.concentration);
-    };
-
     return (
         <div>
             {/* <Button className="add_button" onClick={handleShowModal}>
@@ -82,8 +78,7 @@ const EditDegreePlan = ({
                 setDegreeList={setDegreeList}
                 modifysemster={modifysemster}
             ></SemesterModal>
-            <Button onClick={printAll}>Print url</Button>
-            <Requirement degreePlan={selectedDegreePlan}></Requirement>
+            <Requirement degreePlan={SelecetedEditdDegreePlan}></Requirement>
         </div>
     );
 };

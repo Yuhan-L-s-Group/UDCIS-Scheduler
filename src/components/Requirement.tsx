@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Button, Col } from "react-bootstrap";
 import { Semester } from "../interfaces/semester";
 import { DegreePlan } from "../interfaces/degreePlan";
+import { Cyber } from "../data/Concentration/Cyber";
 
 export function getURLs(conc: string): string {
     const URLS: Record<string, string> = {
@@ -32,21 +33,15 @@ export function getURLs(conc: string): string {
 export const Requirement = ({ degreePlan }: { degreePlan: DegreePlan }) => {
     const url = getURLs(degreePlan.concentration);
 
-    const printAll = () => {
-        console.log(degreePlan.concentration);
-    };
-
     return (
-        <Col className="sidecolumns" id="move-when-scroll">
+        <div>
             <h2 className="subtitle">Degree Requirements</h2>
             <p className="reqdesc">
-                *See the{" "}
                 <a href={url} target="_blank" rel="noopener noreferrer">
-                    UD Catalog
-                </a>{" "}
-                for full requirement descriptions.
+                    What classes should I take?
+                </a>
             </p>
-            <Button onClick={printAll}>Print url</Button>
-        </Col>
+            <Cyber degreePlan={degreePlan}></Cyber>
+        </div>
     );
 };
