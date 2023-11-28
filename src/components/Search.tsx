@@ -372,7 +372,8 @@ const Search = ({
                     <AddCourse
                         onClose={closeAddCourseWindow}
                         listCourses={listCourses}
-                        setListCourses={setListCourses}
+                        pool={coursePool}
+                        setPool={setCoursePool}
                     />
                 </div>
             )}
