@@ -28,12 +28,12 @@ export const SemesterDisplay = ({
     const deleteCourseFunc = (course: Course) => {
         // delete a course from a semester
         const findDegreeIndex = degreeList.findIndex(
-            (degreeplan) => degreeplan === selectedDegreePlan
+            (degreeplan) => degreeplan === SelecetedEditdDegreePlan
         );
-        const findSemesterIndex = selectedDegreePlan.semesters.findIndex(
+        const findSemesterIndex = SelecetedEditdDegreePlan.semesters.findIndex(
             (s) => s === semester
         );
-        const findCourseIndex = selectedDegreePlan.semesters[
+        const findCourseIndex = SelecetedEditdDegreePlan.semesters[
             findSemesterIndex
         ].courses.findIndex((c) => c === course);
         degreeList[findDegreeIndex].semesters[findSemesterIndex].courses.splice(
