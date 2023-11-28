@@ -62,22 +62,6 @@ export const SemesterDisplay = ({
         console.log(degreeList);
         // console.log(findDegreeIndex);
     };
-    const EmptySemester = (semester: Semester) => {
-        //empty all the courses from a semester
-        const findDegreeIndex = degreeList.findIndex(
-            (degreeplan) => degreeplan === SelecetedEditdDegreePlan
-        );
-        const findSemesterIndex = SelecetedEditdDegreePlan.semesters.findIndex(
-            (s) => s === semester
-        );
-        degreeList[findDegreeIndex].semesters[findSemesterIndex].courses = [];
-        const update = [...degreeList];
-        setDegreeList(update);
-        semesters[findSemesterIndex].courses = [];
-        const update2 = [...semesters];
-        modifysemster(update2);
-        console.log(degreeList);
-    };
     //handle move course to other semester function
     const handleCourseMove = (course: Course, targetSemesterId: string) => {
         const updatedSemesters = semesters.map((semester) => {
@@ -117,12 +101,12 @@ export const SemesterDisplay = ({
                         {semester.courses.length !== 0 && (
                             <th>
                                 {" "}
-                                <button
+                                {/* <button
                                     className="emeptySemester"
                                     onClick={() => EmptySemester(semester)}
                                 >
                                     Empty
-                                </button>
+                                </button> */}
                             </th>
                         )}
                     </tr>
