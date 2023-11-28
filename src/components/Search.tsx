@@ -1,7 +1,6 @@
 /* eslint-disable no-extra-parens */
 import React, { useState } from "react";
 import { Course } from "../interfaces/course";
-import courses from "../data/CourseList.json";
 import { AddtoSemester } from "./AddtoSemester";
 import EditCourse from "./EditCourse";
 import { AddCourse } from "./AddCourse";
@@ -9,7 +8,6 @@ import { Concentration, DegreePlan } from "../interfaces/degreePlan";
 import { Season, Semester } from "../interfaces/semester";
 // import AddCourseToDegreePlanModal from "./AddCourseToDegreePlanModal";
 import { Button, Modal, Col, Form, Container, Row } from "react-bootstrap";
-import EditDegreePlan from "./EditDegreePlan";
 
 // Search course bar (switch 2)
 interface SearchProps {
@@ -163,17 +161,6 @@ const Search = ({
         setText(course.code);
     };
     // add courses from course bar into courses pool
-    const [selectedCourseForDegreePlan, setselectedCourseForDegreePlan] =
-        useState<Course>({
-            code: "",
-            name: "",
-            descr: "",
-            credits: "",
-            preReq: "",
-            restrict: "",
-            breadth: "",
-            typ: ""
-        });
     const handleClickPool = () => {
         const update = [...coursePool];
         const indexCourse = ModifiedCourseList.findIndex(
@@ -183,7 +170,6 @@ const Search = ({
         if (!repeatedCourse) {
             update.push(ModifiedCourseList[indexCourse]);
             setCoursePool(update);
-            setselectedCourseForDegreePlan(ModifiedCourseList[indexCourse]);
         }
         setIsAddedCourseTopool(true);
     };
@@ -197,6 +183,7 @@ const Search = ({
         setCoursePool(update);
         setIsAddedCourseTopool(false);
     };
+    //setlect credits for course
     // add course from course pool into degree plan modal 1
     const [isAddedCourseTopool, setIsAddedCourseTopool] = useState(false);
     const [isCourseToDegreePlanOpen, setisCourseToDegreePlanOpen] =
@@ -217,27 +204,11 @@ const Search = ({
         setIsAddedCourseTopool(false);
     };
     const [DegreeName, setDegreeName] = useState<string>("");
-    const ONchangeDegreeName = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        setDegreeName(e.target.value);
-        console.log(DegreeName);
-    };
-    const [SelectedDegreeIndex, setSelectedDegreeIndex] = useState(-1);
-    const [
-        isRenderChoseRepeatedCourseIndegreePlan,
-        setIsRenderChoseRepeatedCourseIndegreePlan
-    ] = useState(false);
+
     const [IsSelectedRepeatedCourse, setIsSelectedRepeatedCourse] =
         useState(false);
     const handleAddCourseToDegreePlanClick1 = () => {
         //click next button in modal 1 of courses pool
-        if (DegreeName !== "") {
-            setSelectedDegreeIndex(() => {
-                const findIndex = degreeList.findIndex(
-                    (degreePlan) => selectedDegreePlan === degreePlan
-                );
-                return findIndex;
-            });
-        }
         setIsRenderSelectedDegreeplan(false);
         const repeatedCourse = selectedDegreePlan.semesters.filter((semester) =>
             semester.courses.includes(theCourse)
@@ -496,23 +467,29 @@ const Search = ({
                             {" "}
                             <Row>
                                 <Col>
-                                    {degreeList.map((degreePlan) => (
-                                        <button
-                                            className="eachCourseButton"
-                                            value={degreePlan.name}
-                                            key={
-                                                degreePlan.name +
-                                                degreePlan.concentration
-                                            }
-                                            onClick={() =>
-                                                handleCLickDegreePlan(
-                                                    degreePlan
-                                                )
-                                            }
-                                        >
-                                            {degreePlan.name}
-                                        </button>
-                                    ))}
+                                    {degreeList.length > 0 ? (
+                                        degreeList.map((degreePlan) => (
+                                            <button
+                                                className="eachCourseButton"
+                                                value={degreePlan.name}
+                                                key={
+                                                    degreePlan.name +
+                                                    degreePlan.concentration
+                                                }
+                                                onClick={() =>
+                                                    handleCLickDegreePlan(
+                                                        degreePlan
+                                                    )
+                                                }
+                                            >
+                                                {degreePlan.name}
+                                            </button>
+                                        ))
+                                    ) : (
+                                        <div>
+                                            {"Please add a degree plan first!"}
+                                        </div>
+                                    )}
                                     {IsRenderSelectedDegreeplan && (
                                         <div>
                                             {"You just selected: "} {DegreeName}
@@ -579,7 +556,7 @@ const Search = ({
                         ) : (
                             <div className="warning-view">
                                 Please add at least one semester before you
-                                adding course into this degree plan
+                                adding course into this degree plan!
                             </div>
                         )}
                     </Modal.Body>
@@ -625,14 +602,14 @@ const Search = ({
                                 <tr key={course.code}>
                                     {" "}
                                     <td>{course.code}</td>
-                                    <td>{course.credits}</td>
+                                    <td>{<div>{course.credits}</div>}</td>
                                     <td>
                                         {" "}
                                         <Button
                                             variant="danger"
                                             onClick={() => deletePool(course)}
                                         >
-                                            X
+                                            x
                                         </Button>
                                     </td>
                                     <td>
@@ -642,7 +619,7 @@ const Search = ({
                                                 AddCourseToDegreePlan(course)
                                             }
                                         >
-                                            Add to Degree Plan
+                                            Add
                                         </Button>
                                     </td>
                                 </tr>

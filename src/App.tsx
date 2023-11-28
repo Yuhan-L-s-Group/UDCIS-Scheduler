@@ -86,6 +86,7 @@ function App(): JSX.Element {
     const [isDegreePlanOpen, setisDegreePlanOpen] = useState(false);
     const handleClickAddDegreePlan = () => {
         setisDegreePlanOpen(true);
+        setIsRenderDegreeTable(true);
     };
     const [degreeList, setDegreeList] = useState<DegreePlan[]>([]);
     const [isAddDegreeButton, setIsaddDegreeButton] = useState(true);
@@ -113,11 +114,19 @@ function App(): JSX.Element {
         const updatedSemesters = [...EditdDegreePlan.semesters];
         setSemester(updatedSemesters);
     };
-
-    //pass selected degree plan to search
+    // is rendering degree plan table
+    const [isRenderDegreeTable, setIsRenderDegreeTable] = useState(false);
+    //delete degree plan from degree list
+    const handleDeleteDegreeplan = (degreePlan: DegreePlan) => {
+        const findDegreeIndex = degreeList.findIndex(
+            (plan) => plan === degreePlan
+        );
+        degreeList.splice(findDegreeIndex, 1);
+        setDegreeList([...degreeList]);
+    };
     return (
         <div className="App">
-            {isHomepage ? (
+            {isHomepage ? ( // the first page when you open the web
                 <div>
                     <div className="homepage">
                         <div className="homepage2">
@@ -216,7 +225,7 @@ function App(): JSX.Element {
                                 <br />
                                 <br />
                                 <br />
-                                {isDegreeList && (
+                                {isDegreeList && ( //degree list box
                                     <div className="semester_box">
                                         <div className="DegreeListTitle-view">
                                             {"Degree List"}
@@ -232,7 +241,8 @@ function App(): JSX.Element {
                                             </Button>
                                         )}
                                         <br />
-                                        {
+                                        {isRenderDegreeTable && (
+                                            //individual degree plan
                                             <table>
                                                 <thead>
                                                     {" "}
@@ -240,6 +250,7 @@ function App(): JSX.Element {
                                                         <th>Degree Name</th>{" "}
                                                         <th>Concentration</th>
                                                         <th>Modify</th>
+                                                        <th>Delete</th>
                                                     </tr>
                                                 </thead>
                                                 {degreeList.map(
@@ -273,11 +284,23 @@ function App(): JSX.Element {
                                                                     Edit
                                                                 </button>
                                                             </td>
+                                                            <td>
+                                                                <Button
+                                                                    variant="danger"
+                                                                    onClick={() =>
+                                                                        handleDeleteDegreeplan(
+                                                                            degreePlan
+                                                                        )
+                                                                    }
+                                                                >
+                                                                    x
+                                                                </Button>
+                                                            </td>
                                                         </tr>
                                                     )
                                                 )}
                                             </table>
-                                        }
+                                        )}
                                     </div>
                                 )}
                                 {isEditDegreeOpen && (

@@ -63,6 +63,7 @@ export const SemesterDisplay = ({
         // console.log(findDegreeIndex);
     };
     const EmptySemester = (semester: Semester) => {
+        //empty all the courses from a semester
         const findDegreeIndex = degreeList.findIndex(
             (degreeplan) => degreeplan === SelecetedEditdDegreePlan
         );
@@ -76,6 +77,26 @@ export const SemesterDisplay = ({
         const update2 = [...semesters];
         modifysemster(update2);
         console.log(degreeList);
+    };
+    //handle move course to other semester function
+    const handleCourseMove = (course: Course, targetSemesterId: string) => {
+        const updatedSemesters = semesters.map((semester) => {
+            if (semester.season + semester.year === targetSemesterId) {
+                return {
+                    ...semester,
+                    courses: [...semester.courses, course]
+                };
+            } else if (semester.courses.find((c) => c.code === course.code)) {
+                return {
+                    ...semester,
+                    courses: semester.courses.filter(
+                        (c) => c.code !== course.code
+                    )
+                };
+            }
+            return semester;
+        });
+        modifysemster(updatedSemesters);
     };
     return (
         <div className="semester_view">
@@ -92,7 +113,7 @@ export const SemesterDisplay = ({
                                 0
                             )}
                         </th>
-                        <th>Switch Course</th>
+                        <th>Move Course</th>
                         {semester.courses.length !== 0 && (
                             <th>
                                 {" "}
@@ -116,11 +137,21 @@ export const SemesterDisplay = ({
                             </td>
                             <td> {course.credits}</td>
                             <td>
-                                {/* <button
-                                // onClick={() => handleSwicthCourse(course)}
+                                <select
+                                    onChange={(e) =>
+                                        handleCourseMove(course, e.target.value)
+                                    }
                                 >
-                                    Switch
-                                </button> */}
+                                    <option value="">Move to...</option>
+                                    {semesters.map((s) => (
+                                        <option
+                                            key={s.season + s.year}
+                                            value={s.season + s.year}
+                                        >
+                                            {s.season} {s.year}
+                                        </option>
+                                    ))}
+                                </select>
                             </td>
                             <td>
                                 {" "}
