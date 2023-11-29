@@ -8,7 +8,6 @@ import Form from "react-bootstrap/Form";
 interface AddCourseWindowProps {
     onClose: () => void;
     listCourses: Course[];
-    setListCourses: (courses: Course[]) => void;
     pool: Course[];
     setPool: (courses: Course[]) => void;
 }
@@ -16,15 +15,13 @@ interface AddCourseWindowProps {
 export function AddCourse({
     onClose,
     listCourses,
-    setListCourses,
     pool,
     setPool
 }: AddCourseWindowProps) {
-    const [code, setCode] = useState("");
-    const [name, setName] = useState("");
-    const [description, setDescription] = useState("");
-    const [credits, setCredits] = useState("");
-    const [breadth, setBreadth] = useState("");
+    const [code, setCode] = useState<string>("");
+    const [name, setName] = useState<string>("");
+    const [credits, setCredits] = useState<string>("");
+    const [breadth, setBreadth] = useState<string>("");
     const [isAdded, setAdded] = useState(false);
     const handleConfirm = () => {
         const courseObject = {
@@ -54,7 +51,6 @@ export function AddCourse({
             setPool(updated);
             onClose();
         }
-        console.log(indexCourse);
     };
     function updateBreadth(event: React.ChangeEvent<HTMLSelectElement>) {
         setBreadth(event.target.value);
@@ -82,14 +78,6 @@ export function AddCourse({
                             type="text"
                             value={name}
                             onChange={(e) => setName(e.target.value)}
-                        />
-                    </Form.Group>
-                    <Form.Group controlId="description">
-                        <Form.Label>Description:</Form.Label>
-                        <Form.Control
-                            type="text"
-                            value={description}
-                            onChange={(e) => setDescription(e.target.value)}
                         />
                     </Form.Group>
                     <Form.Group controlId="credits">
@@ -123,7 +111,7 @@ export function AddCourse({
             <Modal.Footer>
                 {isAdded && (
                     <div>
-                        You have already added this course to course list!{" "}
+                        You have already added this course to course pool!{" "}
                     </div>
                 )}
                 <Button variant="primary" onClick={handleConfirm}>
