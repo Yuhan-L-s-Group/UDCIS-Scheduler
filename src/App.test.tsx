@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen, waitFor } from "@testing-library/react";
-import App from "./App";
 import userEvent from "@testing-library/user-event";
+import App from "./App";
 
 /* Format for tests cases
 test("Replace with test details", () => {
@@ -124,15 +124,15 @@ describe("Scheduler Tests", () => {
         const Name = screen.getAllByRole("textbox")[2];
         const Credits = screen.getAllByRole("textbox")[4];
 
-        userEvent.type(Code, "JAPN105");
-        userEvent.type(Name, "Japanese I - Elementary");
+        userEvent.type(Code, "FREN105");
+        userEvent.type(Name, "French I - Elementary");
         userEvent.type(Credits, "4");
         const saveNewCourse = screen.getByText(/Save Changes/i);
         userEvent.click(saveNewCourse);
 
-        expect(screen.getByText(/JAPN105/i)).toBeInTheDocument();
+        expect(screen.getByText(/FREN105/i)).toBeInTheDocument();
         expect(
-            screen.getByText(/Japanese I - Elementary/i)
+            screen.getByText(/French I - Elementary/i)
         ).toBeInTheDocument();
     });
 
@@ -177,12 +177,12 @@ describe("Scheduler Tests", () => {
         const switchToSeach = screen.getByText("Switch");
         userEvent.click(switchToSeach);
 
-        //search CISC108
+        //search CISC210
         const searchBox = screen.getAllByRole("textbox")[1];
         const seachButton = screen.getByText("Search");
-        userEvent.type(searchBox, "CISC108");
+        userEvent.type(searchBox, "CISC210");
         userEvent.click(seachButton);
-        expect(screen.getByText("Course Code: CISC108")).toBeInTheDocument();
+        expect(screen.getByText("Course Code: CISC210")).toBeInTheDocument();
 
         //add course from search bar
         const addButton = screen.getByText("Add to Semester");
@@ -204,11 +204,104 @@ describe("Scheduler Tests", () => {
 
         //input in lower case
         userEvent.clear(searchBox);
-        userEvent.type(searchBox, "cisc108");
+        userEvent.type(searchBox, "cisc210");
         userEvent.click(seachButton);
         expect(
             screen.queryByText("Please make sure course code is correct!")
         ).not.toBeInTheDocument();
-        expect(screen.getByText("Course Code: CISC108")).toBeInTheDocument();
+        expect(screen.getByText("Course Code: CISC210")).toBeInTheDocument();
+    });
+//clearing the semester selected
+    test("Test clearing all semesters", () => {
+    const closingHomePage = screen.getByText("CLICK");
+    userEvent.click(closingHomePage);
+
+    const clearAll = screen.getByText("Clear All");
+    userEvent.click(clearAll);
+
+    expect(screen.queryByText("Clear All")).not.toBeInTheDocument();
+    expect(screen.queryByText(/Semster:/i)).not.toBeInTheDocument();
+    });
+
+    test("Test adding courses to a semester", () => {
+        const closeHomePage = screen.getByText("CLICK");
+        userEvent.click(closeHomePage);
+    
+        const addSemesterButton = screen.getByText("Add A New Semester");
+        userEvent.click(addSemesterButton);
+    
+        const saveButton = screen.getByText("Save");
+        userEvent.click(saveButton);
+    
+        expect(screen.getByText(/Semster: Fall 2023/i)).toBeInTheDocument();
+    
+        const addToSemesterButton = screen.getAllByText("Add to Semester")[0];
+        userEvent.click(addToSemesterButton);
+    
+        const saveChangesButton = screen.getByText("Save Changes");
+        userEvent.click(saveChangesButton);
+    
+        expect(screen.getByText(/Total: 0/i)).toBeInTheDocument();
+    });
+
+    test("Test switching degree plans", () => {
+    const closeHomePage = screen.getByText("CLICK");
+    userEvent.click(closeHomePage);
+
+    const degreePlanButton = screen.getByText("Add New Degree Plan");
+    userEvent.click(degreePlanButton);
+
+    const saveDegreePlanButton = screen.getByText("Save");
+    userEvent.click(saveDegreePlanButton);
+
+    const editDegreeButton = screen.getByText("Edit");
+    userEvent.click(editDegreeButton);
+
+    expect(screen.getByText(/Degree List/i)).toBeInTheDocument();
+    });
+
+    test("Test error handling for incorect course code entered", () => {
+        const closeHomePage = screen.getByText("CLICK");
+        userEvent.click(closeHomePage);
+
+        const searchBox = screen.getAllByRole("textbox")[1];
+        userEvent.type(searchBox, "The code entered is incorrect.");
+        userEvent.type(searchBox, "CIST107");
+
+        const searchButton = screen.getByText("Search");
+        userEvent.click(searchButton);
+
+        expect(
+        screen.getByText("Please ensure course code entered is correct!")
+        ).toBeInTheDocument();
+    });
+    //clearing something that was found in the results
+    test("Test clearing search results", () => {
+        const closeHomePage = screen.getByText("CLICK");
+        userEvent.click(closeHomePage);
+    
+        const switchToSearchButton = screen.getByText("Switch");
+        userEvent.click(switchToSearchButton);
+    
+        const searchBox = screen.getAllByRole("textbox")[1];
+        userEvent.type(searchBox, "CISC108");
+    
+        const searchButton = screen.getByText("Search");
+        userEvent.click(searchButton);
+    
+        const clearSearchButton = screen.getByText("Clear Search");
+        userEvent.click(clearSearchButton);
+    
+        expect(screen.queryByText("Course Code: CISC108")).not.toBeInTheDocument();
+    });
+//deletes the degree plan
+    test("Test degree plan delete", () => {
+        const closeHomePage = screen.getByText("CLICK");
+    userEvent.click(closeHomePage);
+
+    const deleteDegreeButton = screen.getByText("Delete");
+    userEvent.click(deleteDegreeButton);
+
+    expect(screen.queryByText("Delete")).not.toBeInTheDocument();
     });
 });
