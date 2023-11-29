@@ -4,6 +4,7 @@ import { Semester, Season } from "../interfaces/semester";
 import { DegreePlan } from "../interfaces/degreePlan";
 import { AddSemesterModal } from "./SemesterModal";
 import { SemesterList } from "./SemsterList";
+import ExportCSV from "../ExportCSV";
 
 //import "./css";
 
@@ -80,6 +81,7 @@ export const DegreePlanDetail = ({
                 addSemester={addNewSemester}
                 semesters={newDegreePlan.semesters}
             ></AddSemesterModal>
+            <ExportCSV degreePlan={degreePlan}></ExportCSV>
         </div>
     );
 };
