@@ -80,6 +80,7 @@ export function AddtoSemester({
                     </Button>
                 </Modal.Footer>
             </Modal>
+            <button> Import CSV </button>
         </div>
     );
 }

@@ -109,6 +109,29 @@ function App(): JSX.Element {
         degreeList.splice(findDegreeIndex, 1);
         setDegreeList([...degreeList]);
     };
+    const [file, setFile] = useState();
+
+    const fileReader = new FileReader();
+
+    const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const inputElement = e.target as HTMLInputElement;
+
+        if (inputElement && inputElement.files) {
+            setFile(inputElement.files[0]);
+        }
+    };
+
+    const handleOnSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+
+        if (file) {
+            fileReader.onload = function (event) {
+                const csvOutput = event.target.result;
+            };
+
+            fileReader.readAsText(file);
+        }
+    };
     return (
         <div className="App">
             {isHomepage ? ( // the first page when you open the web
@@ -163,6 +186,22 @@ function App(): JSX.Element {
                                 <br />
                                 {
                                     <span>
+                                        <form>
+                                            <input
+                                                type={"file"}
+                                                id={"csvFileInput"}
+                                                accept={".csv"}
+                                                onChange={handleOnChange}
+                                            />
+
+                                            <button
+                                                onClick={(e) => {
+                                                    handleOnSubmit(e);
+                                                }}
+                                            >
+                                                IMPORT CSV
+                                            </button>
+                                        </form>
                                         <Search
                                             ModifiedCourseList={
                                                 ModifiedCourseList
