@@ -4,6 +4,7 @@ import { Course } from "../interfaces/course";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import { Semester } from "../interfaces/semester";
+
 // Add courses from current course list into semester list
 interface AddCoursetoSemesterProp {
     selectedCourse: Course;
@@ -47,7 +48,7 @@ export function AddtoSemester({
                             this button
                         </span>
                     ) : (
-                        <>
+                        <div>
                             {semesters.map((semester) => (
                                 <div key={semester.year + semester.season}>
                                     <Button
@@ -70,7 +71,7 @@ export function AddtoSemester({
                                     </div>
                                 )}
                             </div>
-                        </>
+                        </div>
                     )}
                 </Modal.Body>
 

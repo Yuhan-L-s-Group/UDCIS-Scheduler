@@ -1,13 +1,14 @@
 /* eslint-disable no-extra-parens */
 import React, { useState } from "react";
 import { Course } from "../interfaces/course";
-import courses from "../data/course.json";
-import { Button } from "react-bootstrap";
-import { Semester } from "../interfaces/semester";
 import { AddtoSemester } from "./AddtoSemester";
-import Modal from "react-bootstrap/Modal";
 import EditCourse from "./EditCourse";
 import { AddCourse } from "./AddCourse";
+import { DegreePlan } from "../interfaces/degreePlan";
+import { Season, Semester } from "../interfaces/semester";
+// import AddCourseToDegreePlanModal from "./AddCourseToDegreePlanModal";
+import { Button, Modal, Col, Form, Row } from "react-bootstrap";
+
 // Search course bar (switch 2)
 interface SearchProps {
     listCourses: Course[];
@@ -15,24 +16,37 @@ interface SearchProps {
     ModifiedCourseList: Course[];
     semesters: Semester[];
     setSemester: React.Dispatch<React.SetStateAction<Semester[]>>;
+    degreeList: DegreePlan[];
+    setDegreeList: React.Dispatch<React.SetStateAction<DegreePlan[]>>;
+    setDisplayEmpty: React.Dispatch<React.SetStateAction<boolean>>;
+    selectedDegreePlan: DegreePlan;
+    setselectedDegreePlan: React.Dispatch<React.SetStateAction<DegreePlan>>;
 }
 const Search = ({
     listCourses,
     setListCourses,
     ModifiedCourseList,
     semesters,
-    setSemester
+    setSemester,
+    degreeList,
+    setDegreeList,
+    setDisplayEmpty,
+    selectedDegreePlan,
+    setselectedDegreePlan
 }: SearchProps) => {
     const [text, setText] = useState<string>("");
     const [courseIndex, setcourseIndex] = useState<number>(0);
     const [isAddSemesterOpen, SetAddSemester] = useState(false);
     const [ErrorMessage, setError] = useState(false);
     const [ErrorMessage2, setError2] = useState(false);
-    const [isCoursePool, setCoursePool] = useState(false);
+    const [isCourseBar, setCourseBar] = useState(false);
     const [isEditCourseOpen, setEditCourseOpen] = useState(false);
     const [isAddCourseOpen, setAddCourseOpen] = useState(false);
     const [filterCourses, setfilterCourses] = useState<Course[]>();
     const [isDropdown, setDropDown] = useState(false);
+    const [countTool, setCount] = useState(0);
+    const [coursePool, setCoursePool] = useState<Course[]>([]);
+    const [isCoursePool, setIsCoursePool] = useState(false);
     const handleSearch = (text: string) => {
         const upperText = text.toUpperCase();
         const CourseIndex = ModifiedCourseList.findIndex(
@@ -42,19 +56,22 @@ const Search = ({
             setError2(true);
         } else {
             setcourseIndex(CourseIndex);
-            // console.log(courses[CourseIndex]);
-            setCoursePool(true);
+            setCourseBar(true);
             setError2(false);
             setDropDown(false);
         }
+        setCount(0);
+        setIsCoursePool(true);
     };
     const [selectedCourse, setselectedCourse] = useState<Course>({
         code: "",
         name: "",
-        description: "",
-        credits: 0,
-        preReq: [],
-        coreReq: []
+        descr: "",
+        credits: "",
+        preReq: "",
+        restrict: "",
+        breadth: "",
+        typ: ""
     });
     const closeAddSemester = () => {
         SetAddSemester(false);
@@ -62,35 +79,24 @@ const Search = ({
     const CloseError = () => {
         setError(false);
     };
+    //handle click edit course
     const gotYouCourse = (text: string) => {
         const upperText = text.toUpperCase();
-        const indexCourse = ModifiedCourseList.findIndex(
-            (course) => upperText === course.code
-        );
-        setselectedCourse(ModifiedCourseList[indexCourse]);
-        setEditCourseOpen(true);
-    };
-    const gotYouCourse2 = (course: Course) => {
-        setselectedCourse(course);
-        SetAddSemester(true);
-    };
-    const handleAddCourseToSemester = (text: string) => {
-        const upperText = text.toUpperCase();
-        const indexCourse = ModifiedCourseList.findIndex(
-            (course) => upperText === course.code
-        );
-        const repeatedCourse = semesters.filter((semester) =>
-            semester.courses.includes(courses[indexCourse])
-        );
-
-        if (repeatedCourse.length !== 0) {
-            setError(true);
+        if (countTool === 0) {
+            const indexCourse = ModifiedCourseList.findIndex(
+                (course) => upperText === course.code
+            );
+            setselectedCourse(ModifiedCourseList[indexCourse]);
         } else {
-            gotYouCourse2(ModifiedCourseList[indexCourse]);
+            const indexCourse = ModifiedCourseList.findIndex(
+                (course) => listCourses[courseIndex].code === course.code
+            );
+            setselectedCourse(ModifiedCourseList[indexCourse]);
         }
-        console.log(selectedCourse);
-        // console.log(indexCourse);
+        setEditCourseOpen(true);
+        setCount(1);
     };
+
     const closeEditCourse = () => {
         setEditCourseOpen(false);
     };
@@ -105,7 +111,8 @@ const Search = ({
     //filter the course user type in
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const theText = e.target.value;
-        const upperText = theText.toUpperCase();
+        const trimmedText = theText.trim();
+        const upperText = trimmedText.toUpperCase();
         setText(upperText);
         const filteritems = ModifiedCourseList.filter((course) =>
             course.code.includes(upperText)
@@ -117,6 +124,123 @@ const Search = ({
     const handleClickCourse = (course: Course) => {
         setText(course.code);
     };
+    // add courses from course bar into courses pool
+    const handleClickPool = () => {
+        const update = [...coursePool];
+        const indexCourse = ModifiedCourseList.findIndex(
+            (course) => listCourses[courseIndex].code === course.code
+        );
+        const repeatedCourse = coursePool.includes(listCourses[courseIndex]);
+        if (!repeatedCourse) {
+            update.push(ModifiedCourseList[indexCourse]);
+            setCoursePool(update);
+        }
+        setIsAddedCourseTopool(true);
+    };
+    //delete courses from courses pool
+    const deletePool = (deleteCourse: Course) => {
+        const indexCourse = coursePool.findIndex(
+            (course) => deleteCourse.code === course.code
+        );
+        coursePool.splice(indexCourse, 1);
+        const update = [...coursePool];
+        setCoursePool(update);
+        setIsAddedCourseTopool(false);
+    };
+    //setlect credits for course
+    // add course from course pool into degree plan modal 1
+    const [isAddedCourseTopool, setIsAddedCourseTopool] = useState(false);
+    const [isCourseToDegreePlanOpen, setisCourseToDegreePlanOpen] =
+        useState(false);
+    const [theCourse, setTheCourse] = useState({
+        code: "",
+        name: "",
+        descr: "",
+        credits: "",
+        preReq: "",
+        restrict: "",
+        breadth: "",
+        typ: ""
+    });
+    const AddCourseToDegreePlan = (course: Course) => {
+        setTheCourse(course);
+        setisCourseToDegreePlanOpen(true);
+        setIsAddedCourseTopool(false);
+    };
+    const [DegreeName, setDegreeName] = useState<string>("");
+
+    const [IsSelectedRepeatedCourse, setIsSelectedRepeatedCourse] =
+        useState(false);
+    const handleAddCourseToDegreePlanClick1 = () => {
+        //click next button in modal 1 of courses pool
+        setIsRenderSelectedDegreeplan(false);
+        const repeatedCourse = selectedDegreePlan.semesters.filter((semester) =>
+            semester.courses.includes(theCourse)
+        );
+        if (repeatedCourse.length === 0) {
+            setIsAddCourseToSemesterOpen(true);
+            setisCourseToDegreePlanOpen(false);
+        } else {
+            setIsSelectedRepeatedCourse(true);
+        }
+        // console.log(IsSelectedRepeatedCourse);
+    };
+    const handleCLickDegreePlan = (degreePlan: DegreePlan) => {
+        // click degre plan in modal 1
+        setDegreeName(degreePlan.name);
+        setIsRenderSelectedDegreeplan(true);
+        setselectedDegreePlan(degreePlan);
+        setIsSelectedRepeatedCourse(false);
+
+        setDegreelistLength(() => {
+            const listLength = degreePlan.semesters.length;
+            return listLength;
+        });
+    };
+    const [IsRenderSelectedDegreeplan, setIsRenderSelectedDegreeplan] =
+        useState(false);
+    const FunctionSetisCourseToDegreePlanOpen = () => {
+        setisCourseToDegreePlanOpen(false);
+        setIsSelectedRepeatedCourse(false);
+    };
+    // add course from course pool into degree plan modal 2
+    const [IsAddCourseToSemesterOpen, setIsAddCourseToSemesterOpen] =
+        useState(false);
+    const handleCLickAddCourseToDegreePlanSave = () => {
+        // save button
+        setIsAddCourseToSemesterOpen(false);
+        setIsRenderSelctedSemester(false);
+        setDisplayEmpty(true);
+        const semesterIndex = selectedDegreePlan.semesters.findIndex(
+            (theSemester) => theSemester === renderSelectedSemester
+        );
+        const DegreePlanIndex = degreeList.findIndex(
+            (degreeplan) => degreeplan === selectedDegreePlan
+        );
+        const update = [...degreeList];
+        update[DegreePlanIndex].semesters[semesterIndex].courses.push(
+            theCourse
+        );
+        setDegreeList(update);
+    };
+    const [renderSelectedSemester, setRenderSelectedSemester] =
+        useState<Semester>({
+            year: 2023,
+            season: "fall" as Season,
+            courses: []
+        });
+    const handleClickSemesterInCoursePoolModal2 = (semester: Semester) => {
+        setRenderSelectedSemester(semester);
+        setIsRenderSelctedSemester(true);
+    };
+    const HandleBack = () => {
+        setIsAddCourseToSemesterOpen(false);
+        setisCourseToDegreePlanOpen(true);
+        setIsRenderSelctedSemester(false);
+    };
+    const [degreeListLength, setDegreelistLength] = useState(0);
+    const [IsRenderSelctedSemester, setIsRenderSelctedSemester] =
+        useState(false);
     return (
         <div className="WholeSearch">
             <div
@@ -153,16 +277,16 @@ const Search = ({
                                     onClick={() => handleClickCourse(course)}
                                     className="eachCourseButton"
                                 >
+                                    {" "}
                                     {course.code}
                                     {"-"}
-                                    {course.name}
+                                    {course.name}{" "}
                                 </button>
                             </div>
                         )
                     )}
                 </div>
             )}
-
             {ErrorMessage2 && ( //error message pops up when user does not search the correct course code
                 <div>Please make sure the course code is correct!</div>
             )}
@@ -178,21 +302,27 @@ const Search = ({
                     </Button>
                 </div>
             }
-
             {isAddCourseOpen && ( // create new course button
                 <div>
                     <AddCourse
                         onClose={closeAddCourseWindow}
                         listCourses={listCourses}
-                        setListCourses={setListCourses}
+                        pool={coursePool}
+                        setPool={setCoursePool}
                     />
                 </div>
             )}
             <br />
-            {isCoursePool && ( //CoursePool
-                <div className="coursePool_box">
+            {isCourseBar && (
+                <div className="courseBar_box">
+                    <div className="DegreeListTitle-view">
+                        {"Course Information"}
+                    </div>
+                    <br />
+                    <br />
                     <div>
                         {"Course Code: "}
+                        <></>
                         {listCourses[courseIndex].code}
                     </div>
                     <br />
@@ -212,17 +342,15 @@ const Search = ({
                     <div>
                         {" "}
                         {"Course description: "}
-                        {listCourses[courseIndex].description}
+                        {listCourses[courseIndex].descr}
                     </div>
                     <br />
-                    {/* {isAddCourseButton && ( */}
-                    <Button
-                        variant="success"
-                        onClick={() => handleAddCourseToSemester(text)}
-                    >
-                        Add to Semester
+                    <Button variant="success" onClick={handleClickPool}>
+                        Add to Course Pool
                     </Button>
-                    {/* )} */}
+                    <br />
+                    <br />
+
                     <div>
                         {isAddSemesterOpen ? ( // add course to semester list
                             <div>
@@ -242,6 +370,12 @@ const Search = ({
                                         Edit
                                     </Button>
                                 </span>
+                                <br />
+                                <br />
+                                <div className="addedCourseTopoolPropmt">
+                                    {isAddedCourseTopool &&
+                                        "You have already added it to the pool of courses"}
+                                </div>
                                 {isEditCourseOpen && ( // edit course
                                     <>
                                         <div className="editButtonInSwitch">
@@ -284,6 +418,179 @@ const Search = ({
                             </div>
                         )}
                     </div>
+                </div>
+            )}
+            {isCourseToDegreePlanOpen && ( //Add course from pool of courses to degree plan modal 1
+                <Modal show={true} onHide={FunctionSetisCourseToDegreePlanOpen}>
+                    {" "}
+                    <Modal.Header closeButton>
+                        {" "}
+                        <Modal.Title>Add Course to Degree Plan</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <Form.Group controlId="Add-Course-To-Degree-Plan">
+                            {" "}
+                            <Row>
+                                <Col>
+                                    {degreeList.length > 0 ? (
+                                        degreeList.map((degreePlan) => (
+                                            <button
+                                                className="eachCourseButton"
+                                                value={degreePlan.name}
+                                                key={
+                                                    degreePlan.name +
+                                                    degreePlan.concentration
+                                                }
+                                                onClick={() =>
+                                                    handleCLickDegreePlan(
+                                                        degreePlan
+                                                    )
+                                                }
+                                            >
+                                                {degreePlan.name}
+                                            </button>
+                                        ))
+                                    ) : (
+                                        <div>
+                                            {"Please add a degree plan first!"}
+                                        </div>
+                                    )}
+                                    {IsRenderSelectedDegreeplan && (
+                                        <div>
+                                            {"You just selected: "} {DegreeName}
+                                        </div>
+                                    )}
+                                </Col>
+                            </Row>
+                        </Form.Group>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        {IsSelectedRepeatedCourse && (
+                            <div className="warning-view">
+                                {
+                                    "You already added this course for this degreeplan, please pick another one!"
+                                }
+                            </div>
+                        )}
+                        <Button onClick={handleAddCourseToDegreePlanClick1}>
+                            Next
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
+            )}
+            {IsAddCourseToSemesterOpen && (
+                <Modal
+                    show={true}
+                    onHide={() => setIsAddCourseToSemesterOpen(false)}
+                >
+                    <Modal.Header closeButton>
+                        <Modal.Title>
+                            Choose One Semester for {DegreeName}
+                        </Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        {degreeListLength > 0 ? (
+                            <div>
+                                <div>
+                                    You will add {theCourse.code + " "} into{" "}
+                                    {DegreeName + " "}
+                                </div>
+                                {selectedDegreePlan.semesters.map(
+                                    (semester) => (
+                                        <div
+                                            key={
+                                                semester.year + semester.season
+                                            }
+                                        >
+                                            <button
+                                                onClick={() =>
+                                                    handleClickSemesterInCoursePoolModal2(
+                                                        semester
+                                                    )
+                                                }
+                                                className="eachCourseButton"
+                                            >
+                                                {semester.year +
+                                                    " " +
+                                                    semester.season}
+                                            </button>
+                                        </div>
+                                    )
+                                )}
+                            </div>
+                        ) : (
+                            <div className="warning-view">
+                                Please add at least one semester before you
+                                adding course into this degree plan!
+                            </div>
+                        )}
+                    </Modal.Body>
+                    <Modal.Footer>
+                        {IsRenderSelctedSemester && (
+                            <div>
+                                {"You just selected: "}
+                                {renderSelectedSemester.year +
+                                    " " +
+                                    renderSelectedSemester.season}
+                            </div>
+                        )}
+                        <Button variant="secondary" onClick={HandleBack}>
+                            Back
+                        </Button>
+                        {degreeListLength ? (
+                            <Button
+                                variant="primary"
+                                onClick={handleCLickAddCourseToDegreePlanSave}
+                            >
+                                Save
+                            </Button>
+                        ) : null}
+                    </Modal.Footer>
+                </Modal>
+            )}
+
+            {isCoursePool && (
+                <div className="coursePool_box">
+                    <span className="Pool_Titile">{"Pool of Courses"}</span>
+                    <table>
+                        <thead>
+                            {" "}
+                            <tr>
+                                <th> Course Code</th>
+                                <th> Course Credits</th>
+                                <th> Delete</th>
+                                <th> Add to Degree Plan</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {coursePool.map((course) => (
+                                <tr key={course.code}>
+                                    {" "}
+                                    <td>{course.code}</td>
+                                    <td>{<div>{course.credits}</div>}</td>
+                                    <td>
+                                        {" "}
+                                        <Button
+                                            variant="danger"
+                                            onClick={() => deletePool(course)}
+                                        >
+                                            x
+                                        </Button>
+                                    </td>
+                                    <td>
+                                        <Button
+                                            variant="success"
+                                            onClick={() =>
+                                                AddCourseToDegreePlan(course)
+                                            }
+                                        >
+                                            Add
+                                        </Button>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
                 </div>
             )}
         </div>

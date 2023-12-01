@@ -1,24 +1,35 @@
-/* eslint-disable no-extra-parens */
 import React, { useState } from "react";
 import { Button, Modal, Col, Form, Container, Row } from "react-bootstrap";
 import { Season, Semester } from "../interfaces/semester";
+import { DegreePlan } from "../interfaces/degreePlan";
 //The adding semester modal when user clicks add new semester it pops up
-export const AddSemesterModal = ({
+export const SemesterModal = ({
     showAddSemester,
     handleClose,
-    addSemester,
-    semesters
+    semesters,
+    SelecetedEditdDegreePlan,
+    degreeList,
+    setDegreeList,
+    modifysemster
 }: {
     showAddSemester: boolean;
     handleClose: () => void;
-    addSemester: (year: number, season: Season) => void;
-
     semesters: Semester[];
+    SelecetedEditdDegreePlan: DegreePlan;
+    degreeList: DegreePlan[];
+    setDegreeList: React.Dispatch<React.SetStateAction<DegreePlan[]>>;
+    modifysemster: (semester: Semester[]) => void;
 }) => {
     const [year, setYear] = useState<number>(2023);
     const [season, setSeason] = useState<Season>("Fall");
     const [warn, setWarn] = useState<string>("");
     const years = Array.from(Array(30).keys()).map((x) => x + 2018);
+
+    const newSemester: Semester = {
+        year: year,
+        season: season,
+        courses: []
+    };
 
     const saveChanges = (): void => {
         if (
@@ -27,11 +38,18 @@ export const AddSemesterModal = ({
         ) {
             setWarn("Semester already in your plan!");
         } else {
-            addSemester(year, season);
-            setYear(2023);
-            setSeason("Fall");
-            setWarn("");
             handleClose();
+
+            newSemester.year = year;
+            newSemester.season = season;
+            const update = [...degreeList];
+            const findIndex = degreeList.findIndex(
+                (degreePlan) => degreePlan === SelecetedEditdDegreePlan
+            );
+            degreeList[findIndex].semesters.push(newSemester);
+            setDegreeList(update);
+            const updatedSemesters = [...SelecetedEditdDegreePlan.semesters];
+            modifysemster(updatedSemesters);
         }
     };
 
@@ -75,11 +93,13 @@ export const AddSemesterModal = ({
                                         value={year}
                                         onChange={updateYear}
                                     >
-                                        {years.map((year: number) => (
-                                            <option key={year} value={year}>
-                                                {year}
-                                            </option>
-                                        ))}
+                                        {years.map((year: number) => {
+                                            return (
+                                                <option key={year} value={year}>
+                                                    {year}
+                                                </option>
+                                            );
+                                        })}
                                     </Form.Select>
                                 </Col>
                                 <p id="alert">{warn}</p>
@@ -93,6 +113,7 @@ export const AddSemesterModal = ({
                         onClick={() => {
                             setYear(2023);
                             setSeason("Fall");
+                            setWarn("");
                             handleClose();
                         }}
                     >

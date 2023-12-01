@@ -3,7 +3,8 @@ import { Course } from "../interfaces/course";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import Courses from "../data/course.json";
+import Courses from "../data/CourseList.json";
+
 //Edit current courses information
 interface EditCourseProps {
     listCourses: Course[];
@@ -24,10 +25,12 @@ export default function EditCourse({
     const modifyCourse = {
         code: CourseSlected.code,
         name: CourseSlected.name,
-        description: CourseSlected.description,
+        descr: CourseSlected.descr,
         credits: CourseSlected.credits,
-        preReq: [],
-        coreReq: []
+        preReq: CourseSlected.preReq,
+        restrict: CourseSlected.restrict,
+        breadth: CourseSlected.breadth,
+        typ: CourseSlected.typ
     };
     const handleSaveChanges = () => {
         if (CourseSlected.code !== code) {
@@ -83,7 +86,7 @@ export default function EditCourse({
                         <Form.Control
                             type="number"
                             value={credits}
-                            onChange={(e) => setCredits(Number(e.target.value))}
+                            onChange={(e) => setCredits(e.target.value)}
                         />
                     </Form.Group>
                 </Form>
