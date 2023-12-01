@@ -109,7 +109,7 @@ function App(): JSX.Element {
         degreeList.splice(findDegreeIndex, 1);
         setDegreeList([...degreeList]);
     };
-    const [file, setFile] = useState();
+    const [file, setFile] = useState<File | undefined>(undefined);
 
     const fileReader = new FileReader();
 
@@ -126,7 +126,7 @@ function App(): JSX.Element {
 
         if (file) {
             fileReader.onload = function (event) {
-                const csvOutput = event.target.result;
+                const csvOutput = (event.target as FileReader).result;
             };
 
             fileReader.readAsText(file);
