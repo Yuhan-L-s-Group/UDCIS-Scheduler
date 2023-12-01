@@ -3,7 +3,7 @@ import React from "react";
 import { Course } from "../interfaces/course";
 import { Button } from "react-bootstrap";
 import "../App.css";
-import { Season, Semester } from "../interfaces/semester";
+import { Semester } from "../interfaces/semester";
 import { DegreePlan } from "../interfaces/degreePlan";
 
 // Display each individual semester

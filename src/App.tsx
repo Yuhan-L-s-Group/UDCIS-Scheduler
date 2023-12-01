@@ -1,5 +1,5 @@
 /* eslint-disable no-extra-parens */
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./App.css";
 
 import { Button, Col, Container, Row } from "react-bootstrap";
@@ -62,7 +62,6 @@ function App(): JSX.Element {
         setSemester(semester);
     }
     //for render course list
-    const [isAddCourseOpen, setAddCourseOpen] = useState(false);
     const [listCourses, setListCourses] = useState<Course[]>(Courses);
 
     const ModifiedCourseList = [...listCourses]; // this is for edit course component
@@ -173,11 +172,7 @@ function App(): JSX.Element {
                                             setSemester={setSemester}
                                             degreeList={degreeList}
                                             setDegreeList={setDegreeList}
-                                            setAddSemester={setAddSemester}
                                             setDisplayEmpty={setDisplayEmpty}
-                                            setIsEditDegreeOpen={
-                                                setIsEditDegreeOpen
-                                            }
                                             selectedDegreePlan={
                                                 selectedDegreePlan
                                             }
@@ -291,7 +286,6 @@ function App(): JSX.Element {
                                 {isEditDegreeOpen && (
                                     <div>
                                         <EditDegreePlan
-                                            isEditDegreeOpen={isEditDegreeOpen}
                                             semesters={semesters}
                                             Name={Name}
                                             renderName={renderName}

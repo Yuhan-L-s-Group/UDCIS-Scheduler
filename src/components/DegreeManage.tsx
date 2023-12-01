@@ -1,8 +1,7 @@
+/* eslint-disable no-extra-parens */
 import React, { useState } from "react";
-import courses from "../data/CourseList.json";
-import { Course } from "../interfaces/course";
 import { Concentration, DegreePlan } from "../interfaces/degreePlan";
-import { Button, Modal, Col, Form, Container, Row } from "react-bootstrap";
+import { Button, Modal, Col, Form, Row } from "react-bootstrap";
 // interface CoursesPoolProps {}
 interface DegreeManageProps {
     setisDegreePlanOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -109,11 +108,11 @@ const DegreeManage = ({
                 </Form.Group>
             </Modal.Body>
             <Modal.Footer>
-                {errorMessage && (
+                {errorMessage ? (
                     <div>
                         You have already created a degree plan named by {name}{" "}
                     </div>
-                )}
+                ) : null}
                 <br />
                 <br />
                 <Button onClick={handleSave}>Save</Button>

@@ -4,10 +4,10 @@ import { Course } from "../interfaces/course";
 import { AddtoSemester } from "./AddtoSemester";
 import EditCourse from "./EditCourse";
 import { AddCourse } from "./AddCourse";
-import { Concentration, DegreePlan } from "../interfaces/degreePlan";
+import { DegreePlan } from "../interfaces/degreePlan";
 import { Season, Semester } from "../interfaces/semester";
 // import AddCourseToDegreePlanModal from "./AddCourseToDegreePlanModal";
-import { Button, Modal, Col, Form, Container, Row } from "react-bootstrap";
+import { Button, Modal, Col, Form, Row } from "react-bootstrap";
 
 // Search course bar (switch 2)
 interface SearchProps {
@@ -18,9 +18,7 @@ interface SearchProps {
     setSemester: React.Dispatch<React.SetStateAction<Semester[]>>;
     degreeList: DegreePlan[];
     setDegreeList: React.Dispatch<React.SetStateAction<DegreePlan[]>>;
-    setAddSemester: React.Dispatch<React.SetStateAction<boolean>>;
     setDisplayEmpty: React.Dispatch<React.SetStateAction<boolean>>;
-    setIsEditDegreeOpen: React.Dispatch<React.SetStateAction<boolean>>;
     selectedDegreePlan: DegreePlan;
     setselectedDegreePlan: React.Dispatch<React.SetStateAction<DegreePlan>>;
 }
@@ -32,9 +30,7 @@ const Search = ({
     setSemester,
     degreeList,
     setDegreeList,
-    setAddSemester,
     setDisplayEmpty,
-    setIsEditDegreeOpen,
     selectedDegreePlan,
     setselectedDegreePlan
 }: SearchProps) => {
@@ -100,39 +96,7 @@ const Search = ({
         setEditCourseOpen(true);
         setCount(1);
     };
-    const gotYouCourse2 = (course: Course) => {
-        setselectedCourse(course);
-        SetAddSemester(true);
-    };
-    const handleAddCourseToSemester = (text: string) => {
-        const upperText = text.toUpperCase();
-        if (countTool === 0) {
-            const indexCourse = ModifiedCourseList.findIndex(
-                (course) => upperText === course.code
-            );
-            const repeatedCourse = semesters.filter((semester) =>
-                semester.courses.includes(ModifiedCourseList[indexCourse])
-            );
 
-            if (repeatedCourse.length !== 0) {
-                setError(true);
-            } else {
-                gotYouCourse2(ModifiedCourseList[indexCourse]);
-            }
-        } else {
-            const indexCourse = ModifiedCourseList.findIndex(
-                (course) => listCourses[courseIndex].code === course.code
-            );
-            const repeatedCourse = semesters.filter((semester) =>
-                semester.courses.includes(ModifiedCourseList[indexCourse])
-            );
-            if (repeatedCourse.length !== 0) {
-                setError(true);
-            } else {
-                gotYouCourse2(ModifiedCourseList[indexCourse]);
-            }
-        }
-    };
     const closeEditCourse = () => {
         setEditCourseOpen(false);
     };

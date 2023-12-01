@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+/* eslint-disable no-extra-parens */
+import React from "react";
 import { Button } from "react-bootstrap";
 import { DegreePlan } from "../../interfaces/degreePlan";
 import all from "../RequiredCourses/FitsAll.json";

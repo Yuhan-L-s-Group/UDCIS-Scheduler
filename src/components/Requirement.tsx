@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Button, Col } from "react-bootstrap";
-import { Semester } from "../interfaces/semester";
+import React from "react";
+//import { useEffect, useState } from "react";
 import { DegreePlan } from "../interfaces/degreePlan";
 import { Cyber } from "../data/Concentration/Cyber";
 
