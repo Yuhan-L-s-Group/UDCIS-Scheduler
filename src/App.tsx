@@ -283,7 +283,7 @@ function App(): JSX.Element {
                                         )}
                                         <br />
                                         {isRenderDegreeTable && (
-                                            //individual degree plan
+                                            //individual degree plan.
                                             <table>
                                                 <thead>
                                                     {" "}
