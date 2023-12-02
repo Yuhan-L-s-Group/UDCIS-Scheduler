@@ -14,6 +14,7 @@ import Search from "./components/Search";
 import DegreeManage from "./components/DegreeManage";
 import { Concentration, DegreePlan } from "./interfaces/degreePlan";
 import EditDegreePlan from "./components/EditDegreePlan";
+import ExportCSV from "./components/ExportCSV";
 // import { text } from "body-parser";
 function App(): JSX.Element {
     //for Intro
@@ -217,13 +218,18 @@ function App(): JSX.Element {
                                         </div>
                                         <br />
                                         {isAddDegreeButton && (
-                                            <Button
-                                                onClick={
-                                                    handleClickAddDegreePlan
-                                                }
-                                            >
-                                                Add New Degree Plan
-                                            </Button>
+                                            <div>
+                                                <Button
+                                                    onClick={
+                                                        handleClickAddDegreePlan
+                                                    }
+                                                >
+                                                    Add New Degree Plan
+                                                </Button>
+                                                <ExportCSV
+                                                    degreeList={degreeList}
+                                                ></ExportCSV>
+                                            </div>
                                         )}
                                         <br />
                                         {isRenderDegreeTable && (
