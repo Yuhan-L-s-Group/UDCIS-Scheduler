@@ -7,11 +7,11 @@ Browserslist: caniuse-lite is outdated. Please run:
   Why you should do it regularly: https://github.com/browserslist/browserslist#browsers-data-updating
 FAIL src/App.test.tsx
   Scheduler Tests
-    ✕ Check home page and welcome window (38 ms)
-    ✕ Switch between different concentration (at this point, just check texts) (7 ms)
-    ✕ Try to add and delete semester (5 ms)
-    ✕ Add a course that does not exist in the list (6 ms)
-    ✕ Replace with test details (5 ms)
+    ✕ Check home page and welcome window (41 ms)
+    ✕ Switch between different concentration (at this point, just check texts) (8 ms)
+    ✕ Try to add and delete semester (6 ms)
+    ✕ Add a course that does not exist in the list (8 ms)
+    ✕ Replace with test details (6 ms)
     ✕ Test search bar (5 ms)
 
   ● Scheduler Tests › Check home page and welcome window
@@ -422,34 +422,35 @@ FAIL src/App.test.tsx
       at _run10000 (node_modules/@jest/core/build/cli/index.js:320:7)
       at runCLI (node_modules/@jest/core/build/cli/index.js:173:3)
 
-------------------------|---------|----------|---------|---------|-----------------------------------------
-File                    | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s                       
-------------------------|---------|----------|---------|---------|-----------------------------------------
-All files               |    8.94 |     3.92 |    0.76 |    9.11 |                                         
- src                    |   44.82 |       25 |    6.25 |   46.42 |                                         
-  App.tsx               |   44.82 |       25 |    6.25 |   46.42 | 27-28,42-62,72-73,94-99,105-109,129-271 
- src/components         |    2.27 |        0 |       0 |    2.28 |                                         
-  AddCourse.tsx         |       0 |        0 |       0 |       0 | 21-101                                  
-  AddtoSemester.tsx     |       0 |        0 |       0 |       0 | 21-57                                   
-  DegreeManage.tsx      |    4.76 |        0 |       0 |    4.76 | 16-70                                   
-  EditCourse.tsx        |       0 |        0 |       0 |       0 | 22-89                                   
-  EditDegreePlan.tsx    |      50 |      100 |       0 |      50 | 45                                      
-  IntroModal.tsx        |       0 |      100 |       0 |       0 | 11                                      
-  Requirement.tsx       |      20 |      100 |       0 |      20 | 7-29,33-35                              
-  Search.tsx            |    0.71 |        0 |       0 |    0.71 | 37-584                                  
-  SemesterDisplay.tsx   |    2.43 |        0 |       0 |     2.5 | 28-155                                  
-  SemesterModal.tsx     |    3.44 |        0 |       0 |    3.57 | 23-117                                  
-  SemsterList.tsx       |   11.11 |        0 |       0 |   11.11 | 41-82                                   
- src/data/Concentration |    7.14 |        0 |       0 |    9.09 |                                         
-  Cyber.tsx             |    7.14 |        0 |       0 |    9.09 | 9-57                                    
- src/interfaces         |       0 |        0 |       0 |       0 |                                         
-  Requirement.ts        |       0 |        0 |       0 |       0 |                                         
-  course.ts             |       0 |        0 |       0 |       0 |                                         
-  degreePlan.ts         |       0 |        0 |       0 |       0 |                                         
-  semester.ts           |       0 |        0 |       0 |       0 |                                         
-------------------------|---------|----------|---------|---------|-----------------------------------------
+------------------------|---------|----------|---------|---------|----------------------------------------------------------
+File                    | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s                                        
+------------------------|---------|----------|---------|---------|----------------------------------------------------------
+All files               |   11.08 |        4 |    0.77 |   11.29 |                                                          
+ src                    |   44.59 |    22.22 |    5.26 |   45.83 |                                                          
+  App.tsx               |   44.59 |    22.22 |    5.26 |   45.83 | 28-29,43-63,73-74,95-100,106-110,131-137,140-142,162-332 
+ src/components         |    2.74 |        0 |       0 |    2.76 |                                                          
+  AddCourse.tsx         |       0 |        0 |       0 |       0 | 21-101                                                   
+  AddtoSemester.tsx     |       0 |        0 |       0 |       0 | 21-57                                                    
+  CoursePool.tsx        |      20 |      100 |       0 |      20 | 16-46                                                    
+  DegreeManage.tsx      |    4.76 |        0 |       0 |    4.76 | 16-70                                                    
+  EditCourse.tsx        |       0 |        0 |       0 |       0 | 22-89                                                    
+  EditDegreePlan.tsx    |      50 |      100 |       0 |      50 | 45                                                       
+  IntroModal.tsx        |       0 |      100 |       0 |       0 | 11                                                       
+  Requirement.tsx       |      20 |      100 |       0 |      20 | 7-29,33-35                                               
+  Search.tsx            |    0.85 |        0 |       0 |    0.85 | 54-474                                                   
+  SemesterDisplay.tsx   |    2.43 |        0 |       0 |     2.5 | 28-155                                                   
+  SemesterModal.tsx     |    3.44 |        0 |       0 |    3.57 | 23-117                                                   
+  SemsterList.tsx       |   11.11 |        0 |       0 |   11.11 | 41-85                                                    
+ src/data/Concentration |    7.14 |        0 |       0 |    9.09 |                                                          
+  Cyber.tsx             |    7.14 |        0 |       0 |    9.09 | 9-57                                                     
+ src/interfaces         |       0 |        0 |       0 |       0 |                                                          
+  Requirement.ts        |       0 |        0 |       0 |       0 |                                                          
+  course.ts             |       0 |        0 |       0 |       0 |                                                          
+  degreePlan.ts         |       0 |        0 |       0 |       0 |                                                          
+  semester.ts           |       0 |        0 |       0 |       0 |                                                          
+------------------------|---------|----------|---------|---------|----------------------------------------------------------
 Test Suites: 1 failed, 1 total
 Tests:       6 failed, 6 total
 Snapshots:   0 total
-Time:        3.473 s
+Time:        3.633 s
 Ran all test suites.
