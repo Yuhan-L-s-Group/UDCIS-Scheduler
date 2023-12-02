@@ -33,8 +33,8 @@ export const Requirement = ({ degreePlan }: { degreePlan: DegreePlan }) => {
     const url = getURLs(degreePlan.concentration);
 
     return (
-        <div>
-            <h2 className="subtitle">Degree Requirements</h2>
+        <div className="concentrationBox">
+            <h2>Degree Requirements</h2>
             <p className="reqdesc">
                 <a href={url} target="_blank" rel="noopener noreferrer">
                     What classes should I take?

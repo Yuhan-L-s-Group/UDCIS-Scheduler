@@ -20,7 +20,9 @@
     align-items: center;
     justify-content: center;
 }
-
+.mainBody {
+    background-color: #fbfbfb;
+}
 .App-link {
     color: #61dafb;
 }
@@ -48,9 +50,9 @@
 
 .modifytheCreditsText {
     color: rgb(41, 113, 53);
-    font-size: 30px;
+    font-size: 20px;
     font-weight: bold;
-    margin-left: 100px;
+    /* margin-left: 100px; */
 }
 .name {
     color: rgb(0, 5, 1);
@@ -144,9 +146,9 @@
     border: 4px solid #000000;
     border-radius: 40px;
     padding: 100px;
-    margin-bottom: 300px;
     width: 550px;
     margin-left: 100px;
+    margin-top: -50px;
 }
 .semesterListName-view {
     position: absolute; /* Set the position property to absolute */
@@ -164,39 +166,33 @@
     width: 500px;
     font-size: 18px;
     font-weight: 500;
+    margin-top: 35px;
+    margin-left: 10px;
 }
 
 .addcourseView {
     margin-right: 100px;
 }
-.SwichButton {
-    margin-right: 100px;
-    background-color: rgb(136, 255, 0);
-    font-size: 20px;
-}
-.SwichButton:hover {
-    font-size: 25px;
-}
+
 .searchBar {
-    font-size: 20px;
+    font-size: 32px;
     border-radius: 20px;
 }
 .searchBar:hover {
-    font-size: 20px;
+    font-size: 32px;
     background-color: rgb(136, 255, 0);
 }
 .editButtonInSwitch {
     margin-top: 10000px;
 }
 .searchMenu {
-    margin-left: 100px;
     /* border: 4px solid #000000; */
     border-radius: 8px;
-    margin-bottom: 10px;
     /* padding: 10px; */
-    width: 380px;
+    width: 330px;
     font-size: 32px;
     max-height: 300px;
+    margin-left: 85px;
     overflow-y: auto;
     overflow-x: hidden;
 }
@@ -205,7 +201,7 @@
 }
 
 .searchInput {
-    width: 300px;
+    width: 220px;
     height: 60px;
     border: 1px solid #ccc;
     border-radius: 20px;
@@ -213,15 +209,16 @@
     color: #333;
     cursor: pointer;
     font-size: 30px;
+    margin-left: 85px;
 }
 .eachCourseButton {
     font-size: 30px;
-    width: 361.5px;
+    width: 312px;
 }
 .eachCourseButton:hover {
     background-color: rgb(0, 174, 255);
 }
-.WholeSearch {
+.searchview {
     margin-bottom: 600px;
 }
 table {
@@ -249,12 +246,14 @@ th {
     color: #333333;
     font-weight: 500;
 }
+.Coursepool {
+    margin-left: -120px;
+}
 .coursePool_box {
     border: 4px solid #000000;
     border-radius: 40px;
-    padding: 100px;
-    margin-bottom: 100px;
-    width: 550px;
+    padding: 60px;
+    margin-top: 240px;
 }
 .degreeplanTable {
     margin-right: 100px;
@@ -291,4 +290,21 @@ th {
     display: flex;
     justify-content: center;
     height: 60px;
+}
+.degreeListBox {
+    border: 4px solid #000000;
+    border-radius: 40px;
+    padding: 100px;
+    width: 550px;
+    margin-left: 100px;
+}
+.concentrationBox {
+    border: 4px solid #000000;
+    border-radius: 40px;
+    padding: 100px;
+    width: 550px;
+    margin-left: 100px;
+}
+.classgo-view {
+    background-image: url(./pictures/udlogo2.jpg);
 }
