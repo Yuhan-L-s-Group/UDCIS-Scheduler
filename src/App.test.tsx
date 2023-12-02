@@ -22,6 +22,7 @@ describe("App Tests", () => {
 
     test("Check home page and welcome window", () => {
 <<<<<<< HEAD
+<<<<<<< HEAD
         expect(screen.getByText(/Best/i)).toBeInTheDocument();
         const closeHomePage = screen.getByText("CLICK");
         userEvent.click(closeHomePage);
@@ -308,59 +309,5 @@ describe("App Tests", () => {
     userEvent.click(deleteDegreeButton);
 
     expect(screen.queryByText("Delete")).not.toBeInTheDocument();
-=======
-        // Your test case code here
-    });
-
-    test("Switch between different concentration", async () => {
-        // Your test case code here
-    });
-
-    test("Try to add and delete semester", async () => {
-        // Your test case code here
-    });
-
-    test("Add a course that does not exist in the list", () => {
-        // Your test case code here
-    });
-
-    test("Test editing a course", () => {
-        // Your test case code here
-    });
-
-    test("Test search bar", () => {
-        // Your test case code here
-    });
-
-    test("Test clearing all semesters", () => {
-    const closeHomePage = screen.getByText("CLICK");
-    userEvent.click(closeHomePage);
-
-    const clearAllButton = screen.getByText("Clear All");
-    userEvent.click(clearAllButton);
-
-    expect(screen.queryByText("Clear All")).not.toBeInTheDocument();
-    expect(screen.queryByText(/Semster:/i)).not.toBeInTheDocument();
-    });
-
-    test("Test adding courses to a semester", () => {
-        // Your test case code here
-    });
-
-    test("Test switching between different degree plans", () => {
-        // Your test case code here
-    });
-
-    test("Test degree plan deletion", () => {
-        // Your test case code here
-    });
-
-    test("Test error handling for incorrect course code in search", () => {
-        // Your test case code here
-    });
-
-    test("Test clearing search results", () => {
-        // Your test case code here
->>>>>>> 2da16ca (6 extra test cases)
     });
 });
