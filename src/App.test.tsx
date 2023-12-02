@@ -333,7 +333,14 @@ describe("App Tests", () => {
     });
 
     test("Test clearing all semesters", () => {
-        // Your test case code here
+    const closeHomePage = screen.getByText("CLICK");
+    userEvent.click(closeHomePage);
+
+    const clearAllButton = screen.getByText("Clear All");
+    userEvent.click(clearAllButton);
+
+    expect(screen.queryByText("Clear All")).not.toBeInTheDocument();
+    expect(screen.queryByText(/Semster:/i)).not.toBeInTheDocument();
     });
 
     test("Test adding courses to a semester", () => {
