@@ -99,9 +99,6 @@ const DegreeManage = ({
                                 <option value=" Theory and Computation">
                                     Theory and Computation
                                 </option>
-                                <option value="Information Systems">
-                                    Information Systems
-                                </option>
                             </Form.Select>
                         </Col>
                     </Row>

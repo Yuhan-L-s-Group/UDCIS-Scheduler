@@ -22,9 +22,7 @@ export function getURLs(conc: string): string {
         "Systems and Networks":
             "https://catalog.udel.edu/preview_program.php?catoid=47&poid=34985",
         "Theory and Computation":
-            "https://catalog.udel.edu/preview_program.php?catoid=47&poid=34979",
-        "Information Systems":
-            "https://catalog.udel.edu/preview_program.php?catoid=47&poid=34728"
+            "https://catalog.udel.edu/preview_program.php?catoid=47&poid=34979"
     };
     return URLS[conc];
 }

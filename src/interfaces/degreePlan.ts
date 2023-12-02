@@ -9,8 +9,7 @@ export type Concentration =
     | "Data Science"
     | "High Performance Computing"
     | "Systems and Networks"
-    | "Theory and Computation"
-    | "Information Systems";
+    | "Theory and Computation";
 
 //interface for a single semester
 export interface DegreePlan {
