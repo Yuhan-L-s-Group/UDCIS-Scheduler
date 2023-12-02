@@ -47,20 +47,7 @@ export const SemesterList = ({
         <>
             <br />
             <br />
-            {renderName && <div className="name"> Hi! {Name}</div>}
-            <div className="modifytheCreditsText">
-                {"Your Cureent Degree Plan Cumulative Credits: "}
-                {semesters.reduce(
-                    (acc, iter) =>
-                        acc +
-                        iter.courses.reduce(
-                            (acc1, iter1) => acc1 + parseInt(iter1.credits),
-                            0
-                        ),
-                    0
-                )}
-                {" credits"}
-            </div>
+
             {
                 <div>
                     <div className="semester_box">
@@ -77,7 +64,23 @@ export const SemesterList = ({
                             Add New Semester
                         </Button>
                         <br />
-                        <br />
+                        {renderName && <div className="name">{Name}</div>}
+                        <div className="modifytheCreditsText">
+                            {SelecetedEditdDegreePlan.name}{" "}
+                            {"Cumulative Credits: "}
+                            {semesters.reduce(
+                                (acc, iter) =>
+                                    acc +
+                                    iter.courses.reduce(
+                                        (acc1, iter1) =>
+                                            acc1 + parseInt(iter1.credits),
+                                        0
+                                    ),
+                                0
+                            )}
+                            {" credits"}
+                        </div>
+
                         {semesters.map((semester: Semester): JSX.Element => {
                             return (
                                 <div key={semester.year + semester.season}>
