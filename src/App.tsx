@@ -272,6 +272,11 @@ function App(): JSX.Element {
                                             {"Degree List"}
                                         </div>
                                         <br />
+                                        {degreeList.length === 0 ? (
+                                            <p>Add a degree plan to start!</p>
+                                        ) : (
+                                            <p></p>
+                                        )}
                                         {isAddDegreeButton && (
                                             <Button
                                                 onClick={
