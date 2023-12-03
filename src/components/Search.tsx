@@ -116,6 +116,7 @@ const Search = ({
         setEditCourseOpen(false);
     };
     //filter the course user type in
+    const [countType, setCountType] = useState<number>(0);
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const theText = e.target.value;
         const trimmedText = theText.trim();
@@ -126,7 +127,12 @@ const Search = ({
         );
         setfilterCourses(filteritems);
         setDropDown(true);
-        setIsdegreeList(true);
+        // setIsdegreeList(true);
+        setCourseBar(false);
+        if (countType === 0) {
+            setIsdegreeList(true);
+            setCountType(1);
+        }
     };
     //click course in the dropdown menu
     const handleClickCourse = (course: Course) => {
@@ -278,7 +284,6 @@ const Search = ({
                 <div>Please make sure the course code is correct!</div>
             )}
             <br />
-
             <br />
             {isCourseBar && (
                 <div className="courseBar_box">
