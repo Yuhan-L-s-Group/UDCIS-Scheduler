@@ -140,16 +140,22 @@ describe("App Tests", () => {
         const Credits = screen.getAllByRole("textbox")[4];
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         userEvent.type(Code, "FREN105");
         userEvent.type(Name, "French I - Elementary");
 =======
         userEvent.type(Code, "JAPN105");
         userEvent.type(Name, "Japanese I - Elementary");
 >>>>>>> 7b90dd3 (added older tests)
+=======
+        userEvent.type(Code, "FREN105");
+        userEvent.type(Name, "French I - Elementary");
+>>>>>>> f90e52d (japn to fren)
         userEvent.type(Credits, "4");
         const saveNewCourse = screen.getByText(/Save Changes/i);
         userEvent.click(saveNewCourse);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
         expect(screen.getByText(/FREN105/i)).toBeInTheDocument();
         expect(
@@ -159,6 +165,11 @@ describe("App Tests", () => {
         expect(
             screen.getByText(/Japanese I - Elementary/i)
 >>>>>>> 7b90dd3 (added older tests)
+=======
+        expect(screen.getByText(/FREN105/i)).toBeInTheDocument();
+        expect(
+            screen.getByText(/French I - Elementary/i)
+>>>>>>> f90e52d (japn to fren)
         ).toBeInTheDocument();
     });
 
