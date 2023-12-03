@@ -64,21 +64,47 @@ export const SemesterDisplay = ({
     };
     //handle move course to other semester function
     const handleCourseMove = (course: Course, targetSemesterId: string) => {
-        const updatedSemesters = semesters.map((semester) => {
-            if (semester.season + semester.year === targetSemesterId) {
+        const updatedSemesters = semesters.map((s) => {
+            if (s.season + s.year === targetSemesterId) {
+                // find the semester where user wants to move the course to
+                if (!s.courses.find((c) => c.code === course.code)) {
+                    //make a condition that the target semester does not have repeated course
+                    const findCourseIndex = s.courses.findIndex(
+                        (thecourse) => thecourse === course
+                    ); //find the course index before user move to target semester, so after move out, the original course will be deleted from its semester
+                    const findOriginalSemesterIndex = semesters.findIndex(
+                        (thesemester) => thesemester.courses.includes(course)
+                    ); //find the semester index before move out, same with the last step
+                    const findSemesterIndex =
+                        SelecetedEditdDegreePlan.semesters.findIndex(
+                            (s) => s.season + s.year === targetSemesterId
+                        ); //find the target semester index
+                    const findDegreeIndex = degreeList.findIndex(
+                        (degree) =>
+                            degree.name === SelecetedEditdDegreePlan.name
+                    );
+                    degreeList[findDegreeIndex].semesters[findSemesterIndex] = {
+                        ...s,
+                        courses: [...s.courses, course]
+                    };
+                    degreeList[findDegreeIndex].semesters[
+                        findOriginalSemesterIndex
+                    ].courses.splice(findCourseIndex, 1);
+                    const update = [...degreeList];
+                    setDegreeList(update);
+                    console.log(SelecetedEditdDegreePlan);
+                    return {
+                        ...s,
+                        courses: [...s.courses, course]
+                    };
+                }
+            } else if (s.courses.find((c) => c.code === course.code)) {
                 return {
-                    ...semester,
-                    courses: [...semester.courses, course]
-                };
-            } else if (semester.courses.find((c) => c.code === course.code)) {
-                return {
-                    ...semester,
-                    courses: semester.courses.filter(
-                        (c) => c.code !== course.code
-                    )
+                    ...s,
+                    courses: s.courses.filter((c) => c.code !== course.code)
                 };
             }
-            return semester;
+            return s;
         });
         modifysemster(updatedSemesters);
     };
