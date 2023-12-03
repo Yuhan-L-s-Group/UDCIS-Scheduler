@@ -1,3 +1,5 @@
+export type RequirementType = "courses" | "credits";
+
 export interface Requirement {
     //requirment's name
     name: string;

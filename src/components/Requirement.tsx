@@ -2,6 +2,7 @@ import React from "react";
 //import { useEffect, useState } from "react";
 import { DegreePlan } from "../interfaces/degreePlan";
 import { Common } from "../data/Concentration/Common";
+import { Commoon } from "../data/Concentration/Commoon";
 
 export function getURLs(conc: string): string {
     const URLS: Record<string, string> = {
@@ -38,7 +39,7 @@ export const Requirement = ({ degreePlan }: { degreePlan: DegreePlan }) => {
                     What classes should I take?
                 </a>
             </p>
-            <Common degreePlan={degreePlan}></Common>
+            <Commoon degreePlan={degreePlan}></Commoon>
         </div>
     );
 };

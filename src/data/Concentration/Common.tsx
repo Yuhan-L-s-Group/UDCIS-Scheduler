@@ -57,7 +57,6 @@ export const Common = ({ degreePlan }: { degreePlan: DegreePlan }) => {
                     </span>
                 </div>
             )}
-            <Button onClick={printFYS}>Print</Button>
         </div>
     );
 };
