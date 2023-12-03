@@ -198,7 +198,7 @@ function App(): JSX.Element {
                                     />
                                 )}
                             </Col>{" "}
-                            <Col md={6}>
+                            <Col md={5}>
                                 {" "}
                                 <br />
                                 <br />
