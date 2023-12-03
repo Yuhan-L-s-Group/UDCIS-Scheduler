@@ -129,10 +129,6 @@ const Search = ({
         setDropDown(true);
         // setIsdegreeList(true);
         setCourseBar(false);
-        if (countType === 0) {
-            setIsdegreeList(true);
-            setCountType(1);
-        }
     };
     //click course in the dropdown menu
     const handleClickCourse = (course: Course) => {

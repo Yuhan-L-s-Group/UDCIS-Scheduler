@@ -76,7 +76,7 @@ function App(): JSX.Element {
     const [degreeList, setDegreeList] = useState<DegreePlan[]>([]);
     const [isAddDegreeButton, setIsaddDegreeButton] = useState(true);
     // for rendering degree plan list
-    const [isDegreeList, setIsdegreeList] = useState(false);
+    const [isDegreeList, setIsdegreeList] = useState(true);
     const [SelecetedEditdDegreePlan, setSelecetedEditdDegreePlan] =
         useState<DegreePlan>({
             name: "",
@@ -110,7 +110,7 @@ function App(): JSX.Element {
         setDegreeList([...degreeList]);
     };
     //pool of courses
-    const [isCoursePool, setIsCoursePool] = useState(false);
+    const [isCoursePool, setIsCoursePool] = useState(true);
     const [coursePool, setCoursePool] = useState<Course[]>([]);
     const [isAddedCourseTopool, setIsAddedCourseTopool] = useState(false);
     const [theCourse, setTheCourse] = useState<Course>({
