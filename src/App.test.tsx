@@ -351,6 +351,7 @@ describe("App Tests", () => {
         screen.getByText("Please ensure course code entered is correct!")
         ).toBeInTheDocument();
     });
+<<<<<<< HEAD
 >>>>>>> 0054a64 (incorrect course code)
 
         const searchButton = screen.getByText("Search");
@@ -360,6 +361,8 @@ describe("App Tests", () => {
         screen.getByText("Please ensure course code entered is correct!")
         ).toBeInTheDocument();
     });
+=======
+>>>>>>> 8d36671 (delete degree plan)
     //clearing something that was found in the results
     test("Test clearing search results", () => {
         const closeHomePage = screen.getByText("CLICK");
@@ -392,8 +395,14 @@ describe("App Tests", () => {
 =======
 >>>>>>> 15691f2 (clearing search results)
     });
+//deletes the degree plan
+    test("Test degree plan delete", () => {
+        const closeHomePage = screen.getByText("CLICK");
+    userEvent.click(closeHomePage);
 
-    test("Test degree plan deletion", () => {
-       
-    });
+    const deleteDegreeButton = screen.getByText("Delete");
+    userEvent.click(deleteDegreeButton);
+
+    expect(screen.queryByText("Delete")).not.toBeInTheDocument();
+});
 });
