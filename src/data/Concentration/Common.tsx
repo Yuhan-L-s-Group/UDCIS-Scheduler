@@ -27,7 +27,7 @@ export const Common = ({ degreePlan }: { degreePlan: DegreePlan }) => {
         const result = findSameCourse(allCourses, require.courses);
         if (require.type === "courses") {
             if (result.length === require.number) {
-                HTMLoutPut += "<h4>{require.name}✔️</h4>";
+                HTMLoutPut += `<h4>${require.name}✔️</h4>`;
                 HTMLoutPut += `<span style={{ color: "green" }}><strong>${result.length}/${require.number}: </strong></span>`;
             } else {
                 HTMLoutPut += `<h4>${require.name}❌</h4>`;

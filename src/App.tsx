@@ -98,6 +98,7 @@ function App(): JSX.Element {
         setSelecetedEditdDegreePlan(EditdDegreePlan);
         const updatedSemesters = [...EditdDegreePlan.semesters];
         setSemester(updatedSemesters);
+        console.log(selectedDegreePlan);
     };
     // is rendering degree plan table
     const [isRenderDegreeTable, setIsRenderDegreeTable] = useState(false);
