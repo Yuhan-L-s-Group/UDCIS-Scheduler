@@ -204,6 +204,7 @@ describe("App Tests", () => {
         userEvent.click(switchToSeach);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         //search CISC210
         const searchBox = screen.getAllByRole("textbox")[1];
         const seachButton = screen.getByText("Search");
@@ -212,12 +213,19 @@ describe("App Tests", () => {
         expect(screen.getByText("Course Code: CISC210")).toBeInTheDocument();
 =======
         //search CISC108
+=======
+        //search CISC210
+>>>>>>> 0054a64 (incorrect course code)
         const searchBox = screen.getAllByRole("textbox")[1];
         const seachButton = screen.getByText("Search");
-        userEvent.type(searchBox, "CISC108");
+        userEvent.type(searchBox, "CISC210");
         userEvent.click(seachButton);
+<<<<<<< HEAD
         expect(screen.getByText("Course Code: CISC108")).toBeInTheDocument();
 >>>>>>> 7b90dd3 (added older tests)
+=======
+        expect(screen.getByText("Course Code: CISC210")).toBeInTheDocument();
+>>>>>>> 0054a64 (incorrect course code)
 
         //add course from search bar
         const addButton = screen.getByText("Add to Semester");
@@ -240,19 +248,27 @@ describe("App Tests", () => {
         //input in lower case
         userEvent.clear(searchBox);
 <<<<<<< HEAD
+<<<<<<< HEAD
         userEvent.type(searchBox, "cisc210");
 =======
         userEvent.type(searchBox, "cisc108");
 >>>>>>> 7b90dd3 (added older tests)
+=======
+        userEvent.type(searchBox, "cisc210");
+>>>>>>> 0054a64 (incorrect course code)
         userEvent.click(seachButton);
         expect(
             screen.queryByText("Please make sure course code is correct!")
         ).not.toBeInTheDocument();
 <<<<<<< HEAD
+<<<<<<< HEAD
         expect(screen.getByText("Course Code: CISC210")).toBeInTheDocument();
 =======
         expect(screen.getByText("Course Code: CISC108")).toBeInTheDocument();
 >>>>>>> 7b90dd3 (added older tests)
+=======
+        expect(screen.getByText("Course Code: CISC210")).toBeInTheDocument();
+>>>>>>> 0054a64 (incorrect course code)
     });
 //clearing the semester selected
     test("Test clearing all semesters", () => {
@@ -309,7 +325,18 @@ describe("App Tests", () => {
 
         const searchBox = screen.getAllByRole("textbox")[1];
         userEvent.type(searchBox, "The code entered is incorrect.");
+<<<<<<< HEAD
         userEvent.type(searchBox, "CIST107");
+=======
+
+        const searchButton = screen.getByText("Search");
+        userEvent.click(searchButton);
+
+        expect(
+        screen.getByText("Please ensure course code entered is correct!")
+        ).toBeInTheDocument();
+    });
+>>>>>>> 0054a64 (incorrect course code)
 
         const searchButton = screen.getByText("Search");
         userEvent.click(searchButton);
@@ -346,5 +373,9 @@ describe("App Tests", () => {
     userEvent.click(deleteDegreeButton);
 
     expect(screen.queryByText("Delete")).not.toBeInTheDocument();
+    });
+
+    test("Test degree plan deletion", () => {
+       
     });
 });
