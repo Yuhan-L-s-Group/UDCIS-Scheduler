@@ -7,12 +7,12 @@ Browserslist: caniuse-lite is outdated. Please run:
   Why you should do it regularly: https://github.com/browserslist/browserslist#browsers-data-updating
 FAIL src/App.test.tsx
   Scheduler Tests
-    ✕ Check home page and welcome window (40 ms)
-    ✕ Switch between different concentration (at this point, just check texts) (7 ms)
+    ✕ Check home page and welcome window (37 ms)
+    ✕ Switch between different concentration (at this point, just check texts) (8 ms)
     ✕ Try to add and delete semester (5 ms)
-    ✕ Add a course that does not exist in the list (6 ms)
+    ✕ Add a course that does not exist in the list (7 ms)
     ✕ Replace with test details (5 ms)
-    ✕ Test search bar (4 ms)
+    ✕ Test search bar (5 ms)
 
   ● Scheduler Tests › Check home page and welcome window
 
@@ -425,10 +425,10 @@ FAIL src/App.test.tsx
 ------------------------|---------|----------|---------|---------|----------------------------------------------------------
 File                    | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s                                        
 ------------------------|---------|----------|---------|---------|----------------------------------------------------------
-All files               |   11.08 |        4 |    0.77 |   11.29 |                                                          
+All files               |   10.96 |     3.92 |    0.77 |   11.17 |                                                          
  src                    |   44.59 |    22.22 |    5.26 |   45.83 |                                                          
   App.tsx               |   44.59 |    22.22 |    5.26 |   45.83 | 28-29,43-63,73-74,95-100,106-110,131-137,140-142,162-332 
- src/components         |    2.74 |        0 |       0 |    2.76 |                                                          
+ src/components         |    2.71 |        0 |       0 |    2.73 |                                                          
   AddCourse.tsx         |       0 |        0 |       0 |       0 | 21-101                                                   
   AddtoSemester.tsx     |       0 |        0 |       0 |       0 | 21-57                                                    
   CoursePool.tsx        |      20 |      100 |       0 |      20 | 16-46                                                    
@@ -437,7 +437,7 @@ All files               |   11.08 |        4 |    0.77 |   11.29 |
   EditDegreePlan.tsx    |      50 |      100 |       0 |      50 | 45                                                       
   IntroModal.tsx        |       0 |      100 |       0 |       0 | 11                                                       
   Requirement.tsx       |      20 |      100 |       0 |      20 | 7-29,33-35                                               
-  Search.tsx            |    0.85 |        0 |       0 |    0.85 | 54-474                                                   
+  Search.tsx            |    0.82 |        0 |       0 |    0.82 | 54-479                                                   
   SemesterDisplay.tsx   |    2.43 |        0 |       0 |     2.5 | 28-155                                                   
   SemesterModal.tsx     |    3.44 |        0 |       0 |    3.57 | 23-117                                                   
   SemsterList.tsx       |   11.11 |        0 |       0 |   11.11 | 41-85                                                    
@@ -452,5 +452,5 @@ All files               |   11.08 |        4 |    0.77 |   11.29 |
 Test Suites: 1 failed, 1 total
 Tests:       6 failed, 6 total
 Snapshots:   0 total
-Time:        3.62 s
+Time:        3.703 s
 Ran all test suites.
