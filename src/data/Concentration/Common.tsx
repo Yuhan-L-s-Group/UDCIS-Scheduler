@@ -8,55 +8,55 @@ import { Course } from "../../interfaces/course";
 import { Semester } from "../../interfaces/semester";
 
 export const Common = ({ degreePlan }: { degreePlan: DegreePlan }) => {
+    //TEST
     const allCourses = degreePlan.semesters.flatMap((semester) =>
-        semester.courses.map((course) => course.code)
+        semester.courses.map((course) => course)
     );
 
-    function compare(array1: string[], array2: string[]): boolean {
-        return array1.some((element) => array2.includes(element));
-    }
-    function findSame(array1: string[], array2: string[]): string[] {
-        return array1.filter((element) => array2.includes(element));
+    function findSameCourse(array1: Course[], array2: string[]): Course[] {
+        let outPut = [];
+        outPut = array2
+            .map((code) => array1.find((course) => course.code === code))
+            .filter((course) => course !== undefined);
+        return outPut as Course[];
     }
 
-    const FYS = all.find(
-        (type: Requirement): boolean => type.name === "First Year Seminar"
-    );
+    let HTMLoutPut = "";
+    all.forEach((require) => {
+        //HTMLoutPut += `<h3>${require.name}</h3>`
+        const result = findSameCourse(allCourses, require.courses);
+        if (require.type === "courses") {
+            if (result.length === require.number) {
+                HTMLoutPut += `<h4>${require.name}✔️</h4>`;
+                HTMLoutPut += `<span style={{ color: "green" }}><strong>${result.length}/${require.number}: </strong></span>`;
+            } else {
+                HTMLoutPut += `<h4>${require.name}❌</h4>`;
+                HTMLoutPut += `<span style={{ color: "red" }}><strong>${result.length}/${require.number}: </strong></span>`;
+            }
+        } else {
+            //if that require is about credit
+            const totalCredits: number = result.reduce(
+                (acc, course) => acc + parseInt(course.credits),
+                0
+            );
+            if (totalCredits >= require.number) {
+                HTMLoutPut += `<h4>${require.name}✔️</h4>`;
+                HTMLoutPut += `<span style={{ color: "green" }}><strong>${totalCredits}/${require.number}: </strong></span>`;
+            } else {
+                HTMLoutPut += `<h4>${require.name}❌</h4>`;
+                HTMLoutPut += `<span style={{ color: "red" }}><strong>${totalCredits}/${require.number}: </strong></span>`;
+            }
+        }
+    });
+    /* const print = () => {
+        console.log(findSameCourse(allCourses, ENGL110));
+    }; */
 
     //✔️❌
     return (
         <div>
-            <br></br>
-            {allCourses.includes("ENGL110") ? (
-                <div>
-                    <h4>Seminar in Composition✔️</h4>
-                    <span style={{ color: "green" }}>ENGL110</span>
-                </div>
-            ) : (
-                <div>
-                    <h4>Seminar in Composition❌</h4>
-                    <span style={{ color: "red" }}>ENGL110</span>
-                </div>
-            )}
-            <br></br>
-            {FYS && compare(allCourses, FYS.courses) ? (
-                <div>
-                    <h3>First Year Seminar✔️</h3>
-                    <span style={{ color: "green" }}>
-                        {findSame(allCourses, FYS.courses)}
-                    </span>
-                </div>
-            ) : (
-                <div>
-                    <h3>First Year Seminar❌</h3>
-                    <span style={{ color: "red" }}>
-                        0/1:{" "}
-                        {FYS?.courses.map(
-                            (course: string): string => course + " "
-                        )}
-                    </span>
-                </div>
-            )}
+            {HTMLoutPut}
+            <Button onClick={print}>Print</Button>
         </div>
     );
 };
