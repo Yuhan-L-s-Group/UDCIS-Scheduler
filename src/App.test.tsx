@@ -404,5 +404,5 @@ describe("App Tests", () => {
     userEvent.click(deleteDegreeButton);
 
     expect(screen.queryByText("Delete")).not.toBeInTheDocument();
-});
+    });
 });
