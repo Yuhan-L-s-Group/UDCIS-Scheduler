@@ -337,8 +337,12 @@ describe("App Tests", () => {
         const searchBox = screen.getAllByRole("textbox")[1];
         userEvent.type(searchBox, "The code entered is incorrect.");
 <<<<<<< HEAD
+<<<<<<< HEAD
         userEvent.type(searchBox, "CIST107");
 =======
+=======
+        userEvent.type(searchBox, "CIST107");
+>>>>>>> 15691f2 (clearing search results)
 
         const searchButton = screen.getByText("Search");
         userEvent.click(searchButton);
@@ -374,6 +378,7 @@ describe("App Tests", () => {
         userEvent.click(clearSearchButton);
     
         expect(screen.queryByText("Course Code: CISC108")).not.toBeInTheDocument();
+<<<<<<< HEAD
     });
 //deletes the degree plan
     test("Test degree plan delete", () => {
@@ -384,6 +389,8 @@ describe("App Tests", () => {
     userEvent.click(deleteDegreeButton);
 
     expect(screen.queryByText("Delete")).not.toBeInTheDocument();
+=======
+>>>>>>> 15691f2 (clearing search results)
     });
 
     test("Test degree plan deletion", () => {
