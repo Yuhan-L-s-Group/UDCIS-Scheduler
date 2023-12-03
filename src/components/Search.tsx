@@ -48,8 +48,7 @@ const Search = ({
     setIsAddedCourseTopool,
     theCourse,
     isCourseToDegreePlanOpen,
-    setisCourseToDegreePlanOpen,
-    setIsdegreeList
+    setisCourseToDegreePlanOpen
 }: SearchProps) => {
     const [text, setText] = useState<string>("");
     const [courseIndex, setcourseIndex] = useState<number>(0);
@@ -126,7 +125,8 @@ const Search = ({
         );
         setfilterCourses(filteritems);
         setDropDown(true);
-        setIsdegreeList(true);
+        // setIsdegreeList(true);
+        setCourseBar(false);
     };
     //click course in the dropdown menu
     const handleClickCourse = (course: Course) => {
@@ -278,7 +278,6 @@ const Search = ({
                 <div>Please make sure the course code is correct!</div>
             )}
             <br />
-
             <br />
             {isCourseBar && (
                 <div className="courseBar_box">

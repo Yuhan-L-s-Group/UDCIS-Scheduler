@@ -76,7 +76,7 @@ function App(): JSX.Element {
     const [degreeList, setDegreeList] = useState<DegreePlan[]>([]);
     const [isAddDegreeButton, setIsaddDegreeButton] = useState(true);
     // for rendering degree plan list
-    const [isDegreeList, setIsdegreeList] = useState(false);
+    const [isDegreeList, setIsdegreeList] = useState(true);
     const [SelecetedEditdDegreePlan, setSelecetedEditdDegreePlan] =
         useState<DegreePlan>({
             name: "",
@@ -110,7 +110,7 @@ function App(): JSX.Element {
         setDegreeList([...degreeList]);
     };
     //pool of courses
-    const [isCoursePool, setIsCoursePool] = useState(false);
+    const [isCoursePool, setIsCoursePool] = useState(true);
     const [coursePool, setCoursePool] = useState<Course[]>([]);
     const [isAddedCourseTopool, setIsAddedCourseTopool] = useState(false);
     const [theCourse, setTheCourse] = useState<Course>({
@@ -198,7 +198,7 @@ function App(): JSX.Element {
                                     />
                                 )}
                             </Col>{" "}
-                            <Col md={4}>
+                            <Col md={5}>
                                 {" "}
                                 <br />
                                 <br />
@@ -244,7 +244,7 @@ function App(): JSX.Element {
                                     </span>
                                 }
                             </Col>
-                            <Col md={4}>
+                            <Col md={3}>
                                 <br />
                                 <br />
                                 <br />
@@ -284,7 +284,7 @@ function App(): JSX.Element {
                                         <br />
                                         {isRenderDegreeTable && (
                                             //individual degree plan.
-                                            <table>
+                                            <table className="degreeTable">
                                                 <thead>
                                                     {" "}
                                                     <tr>
