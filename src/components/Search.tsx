@@ -48,8 +48,7 @@ const Search = ({
     setIsAddedCourseTopool,
     theCourse,
     isCourseToDegreePlanOpen,
-    setisCourseToDegreePlanOpen,
-    setIsdegreeList
+    setisCourseToDegreePlanOpen
 }: SearchProps) => {
     const [text, setText] = useState<string>("");
     const [courseIndex, setcourseIndex] = useState<number>(0);
@@ -116,7 +115,6 @@ const Search = ({
         setEditCourseOpen(false);
     };
     //filter the course user type in
-    const [countType, setCountType] = useState<number>(0);
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const theText = e.target.value;
         const trimmedText = theText.trim();
