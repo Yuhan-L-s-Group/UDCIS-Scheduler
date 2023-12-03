@@ -4,6 +4,9 @@ import userEvent from "@testing-library/user-event";
 import App from "./App";
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7b90dd3 (added older tests)
 /* Format for tests cases
 test("Replace with test details", () => {
     expect(screen.getByText(/Best/i)).toBeInTheDocument();
@@ -13,9 +16,12 @@ test("Replace with test details", () => {
 */
 
 describe("Scheduler Tests", () => {
+<<<<<<< HEAD
 =======
 describe("App Tests", () => {
 >>>>>>> 2da16ca (6 extra test cases)
+=======
+>>>>>>> 7b90dd3 (added older tests)
     beforeEach(() => {
         render(<App />);
     });
@@ -23,6 +29,9 @@ describe("App Tests", () => {
     test("Check home page and welcome window", () => {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7b90dd3 (added older tests)
         expect(screen.getByText(/Best/i)).toBeInTheDocument();
         const closeHomePage = screen.getByText("CLICK");
         userEvent.click(closeHomePage);
@@ -130,15 +139,26 @@ describe("App Tests", () => {
         const Name = screen.getAllByRole("textbox")[2];
         const Credits = screen.getAllByRole("textbox")[4];
 
+<<<<<<< HEAD
         userEvent.type(Code, "FREN105");
         userEvent.type(Name, "French I - Elementary");
+=======
+        userEvent.type(Code, "JAPN105");
+        userEvent.type(Name, "Japanese I - Elementary");
+>>>>>>> 7b90dd3 (added older tests)
         userEvent.type(Credits, "4");
         const saveNewCourse = screen.getByText(/Save Changes/i);
         userEvent.click(saveNewCourse);
 
+<<<<<<< HEAD
         expect(screen.getByText(/FREN105/i)).toBeInTheDocument();
         expect(
             screen.getByText(/French I - Elementary/i)
+=======
+        expect(screen.getByText(/JAPN105/i)).toBeInTheDocument();
+        expect(
+            screen.getByText(/Japanese I - Elementary/i)
+>>>>>>> 7b90dd3 (added older tests)
         ).toBeInTheDocument();
     });
 
@@ -183,12 +203,21 @@ describe("App Tests", () => {
         const switchToSeach = screen.getByText("Switch");
         userEvent.click(switchToSeach);
 
+<<<<<<< HEAD
         //search CISC210
         const searchBox = screen.getAllByRole("textbox")[1];
         const seachButton = screen.getByText("Search");
         userEvent.type(searchBox, "CISC210");
         userEvent.click(seachButton);
         expect(screen.getByText("Course Code: CISC210")).toBeInTheDocument();
+=======
+        //search CISC108
+        const searchBox = screen.getAllByRole("textbox")[1];
+        const seachButton = screen.getByText("Search");
+        userEvent.type(searchBox, "CISC108");
+        userEvent.click(seachButton);
+        expect(screen.getByText("Course Code: CISC108")).toBeInTheDocument();
+>>>>>>> 7b90dd3 (added older tests)
 
         //add course from search bar
         const addButton = screen.getByText("Add to Semester");
@@ -210,12 +239,20 @@ describe("App Tests", () => {
 
         //input in lower case
         userEvent.clear(searchBox);
+<<<<<<< HEAD
         userEvent.type(searchBox, "cisc210");
+=======
+        userEvent.type(searchBox, "cisc108");
+>>>>>>> 7b90dd3 (added older tests)
         userEvent.click(seachButton);
         expect(
             screen.queryByText("Please make sure course code is correct!")
         ).not.toBeInTheDocument();
+<<<<<<< HEAD
         expect(screen.getByText("Course Code: CISC210")).toBeInTheDocument();
+=======
+        expect(screen.getByText("Course Code: CISC108")).toBeInTheDocument();
+>>>>>>> 7b90dd3 (added older tests)
     });
 //clearing the semester selected
     test("Test clearing all semesters", () => {
