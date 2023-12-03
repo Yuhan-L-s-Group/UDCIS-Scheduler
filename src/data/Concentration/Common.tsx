@@ -4,8 +4,10 @@ import { Button } from "react-bootstrap";
 import { DegreePlan } from "../../interfaces/degreePlan";
 import all from "../RequiredCourses/FitsAll.json";
 import { Requirement } from "../../interfaces/Requirement";
+import { Course } from "../../interfaces/course";
+import { Semester } from "../../interfaces/semester";
 
-export const Cyber = ({ degreePlan }: { degreePlan: DegreePlan }) => {
+export const Common = ({ degreePlan }: { degreePlan: DegreePlan }) => {
     const allCourses = degreePlan.semesters.flatMap((semester) =>
         semester.courses.map((course) => course.code)
     );
@@ -20,10 +22,6 @@ export const Cyber = ({ degreePlan }: { degreePlan: DegreePlan }) => {
     const FYS = all.find(
         (type: Requirement): boolean => type.name === "First Year Seminar"
     );
-
-    const printFYS = () => {
-        console.log(FYS?.courses);
-    };
 
     //✔️❌
     return (

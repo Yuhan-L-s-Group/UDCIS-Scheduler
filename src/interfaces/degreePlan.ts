@@ -19,6 +19,4 @@ export interface DegreePlan {
     concentration: Concentration;
     //an array of semester that are in this degree olan
     semesters: Semester[];
-    //total current credits for this degree plan
-    //credit: number;
 }
