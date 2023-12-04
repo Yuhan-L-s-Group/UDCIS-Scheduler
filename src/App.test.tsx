@@ -1,12 +1,8 @@
 import React from "react";
 import { render, screen, waitFor } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
 import App from "./App";
+import userEvent from "@testing-library/user-event";
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 7b90dd3 (added older tests)
 /* Format for tests cases
 test("Replace with test details", () => {
     expect(screen.getByText(/Best/i)).toBeInTheDocument();
@@ -16,22 +12,11 @@ test("Replace with test details", () => {
 */
 
 describe("Scheduler Tests", () => {
-<<<<<<< HEAD
-=======
-describe("App Tests", () => {
->>>>>>> 2da16ca (6 extra test cases)
-=======
->>>>>>> 7b90dd3 (added older tests)
     beforeEach(() => {
         render(<App />);
     });
 
     test("Check home page and welcome window", () => {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 7b90dd3 (added older tests)
         expect(screen.getByText(/Best/i)).toBeInTheDocument();
         const closeHomePage = screen.getByText("CLICK");
         userEvent.click(closeHomePage);
@@ -139,37 +124,15 @@ describe("App Tests", () => {
         const Name = screen.getAllByRole("textbox")[2];
         const Credits = screen.getAllByRole("textbox")[4];
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-        userEvent.type(Code, "FREN105");
-        userEvent.type(Name, "French I - Elementary");
-=======
         userEvent.type(Code, "JAPN105");
         userEvent.type(Name, "Japanese I - Elementary");
->>>>>>> 7b90dd3 (added older tests)
-=======
-        userEvent.type(Code, "FREN105");
-        userEvent.type(Name, "French I - Elementary");
->>>>>>> f90e52d (japn to fren)
         userEvent.type(Credits, "4");
         const saveNewCourse = screen.getByText(/Save Changes/i);
         userEvent.click(saveNewCourse);
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-        expect(screen.getByText(/FREN105/i)).toBeInTheDocument();
-        expect(
-            screen.getByText(/French I - Elementary/i)
-=======
         expect(screen.getByText(/JAPN105/i)).toBeInTheDocument();
         expect(
             screen.getByText(/Japanese I - Elementary/i)
->>>>>>> 7b90dd3 (added older tests)
-=======
-        expect(screen.getByText(/FREN105/i)).toBeInTheDocument();
-        expect(
-            screen.getByText(/French I - Elementary/i)
->>>>>>> f90e52d (japn to fren)
         ).toBeInTheDocument();
     });
 
@@ -214,29 +177,12 @@ describe("App Tests", () => {
         const switchToSeach = screen.getByText("Switch");
         userEvent.click(switchToSeach);
 
-<<<<<<< HEAD
-<<<<<<< HEAD
         //search CISC210
         const searchBox = screen.getAllByRole("textbox")[1];
         const seachButton = screen.getByText("Search");
         userEvent.type(searchBox, "CISC210");
         userEvent.click(seachButton);
         expect(screen.getByText("Course Code: CISC210")).toBeInTheDocument();
-=======
-        //search CISC108
-=======
-        //search CISC210
->>>>>>> 0054a64 (incorrect course code)
-        const searchBox = screen.getAllByRole("textbox")[1];
-        const seachButton = screen.getByText("Search");
-        userEvent.type(searchBox, "CISC210");
-        userEvent.click(seachButton);
-<<<<<<< HEAD
-        expect(screen.getByText("Course Code: CISC108")).toBeInTheDocument();
->>>>>>> 7b90dd3 (added older tests)
-=======
-        expect(screen.getByText("Course Code: CISC210")).toBeInTheDocument();
->>>>>>> 0054a64 (incorrect course code)
 
         //add course from search bar
         const addButton = screen.getByText("Add to Semester");
@@ -258,29 +204,14 @@ describe("App Tests", () => {
 
         //input in lower case
         userEvent.clear(searchBox);
-<<<<<<< HEAD
-<<<<<<< HEAD
         userEvent.type(searchBox, "cisc210");
-=======
-        userEvent.type(searchBox, "cisc108");
->>>>>>> 7b90dd3 (added older tests)
-=======
-        userEvent.type(searchBox, "cisc210");
->>>>>>> 0054a64 (incorrect course code)
         userEvent.click(seachButton);
         expect(
             screen.queryByText("Please make sure course code is correct!")
         ).not.toBeInTheDocument();
-<<<<<<< HEAD
-<<<<<<< HEAD
         expect(screen.getByText("Course Code: CISC210")).toBeInTheDocument();
-=======
-        expect(screen.getByText("Course Code: CISC108")).toBeInTheDocument();
->>>>>>> 7b90dd3 (added older tests)
-=======
-        expect(screen.getByText("Course Code: CISC210")).toBeInTheDocument();
->>>>>>> 0054a64 (incorrect course code)
     });
+});
 //clearing the semester selected
     test("Test clearing all semesters", () => {
     const closingHomePage = screen.getByText("CLICK");
@@ -335,34 +266,16 @@ describe("App Tests", () => {
         userEvent.click(closeHomePage);
 
         const searchBox = screen.getAllByRole("textbox")[1];
-        userEvent.type(searchBox, "The code entered is incorrect.");
-<<<<<<< HEAD
-<<<<<<< HEAD
-        userEvent.type(searchBox, "CIST107");
-=======
-=======
-        userEvent.type(searchBox, "CIST107");
->>>>>>> 15691f2 (clearing search results)
+        userEvent.type(searchBox, "INVALID_CODE");
 
         const searchButton = screen.getByText("Search");
         userEvent.click(searchButton);
 
         expect(
-        screen.getByText("Please ensure course code entered is correct!")
+            screen.getByText("Please make sure the course code is correct!")
         ).toBeInTheDocument();
     });
-<<<<<<< HEAD
->>>>>>> 0054a64 (incorrect course code)
 
-        const searchButton = screen.getByText("Search");
-        userEvent.click(searchButton);
-
-        expect(
-        screen.getByText("Please ensure course code entered is correct!")
-        ).toBeInTheDocument();
-    });
-=======
->>>>>>> 8d36671 (delete degree plan)
     //clearing something that was found in the results
     test("Test clearing search results", () => {
         const closeHomePage = screen.getByText("CLICK");
@@ -381,19 +294,6 @@ describe("App Tests", () => {
         userEvent.click(clearSearchButton);
     
         expect(screen.queryByText("Course Code: CISC108")).not.toBeInTheDocument();
-<<<<<<< HEAD
-    });
-//deletes the degree plan
-    test("Test degree plan delete", () => {
-        const closeHomePage = screen.getByText("CLICK");
-    userEvent.click(closeHomePage);
-
-    const deleteDegreeButton = screen.getByText("Delete");
-    userEvent.click(deleteDegreeButton);
-
-    expect(screen.queryByText("Delete")).not.toBeInTheDocument();
-=======
->>>>>>> 15691f2 (clearing search results)
     });
 //deletes the degree plan
     test("Test degree plan delete", () => {
