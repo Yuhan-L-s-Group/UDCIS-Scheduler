@@ -42,7 +42,6 @@ export const SemesterDisplay = ({
         );
         const update = [...degreeList];
         setDegreeList(update);
-        console.log(selectedDegreePlan);
     };
 
     const deleteWholeSemester = () => {
@@ -59,9 +58,22 @@ export const SemesterDisplay = ({
         semesters.splice(findSemesterIndex, 1);
         const update2 = [...semesters];
         modifysemster(update2);
-        console.log(degreeList);
-        // console.log(findDegreeIndex);
     };
+    // const emptySemester = () => {
+    //     const findSemesterIndex = semesters.findIndex((s) => s === semester);
+    //     semesters[findSemesterIndex] = {
+    //         ...semesters[findSemesterIndex],
+    //         courses: []
+    //     };
+    //     modifysemster(semesters);
+    //     const findDegreeIndex = degreeList.findIndex(
+    //         (degree) => degree.name === SelecetedEditdDegreePlan.name
+    //     );
+    //     degreeList[findDegreeIndex].semesters[findSemesterIndex].courses = [];
+    //     const update = [...degreeList];
+    //     setDegreeList(update);
+    //     console.log(SelecetedEditdDegreePlan);
+    // };
     //handle move course to other semester function
     const handleCourseMove = (course: Course, targetSemesterId: string) => {
         const updatedSemesters = semesters.map((s) => {
@@ -92,7 +104,6 @@ export const SemesterDisplay = ({
                     ].courses.splice(findCourseIndex, 1);
                     const update = [...degreeList];
                     setDegreeList(update);
-                    console.log(SelecetedEditdDegreePlan);
                     return {
                         ...s,
                         courses: [...s.courses, course]
@@ -114,7 +125,7 @@ export const SemesterDisplay = ({
                 <thead>
                     <tr>
                         <th>
-                            Semster: {semester.season} {semester.year}
+                            {semester.season} {semester.year}
                         </th>
                         <th>
                             Total:{" "}
@@ -127,12 +138,14 @@ export const SemesterDisplay = ({
                         {semester.courses.length !== 0 && (
                             <th>
                                 {" "}
-                                {/* <button
-                                    className="emeptySemester"
-                                    onClick={() => EmptySemester(semester)}
-                                >
-                                    Empty
-                                </button> */}
+                                {/* {
+                                    <button
+                                        className="emeptySemester"
+                                        onClick={emptySemester}
+                                    >
+                                        Empty
+                                    </button>
+                                } */}
                             </th>
                         )}
                     </tr>
@@ -153,14 +166,16 @@ export const SemesterDisplay = ({
                                     }
                                 >
                                     <option value="">Move to...</option>
-                                    {semesters.map((s) => (
-                                        <option
-                                            key={s.season + s.year}
-                                            value={s.season + s.year}
-                                        >
-                                            {s.season} {s.year}
-                                        </option>
-                                    ))}
+                                    {semesters
+                                        .filter((s) => s !== semester)
+                                        .map((s) => (
+                                            <option
+                                                key={s.season + s.year}
+                                                value={s.season + s.year}
+                                            >
+                                                {s.season} {s.year}
+                                            </option>
+                                        ))}
                                 </select>
                             </td>
                             <td>
@@ -178,7 +193,7 @@ export const SemesterDisplay = ({
                         <tr>
                             <td colSpan={4}>
                                 <button
-                                    onClick={() => deleteWholeSemester()}
+                                    onClick={deleteWholeSemester}
                                     className="deleteEntireSemesterView"
                                 >
                                     {" "}
