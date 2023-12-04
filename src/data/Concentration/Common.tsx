@@ -1,11 +1,8 @@
-/* eslint-disable no-extra-parens */
 import React from "react";
 import { Button } from "react-bootstrap";
 import { DegreePlan } from "../../interfaces/degreePlan";
 import all from "../RequiredCourses/FitsAll.json";
-import { Requirement } from "../../interfaces/Requirement";
 import { Course } from "../../interfaces/course";
-import { Semester } from "../../interfaces/semester";
 
 export const Common = ({ degreePlan }: { degreePlan: DegreePlan }) => {
     //TEST
@@ -23,7 +20,6 @@ export const Common = ({ degreePlan }: { degreePlan: DegreePlan }) => {
 
     let HTMLoutPut = "";
     all.forEach((require) => {
-        //HTMLoutPut += `<h3>${require.name}</h3>`
         const result = findSameCourse(allCourses, require.courses);
         if (require.type === "courses") {
             if (result.length === require.number) {
@@ -48,9 +44,6 @@ export const Common = ({ degreePlan }: { degreePlan: DegreePlan }) => {
             }
         }
     });
-    /* const print = () => {
-        console.log(findSameCourse(allCourses, ENGL110));
-    }; */
 
     //✔️❌
     return (

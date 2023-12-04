@@ -20,7 +20,6 @@ interface SearchProps {
     setDisplayEmpty: React.Dispatch<React.SetStateAction<boolean>>;
     selectedDegreePlan: DegreePlan;
     setselectedDegreePlan: React.Dispatch<React.SetStateAction<DegreePlan>>;
-    setIsCoursePool: React.Dispatch<React.SetStateAction<boolean>>;
     coursePool: Course[];
     setCoursePool: React.Dispatch<React.SetStateAction<Course[]>>;
     isAddedCourseTopool: boolean;
@@ -41,7 +40,6 @@ const Search = ({
     setDisplayEmpty,
     selectedDegreePlan,
     setselectedDegreePlan,
-    setIsCoursePool,
     coursePool,
     setCoursePool,
     isAddedCourseTopool,
@@ -74,7 +72,6 @@ const Search = ({
             setDropDown(false);
         }
         setCount(0);
-        setIsCoursePool(true);
         setIsAddedCourseTopool(false);
     };
     const [selectedCourse, setselectedCourse] = useState<Course>({

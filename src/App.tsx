@@ -1,4 +1,3 @@
-/* eslint-disable no-extra-parens */
 import React, { useState } from "react";
 import "./App.css";
 
@@ -110,7 +109,6 @@ function App(): JSX.Element {
         setDegreeList([...degreeList]);
     };
     //pool of courses
-    const [isCoursePool, setIsCoursePool] = useState(true);
     const [coursePool, setCoursePool] = useState<Course[]>([]);
     const [isAddedCourseTopool, setIsAddedCourseTopool] = useState(false);
     const [theCourse, setTheCourse] = useState<Course>({
@@ -188,15 +186,13 @@ function App(): JSX.Element {
                     <Container>
                         <Row>
                             <Col md={4} className="Coursepool">
-                                {isCoursePool && ( // pool of courses componenet
-                                    <CoursePool
-                                        coursePool={coursePool}
-                                        deletePool={deletePool}
-                                        AddCourseToDegreePlan={
-                                            AddCourseToDegreePlan
-                                        }
-                                    />
-                                )}
+                                <CoursePool
+                                    coursePool={coursePool}
+                                    deletePool={deletePool}
+                                    AddCourseToDegreePlan={
+                                        AddCourseToDegreePlan
+                                    }
+                                />
                             </Col>{" "}
                             <Col md={5}>
                                 {" "}
@@ -223,7 +219,6 @@ function App(): JSX.Element {
                                             setselectedDegreePlan={
                                                 setselectedDegreePlan
                                             }
-                                            setIsCoursePool={setIsCoursePool}
                                             coursePool={coursePool}
                                             setCoursePool={setCoursePool}
                                             isAddedCourseTopool={
