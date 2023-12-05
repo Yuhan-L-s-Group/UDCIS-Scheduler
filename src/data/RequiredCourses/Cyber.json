@@ -16,7 +16,7 @@
         "name": "Advanced Cybersecurity Requirement",
         "courses": ["CPEG472", "CPEG473", "CPEG475", "CPEG476", "CPEG495"],
         "type": "courses",
-        "number": 2
+        "number": 5
     },
     {
         "name": "Restricted Electives",
@@ -48,6 +48,6 @@
             "ELEG487"
         ],
         "type": "credits",
-        "number": 6
+        "number": 25
     }
 ]
