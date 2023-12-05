@@ -1,3 +1,4 @@
+/* eslint-disable no-extra-parens */
 import React, { useState } from "react";
 import "./App.css";
 import { IntroModal } from "./components/IntroModal";
@@ -156,7 +157,6 @@ function App(): JSX.Element {
         }
         setIsAddedCourseTopool(true);
     };
-    const [isAddSemesterOpen, SetAddSemester] = useState(false);
     const [countTool, setCount] = useState(0);
     const [selectedCourse, setselectedCourse] = useState<Course>({
         code: "",
