@@ -1,8 +1,6 @@
 /* eslint-disable no-extra-parens */
 import React, { useState } from "react";
 import { Course } from "../interfaces/course";
-import { AddtoSemester } from "./AddtoSemester";
-import EditCourse from "./EditCourse";
 import { DegreePlan } from "../interfaces/degreePlan";
 import { Season, Semester } from "../interfaces/semester";
 // import AddCourseToDegreePlanModal from "./AddCourseToDegreePlanModal";
@@ -10,54 +8,46 @@ import { Button, Modal, Col, Form, Row } from "react-bootstrap";
 import udlogo3 from "../pictures/udlogo3.png";
 // Search course bar (switch 2)
 interface SearchProps {
-    listCourses: Course[];
     setListCourses: (courses: Course[]) => void;
     ModifiedCourseList: Course[];
-    semesters: Semester[];
-    setSemester: React.Dispatch<React.SetStateAction<Semester[]>>;
     degreeList: DegreePlan[];
     setDegreeList: React.Dispatch<React.SetStateAction<DegreePlan[]>>;
     setDisplayEmpty: React.Dispatch<React.SetStateAction<boolean>>;
     selectedDegreePlan: DegreePlan;
     setselectedDegreePlan: React.Dispatch<React.SetStateAction<DegreePlan>>;
-    coursePool: Course[];
-    setCoursePool: React.Dispatch<React.SetStateAction<Course[]>>;
-    isAddedCourseTopool: boolean;
     setIsAddedCourseTopool: React.Dispatch<React.SetStateAction<boolean>>;
     theCourse: Course;
     isCourseToDegreePlanOpen: boolean;
     setisCourseToDegreePlanOpen: React.Dispatch<React.SetStateAction<boolean>>;
     setIsdegreeList: React.Dispatch<React.SetStateAction<boolean>>;
+    setCourseBar: React.Dispatch<React.SetStateAction<boolean>>;
+    setcourseIndex: React.Dispatch<React.SetStateAction<number>>;
+    setCount: React.Dispatch<React.SetStateAction<number>>;
+    setText: React.Dispatch<React.SetStateAction<string>>;
+    text: string;
+    setIsRenderPoolOfCourse: React.Dispatch<React.SetStateAction<boolean>>;
 }
 const Search = ({
-    listCourses,
-    setListCourses,
     ModifiedCourseList,
-    semesters,
-    setSemester,
     degreeList,
     setDegreeList,
     setDisplayEmpty,
     selectedDegreePlan,
     setselectedDegreePlan,
-    coursePool,
-    setCoursePool,
-    isAddedCourseTopool,
     setIsAddedCourseTopool,
     theCourse,
     isCourseToDegreePlanOpen,
-    setisCourseToDegreePlanOpen
+    setisCourseToDegreePlanOpen,
+    setCourseBar,
+    setcourseIndex,
+    setCount,
+    setText,
+    text,
+    setIsRenderPoolOfCourse
 }: SearchProps) => {
-    const [text, setText] = useState<string>("");
-    const [courseIndex, setcourseIndex] = useState<number>(0);
-    const [isAddSemesterOpen, SetAddSemester] = useState(false);
-    const [ErrorMessage, setError] = useState(false);
     const [ErrorMessage2, setError2] = useState(false);
-    const [isCourseBar, setCourseBar] = useState(false);
-    const [isEditCourseOpen, setEditCourseOpen] = useState(false);
     const [filterCourses, setfilterCourses] = useState<Course[]>();
     const [isDropdown, setDropDown] = useState(false);
-    const [countTool, setCount] = useState(0);
     const handleSearch = (text: string) => {
         const upperText = text.toUpperCase();
         const CourseIndex = ModifiedCourseList.findIndex(
@@ -73,44 +63,9 @@ const Search = ({
         }
         setCount(0);
         setIsAddedCourseTopool(false);
-    };
-    const [selectedCourse, setselectedCourse] = useState<Course>({
-        code: "",
-        name: "",
-        descr: "",
-        credits: "",
-        preReq: "",
-        restrict: "",
-        breadth: "",
-        typ: ""
-    });
-    const closeAddSemester = () => {
-        SetAddSemester(false);
-    };
-    const CloseError = () => {
-        setError(false);
-    };
-    //handle click edit course
-    const gotYouCourse = (text: string) => {
-        const upperText = text.toUpperCase();
-        if (countTool === 0) {
-            const indexCourse = ModifiedCourseList.findIndex(
-                (course) => upperText === course.code
-            );
-            setselectedCourse(ModifiedCourseList[indexCourse]);
-        } else {
-            const indexCourse = ModifiedCourseList.findIndex(
-                (course) => listCourses[courseIndex].code === course.code
-            );
-            setselectedCourse(ModifiedCourseList[indexCourse]);
-        }
-        setEditCourseOpen(true);
-        setCount(1);
+        setIsRenderPoolOfCourse(true);
     };
 
-    const closeEditCourse = () => {
-        setEditCourseOpen(false);
-    };
     //filter the course user type in
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const theText = e.target.value;
@@ -122,25 +77,11 @@ const Search = ({
         );
         setfilterCourses(filteritems);
         setDropDown(true);
-        // setIsdegreeList(true);
-        setCourseBar(false);
+        setIsRenderPoolOfCourse(false);
     };
     //click course in the dropdown menu
     const handleClickCourse = (course: Course) => {
         setText(course.code);
-    };
-    // add courses from course bar into courses pool
-    const handleClickPool = () => {
-        const update = [...coursePool];
-        const indexCourse = ModifiedCourseList.findIndex(
-            (course) => listCourses[courseIndex].code === course.code
-        );
-        const repeatedCourse = coursePool.includes(listCourses[courseIndex]);
-        if (!repeatedCourse) {
-            update.push(ModifiedCourseList[indexCourse]);
-            setCoursePool(update);
-        }
-        setIsAddedCourseTopool(true);
     };
 
     //setlect credits for course
@@ -276,113 +217,7 @@ const Search = ({
             )}
             <br />
             <br />
-            {isCourseBar && (
-                <div className="courseBar_box">
-                    <div className="DegreeListTitle-view">
-                        {"Course Information"}
-                    </div>
-                    <br />
-                    <br />
-                    <div>
-                        {"Course Code: "}
-                        <></>
-                        {listCourses[courseIndex].code}
-                    </div>
-                    <br />
 
-                    <div>
-                        {" "}
-                        {"Course Name: "}
-                        {listCourses[courseIndex].name}
-                    </div>
-                    <br />
-                    <div>
-                        {" "}
-                        {"Course Credits: "}
-                        {listCourses[courseIndex].credits}
-                    </div>
-                    <br />
-                    <div>
-                        {" "}
-                        {"Course description: "}
-                        {listCourses[courseIndex].descr}
-                    </div>
-                    <br />
-                    <Button variant="success" onClick={handleClickPool}>
-                        Add to Course Pool
-                    </Button>
-                    <br />
-                    <br />
-
-                    <div>
-                        {isAddSemesterOpen ? ( // add course to semester list
-                            <div>
-                                <AddtoSemester
-                                    selectedCourse={selectedCourse}
-                                    closeAddSemester={closeAddSemester}
-                                    semesters={semesters}
-                                    setSemester={setSemester}
-                                />
-                            </div>
-                        ) : (
-                            <div>
-                                <span>
-                                    {" "}
-                                    <Button onClick={() => gotYouCourse(text)}>
-                                        {" "}
-                                        Edit
-                                    </Button>
-                                </span>
-                                <br />
-                                <br />
-                                <div className="addedCourseTopoolPropmt">
-                                    {isAddedCourseTopool &&
-                                        "You have already added it to the pool of courses"}
-                                </div>
-                                {isEditCourseOpen && ( // edit course
-                                    <>
-                                        <div className="editButtonInSwitch">
-                                            <EditCourse
-                                                listCourses={listCourses}
-                                                setListCourses={setListCourses}
-                                                closeEditCourse={
-                                                    closeEditCourse
-                                                }
-                                                CourseSlected={selectedCourse}
-                                                ModifiedCourseList={
-                                                    ModifiedCourseList
-                                                }
-                                            />
-                                        </div>
-                                    </>
-                                )}
-                                {ErrorMessage && ( // error message when user trys to add the course which has already been selceted into the semester list
-                                    <Modal show={true} onHide={CloseError}>
-                                        <Modal.Header closeButton>
-                                            <Modal.Title className="modifyErrorTitle">
-                                                Wrong Selection
-                                            </Modal.Title>
-                                        </Modal.Header>
-                                        <Modal.Body>
-                                            You have already selected this
-                                            course. Please make sure you do not
-                                            select the same course.
-                                        </Modal.Body>
-                                        <Modal.Footer>
-                                            <Button
-                                                variant="secondary"
-                                                onClick={CloseError}
-                                            >
-                                                Close
-                                            </Button>
-                                        </Modal.Footer>
-                                    </Modal>
-                                )}
-                            </div>
-                        )}
-                    </div>
-                </div>
-            )}
             {isCourseToDegreePlanOpen && ( //Add course from pool of courses to degree plan modal 1
                 <Modal show={true} onHide={FunctionSetisCourseToDegreePlanOpen}>
                     {" "}

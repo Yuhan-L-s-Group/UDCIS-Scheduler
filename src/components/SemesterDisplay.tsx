@@ -59,21 +59,21 @@ export const SemesterDisplay = ({
         const update2 = [...semesters];
         modifysemster(update2);
     };
-    // const emptySemester = () => {
-    //     const findSemesterIndex = semesters.findIndex((s) => s === semester);
-    //     semesters[findSemesterIndex] = {
-    //         ...semesters[findSemesterIndex],
-    //         courses: []
-    //     };
-    //     modifysemster(semesters);
-    //     const findDegreeIndex = degreeList.findIndex(
-    //         (degree) => degree.name === SelecetedEditdDegreePlan.name
-    //     );
-    //     degreeList[findDegreeIndex].semesters[findSemesterIndex].courses = [];
-    //     const update = [...degreeList];
-    //     setDegreeList(update);
-    //     console.log(SelecetedEditdDegreePlan);
-    // };
+    const emptySemester = () => {
+        const findSemesterIndex = semesters.findIndex((s) => s === semester);
+        semesters[findSemesterIndex] = {
+            ...semesters[findSemesterIndex],
+            courses: []
+        };
+        modifysemster(semesters);
+        const findDegreeIndex = degreeList.findIndex(
+            (degree) => degree.name === SelecetedEditdDegreePlan.name
+        );
+        degreeList[findDegreeIndex].semesters[findSemesterIndex].courses = [];
+        const update = [...degreeList];
+        setDegreeList(update);
+        console.log(SelecetedEditdDegreePlan);
+    };
     //handle move course to other semester function
     const handleCourseMove = (course: Course, targetSemesterId: string) => {
         const updatedSemesters = semesters.map((s) => {
@@ -138,14 +138,14 @@ export const SemesterDisplay = ({
                         {semester.courses.length !== 0 && (
                             <th>
                                 {" "}
-                                {/* {
+                                {
                                     <button
                                         className="emeptySemester"
                                         onClick={emptySemester}
                                     >
                                         Empty
                                     </button>
-                                } */}
+                                }
                             </th>
                         )}
                     </tr>

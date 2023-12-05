@@ -1,10 +1,7 @@
 import React, { useState } from "react";
 import "./App.css";
-
-import { Button, Col, Container, Row } from "react-bootstrap";
 import { IntroModal } from "./components/IntroModal";
 import { Semester } from "./interfaces/semester";
-import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import logo1 from "./pictures/udlogo2.jpg";
 import Courses from "./data/CourseList.json";
@@ -14,6 +11,9 @@ import DegreeManage from "./components/DegreeManage";
 import { Concentration, DegreePlan } from "./interfaces/degreePlan";
 import EditDegreePlan from "./components/EditDegreePlan";
 import CoursePool from "./components/CoursePool";
+import { Button, Modal, Col, Form, Row, Container } from "react-bootstrap";
+import EditCourse from "./components/EditCourse";
+
 // import { text } from "body-parser";
 function App(): JSX.Element {
     //for Intro
@@ -140,6 +140,61 @@ function App(): JSX.Element {
         setisCourseToDegreePlanOpen(true);
         setIsAddedCourseTopool(false);
     };
+    // for course information below the search course bar
+    const [isCourseBar, setCourseBar] = useState(true);
+    const [courseIndex, setcourseIndex] = useState<number>(0);
+    // add courses from course bar into courses pool
+    const handleClickPool = () => {
+        const update = [...coursePool];
+        const indexCourse = ModifiedCourseList.findIndex(
+            (course) => listCourses[courseIndex].code === course.code
+        );
+        const repeatedCourse = coursePool.includes(listCourses[courseIndex]);
+        if (!repeatedCourse) {
+            update.push(ModifiedCourseList[indexCourse]);
+            setCoursePool(update);
+        }
+        setIsAddedCourseTopool(true);
+    };
+    const [isAddSemesterOpen, SetAddSemester] = useState(false);
+    const [countTool, setCount] = useState(0);
+    const [selectedCourse, setselectedCourse] = useState<Course>({
+        code: "",
+        name: "",
+        descr: "",
+        credits: "",
+        preReq: "",
+        restrict: "",
+        breadth: "",
+        typ: ""
+    });
+    const closeEditCourse = () => {
+        setEditCourseOpen(false);
+    };
+    const [isEditCourseOpen, setEditCourseOpen] = useState(false);
+    const [text, setText] = useState<string>("");
+    const [ErrorMessage, setError] = useState(false);
+    const [IsRenderPoolOfCourse, setIsRenderPoolOfCourse] = useState(false);
+
+    const gotYouCourse = (text: string) => {
+        const upperText = text.toUpperCase();
+        if (countTool === 0) {
+            const indexCourse = ModifiedCourseList.findIndex(
+                (course) => upperText === course.code
+            );
+            setselectedCourse(ModifiedCourseList[indexCourse]);
+        } else {
+            const indexCourse = ModifiedCourseList.findIndex(
+                (course) => listCourses[courseIndex].code === course.code
+            );
+            setselectedCourse(ModifiedCourseList[indexCourse]);
+        }
+        setEditCourseOpen(true);
+        setCount(1);
+    };
+    const CloseError = () => {
+        setError(false);
+    };
     return (
         <div className="App">
             {isHomepage ? ( // the first page when you open the web
@@ -186,14 +241,131 @@ function App(): JSX.Element {
                     <br />
                     <Container>
                         <Row>
-                            <Col md={4} className="Coursepool">
-                                <CoursePool
-                                    coursePool={coursePool}
-                                    deletePool={deletePool}
-                                    AddCourseToDegreePlan={
-                                        AddCourseToDegreePlan
-                                    }
-                                />
+                            <Col md={3}>
+                                {isCourseBar && (
+                                    <div className="courseBar_box">
+                                        <div className="DegreeListTitle-view">
+                                            {"Course Information"}
+                                        </div>
+                                        <br />
+                                        <br />
+                                        <div>
+                                            {"Course Code: "}
+                                            <></>
+                                            {listCourses[courseIndex].code}
+                                        </div>
+                                        <br />
+
+                                        <div>
+                                            {" "}
+                                            {"Course Name: "}
+                                            {listCourses[courseIndex].name}
+                                        </div>
+                                        <br />
+                                        <div>
+                                            {" "}
+                                            {"Course Credits: "}
+                                            {listCourses[courseIndex].credits}
+                                        </div>
+                                        <br />
+                                        <div>
+                                            {" "}
+                                            {"Course description: "}
+                                            {listCourses[courseIndex].descr}
+                                        </div>
+                                        <br />
+                                        <Button
+                                            variant="success"
+                                            onClick={handleClickPool}
+                                        >
+                                            Add to Course Pool
+                                        </Button>
+                                        <br />
+                                        <br />
+
+                                        <div>
+                                            {
+                                                <div>
+                                                    <span>
+                                                        {" "}
+                                                        <Button
+                                                            onClick={() =>
+                                                                gotYouCourse(
+                                                                    text
+                                                                )
+                                                            }
+                                                        >
+                                                            {" "}
+                                                            Edit
+                                                        </Button>
+                                                    </span>
+                                                    <br />
+                                                    <br />
+                                                    <div className="addedCourseTopoolPropmt">
+                                                        {isAddedCourseTopool &&
+                                                            "You have already added it to the pool of courses"}
+                                                    </div>
+                                                    {isEditCourseOpen && ( // edit course
+                                                        <>
+                                                            <div className="editButtonInSwitch">
+                                                                <EditCourse
+                                                                    listCourses={
+                                                                        listCourses
+                                                                    }
+                                                                    setListCourses={
+                                                                        setListCourses
+                                                                    }
+                                                                    closeEditCourse={
+                                                                        closeEditCourse
+                                                                    }
+                                                                    CourseSlected={
+                                                                        selectedCourse
+                                                                    }
+                                                                    ModifiedCourseList={
+                                                                        ModifiedCourseList
+                                                                    }
+                                                                />
+                                                            </div>
+                                                        </>
+                                                    )}
+                                                    {ErrorMessage && ( // error message when user trys to add the course which has already been selceted into the semester list
+                                                        <Modal
+                                                            show={true}
+                                                            onHide={CloseError}
+                                                        >
+                                                            <Modal.Header
+                                                                closeButton
+                                                            >
+                                                                <Modal.Title className="modifyErrorTitle">
+                                                                    Wrong
+                                                                    Selection
+                                                                </Modal.Title>
+                                                            </Modal.Header>
+                                                            <Modal.Body>
+                                                                You have already
+                                                                selected this
+                                                                course. Please
+                                                                make sure you do
+                                                                not select the
+                                                                same course.
+                                                            </Modal.Body>
+                                                            <Modal.Footer>
+                                                                <Button
+                                                                    variant="secondary"
+                                                                    onClick={
+                                                                        CloseError
+                                                                    }
+                                                                >
+                                                                    Close
+                                                                </Button>
+                                                            </Modal.Footer>
+                                                        </Modal>
+                                                    )}
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                )}
                             </Col>{" "}
                             <Col md={5}>
                                 {" "}
@@ -207,10 +379,7 @@ function App(): JSX.Element {
                                             ModifiedCourseList={
                                                 ModifiedCourseList
                                             }
-                                            listCourses={listCourses}
                                             setListCourses={setListCourses}
-                                            semesters={semesters}
-                                            setSemester={setSemester}
                                             degreeList={degreeList}
                                             setDegreeList={setDegreeList}
                                             setDisplayEmpty={setDisplayEmpty}
@@ -219,11 +388,6 @@ function App(): JSX.Element {
                                             }
                                             setselectedDegreePlan={
                                                 setselectedDegreePlan
-                                            }
-                                            coursePool={coursePool}
-                                            setCoursePool={setCoursePool}
-                                            isAddedCourseTopool={
-                                                isAddedCourseTopool
                                             }
                                             setIsAddedCourseTopool={
                                                 setIsAddedCourseTopool
@@ -236,9 +400,26 @@ function App(): JSX.Element {
                                                 setisCourseToDegreePlanOpen
                                             }
                                             setIsdegreeList={setIsdegreeList}
+                                            setCourseBar={setCourseBar}
+                                            setcourseIndex={setcourseIndex}
+                                            setCount={setCount}
+                                            setText={setText}
+                                            text={text}
+                                            setIsRenderPoolOfCourse={
+                                                setIsRenderPoolOfCourse
+                                            }
                                         ></Search>
                                     </span>
                                 }
+                                {IsRenderPoolOfCourse && (
+                                    <CoursePool
+                                        coursePool={coursePool}
+                                        deletePool={deletePool}
+                                        AddCourseToDegreePlan={
+                                            AddCourseToDegreePlan
+                                        }
+                                    />
+                                )}
                             </Col>
                             <Col md={3}>
                                 <br />
@@ -380,7 +561,7 @@ function App(): JSX.Element {
                             </Col>{" "}
                         </Row>
                         <Row>
-                            <Col md={4}></Col>
+                            <Col md={4}> </Col>
                         </Row>
                     </Container>
                     <Row className="bottom-view">
