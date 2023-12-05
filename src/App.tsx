@@ -12,9 +12,6 @@ import DegreeManage from "./components/DegreeManage";
 import { Concentration, DegreePlan } from "./interfaces/degreePlan";
 import EditDegreePlan from "./components/EditDegreePlan";
 import CoursePool from "./components/CoursePool";
-import { Button, Modal, Col, Form, Row, Container } from "react-bootstrap";
-import EditCourse from "./components/EditCourse";
-
 // import { text } from "body-parser";
 function App(): JSX.Element {
     //for Intro
@@ -455,13 +452,18 @@ function App(): JSX.Element {
                                             <p></p>
                                         )}
                                         {isAddDegreeButton && (
-                                            <Button
-                                                onClick={
-                                                    handleClickAddDegreePlan
-                                                }
-                                            >
-                                                Add New Degree Plan
-                                            </Button>
+                                            <div>
+                                                <Button
+                                                    onClick={
+                                                        handleClickAddDegreePlan
+                                                    }
+                                                >
+                                                    Add New Degree Plan
+                                                </Button>
+                                                <ExportCSV
+                                                    degreeList={degreeList}
+                                                ></ExportCSV>
+                                            </div>
                                         )}
                                         <br />
                                         {isRenderDegreeTable && (

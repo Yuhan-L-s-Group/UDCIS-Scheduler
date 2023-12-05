@@ -23,6 +23,7 @@ export const SemesterDisplay = ({
     setDegreeList: React.Dispatch<React.SetStateAction<DegreePlan[]>>;
     SelecetedEditdDegreePlan: DegreePlan;
 }): JSX.Element => {
+    selectedDegreePlan;
     const deleteCourseFunc = (course: Course) => {
         // delete a course from a semester
         const findDegreeIndex = degreeList.findIndex(
