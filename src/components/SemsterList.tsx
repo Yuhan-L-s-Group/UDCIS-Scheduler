@@ -19,7 +19,6 @@ export const SemesterList = ({
     setIsaddDegreeButton,
     degreeList,
     setDegreeList,
-    selectedDegreePlan,
     handleShowModal,
     SelecetedEditdDegreePlan
 }: {
@@ -34,7 +33,6 @@ export const SemesterList = ({
     setIsaddDegreeButton: React.Dispatch<React.SetStateAction<boolean>>;
     degreeList: DegreePlan[];
     setDegreeList: React.Dispatch<React.SetStateAction<DegreePlan[]>>;
-    selectedDegreePlan: DegreePlan;
     handleShowModal: () => void;
     SelecetedEditdDegreePlan: DegreePlan;
 }) => {
@@ -90,7 +88,6 @@ export const SemesterList = ({
                                         semesters={semesters}
                                         degreeList={degreeList}
                                         setDegreeList={setDegreeList}
-                                        selectedDegreePlan={selectedDegreePlan}
                                         SelecetedEditdDegreePlan={
                                             SelecetedEditdDegreePlan
                                         }

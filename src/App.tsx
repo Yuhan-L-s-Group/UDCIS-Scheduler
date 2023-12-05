@@ -552,9 +552,6 @@ function App(): JSX.Element {
                                             }
                                             degreeList={degreeList}
                                             setDegreeList={setDegreeList}
-                                            selectedDegreePlan={
-                                                selectedDegreePlan
-                                            }
                                         />
                                     </div>
                                 )}

@@ -22,7 +22,6 @@ interface EditDegreePlanProps {
     SelecetedEditdDegreePlan: DegreePlan;
     degreeList: DegreePlan[];
     setDegreeList: React.Dispatch<React.SetStateAction<DegreePlan[]>>;
-    selectedDegreePlan: DegreePlan;
 }
 const EditDegreePlan = ({
     semesters,
@@ -39,8 +38,7 @@ const EditDegreePlan = ({
     setIsaddDegreeButton,
     SelecetedEditdDegreePlan,
     degreeList,
-    setDegreeList,
-    selectedDegreePlan
+    setDegreeList
 }: EditDegreePlanProps) => {
     return (
         <div>
@@ -56,7 +54,6 @@ const EditDegreePlan = ({
                 setIsaddDegreeButton={setIsaddDegreeButton}
                 degreeList={degreeList}
                 setDegreeList={setDegreeList}
-                selectedDegreePlan={selectedDegreePlan}
                 handleShowModal={handleShowModal}
                 SelecetedEditdDegreePlan={SelecetedEditdDegreePlan}
             ></SemesterList>

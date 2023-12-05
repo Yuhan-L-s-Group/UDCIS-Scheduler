@@ -14,7 +14,6 @@ export const SemesterDisplay = ({
     semesters,
     degreeList,
     setDegreeList,
-    selectedDegreePlan,
     SelecetedEditdDegreePlan
 }: {
     semester: Semester;
@@ -22,7 +21,6 @@ export const SemesterDisplay = ({
     semesters: Semester[];
     degreeList: DegreePlan[];
     setDegreeList: React.Dispatch<React.SetStateAction<DegreePlan[]>>;
-    selectedDegreePlan: DegreePlan;
     SelecetedEditdDegreePlan: DegreePlan;
 }): JSX.Element => {
     const deleteCourseFunc = (course: Course) => {
