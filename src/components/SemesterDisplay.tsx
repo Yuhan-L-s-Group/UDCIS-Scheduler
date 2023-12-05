@@ -3,7 +3,7 @@ import React from "react";
 import { Course } from "../interfaces/course";
 import { Button } from "react-bootstrap";
 import "../App.css";
-import { Season, Semester } from "../interfaces/semester";
+import { Semester } from "../interfaces/semester";
 import { DegreePlan } from "../interfaces/degreePlan";
 
 // Display each individual semester
@@ -42,7 +42,6 @@ export const SemesterDisplay = ({
         );
         const update = [...degreeList];
         setDegreeList(update);
-        console.log(selectedDegreePlan);
     };
 
     const deleteWholeSemester = () => {
@@ -59,26 +58,64 @@ export const SemesterDisplay = ({
         semesters.splice(findSemesterIndex, 1);
         const update2 = [...semesters];
         modifysemster(update2);
-        console.log(degreeList);
-        // console.log(findDegreeIndex);
     };
+    // const emptySemester = () => {
+    //     const findSemesterIndex = semesters.findIndex((s) => s === semester);
+    //     semesters[findSemesterIndex] = {
+    //         ...semesters[findSemesterIndex],
+    //         courses: []
+    //     };
+    //     modifysemster(semesters);
+    //     const findDegreeIndex = degreeList.findIndex(
+    //         (degree) => degree.name === SelecetedEditdDegreePlan.name
+    //     );
+    //     degreeList[findDegreeIndex].semesters[findSemesterIndex].courses = [];
+    //     const update = [...degreeList];
+    //     setDegreeList(update);
+    //     console.log(SelecetedEditdDegreePlan);
+    // };
     //handle move course to other semester function
     const handleCourseMove = (course: Course, targetSemesterId: string) => {
-        const updatedSemesters = semesters.map((semester) => {
-            if (semester.season + semester.year === targetSemesterId) {
+        const updatedSemesters = semesters.map((s) => {
+            if (s.season + s.year === targetSemesterId) {
+                // find the semester where user wants to move the course to
+                if (!s.courses.find((c) => c.code === course.code)) {
+                    //make a condition that the target semester does not have repeated course
+                    const findCourseIndex = s.courses.findIndex(
+                        (thecourse) => thecourse === course
+                    ); //find the course index before user move to target semester, so after move out, the original course will be deleted from its semester
+                    const findOriginalSemesterIndex = semesters.findIndex(
+                        (thesemester) => thesemester.courses.includes(course)
+                    ); //find the semester index before move out, same with the last step
+                    const findSemesterIndex =
+                        SelecetedEditdDegreePlan.semesters.findIndex(
+                            (s) => s.season + s.year === targetSemesterId
+                        ); //find the target semester index
+                    const findDegreeIndex = degreeList.findIndex(
+                        (degree) =>
+                            degree.name === SelecetedEditdDegreePlan.name
+                    );
+                    degreeList[findDegreeIndex].semesters[findSemesterIndex] = {
+                        ...s,
+                        courses: [...s.courses, course]
+                    };
+                    degreeList[findDegreeIndex].semesters[
+                        findOriginalSemesterIndex
+                    ].courses.splice(findCourseIndex, 1);
+                    const update = [...degreeList];
+                    setDegreeList(update);
+                    return {
+                        ...s,
+                        courses: [...s.courses, course]
+                    };
+                }
+            } else if (s.courses.find((c) => c.code === course.code)) {
                 return {
-                    ...semester,
-                    courses: [...semester.courses, course]
-                };
-            } else if (semester.courses.find((c) => c.code === course.code)) {
-                return {
-                    ...semester,
-                    courses: semester.courses.filter(
-                        (c) => c.code !== course.code
-                    )
+                    ...s,
+                    courses: s.courses.filter((c) => c.code !== course.code)
                 };
             }
-            return semester;
+            return s;
         });
         modifysemster(updatedSemesters);
     };
@@ -88,7 +125,7 @@ export const SemesterDisplay = ({
                 <thead>
                     <tr>
                         <th>
-                            Semster: {semester.season} {semester.year}
+                            {semester.season} {semester.year}
                         </th>
                         <th>
                             Total:{" "}
@@ -101,12 +138,14 @@ export const SemesterDisplay = ({
                         {semester.courses.length !== 0 && (
                             <th>
                                 {" "}
-                                {/* <button
-                                    className="emeptySemester"
-                                    onClick={() => EmptySemester(semester)}
-                                >
-                                    Empty
-                                </button> */}
+                                {/* {
+                                    <button
+                                        className="emeptySemester"
+                                        onClick={emptySemester}
+                                    >
+                                        Empty
+                                    </button>
+                                } */}
                             </th>
                         )}
                     </tr>
@@ -127,14 +166,16 @@ export const SemesterDisplay = ({
                                     }
                                 >
                                     <option value="">Move to...</option>
-                                    {semesters.map((s) => (
-                                        <option
-                                            key={s.season + s.year}
-                                            value={s.season + s.year}
-                                        >
-                                            {s.season} {s.year}
-                                        </option>
-                                    ))}
+                                    {semesters
+                                        .filter((s) => s !== semester)
+                                        .map((s) => (
+                                            <option
+                                                key={s.season + s.year}
+                                                value={s.season + s.year}
+                                            >
+                                                {s.season} {s.year}
+                                            </option>
+                                        ))}
                                 </select>
                             </td>
                             <td>
@@ -152,7 +193,7 @@ export const SemesterDisplay = ({
                         <tr>
                             <td colSpan={4}>
                                 <button
-                                    onClick={() => deleteWholeSemester()}
+                                    onClick={deleteWholeSemester}
                                     className="deleteEntireSemesterView"
                                 >
                                     {" "}

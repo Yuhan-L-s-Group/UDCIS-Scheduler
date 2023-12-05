@@ -9,8 +9,7 @@ export type Concentration =
     | "Data Science"
     | "High Performance Computing"
     | "Systems and Networks"
-    | "Theory and Computation"
-    | "Information Systems";
+    | "Theory and Computation";
 
 //interface for a single semester
 export interface DegreePlan {
@@ -20,6 +19,4 @@ export interface DegreePlan {
     concentration: Concentration;
     //an array of semester that are in this degree olan
     semesters: Semester[];
-    //total current credits for this degree plan
-    //credit: number;
 }

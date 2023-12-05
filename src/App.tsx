@@ -1,5 +1,5 @@
 /* eslint-disable no-extra-parens */
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./App.css";
 
 import { Button, Col, Container, Row } from "react-bootstrap";
@@ -14,7 +14,11 @@ import Search from "./components/Search";
 import DegreeManage from "./components/DegreeManage";
 import { Concentration, DegreePlan } from "./interfaces/degreePlan";
 import EditDegreePlan from "./components/EditDegreePlan";
+<<<<<<< HEAD
+import CoursePool from "./components/CoursePool";
+=======
 import ExportCSV from "./components/ExportCSV";
+>>>>>>> f248c10dc7e72f1bc16360a0b356f8cc55fa9ddd
 // import { text } from "body-parser";
 function App(): JSX.Element {
     //for Intro
@@ -63,7 +67,6 @@ function App(): JSX.Element {
         setSemester(semester);
     }
     //for render course list
-    const [isAddCourseOpen, setAddCourseOpen] = useState(false);
     const [listCourses, setListCourses] = useState<Course[]>(Courses);
 
     const ModifiedCourseList = [...listCourses]; // this is for edit course component
@@ -99,6 +102,7 @@ function App(): JSX.Element {
         setSelecetedEditdDegreePlan(EditdDegreePlan);
         const updatedSemesters = [...EditdDegreePlan.semesters];
         setSemester(updatedSemesters);
+        console.log(selectedDegreePlan);
     };
     // is rendering degree plan table
     const [isRenderDegreeTable, setIsRenderDegreeTable] = useState(false);
@@ -109,6 +113,38 @@ function App(): JSX.Element {
         );
         degreeList.splice(findDegreeIndex, 1);
         setDegreeList([...degreeList]);
+    };
+    //pool of courses
+    const [isCoursePool, setIsCoursePool] = useState(true);
+    const [coursePool, setCoursePool] = useState<Course[]>([]);
+    const [isAddedCourseTopool, setIsAddedCourseTopool] = useState(false);
+    const [theCourse, setTheCourse] = useState<Course>({
+        code: "",
+        name: "",
+        descr: "",
+        credits: "",
+        preReq: "",
+        restrict: "",
+        breadth: "",
+        typ: ""
+    });
+    const [isCourseToDegreePlanOpen, setisCourseToDegreePlanOpen] =
+        useState(false);
+
+    //delete courses from courses pool
+    const deletePool = (deleteCourse: Course) => {
+        const indexCourse = coursePool.findIndex(
+            (course) => deleteCourse.code === course.code
+        );
+        coursePool.splice(indexCourse, 1);
+        const update = [...coursePool];
+        setCoursePool(update);
+        setIsAddedCourseTopool(false);
+    };
+    const AddCourseToDegreePlan = (course: Course) => {
+        setTheCourse(course);
+        setisCourseToDegreePlanOpen(true);
+        setIsAddedCourseTopool(false);
     };
     return (
         <div className="App">
@@ -156,7 +192,18 @@ function App(): JSX.Element {
                     <br />
                     <Container>
                         <Row>
-                            <Col>
+                            <Col md={4} className="Coursepool">
+                                {isCoursePool && ( // pool of courses componenet
+                                    <CoursePool
+                                        coursePool={coursePool}
+                                        deletePool={deletePool}
+                                        AddCourseToDegreePlan={
+                                            AddCourseToDegreePlan
+                                        }
+                                    />
+                                )}
+                            </Col>{" "}
+                            <Col md={5}>
                                 {" "}
                                 <br />
                                 <br />
@@ -174,22 +221,35 @@ function App(): JSX.Element {
                                             setSemester={setSemester}
                                             degreeList={degreeList}
                                             setDegreeList={setDegreeList}
-                                            setAddSemester={setAddSemester}
                                             setDisplayEmpty={setDisplayEmpty}
-                                            setIsEditDegreeOpen={
-                                                setIsEditDegreeOpen
-                                            }
                                             selectedDegreePlan={
                                                 selectedDegreePlan
                                             }
                                             setselectedDegreePlan={
                                                 setselectedDegreePlan
                                             }
+                                            setIsCoursePool={setIsCoursePool}
+                                            coursePool={coursePool}
+                                            setCoursePool={setCoursePool}
+                                            isAddedCourseTopool={
+                                                isAddedCourseTopool
+                                            }
+                                            setIsAddedCourseTopool={
+                                                setIsAddedCourseTopool
+                                            }
+                                            theCourse={theCourse}
+                                            isCourseToDegreePlanOpen={
+                                                isCourseToDegreePlanOpen
+                                            }
+                                            setisCourseToDegreePlanOpen={
+                                                setisCourseToDegreePlanOpen
+                                            }
+                                            setIsdegreeList={setIsdegreeList}
                                         ></Search>
                                     </span>
                                 }
                             </Col>
-                            <Col>
+                            <Col md={3}>
                                 <br />
                                 <br />
                                 <br />
@@ -212,11 +272,16 @@ function App(): JSX.Element {
                                 <br />
                                 <br />
                                 {isDegreeList && ( //degree list box
-                                    <div className="semester_box">
+                                    <div className="degreeListBox">
                                         <div className="DegreeListTitle-view">
                                             {"Degree List"}
                                         </div>
                                         <br />
+                                        {degreeList.length === 0 ? (
+                                            <p>Add a degree plan to start!</p>
+                                        ) : (
+                                            <p></p>
+                                        )}
                                         {isAddDegreeButton && (
                                             <div>
                                                 <Button
@@ -233,8 +298,8 @@ function App(): JSX.Element {
                                         )}
                                         <br />
                                         {isRenderDegreeTable && (
-                                            //individual degree plan
-                                            <table>
+                                            //individual degree plan.
+                                            <table className="degreeTable">
                                                 <thead>
                                                     {" "}
                                                     <tr>
@@ -297,7 +362,6 @@ function App(): JSX.Element {
                                 {isEditDegreeOpen && (
                                     <div>
                                         <EditDegreePlan
-                                            isEditDegreeOpen={isEditDegreeOpen}
                                             semesters={semesters}
                                             Name={Name}
                                             renderName={renderName}
@@ -328,6 +392,9 @@ function App(): JSX.Element {
                                     </div>
                                 )}
                             </Col>{" "}
+                        </Row>
+                        <Row>
+                            <Col md={4}></Col>
                         </Row>
                     </Container>
                     <Row className="bottom-view">

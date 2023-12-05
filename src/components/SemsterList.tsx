@@ -1,11 +1,10 @@
 /* eslint-disable no-extra-parens */
 import { SemesterDisplay } from "./SemesterDisplay";
-import { Season, Semester } from "../interfaces/semester";
+import { Semester } from "../interfaces/semester";
 import "../App.css";
-import horse from "../pictures/horse.jpg";
 import React from "react";
 import { DegreePlan } from "../interfaces/degreePlan";
-import { Button, Modal, Col, Form, Container, Row } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 // It contains all the semesters into "semesters" varible and iterate each semester into "SemesterDisplay" component
 // Addtionally it automatically caculates the cumulative credits
 export const SemesterList = ({
@@ -48,21 +47,7 @@ export const SemesterList = ({
         <>
             <br />
             <br />
-            {renderName && <div className="name"> Hi! {Name}</div>}
-            <div className="modifytheCreditsText">
-                {"Your Cureent Degree Plan Cumulative Credits: "}
-                {semesters.reduce(
-                    (acc, iter) =>
-                        acc +
-                        iter.courses.reduce(
-                            (acc1, iter1) => acc1 + parseInt(iter1.credits),
-                            0
-                        ),
-                    0
-                )}
-                {" credits"}
-                {/* // {renderName && <img src={horse} alt="horse" />} */}
-            </div>
+
             {
                 <div>
                     <div className="semester_box">
@@ -79,9 +64,25 @@ export const SemesterList = ({
                             Add New Semester
                         </Button>
                         <br />
-                        <br />
-                        {semesters.map(
-                            (semester: Semester): JSX.Element => (
+                        {renderName && <div className="name">{Name}</div>}
+                        <div className="modifytheCreditsText">
+                            {SelecetedEditdDegreePlan.name}{" "}
+                            {"Cumulative Credits: "}
+                            {semesters.reduce(
+                                (acc, iter) =>
+                                    acc +
+                                    iter.courses.reduce(
+                                        (acc1, iter1) =>
+                                            acc1 + parseInt(iter1.credits),
+                                        0
+                                    ),
+                                0
+                            )}
+                            {" credits"}
+                        </div>
+
+                        {semesters.map((semester: Semester): JSX.Element => {
+                            return (
                                 <div key={semester.year + semester.season}>
                                     <SemesterDisplay
                                         semester={semester}
@@ -95,8 +96,8 @@ export const SemesterList = ({
                                         }
                                     />
                                 </div>
-                            )
-                        )}
+                            );
+                        })}
                         {isDisplayEmpty && (
                             <button
                                 className="clear_button"

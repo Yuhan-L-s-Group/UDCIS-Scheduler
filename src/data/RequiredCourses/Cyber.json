@@ -1,0 +1,51 @@
+[
+    {
+        "name": "Concentration Requirements",
+        "courses": ["CISC361",
+        "CISC372",
+        "CISC450",
+        "CISC464",
+        "CPEG465",
+        "CPEG494"],
+        "type": "courses",
+        "number": 6
+    },{
+        "name": "Advanced Cybersecurity Requirement",
+        "courses": ["CPEG472",
+        "CPEG473",
+        "CPEG475",
+        "CPEG476",
+        "CPEG495"],
+        "type": "courses",
+        "number": 2
+    },{
+        "name": "Restricted Electives",
+        "courses": ["MATH242",
+        "MATH349",
+        "MATH549",
+        "CISC304",
+        "CISC436",
+        "CISC437",
+        "CISC440",
+        "CISC442",
+        "CISC449",
+        "CISC453",
+        "CISC459",
+        "CISC481",
+        "CISC483",
+        "CISC484",
+        "CISC474",
+        "CPEG470",
+        "CPEG471",
+        "CPEG472",
+        "CPEG473",
+        "CPEG475",
+        "CPEG476",
+        "CPEG494",
+        "CPEG495",
+        "ELEG387",
+        "ELEG487"],
+        "type": "credits",
+        "number": 6
+    }
+]

@@ -1,0 +1,47 @@
+[
+    {
+        "name": "Concentration Requirements",
+        "courses": ["BISC207",
+        "BISC208",
+        "BISC401",
+        "CHEM103",
+        "CHEM133",
+        "CHEM104",
+        "CHEM134",
+        "CISC372",
+        "CISC436",
+        "MATH242",
+        "MATH349"],
+        "type": "courses",
+        "number": 11
+    },{
+        "name": "Organic Chemistry Sequence",
+        "courses": [
+            "CHEM213",
+            "CHEM215",
+            "CHEM321",
+            "CHEM325"],
+        "type": "courses",
+        "number": 2
+    },{
+        "name": "Data Analysis Requirement",
+        "courses": ["CISC483","CISC484"],
+        "type": "courses",
+        "number": 1
+    },{
+        "name": "Restricted Electives",
+        "courses": ["ANFS300",
+        "ANFS310",
+        "ANFS470",
+        "BISC403",
+        "BISC484",
+        "BISC492",
+        "CHEM214",
+        "CHEM216",
+        "CHEM322",
+        "CHEM326",
+        "MATH243"],
+        "type": "credits",
+        "number": 6
+    }
+]

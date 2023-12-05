@@ -1,7 +1,9 @@
 [
     {
         "name": "Seminar in Composition", 
-        "courses": ["ENGL110"] 
+        "courses": ["ENGL110"] ,
+        "type": "courses",
+        "number": 1
     },{
         "name": "First Year Seminar", 
         "courses": [
@@ -18,7 +20,9 @@
             "MAST100",
             "NURS100",
             "UNIV101"
-        ]
+        ],
+        "type": "credits",
+        "number": 1
     },{
         "name": "Discovery Learning Experience", 
         "courses": ["ACCT363",
@@ -335,7 +339,9 @@
         "UNIV460",
         "UNIV462",
         "UNIV468",
-        "WOMS498"]
+        "WOMS498"],
+        "type": "credits",
+        "number": 3
     },{
         "name": "Multicultural Requirement",
         "courses": ["AFRA110",
@@ -616,13 +622,17 @@
         "WOMS332",
         "WOMS336",
         "WOMS341",
-        "WOMS356"]
+        "WOMS356"],
+        "type": "credits",
+        "number": 3
     },{
         "name": "Capstone Experience",
         "courses": ["CISC498",
-          "CISC499",
-          "UNIV401", 
-         "UNIV402"]
+        "CISC499",
+        "UNIV401", 
+        "UNIV402"],
+        "type": "courses",
+        "number": 2
     },{
         "name": "Core Requirement",
         "courses": [ "CISC108",
@@ -635,6 +645,41 @@
         "CISC320",
         "CISC355",
         "MATH210",
-        "MATH241"]
+        "MATH241"],
+        "type": "courses",
+        "number": 11
+    },{
+        "name": "Lab Science",
+        "courses": ["BISC207",
+        "BISC208",
+        "CHEM103",
+        "CHEM133",
+        "CHEM104",
+        "CHEM134",
+        "GEOL105",
+        "GEOL115",
+        "GEOL107",
+        "GEOL107",
+        "GEOL110",
+        "PHYS207",
+        "PHYS227",
+        "PHYS208",
+        "PHYS228"],
+        "type": "credits",
+        "number": 8
+    },{
+        "name": "Additional Requirements",
+        "courses": [
+            "ENGL312",
+            "ENGL410"],
+        "type": "courses",
+        "number": 1
+    },{
+        "name": "Probability/Statistics",
+        "courses": [
+            "MATH205",
+            "MATH350"],
+        "type": "courses",
+        "number": 1
     }
 ]
