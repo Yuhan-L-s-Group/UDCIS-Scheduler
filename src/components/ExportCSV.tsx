@@ -21,7 +21,7 @@ export const ExportCSV: React.FC<ExportCSVProps> = ({ degreeList }) => {
                 Plan: "Plan",
                 Semester: "Season",
                 CourseCode: "Course Code",
-                CourseName: "Course",
+                CourseName: "Course Name",
                 Credits: "Credits",
                 Concentration: "Concentration"
             }

@@ -14,11 +14,8 @@ import Search from "./components/Search";
 import DegreeManage from "./components/DegreeManage";
 import { Concentration, DegreePlan } from "./interfaces/degreePlan";
 import EditDegreePlan from "./components/EditDegreePlan";
-<<<<<<< HEAD
 import CoursePool from "./components/CoursePool";
-=======
 import ExportCSV from "./components/ExportCSV";
->>>>>>> f248c10dc7e72f1bc16360a0b356f8cc55fa9ddd
 // import { text } from "body-parser";
 function App(): JSX.Element {
     //for Intro

@@ -25,6 +25,7 @@ export const SemesterDisplay = ({
     selectedDegreePlan: DegreePlan;
     SelecetedEditdDegreePlan: DegreePlan;
 }): JSX.Element => {
+    selectedDegreePlan;
     const deleteCourseFunc = (course: Course) => {
         // delete a course from a semester
         const findDegreeIndex = degreeList.findIndex(
