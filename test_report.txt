@@ -7,11 +7,11 @@ Browserslist: caniuse-lite is outdated. Please run:
   Why you should do it regularly: https://github.com/browserslist/browserslist#browsers-data-updating
 FAIL src/App.test.tsx
   Scheduler Tests
-    ✕ Check home page and welcome window (42 ms)
-    ✕ Switch between different concentration (at this point, just check texts) (7 ms)
+    ✕ Check home page and welcome window (38 ms)
+    ✕ Switch between different concentration (at this point, just check texts) (11 ms)
     ✕ Try to add and delete semester (6 ms)
-    ✕ Add a course that does not exist in the list (8 ms)
-    ✕ Replace with test details (5 ms)
+    ✕ Add a course that does not exist in the list (7 ms)
+    ✕ Replace with test details (6 ms)
     ✕ Test search bar (5 ms)
 
   ● Scheduler Tests › Check home page and welcome window
@@ -425,7 +425,7 @@ FAIL src/App.test.tsx
 ------------------------|---------|----------|---------|---------|----------------------------------------------------------------------------------
 File                    | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s                                                                
 ------------------------|---------|----------|---------|---------|----------------------------------------------------------------------------------
-All files               |   12.83 |     3.92 |    0.74 |   13.08 |                                                                                  
+All files               |   13.05 |     3.77 |    0.74 |   13.31 |                                                                                  
  src                    |   41.12 |     12.5 |     3.7 |    41.9 |                                                                                  
   App.tsx               |   41.12 |     12.5 |     3.7 |    41.9 | 28-29,43-63,73-74,95-101,107-111,131-137,140-142,149-158,172,180-193,196,216-514 
  src/components         |    2.86 |        0 |       0 |     2.9 |                                                                                  
@@ -441,8 +441,8 @@ All files               |   12.83 |     3.92 |    0.74 |   13.08 |
   SemesterDisplay.tsx   |    1.56 |        0 |       0 |    1.63 | 26-183                                                                           
   SemesterModal.tsx     |    3.44 |        0 |       0 |    3.57 | 23-117                                                                           
   SemsterList.tsx       |   11.11 |        0 |       0 |   11.11 | 39-83                                                                            
- src/data/Concentration |     3.7 |        0 |       0 |       4 |                                                                                  
-  Common.tsx            |     3.7 |        0 |       0 |       4 | 9-49                                                                             
+ src/data/Concentration |       5 |        0 |       0 |    5.55 |                                                                                  
+  Common.tsx            |       5 |        0 |       0 |    5.55 | 8-61                                                                             
  src/interfaces         |       0 |        0 |       0 |       0 |                                                                                  
   Requirement.ts        |       0 |        0 |       0 |       0 |                                                                                  
   course.ts             |       0 |        0 |       0 |       0 |                                                                                  
@@ -452,5 +452,5 @@ All files               |   12.83 |     3.92 |    0.74 |   13.08 |
 Test Suites: 1 failed, 1 total
 Tests:       6 failed, 6 total
 Snapshots:   0 total
-Time:        3.729 s
+Time:        3.841 s
 Ran all test suites.
