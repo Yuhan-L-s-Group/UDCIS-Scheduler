@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
+
 //import { useEffect, useState } from "react";
 import { DegreePlan } from "../interfaces/degreePlan";
 import { Common } from "../data/Concentration/Common";
@@ -34,9 +35,9 @@ export function getURLs(conc: string): string {
 
 export const Requirement = ({ degreePlan }: { degreePlan: DegreePlan }) => {
     const url = getURLs(degreePlan.concentration);
-    const [showReq, setShowReq] = useState<boolean>(false);
+    //const [showReq, setShowReq] = useState<boolean>(false);
     //const handleShowReq = () => setShowReq(true);
-    const handleCloseReq = () => setShowReq(false);
+    //const handleCloseReq = () => setShowReq(false);
 
     return (
         <div>
@@ -51,8 +52,8 @@ export const Requirement = ({ degreePlan }: { degreePlan: DegreePlan }) => {
 
             <Common
                 degreePlan={degreePlan}
-                show={showReq}
-                handleClose={handleCloseReq}
+                //show={showReq}
+                //handleClose={handleCloseReq}
             ></Common>
         </div>
     );
