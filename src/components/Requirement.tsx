@@ -2,7 +2,7 @@ import React, { useState } from "react";
 //import { useEffect, useState } from "react";
 import { DegreePlan } from "../interfaces/degreePlan";
 import { Common } from "../data/Concentration/Common";
-import { Button } from "react-bootstrap";
+//import { Button } from "react-bootstrap";
 
 export function getURLs(conc: string): string {
     const URLS: Record<string, string> = {
@@ -35,7 +35,7 @@ export function getURLs(conc: string): string {
 export const Requirement = ({ degreePlan }: { degreePlan: DegreePlan }) => {
     const url = getURLs(degreePlan.concentration);
     const [showReq, setShowReq] = useState<boolean>(false);
-    const handleShowReq = () => setShowReq(true);
+    //const handleShowReq = () => setShowReq(true);
     const handleCloseReq = () => setShowReq(false);
 
     return (
