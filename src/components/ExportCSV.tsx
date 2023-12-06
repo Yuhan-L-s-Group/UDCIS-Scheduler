@@ -67,7 +67,7 @@ export const ExportCSV: React.FC<ExportCSVProps> = ({ degreeList }) => {
 
     return (
         <div>
-            <button onClick={handleExportCSV}>
+            <button onClick={handleExportCSV} className="ExportCSV">
                 Export Degree Plans as CSV
             </button>
         </div>

@@ -5,6 +5,7 @@ import { Semester } from "../interfaces/semester";
 import { SemesterList } from "./SemsterList";
 import { SemesterModal } from "./SemesterModal";
 import { Requirement } from "./Requirement";
+import { Course } from "../interfaces/course";
 
 interface EditDegreePlanProps {
     semesters: Semester[];
@@ -22,6 +23,8 @@ interface EditDegreePlanProps {
     SelecetedEditdDegreePlan: DegreePlan;
     degreeList: DegreePlan[];
     setDegreeList: React.Dispatch<React.SetStateAction<DegreePlan[]>>;
+    setCoursePool: React.Dispatch<React.SetStateAction<Course[]>>;
+    coursePool: Course[];
 }
 const EditDegreePlan = ({
     semesters,
@@ -38,7 +41,9 @@ const EditDegreePlan = ({
     setIsaddDegreeButton,
     SelecetedEditdDegreePlan,
     degreeList,
-    setDegreeList
+    setDegreeList,
+    setCoursePool,
+    coursePool
 }: EditDegreePlanProps) => {
     return (
         <div>
@@ -56,6 +61,8 @@ const EditDegreePlan = ({
                 setDegreeList={setDegreeList}
                 handleShowModal={handleShowModal}
                 SelecetedEditdDegreePlan={SelecetedEditdDegreePlan}
+                setCoursePool={setCoursePool}
+                coursePool={coursePool}
             ></SemesterList>
             <br />
             <br />

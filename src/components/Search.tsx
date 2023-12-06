@@ -26,6 +26,9 @@ interface SearchProps {
     setText: React.Dispatch<React.SetStateAction<string>>;
     text: string;
     setIsRenderPoolOfCourse: React.Dispatch<React.SetStateAction<boolean>>;
+    setIsCourseInfo: React.Dispatch<React.SetStateAction<boolean>>;
+    setCoursePool: React.Dispatch<React.SetStateAction<Course[]>>;
+    coursePool: Course[];
 }
 const Search = ({
     ModifiedCourseList,
@@ -43,7 +46,10 @@ const Search = ({
     setCount,
     setText,
     text,
-    setIsRenderPoolOfCourse
+    setIsRenderPoolOfCourse,
+    setIsCourseInfo,
+    setCoursePool,
+    coursePool
 }: SearchProps) => {
     const [ErrorMessage2, setError2] = useState(false);
     const [filterCourses, setfilterCourses] = useState<Course[]>();
@@ -64,6 +70,7 @@ const Search = ({
         setCount(0);
         setIsAddedCourseTopool(false);
         setIsRenderPoolOfCourse(true);
+        setIsCourseInfo(true);
     };
 
     //filter the course user type in
@@ -142,6 +149,10 @@ const Search = ({
             theCourse
         );
         setDegreeList(update);
+        const CourseIndexInPool = coursePool.findIndex((c) => c === theCourse);
+        coursePool.splice(CourseIndexInPool, 1);
+        const update2 = [...coursePool];
+        setCoursePool(update2);
     };
     const [renderSelectedSemester, setRenderSelectedSemester] =
         useState<Semester>({

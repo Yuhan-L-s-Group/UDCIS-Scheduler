@@ -1,10 +1,10 @@
 /* eslint-disable no-extra-parens */
 import React from "react";
 import { Course } from "../interfaces/course";
-import { Button } from "react-bootstrap";
 import "../App.css";
 import { Semester } from "../interfaces/semester";
 import { DegreePlan } from "../interfaces/degreePlan";
+import { Button } from "react-bootstrap";
 
 // Display each individual semester
 // Addtionally it automatically caculates the each semester credits
@@ -14,7 +14,9 @@ export const SemesterDisplay = ({
     semesters,
     degreeList,
     setDegreeList,
-    SelecetedEditdDegreePlan
+    SelecetedEditdDegreePlan,
+    setCoursePool,
+    coursePool
 }: {
     semester: Semester;
     modifysemster: (semester: Semester[]) => void;
@@ -22,8 +24,9 @@ export const SemesterDisplay = ({
     degreeList: DegreePlan[];
     setDegreeList: React.Dispatch<React.SetStateAction<DegreePlan[]>>;
     SelecetedEditdDegreePlan: DegreePlan;
+    setCoursePool: React.Dispatch<React.SetStateAction<Course[]>>;
+    coursePool: Course[];
 }): JSX.Element => {
-    selectedDegreePlan;
     const deleteCourseFunc = (course: Course) => {
         // delete a course from a semester
         const findDegreeIndex = degreeList.findIndex(
@@ -118,8 +121,37 @@ export const SemesterDisplay = ({
         });
         modifysemster(updatedSemesters);
     };
+    //handle the course from seemster list to pool of courses
+    const handleCoursetoPool = (course: Course) => {
+        const repeatedCourse = coursePool.includes(course);
+        if (!repeatedCourse) {
+            // add the course from semester to pool
+            coursePool.push(course);
+            const update = [...coursePool];
+            setCoursePool(update);
+            //delete the original course from seemster
+            const findDegreeIndex = degreeList.findIndex(
+                (degreeplan) => degreeplan === SelecetedEditdDegreePlan
+            );
+            const findSemesterIndex =
+                SelecetedEditdDegreePlan.semesters.findIndex(
+                    (s) => s === semester
+                );
+            const findCourseIndex = SelecetedEditdDegreePlan.semesters[
+                findSemesterIndex
+            ].courses.findIndex((c) => c === course);
+            degreeList[findDegreeIndex].semesters[
+                findSemesterIndex
+            ].courses.splice(findCourseIndex, 1);
+            const update2 = [...degreeList];
+            setDegreeList(update2);
+        }
+
+        console.log(SelecetedEditdDegreePlan);
+    };
     return (
         <div className="semester_view">
+            {}
             <table>
                 <thead>
                     <tr>
@@ -160,11 +192,19 @@ export const SemesterDisplay = ({
                             <td> {course.credits}</td>
                             <td>
                                 <select
-                                    onChange={(e) =>
-                                        handleCourseMove(course, e.target.value)
-                                    }
+                                    onChange={(e) => {
+                                        const selectedValue = e.target.value;
+                                        if (selectedValue === course.code) {
+                                            handleCoursetoPool(course);
+                                        } else {
+                                            handleCourseMove(
+                                                course,
+                                                e.target.value
+                                            );
+                                        }
+                                    }}
                                 >
-                                    <option value="">Move to...</option>
+                                    <option>Move to...</option>
                                     {semesters
                                         .filter((s) => s !== semester)
                                         .map((s) => (
@@ -175,6 +215,7 @@ export const SemesterDisplay = ({
                                                 {s.season} {s.year}
                                             </option>
                                         ))}
+                                    <option value={course.code}>To Pool</option>
                                 </select>
                             </td>
                             <td>
@@ -202,7 +243,7 @@ export const SemesterDisplay = ({
                         </tr>
                     }
                 </tbody>
-            </table>
+            </table>{" "}
         </div>
     );
 };

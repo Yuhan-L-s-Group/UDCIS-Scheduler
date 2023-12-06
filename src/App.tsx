@@ -12,6 +12,10 @@ import DegreeManage from "./components/DegreeManage";
 import { Concentration, DegreePlan } from "./interfaces/degreePlan";
 import EditDegreePlan from "./components/EditDegreePlan";
 import CoursePool from "./components/CoursePool";
+import { Button, Modal, Col, Form, Row, Container } from "react-bootstrap";
+import EditCourse from "./components/EditCourse";
+import ExportCSV from "./components/ExportCSV";
+
 // import { text } from "body-parser";
 function App(): JSX.Element {
     //for Intro
@@ -153,6 +157,8 @@ function App(): JSX.Element {
             setCoursePool(update);
         }
         setIsAddedCourseTopool(true);
+        setIsRenderPoolTable(true);
+        setIsRenderPoolOfCourse(true);
     };
     const [countTool, setCount] = useState(0);
     const [selectedCourse, setselectedCourse] = useState<Course>({
@@ -192,6 +198,11 @@ function App(): JSX.Element {
     const CloseError = () => {
         setError(false);
     };
+    // not to render course information when first open the site
+    const [IsCourseInfo, setIsCourseInfo] = useState(false);
+    //Not to render pool of courses at the begining
+    const [IsRenderPoolTable, setIsRenderPoolTable] = useState(false);
+
     return (
         <div className="App">
             {isHomepage ? ( // the first page when you open the web
@@ -246,56 +257,71 @@ function App(): JSX.Element {
                                         </div>
                                         <br />
                                         <br />
-                                        <div>
-                                            {"Course Code: "}
-                                            <></>
-                                            {listCourses[courseIndex].code}
-                                        </div>
-                                        <br />
+                                        {IsCourseInfo && (
+                                            <div>
+                                                <div>
+                                                    {"Course Code: "}
+                                                    <></>
+                                                    {
+                                                        listCourses[courseIndex]
+                                                            .code
+                                                    }
+                                                </div>
+                                                <br />
 
-                                        <div>
-                                            {" "}
-                                            {"Course Name: "}
-                                            {listCourses[courseIndex].name}
-                                        </div>
-                                        <br />
-                                        <div>
-                                            {" "}
-                                            {"Course Credits: "}
-                                            {listCourses[courseIndex].credits}
-                                        </div>
-                                        <br />
-                                        <div>
-                                            {" "}
-                                            {"Course description: "}
-                                            {listCourses[courseIndex].descr}
-                                        </div>
-                                        <br />
-                                        <Button
-                                            variant="success"
-                                            onClick={handleClickPool}
-                                        >
-                                            Add to Course Pool
-                                        </Button>
-                                        <br />
-                                        <br />
+                                                <div>
+                                                    {" "}
+                                                    {"Course Name: "}
+                                                    {
+                                                        listCourses[courseIndex]
+                                                            .name
+                                                    }
+                                                </div>
+                                                <br />
+                                                <div>
+                                                    {" "}
+                                                    {"Course Credits: "}
+                                                    {
+                                                        listCourses[courseIndex]
+                                                            .credits
+                                                    }
+                                                </div>
+                                                <br />
+                                                <div>
+                                                    {" "}
+                                                    {"Course description: "}
+                                                    {
+                                                        listCourses[courseIndex]
+                                                            .descr
+                                                    }
+                                                </div>
+                                                <br />
+                                                <Button
+                                                    variant="success"
+                                                    onClick={handleClickPool}
+                                                >
+                                                    Add to Course Pool
+                                                </Button>
+                                                <br />
+                                                <br />
+                                                <span>
+                                                    {" "}
+                                                    <Button
+                                                        onClick={() =>
+                                                            gotYouCourse(text)
+                                                        }
+                                                    >
+                                                        {" "}
+                                                        Edit
+                                                    </Button>
+                                                </span>
+                                            </div>
+                                        )}
 
                                         <div>
                                             {
                                                 <div>
-                                                    <span>
-                                                        {" "}
-                                                        <Button
-                                                            onClick={() =>
-                                                                gotYouCourse(
-                                                                    text
-                                                                )
-                                                            }
-                                                        >
-                                                            {" "}
-                                                            Edit
-                                                        </Button>
-                                                    </span>
+                                                    <span> </span>
                                                     <br />
                                                     <br />
                                                     <div className="addedCourseTopoolPropmt">
@@ -405,6 +431,9 @@ function App(): JSX.Element {
                                             setIsRenderPoolOfCourse={
                                                 setIsRenderPoolOfCourse
                                             }
+                                            setIsCourseInfo={setIsCourseInfo}
+                                            coursePool={coursePool}
+                                            setCoursePool={setCoursePool}
                                         ></Search>
                                     </span>
                                 }
@@ -415,6 +444,7 @@ function App(): JSX.Element {
                                         AddCourseToDegreePlan={
                                             AddCourseToDegreePlan
                                         }
+                                        IsRenderPoolTable={IsRenderPoolTable}
                                     />
                                 )}
                             </Col>
@@ -460,9 +490,6 @@ function App(): JSX.Element {
                                                 >
                                                     Add New Degree Plan
                                                 </Button>
-                                                <ExportCSV
-                                                    degreeList={degreeList}
-                                                ></ExportCSV>
                                             </div>
                                         )}
                                         <br />
@@ -526,6 +553,10 @@ function App(): JSX.Element {
                                                 )}
                                             </table>
                                         )}
+                                        <br />
+                                        <ExportCSV
+                                            degreeList={degreeList}
+                                        ></ExportCSV>
                                     </div>
                                 )}
                                 {isEditDegreeOpen && (
@@ -554,6 +585,8 @@ function App(): JSX.Element {
                                             }
                                             degreeList={degreeList}
                                             setDegreeList={setDegreeList}
+                                            setCoursePool={setCoursePool}
+                                            coursePool={coursePool}
                                         />
                                     </div>
                                 )}

@@ -5,6 +5,8 @@ import "../App.css";
 import React from "react";
 import { DegreePlan } from "../interfaces/degreePlan";
 import { Button } from "react-bootstrap";
+import { Course } from "../interfaces/course";
+
 // It contains all the semesters into "semesters" varible and iterate each semester into "SemesterDisplay" component
 // Addtionally it automatically caculates the cumulative credits
 export const SemesterList = ({
@@ -20,7 +22,9 @@ export const SemesterList = ({
     degreeList,
     setDegreeList,
     handleShowModal,
-    SelecetedEditdDegreePlan
+    SelecetedEditdDegreePlan,
+    setCoursePool,
+    coursePool
 }: {
     semesters: Semester[];
     Name: string;
@@ -35,6 +39,8 @@ export const SemesterList = ({
     setDegreeList: React.Dispatch<React.SetStateAction<DegreePlan[]>>;
     handleShowModal: () => void;
     SelecetedEditdDegreePlan: DegreePlan;
+    setCoursePool: React.Dispatch<React.SetStateAction<Course[]>>;
+    coursePool: Course[];
 }) => {
     const handleBack = () => {
         setIsEditDegreeOpen(false);
@@ -62,6 +68,7 @@ export const SemesterList = ({
                             Add New Semester
                         </Button>
                         <br />
+                        <br />
                         {renderName && <div className="name">{Name}</div>}
                         <div className="modifytheCreditsText">
                             {SelecetedEditdDegreePlan.name}{" "}
@@ -82,6 +89,7 @@ export const SemesterList = ({
                         {semesters.map((semester: Semester): JSX.Element => {
                             return (
                                 <div key={semester.year + semester.season}>
+                                    <br />
                                     <SemesterDisplay
                                         semester={semester}
                                         modifysemster={modifysemster}
@@ -91,6 +99,8 @@ export const SemesterList = ({
                                         SelecetedEditdDegreePlan={
                                             SelecetedEditdDegreePlan
                                         }
+                                        setCoursePool={setCoursePool}
+                                        coursePool={coursePool}
                                     />
                                 </div>
                             );

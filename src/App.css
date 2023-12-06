@@ -319,3 +319,28 @@ th {
     width: 100px;
     overflow: hidden;
 }
+.ExportCSV {
+    position: relative;
+    font-size: 20px;
+    background-color: #617dfb;
+    border-radius: 8px; /* Adjust the value as needed */
+    transition: font-size 200ms, border-radius 200ms;
+}
+
+.ExportCSV::before {
+    content: "\2192"; /* Unicode arrow character (right arrow) */
+    position: absolute;
+    top: -22px;
+    right: 320px;
+    font-size: 50px;
+    opacity: 0;
+    transition: opacity 200ms;
+}
+
+.ExportCSV:hover {
+    font-size: 25px;
+}
+
+.ExportCSV:hover::before {
+    opacity: 1;
+}
