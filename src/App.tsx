@@ -470,6 +470,8 @@ function App(): JSX.Element {
                                 <br />
                                 <br />
                                 <br />
+                                <br />
+                                <ExportCSV degreeList={degreeList}></ExportCSV>
                                 {isDegreeList && ( //degree list box
                                     <div className="degreeListBox">
                                         <div className="DegreeListTitle-view">
@@ -554,9 +556,6 @@ function App(): JSX.Element {
                                             </table>
                                         )}
                                         <br />
-                                        <ExportCSV
-                                            degreeList={degreeList}
-                                        ></ExportCSV>
                                     </div>
                                 )}
                                 {isEditDegreeOpen && (

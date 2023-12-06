@@ -90,14 +90,21 @@ const DegreeManage = ({
                                 <option value="Data Science">
                                     Data Science
                                 </option>
-                                <option value="High Performance Computing">
-                                    High Performance Computing
+                                <option value="High Performance Computing (Applied Math Track)">
+                                    High Performance Computing (Applied Math
+                                    Track)
+                                </option>
+                                <option value="High Performance Computing (Data Track)">
+                                    High Performance Computing (Data Track)
                                 </option>
                                 <option value="Systems and Networks">
                                     Systems and Networks
                                 </option>
-                                <option value=" Theory and Computation">
-                                    Theory and Computation
+                                <option value="Theory and Computation (Discrete Track)">
+                                    Theory and Computation (Discrete Track)
+                                </option>
+                                <option value="Theory and Computation (Continuous Track)">
+                                    Theory and Computation (Continuous Track)
                                 </option>
                             </Form.Select>
                         </Col>

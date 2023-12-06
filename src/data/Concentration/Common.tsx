@@ -3,7 +3,15 @@ import { DegreePlan } from "../../interfaces/degreePlan";
 import all from "../RequiredCourses/FitsAll.json";
 import { Course } from "../../interfaces/course";
 
-export const Common = ({ degreePlan }: { degreePlan: DegreePlan }) => {
+export const Common = ({
+    degreePlan,
+    show,
+    handleClose
+}: {
+    degreePlan: DegreePlan;
+    show: boolean;
+    handleClose: () => void;
+}) => {
     //TEST
     const allCourses = degreePlan.semesters.flatMap((semester) =>
         semester.courses.map((course) => course)
