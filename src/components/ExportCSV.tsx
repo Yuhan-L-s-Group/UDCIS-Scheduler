@@ -51,18 +51,17 @@ export const ExportCSV: React.FC<ExportCSVProps> = ({ degreeList }) => {
         const url = window.URL.createObjectURL(blob);
 
         //making filename to name csv file
-        //const filename = `${name}_${concentration}_degree_plan.csv`;
+        const filename = prompt("Name the file you just downloaded");
 
         // Create a link and trigger download
         const link = document.createElement("a");
         link.href = url;
-        link.setAttribute(
-            "download",
-            prompt("Name the file you just downloaded") || "Plans.CSV"
-        );
+        link.setAttribute("download", filename || "Plans.CSV");
         document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
+        if (filename !== null) {
+            link.click();
+            document.body.removeChild(link);
+        }
     };
 
     return (
