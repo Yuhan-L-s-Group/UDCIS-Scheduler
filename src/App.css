@@ -20,7 +20,9 @@
     align-items: center;
     justify-content: center;
 }
-
+.mainBody {
+    background-color: #fbfbfb;
+}
 .App-link {
     color: #61dafb;
 }
@@ -48,9 +50,9 @@
 
 .modifytheCreditsText {
     color: rgb(41, 113, 53);
-    font-size: 30px;
+    font-size: 20px;
     font-weight: bold;
-    margin-left: 100px;
+    /* margin-left: 100px; */
 }
 .name {
     color: rgb(0, 5, 1);
@@ -103,7 +105,7 @@
     transition: font-size 200ms;
 }
 .emeptySemester:hover {
-    background-color: #0044ff;
+    background-color: #ff0000;
     font-size: 20px;
 }
 .clear_button {
@@ -143,10 +145,10 @@
 .semester_box {
     border: 4px solid #000000;
     border-radius: 40px;
-    padding: 100px;
-    margin-bottom: 300px;
-    width: 550px;
-    margin-left: 100px;
+    padding: 40px;
+    width: 460px;
+    margin-left: 50px;
+    margin-top: 70px;
 }
 .semesterListName-view {
     position: absolute; /* Set the position property to absolute */
@@ -159,44 +161,39 @@
 .courseBar_box {
     border: 5px solid #000000;
     border-radius: 40px;
-    padding: 100px;
+    padding: 45px;
     margin-bottom: 100px;
-    width: 500px;
+    width: 420px;
     font-size: 18px;
     font-weight: 500;
+    margin-top: 360px;
+    margin-left: -60px;
+    margin-bottom: 300px;
 }
 
 .addcourseView {
     margin-right: 100px;
 }
-.SwichButton {
-    margin-right: 100px;
-    background-color: rgb(136, 255, 0);
-    font-size: 20px;
-}
-.SwichButton:hover {
-    font-size: 25px;
-}
+
 .searchBar {
-    font-size: 20px;
+    font-size: 32px;
     border-radius: 20px;
 }
 .searchBar:hover {
-    font-size: 20px;
+    font-size: 32px;
     background-color: rgb(136, 255, 0);
 }
 .editButtonInSwitch {
     margin-top: 10000px;
 }
 .searchMenu {
-    margin-left: 100px;
     /* border: 4px solid #000000; */
     border-radius: 8px;
-    margin-bottom: 10px;
     /* padding: 10px; */
-    width: 380px;
+    width: 323px;
     font-size: 32px;
     max-height: 300px;
+    margin-left: 145px;
     overflow-y: auto;
     overflow-x: hidden;
 }
@@ -205,7 +202,7 @@
 }
 
 .searchInput {
-    width: 300px;
+    width: 220px;
     height: 60px;
     border: 1px solid #ccc;
     border-radius: 20px;
@@ -213,20 +210,22 @@
     color: #333;
     cursor: pointer;
     font-size: 30px;
+    margin-left: 85px;
 }
 .eachCourseButton {
     font-size: 30px;
-    width: 361.5px;
+    width: 320px;
 }
 .eachCourseButton:hover {
     background-color: rgb(0, 174, 255);
 }
-.WholeSearch {
+.searchview {
     margin-bottom: 600px;
 }
 table {
     border-collapse: collapse;
-    margin: 20px 0;
+    margin: auto;
+    margin-top: 20px;
 }
 
 table,
@@ -249,12 +248,16 @@ th {
     color: #333333;
     font-weight: 500;
 }
+.Coursepool {
+    margin-left: -150px;
+    margin-top: 290px;
+}
 .coursePool_box {
     border: 4px solid #000000;
     border-radius: 40px;
-    padding: 100px;
-    margin-bottom: 100px;
-    width: 550px;
+    padding: 35px;
+    margin-top: -540px;
+    margin-left: 100px;
 }
 .degreeplanTable {
     margin-right: 100px;
@@ -290,5 +293,54 @@ th {
     background-color: #918888;
     display: flex;
     justify-content: center;
-    height: 60px;
+    height: 35px;
+}
+.degreeListBox {
+    border: 4px solid #000000;
+    border-radius: 40px;
+    padding: 50px;
+    width: 480px;
+    margin-left: 50px;
+    margin-top: 120px;
+}
+.concentrationBox {
+    border: 4px solid #000000;
+    border-radius: 40px;
+    padding: 60px;
+    width: 480px;
+    margin-left: 50px;
+    margin-bottom: 100px;
+}
+.classgo-view {
+    background-image: url(./pictures/udlogo2.jpg);
+}
+.degreeTable {
+    margin-right: 1000px;
+    width: 100px;
+    overflow: hidden;
+}
+.ExportCSV {
+    position: relative;
+    font-size: 20px;
+    background-color: #617dfb;
+    border-radius: 8px; /* Adjust the value as needed */
+    transition: font-size 200ms, border-radius 200ms;
+}
+
+.ExportCSV::before {
+    content: "\2192"; /* Unicode arrow character (right arrow) */
+    position: absolute;
+    top: -22px;
+    right: 320px;
+    font-size: 50px;
+    opacity: 0;
+    transition: opacity 200ms;
+}
+
+.ExportCSV:hover {
+    font-size: 25px;
+}
+
+.ExportCSV:hover::before {
+    opacity: 1;
 }

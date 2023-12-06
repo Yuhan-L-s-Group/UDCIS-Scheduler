@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { Button, Col } from "react-bootstrap";
-import { Semester } from "../interfaces/semester";
+import React from "react";
+//import { useEffect, useState } from "react";
 import { DegreePlan } from "../interfaces/degreePlan";
-import { Cyber } from "../data/Concentration/Cyber";
+import { Common } from "../data/Concentration/Common";
 
 export function getURLs(conc: string): string {
     const URLS: Record<string, string> = {
@@ -23,9 +22,7 @@ export function getURLs(conc: string): string {
         "Systems and Networks":
             "https://catalog.udel.edu/preview_program.php?catoid=47&poid=34985",
         "Theory and Computation":
-            "https://catalog.udel.edu/preview_program.php?catoid=47&poid=34979",
-        "Information Systems":
-            "https://catalog.udel.edu/preview_program.php?catoid=47&poid=34728"
+            "https://catalog.udel.edu/preview_program.php?catoid=47&poid=34979"
     };
     return URLS[conc];
 }
@@ -34,14 +31,14 @@ export const Requirement = ({ degreePlan }: { degreePlan: DegreePlan }) => {
     const url = getURLs(degreePlan.concentration);
 
     return (
-        <div>
-            <h2 className="subtitle">Degree Requirements</h2>
+        <div className="concentrationBox">
+            <h2>Degree Requirements</h2>
             <p className="reqdesc">
                 <a href={url} target="_blank" rel="noopener noreferrer">
                     What classes should I take?
                 </a>
             </p>
-            <Cyber degreePlan={degreePlan}></Cyber>
+            <Common degreePlan={degreePlan}></Common>
         </div>
     );
 };

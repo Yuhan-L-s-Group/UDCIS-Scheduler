@@ -1,11 +1,8 @@
 /* eslint-disable no-extra-parens */
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./App.css";
-
-import { Button, Col, Container, Row } from "react-bootstrap";
 import { IntroModal } from "./components/IntroModal";
 import { Semester } from "./interfaces/semester";
-import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import logo1 from "./pictures/udlogo2.jpg";
 import Courses from "./data/CourseList.json";
@@ -14,6 +11,11 @@ import Search from "./components/Search";
 import DegreeManage from "./components/DegreeManage";
 import { Concentration, DegreePlan } from "./interfaces/degreePlan";
 import EditDegreePlan from "./components/EditDegreePlan";
+import CoursePool from "./components/CoursePool";
+import { Button, Modal, Col, Form, Row, Container } from "react-bootstrap";
+import EditCourse from "./components/EditCourse";
+import ExportCSV from "./components/ExportCSV";
+
 // import { text } from "body-parser";
 function App(): JSX.Element {
     //for Intro
@@ -62,7 +64,6 @@ function App(): JSX.Element {
         setSemester(semester);
     }
     //for render course list
-    const [isAddCourseOpen, setAddCourseOpen] = useState(false);
     const [listCourses, setListCourses] = useState<Course[]>(Courses);
 
     const ModifiedCourseList = [...listCourses]; // this is for edit course component
@@ -98,6 +99,7 @@ function App(): JSX.Element {
         setSelecetedEditdDegreePlan(EditdDegreePlan);
         const updatedSemesters = [...EditdDegreePlan.semesters];
         setSemester(updatedSemesters);
+        console.log(selectedDegreePlan);
     };
     // is rendering degree plan table
     const [isRenderDegreeTable, setIsRenderDegreeTable] = useState(false);
@@ -108,29 +110,6 @@ function App(): JSX.Element {
         );
         degreeList.splice(findDegreeIndex, 1);
         setDegreeList([...degreeList]);
-    };
-    const [file, setFile] = useState<File | undefined>(undefined);
-
-    const fileReader = new FileReader();
-
-    const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const inputElement = e.target as HTMLInputElement;
-
-        if (inputElement && inputElement.files) {
-            setFile(inputElement.files[0]);
-        }
-    };
-
-    const handleOnSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-
-        if (file) {
-            fileReader.onload = function (event) {
-                const csvOutput = (event.target as FileReader).result;
-            };
-
-            fileReader.readAsText(file);
-        }
     };
     return (
         <div className="App">
@@ -178,7 +157,148 @@ function App(): JSX.Element {
                     <br />
                     <Container>
                         <Row>
-                            <Col>
+                            <Col md={3}>
+                                {isCourseBar && (
+                                    <div className="courseBar_box">
+                                        <div className="DegreeListTitle-view">
+                                            {"Course Information"}
+                                        </div>
+                                        <br />
+                                        <br />
+                                        {IsCourseInfo && (
+                                            <div>
+                                                <div>
+                                                    {"Course Code: "}
+                                                    <></>
+                                                    {
+                                                        listCourses[courseIndex]
+                                                            .code
+                                                    }
+                                                </div>
+                                                <br />
+
+                                                <div>
+                                                    {" "}
+                                                    {"Course Name: "}
+                                                    {
+                                                        listCourses[courseIndex]
+                                                            .name
+                                                    }
+                                                </div>
+                                                <br />
+                                                <div>
+                                                    {" "}
+                                                    {"Course Credits: "}
+                                                    {
+                                                        listCourses[courseIndex]
+                                                            .credits
+                                                    }
+                                                </div>
+                                                <br />
+                                                <div>
+                                                    {" "}
+                                                    {"Course description: "}
+                                                    {
+                                                        listCourses[courseIndex]
+                                                            .descr
+                                                    }
+                                                </div>
+                                                <br />
+                                                <Button
+                                                    variant="success"
+                                                    onClick={handleClickPool}
+                                                >
+                                                    Add to Course Pool
+                                                </Button>
+                                                <br />
+                                                <br />
+                                                <span>
+                                                    {" "}
+                                                    <Button
+                                                        onClick={() =>
+                                                            gotYouCourse(text)
+                                                        }
+                                                    >
+                                                        {" "}
+                                                        Edit
+                                                    </Button>
+                                                </span>
+                                            </div>
+                                        )}
+
+                                        <div>
+                                            {
+                                                <div>
+                                                    <span> </span>
+                                                    <br />
+                                                    <br />
+                                                    <div className="addedCourseTopoolPropmt">
+                                                        {isAddedCourseTopool &&
+                                                            "You have already added it to the pool of courses"}
+                                                    </div>
+                                                    {isEditCourseOpen && ( // edit course
+                                                        <>
+                                                            <div className="editButtonInSwitch">
+                                                                <EditCourse
+                                                                    listCourses={
+                                                                        listCourses
+                                                                    }
+                                                                    setListCourses={
+                                                                        setListCourses
+                                                                    }
+                                                                    closeEditCourse={
+                                                                        closeEditCourse
+                                                                    }
+                                                                    CourseSlected={
+                                                                        selectedCourse
+                                                                    }
+                                                                    ModifiedCourseList={
+                                                                        ModifiedCourseList
+                                                                    }
+                                                                />
+                                                            </div>
+                                                        </>
+                                                    )}
+                                                    {ErrorMessage && ( // error message when user trys to add the course which has already been selceted into the semester list
+                                                        <Modal
+                                                            show={true}
+                                                            onHide={CloseError}
+                                                        >
+                                                            <Modal.Header
+                                                                closeButton
+                                                            >
+                                                                <Modal.Title className="modifyErrorTitle">
+                                                                    Wrong
+                                                                    Selection
+                                                                </Modal.Title>
+                                                            </Modal.Header>
+                                                            <Modal.Body>
+                                                                You have already
+                                                                selected this
+                                                                course. Please
+                                                                make sure you do
+                                                                not select the
+                                                                same course.
+                                                            </Modal.Body>
+                                                            <Modal.Footer>
+                                                                <Button
+                                                                    variant="secondary"
+                                                                    onClick={
+                                                                        CloseError
+                                                                    }
+                                                                >
+                                                                    Close
+                                                                </Button>
+                                                            </Modal.Footer>
+                                                        </Modal>
+                                                    )}
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                )}
+                            </Col>{" "}
+                            <Col md={5}>
                                 {" "}
                                 <br />
                                 <br />
@@ -206,28 +326,53 @@ function App(): JSX.Element {
                                             ModifiedCourseList={
                                                 ModifiedCourseList
                                             }
-                                            listCourses={listCourses}
                                             setListCourses={setListCourses}
-                                            semesters={semesters}
-                                            setSemester={setSemester}
                                             degreeList={degreeList}
                                             setDegreeList={setDegreeList}
-                                            setAddSemester={setAddSemester}
                                             setDisplayEmpty={setDisplayEmpty}
-                                            setIsEditDegreeOpen={
-                                                setIsEditDegreeOpen
-                                            }
                                             selectedDegreePlan={
                                                 selectedDegreePlan
                                             }
                                             setselectedDegreePlan={
                                                 setselectedDegreePlan
                                             }
+                                            setIsAddedCourseTopool={
+                                                setIsAddedCourseTopool
+                                            }
+                                            theCourse={theCourse}
+                                            isCourseToDegreePlanOpen={
+                                                isCourseToDegreePlanOpen
+                                            }
+                                            setisCourseToDegreePlanOpen={
+                                                setisCourseToDegreePlanOpen
+                                            }
+                                            setIsdegreeList={setIsdegreeList}
+                                            setCourseBar={setCourseBar}
+                                            setcourseIndex={setcourseIndex}
+                                            setCount={setCount}
+                                            setText={setText}
+                                            text={text}
+                                            setIsRenderPoolOfCourse={
+                                                setIsRenderPoolOfCourse
+                                            }
+                                            setIsCourseInfo={setIsCourseInfo}
+                                            coursePool={coursePool}
+                                            setCoursePool={setCoursePool}
                                         ></Search>
                                     </span>
                                 }
+                                {IsRenderPoolOfCourse && (
+                                    <CoursePool
+                                        coursePool={coursePool}
+                                        deletePool={deletePool}
+                                        AddCourseToDegreePlan={
+                                            AddCourseToDegreePlan
+                                        }
+                                        IsRenderPoolTable={IsRenderPoolTable}
+                                    />
+                                )}
                             </Col>
-                            <Col>
+                            <Col md={3}>
                                 <br />
                                 <br />
                                 <br />
@@ -250,24 +395,31 @@ function App(): JSX.Element {
                                 <br />
                                 <br />
                                 {isDegreeList && ( //degree list box
-                                    <div className="semester_box">
+                                    <div className="degreeListBox">
                                         <div className="DegreeListTitle-view">
                                             {"Degree List"}
                                         </div>
                                         <br />
+                                        {degreeList.length === 0 ? (
+                                            <p>Add a degree plan to start!</p>
+                                        ) : (
+                                            <p></p>
+                                        )}
                                         {isAddDegreeButton && (
-                                            <Button
-                                                onClick={
-                                                    handleClickAddDegreePlan
-                                                }
-                                            >
-                                                Add New Degree Plan
-                                            </Button>
+                                            <div>
+                                                <Button
+                                                    onClick={
+                                                        handleClickAddDegreePlan
+                                                    }
+                                                >
+                                                    Add New Degree Plan
+                                                </Button>
+                                            </div>
                                         )}
                                         <br />
                                         {isRenderDegreeTable && (
-                                            //individual degree plan
-                                            <table>
+                                            //individual degree plan.
+                                            <table className="degreeTable">
                                                 <thead>
                                                     {" "}
                                                     <tr>
@@ -325,12 +477,15 @@ function App(): JSX.Element {
                                                 )}
                                             </table>
                                         )}
+                                        <br />
+                                        <ExportCSV
+                                            degreeList={degreeList}
+                                        ></ExportCSV>
                                     </div>
                                 )}
                                 {isEditDegreeOpen && (
                                     <div>
                                         <EditDegreePlan
-                                            isEditDegreeOpen={isEditDegreeOpen}
                                             semesters={semesters}
                                             Name={Name}
                                             renderName={renderName}
@@ -354,13 +509,15 @@ function App(): JSX.Element {
                                             }
                                             degreeList={degreeList}
                                             setDegreeList={setDegreeList}
-                                            selectedDegreePlan={
-                                                selectedDegreePlan
-                                            }
+                                            setCoursePool={setCoursePool}
+                                            coursePool={coursePool}
                                         />
                                     </div>
                                 )}
                             </Col>{" "}
+                        </Row>
+                        <Row>
+                            <Col md={4}> </Col>
                         </Row>
                     </Container>
                     <Row className="bottom-view">

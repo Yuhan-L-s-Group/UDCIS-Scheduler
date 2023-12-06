@@ -1,11 +1,12 @@
 /* eslint-disable no-extra-parens */
 import { SemesterDisplay } from "./SemesterDisplay";
-import { Season, Semester } from "../interfaces/semester";
+import { Semester } from "../interfaces/semester";
 import "../App.css";
-import horse from "../pictures/horse.jpg";
 import React from "react";
 import { DegreePlan } from "../interfaces/degreePlan";
-import { Button, Modal, Col, Form, Container, Row } from "react-bootstrap";
+import { Button } from "react-bootstrap";
+import { Course } from "../interfaces/course";
+
 // It contains all the semesters into "semesters" varible and iterate each semester into "SemesterDisplay" component
 // Addtionally it automatically caculates the cumulative credits
 export const SemesterList = ({
@@ -20,9 +21,10 @@ export const SemesterList = ({
     setIsaddDegreeButton,
     degreeList,
     setDegreeList,
-    selectedDegreePlan,
     handleShowModal,
-    SelecetedEditdDegreePlan
+    SelecetedEditdDegreePlan,
+    setCoursePool,
+    coursePool
 }: {
     semesters: Semester[];
     Name: string;
@@ -35,9 +37,10 @@ export const SemesterList = ({
     setIsaddDegreeButton: React.Dispatch<React.SetStateAction<boolean>>;
     degreeList: DegreePlan[];
     setDegreeList: React.Dispatch<React.SetStateAction<DegreePlan[]>>;
-    selectedDegreePlan: DegreePlan;
     handleShowModal: () => void;
     SelecetedEditdDegreePlan: DegreePlan;
+    setCoursePool: React.Dispatch<React.SetStateAction<Course[]>>;
+    coursePool: Course[];
 }) => {
     const handleBack = () => {
         setIsEditDegreeOpen(false);
@@ -48,21 +51,7 @@ export const SemesterList = ({
         <>
             <br />
             <br />
-            {renderName && <div className="name"> Hi! {Name}</div>}
-            <div className="modifytheCreditsText">
-                {"Your Cureent Degree Plan Cumulative Credits: "}
-                {semesters.reduce(
-                    (acc, iter) =>
-                        acc +
-                        iter.courses.reduce(
-                            (acc1, iter1) => acc1 + parseInt(iter1.credits),
-                            0
-                        ),
-                    0
-                )}
-                {" credits"}
-                {/* // {renderName && <img src={horse} alt="horse" />} */}
-            </div>
+
             {
                 <div>
                     <div className="semester_box">
@@ -80,23 +69,42 @@ export const SemesterList = ({
                         </Button>
                         <br />
                         <br />
-                        {semesters.map(
-                            (semester: Semester): JSX.Element => (
+                        {renderName && <div className="name">{Name}</div>}
+                        <div className="modifytheCreditsText">
+                            {SelecetedEditdDegreePlan.name}{" "}
+                            {"Cumulative Credits: "}
+                            {semesters.reduce(
+                                (acc, iter) =>
+                                    acc +
+                                    iter.courses.reduce(
+                                        (acc1, iter1) =>
+                                            acc1 + parseInt(iter1.credits),
+                                        0
+                                    ),
+                                0
+                            )}
+                            {" credits"}
+                        </div>
+
+                        {semesters.map((semester: Semester): JSX.Element => {
+                            return (
                                 <div key={semester.year + semester.season}>
+                                    <br />
                                     <SemesterDisplay
                                         semester={semester}
                                         modifysemster={modifysemster}
                                         semesters={semesters}
                                         degreeList={degreeList}
                                         setDegreeList={setDegreeList}
-                                        selectedDegreePlan={selectedDegreePlan}
                                         SelecetedEditdDegreePlan={
                                             SelecetedEditdDegreePlan
                                         }
+                                        setCoursePool={setCoursePool}
+                                        coursePool={coursePool}
                                     />
                                 </div>
-                            )
-                        )}
+                            );
+                        })}
                         {isDisplayEmpty && (
                             <button
                                 className="clear_button"

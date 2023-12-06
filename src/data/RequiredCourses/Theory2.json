@@ -1,0 +1,37 @@
+[
+    {
+        "name": "Concentration Requirements",
+        "courses": ["CISC304", "CISC401", "MATH242", "MATH349"],
+        "type": "courses",
+        "number": 4
+    },
+    {
+        "name": "Continuous Track",
+        "courses": ["MATH243", "MATH302", "MATH535", "MATH426"],
+        "type": "courses",
+        "number": 4
+    },
+    {
+        "name": "Restricted Electives",
+        "courses": [
+            "CISC372",
+            "CISC404",
+            "CISC410",
+            "CISC414",
+            "CISC471",
+            "CISC481",
+            "ELEG387",
+            "ELEG487",
+            "MATH243",
+            "MATH245",
+            "MATH302",
+            "MATH315",
+            "MATH350",
+            "MATH428",
+            "MATH450",
+            "MATH451"
+        ],
+        "type": "credits",
+        "number": 16
+    }
+]

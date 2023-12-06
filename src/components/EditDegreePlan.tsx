@@ -1,15 +1,13 @@
-import React, { useState } from "react";
-import courses from "../data/CourseList.json";
-import { Course } from "../interfaces/course";
-import { Concentration, DegreePlan } from "../interfaces/degreePlan";
-import { Button, Modal, Col, Form, Container, Row } from "react-bootstrap";
-import { Semester, Season } from "../interfaces/semester";
+import React from "react";
+import { DegreePlan } from "../interfaces/degreePlan";
+//import { Concentration} from "../interfaces/degreePlan";
+import { Semester } from "../interfaces/semester";
 import { SemesterList } from "./SemsterList";
 import { SemesterModal } from "./SemesterModal";
 import { Requirement } from "./Requirement";
+import { Course } from "../interfaces/course";
 
 interface EditDegreePlanProps {
-    isEditDegreeOpen: boolean;
     semesters: Semester[];
     Name: string;
     renderName: boolean;
@@ -25,10 +23,10 @@ interface EditDegreePlanProps {
     SelecetedEditdDegreePlan: DegreePlan;
     degreeList: DegreePlan[];
     setDegreeList: React.Dispatch<React.SetStateAction<DegreePlan[]>>;
-    selectedDegreePlan: DegreePlan;
+    setCoursePool: React.Dispatch<React.SetStateAction<Course[]>>;
+    coursePool: Course[];
 }
 const EditDegreePlan = ({
-    isEditDegreeOpen,
     semesters,
     Name,
     renderName,
@@ -44,7 +42,8 @@ const EditDegreePlan = ({
     SelecetedEditdDegreePlan,
     degreeList,
     setDegreeList,
-    selectedDegreePlan
+    setCoursePool,
+    coursePool
 }: EditDegreePlanProps) => {
     return (
         <div>
@@ -60,9 +59,10 @@ const EditDegreePlan = ({
                 setIsaddDegreeButton={setIsaddDegreeButton}
                 degreeList={degreeList}
                 setDegreeList={setDegreeList}
-                selectedDegreePlan={selectedDegreePlan}
                 handleShowModal={handleShowModal}
                 SelecetedEditdDegreePlan={SelecetedEditdDegreePlan}
+                setCoursePool={setCoursePool}
+                coursePool={coursePool}
             ></SemesterList>
             <br />
             <br />

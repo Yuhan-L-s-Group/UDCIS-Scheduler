@@ -1,0 +1,34 @@
+[
+    {
+        "name": "Concentration Requirements",
+        "courses": [
+            "CISC360",
+            "CISC361",
+            "CISC372",
+            "CISC450",
+            "CISC471",
+            "MATH242",
+            "MATH243"
+        ],
+        "type": "courses",
+        "number": 7
+    },
+    {
+        "name": "Data Track Requirements:",
+        "courses": ["CISC437", "MATH350", "MATH450"],
+        "type": "courses",
+        "number": 3
+    },
+    {
+        "name": "Machine Learning Requirement",
+        "courses": ["CISC483", "CISC484"],
+        "type": "courses",
+        "number": 2
+    },
+    {
+        "name": "Data Track Electives:",
+        "courses": ["MATH302", "MATH349", "MATH351", "MATH535"],
+        "type": "courses",
+        "number": 4
+    }
+]

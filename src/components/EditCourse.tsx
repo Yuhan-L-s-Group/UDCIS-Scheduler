@@ -4,6 +4,7 @@ import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Courses from "../data/CourseList.json";
+
 //Edit current courses information
 interface EditCourseProps {
     listCourses: Course[];

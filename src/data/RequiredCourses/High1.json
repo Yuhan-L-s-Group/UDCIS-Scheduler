@@ -1,0 +1,34 @@
+[
+    {
+        "name": "Concentration Requirements",
+        "courses": [
+            "CISC360",
+            "CISC361",
+            "CISC372",
+            "CISC450",
+            "CISC471",
+            "MATH242",
+            "MATH243"
+        ],
+        "type": "courses",
+        "number": 7
+    },
+    {
+        "name": "Applied Math Track Requirements",
+        "courses": ["MATH351", "MATH428"],
+        "type": "courses",
+        "number": 2
+    },
+    {
+        "name": "Probability/Statistics Requirement",
+        "courses": ["MATH205", "MATH350"],
+        "type": "courses",
+        "number": 2
+    },
+    {
+        "name": "Applied Math Track Electives",
+        "courses": ["MATH205", "MATH350"],
+        "type": "courses",
+        "number": 2
+    }
+]
