@@ -347,3 +347,12 @@ th {
 .NameSize-view{
     font-size: 25px;
 }
+.selectCourseInsemester{
+    font-size: 16px;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+.prerequiste-view{
+    color: rgb(179, 182, 23);
+}

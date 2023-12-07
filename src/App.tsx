@@ -69,12 +69,13 @@ function App(): JSX.Element {
     const ModifiedCourseList = [...listCourses]; // this is for edit course component
 
     //for degree plan modal
+    const [degreeList, setDegreeList] = useState<DegreePlan[]>([]);
+
     const [isDegreePlanOpen, setisDegreePlanOpen] = useState(false);
     const handleClickAddDegreePlan = () => {
         setisDegreePlanOpen(true);
         setIsRenderDegreeTable(true);
     };
-    const [degreeList, setDegreeList] = useState<DegreePlan[]>([]);
     const [isAddDegreeButton, setIsaddDegreeButton] = useState(true);
     // for rendering degree plan list
     const [isDegreeList, setIsdegreeList] = useState(true);

@@ -287,7 +287,7 @@ const Search = ({
                     </Modal.Footer>
                 </Modal>
             )}
-            {IsAddCourseToSemesterOpen && (
+            {IsAddCourseToSemesterOpen && ( // after you click next from modal 1, this modal will pop up
                 <Modal
                     show={true}
                     onHide={() => setIsAddCourseToSemesterOpen(false)}
@@ -323,6 +323,12 @@ const Search = ({
                                                     " " +
                                                     semester.season}
                                             </button>
+                                            <br />
+                                            <br />
+                                            <div className="prerequiste-view">
+                                                {"PREREQ: "}
+                                                {theCourse.preReq}
+                                            </div>
                                         </div>
                                     )
                                 )}

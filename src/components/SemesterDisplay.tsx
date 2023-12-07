@@ -203,6 +203,12 @@ export const SemesterDisplay = ({
                                             );
                                         }
                                     }}
+                                    style={{
+                                        fontSize: "16px", // Adjust the font size as needed
+                                        padding: "8px", // Adjust the padding as needed
+                                        borderRadius: "6px", // Adjust the border radius as needed
+                                        border: "1px solid #ccc" // Add border for a cleaner look
+                                    }}
                                 >
                                     <option>Move to...</option>
                                     {semesters
