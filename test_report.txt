@@ -7,12 +7,12 @@ Browserslist: caniuse-lite is outdated. Please run:
   Why you should do it regularly: https://github.com/browserslist/browserslist#browsers-data-updating
 FAIL src/App.test.tsx
   Scheduler Tests
-    ✕ Check home page and welcome window (39 ms)
-    ✕ Switch between different concentration (at this point, just check texts) (9 ms)
-    ✕ Try to add and delete semester (6 ms)
-    ✕ Add a course that does not exist in the list (11 ms)
+    ✕ Check home page and welcome window (38 ms)
+    ✕ Switch between different concentration (at this point, just check texts) (7 ms)
+    ✕ Try to add and delete semester (5 ms)
+    ✕ Add a course that does not exist in the list (7 ms)
     ✕ Replace with test details (6 ms)
-    ✕ Test search bar (6 ms)
+    ✕ Test search bar (5 ms)
 
   ● Scheduler Tests › Check home page and welcome window
 
@@ -427,7 +427,7 @@ File                    | % Stmts | % Branch | % Funcs | % Lines | Uncovered Lin
 ------------------------|---------|----------|---------|---------|----------------------------------------------------------------------------------
 All files               |   11.08 |     2.53 |    0.62 |   11.38 |                                                                                  
  src                    |   41.44 |    11.11 |     3.7 |    42.2 |                                                                                  
-  App.tsx               |   41.44 |    11.11 |     3.7 |    42.2 | 30-31,45-65,77-78,98-104,110-114,134-140,143-145,152-163,177,185-198,201,226-556 
+  App.tsx               |   41.44 |    11.11 |     3.7 |    42.2 | 30-31,45-65,77-78,98-104,110-114,134-140,143-145,152-163,177,185-198,201,226-555 
  src/components         |    2.73 |        0 |       0 |    2.79 |                                                                                  
   AddCourse.tsx         |       0 |        0 |       0 |       0 | 22-102                                                                           
   AddtoSemester.tsx     |       0 |        0 |       0 |       0 | 22-58                                                                            
@@ -453,5 +453,5 @@ All files               |   11.08 |     2.53 |    0.62 |   11.38 |
 Test Suites: 1 failed, 1 total
 Tests:       6 failed, 6 total
 Snapshots:   0 total
-Time:        4.094 s
+Time:        4.1 s
 Ran all test suites.
