@@ -8,11 +8,11 @@ Browserslist: caniuse-lite is outdated. Please run:
 FAIL src/App.test.tsx
   Scheduler Tests
     ✕ Check home page and welcome window (39 ms)
-    ✕ Switch between different concentration (at this point, just check texts) (7 ms)
+    ✕ Switch between different concentration (at this point, just check texts) (9 ms)
     ✕ Try to add and delete semester (6 ms)
-    ✕ Add a course that does not exist in the list (7 ms)
+    ✕ Add a course that does not exist in the list (11 ms)
     ✕ Replace with test details (6 ms)
-    ✕ Test search bar (5 ms)
+    ✕ Test search bar (6 ms)
 
   ● Scheduler Tests › Check home page and welcome window
 
@@ -425,25 +425,25 @@ FAIL src/App.test.tsx
 ------------------------|---------|----------|---------|---------|----------------------------------------------------------------------------------
 File                    | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s                                                                
 ------------------------|---------|----------|---------|---------|----------------------------------------------------------------------------------
-All files               |    12.3 |     3.33 |    0.68 |   12.55 |                                                                                  
+All files               |   11.08 |     2.53 |    0.62 |   11.38 |                                                                                  
  src                    |   41.44 |    11.11 |     3.7 |    42.2 |                                                                                  
-  App.tsx               |   41.44 |    11.11 |     3.7 |    42.2 | 29-30,44-64,76-77,97-103,109-113,133-139,142-144,151-162,176,184-197,200,225-553 
- src/components         |    2.77 |        0 |       0 |    2.82 |                                                                                  
-  AddCourse.tsx         |       0 |        0 |       0 |       0 | 21-101                                                                           
-  AddtoSemester.tsx     |       0 |        0 |       0 |       0 | 21-57                                                                            
-  CoursePool.tsx        |      20 |        0 |       0 |      20 | 18-51                                                                            
-  DegreeManage.tsx      |    4.76 |        0 |       0 |    4.76 | 16-70                                                                            
+  App.tsx               |   41.44 |    11.11 |     3.7 |    42.2 | 30-31,45-65,77-78,98-104,110-114,134-140,143-145,152-163,177,185-198,201,226-556 
+ src/components         |    2.73 |        0 |       0 |    2.79 |                                                                                  
+  AddCourse.tsx         |       0 |        0 |       0 |       0 | 22-102                                                                           
+  AddtoSemester.tsx     |       0 |        0 |       0 |       0 | 22-58                                                                            
+  CoursePool.tsx        |      20 |        0 |       0 |      20 | 19-52                                                                            
+  DegreeManage.tsx      |    4.76 |        0 |       0 |    4.76 | 17-71                                                                            
   EditCourse.tsx        |       0 |        0 |       0 |       0 | 22-89                                                                            
-  EditDegreePlan.tsx    |      50 |      100 |       0 |      50 | 48                                                                               
+  EditDegreePlan.tsx    |      50 |      100 |       0 |      50 | 47                                                                               
   ExportCSV.tsx         |       5 |        0 |       0 |       5 | 10-67                                                                            
   IntroModal.tsx        |       0 |      100 |       0 |       0 | 11                                                                               
-  Requirement.tsx       |      20 |      100 |       0 |      20 | 7-27,31-33                                                                       
-  Search.tsx            |    1.13 |        0 |       0 |    1.14 | 54-316                                                                           
-  SemesterDisplay.tsx   |     1.2 |        0 |       0 |    1.25 | 30-231                                                                           
+  Requirement.tsx       |      20 |      100 |       0 |      20 | 8-32,44-46                                                                       
+  Search.tsx            |    1.13 |        0 |       0 |    1.14 | 55-317                                                                           
+  SemesterDisplay.tsx   |     1.2 |        0 |       0 |    1.25 | 31-232                                                                           
   SemesterModal.tsx     |    3.44 |        0 |       0 |    3.57 | 23-117                                                                           
-  SemsterList.tsx       |   11.11 |        0 |       0 |   11.11 | 45-90                                                                            
- src/data/Concentration |       5 |        0 |       0 |    5.55 |                                                                                  
-  Common.tsx            |       5 |        0 |       0 |    5.55 | 8-61                                                                             
+  SemsterList.tsx       |    7.14 |        0 |       0 |    8.33 | 47-104                                                                           
+ src/data/Concentration |    1.53 |        0 |       0 |    1.63 |                                                                                  
+  Common.tsx            |    1.53 |        0 |       0 |    1.63 | 22-35,39-237                                                                     
  src/interfaces         |       0 |        0 |       0 |       0 |                                                                                  
   Requirement.ts        |       0 |        0 |       0 |       0 |                                                                                  
   course.ts             |       0 |        0 |       0 |       0 |                                                                                  
@@ -453,5 +453,5 @@ All files               |    12.3 |     3.33 |    0.68 |   12.55 |
 Test Suites: 1 failed, 1 total
 Tests:       6 failed, 6 total
 Snapshots:   0 total
-Time:        3.937 s
+Time:        4.094 s
 Ran all test suites.
