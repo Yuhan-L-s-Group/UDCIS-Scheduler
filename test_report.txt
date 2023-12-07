@@ -9,9 +9,9 @@ FAIL src/App.test.tsx
   Scheduler Tests
     ✕ Check home page and welcome window (38 ms)
     ✕ Switch between different concentration (at this point, just check texts) (7 ms)
-    ✕ Try to add and delete semester (5 ms)
-    ✕ Add a course that does not exist in the list (7 ms)
-    ✕ Replace with test details (5 ms)
+    ✕ Try to add and delete semester (6 ms)
+    ✕ Add a course that does not exist in the list (6 ms)
+    ✕ Replace with test details (6 ms)
     ✕ Test search bar (5 ms)
 
   ● Scheduler Tests › Check home page and welcome window
@@ -425,17 +425,17 @@ FAIL src/App.test.tsx
 ------------------------|---------|----------|---------|---------|----------------------------------------------------------------------------------
 File                    | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s                                                                
 ------------------------|---------|----------|---------|---------|----------------------------------------------------------------------------------
-All files               |   12.36 |     3.44 |    0.68 |   12.61 |                                                                                  
- src                    |   41.44 |    11.76 |     3.7 |    42.2 |                                                                                  
-  App.tsx               |   41.44 |    11.76 |     3.7 |    42.2 | 29-30,44-64,74-75,96-102,108-112,132-138,141-143,150-161,175,183-196,199,224-543 
- src/components         |    2.79 |        0 |       0 |    2.83 |                                                                                  
+All files               |    12.3 |     3.33 |    0.68 |   12.55 |                                                                                  
+ src                    |   41.44 |    11.11 |     3.7 |    42.2 |                                                                                  
+  App.tsx               |   41.44 |    11.11 |     3.7 |    42.2 | 29-30,44-64,74-75,96-102,108-112,132-138,141-143,150-161,175,183-196,199,224-552 
+ src/components         |    2.77 |        0 |       0 |    2.82 |                                                                                  
   AddCourse.tsx         |       0 |        0 |       0 |       0 | 21-101                                                                           
   AddtoSemester.tsx     |       0 |        0 |       0 |       0 | 21-57                                                                            
   CoursePool.tsx        |      20 |        0 |       0 |      20 | 18-51                                                                            
   DegreeManage.tsx      |    4.76 |        0 |       0 |    4.76 | 16-70                                                                            
   EditCourse.tsx        |       0 |        0 |       0 |       0 | 22-89                                                                            
   EditDegreePlan.tsx    |      50 |      100 |       0 |      50 | 48                                                                               
-  ExportCSV.tsx         |    5.55 |        0 |       0 |    5.55 | 10-68                                                                            
+  ExportCSV.tsx         |       5 |        0 |       0 |       5 | 10-67                                                                            
   IntroModal.tsx        |       0 |      100 |       0 |       0 | 11                                                                               
   Requirement.tsx       |      20 |      100 |       0 |      20 | 7-27,31-33                                                                       
   Search.tsx            |    1.13 |        0 |       0 |    1.14 | 54-316                                                                           
@@ -453,5 +453,5 @@ All files               |   12.36 |     3.44 |    0.68 |   12.61 |
 Test Suites: 1 failed, 1 total
 Tests:       6 failed, 6 total
 Snapshots:   0 total
-Time:        3.733 s
+Time:        3.782 s
 Ran all test suites.
