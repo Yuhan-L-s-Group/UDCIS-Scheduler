@@ -1,4 +1,5 @@
 /* eslint-disable no-extra-parens */
+// because eslint conflict with prettier
 import React, { useState } from "react";
 import { Concentration, DegreePlan } from "../interfaces/degreePlan";
 import { Button, Modal, Col, Form, Row } from "react-bootstrap";

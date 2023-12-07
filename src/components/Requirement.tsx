@@ -1,9 +1,8 @@
 import React from "react";
-
-//import { useEffect, useState } from "react";
+//import { useEffect,  } from "react";
 import { DegreePlan } from "../interfaces/degreePlan";
 import { Common } from "../data/Concentration/Common";
-//import { Button } from "react-bootstrap";
+import { Button, Modal } from "react-bootstrap";
 
 export function getURLs(conc: string): string {
     const URLS: Record<string, string> = {
@@ -33,28 +32,35 @@ export function getURLs(conc: string): string {
     return URLS[conc];
 }
 
-export const Requirement = ({ degreePlan }: { degreePlan: DegreePlan }) => {
+export const Requirement = ({
+    degreePlan,
+    show,
+    handleClose
+}: {
+    degreePlan: DegreePlan;
+    show: boolean;
+    handleClose: () => void;
+}) => {
     const url = getURLs(degreePlan.concentration);
-    //const [showReq, setShowReq] = useState<boolean>(false);
-    //const handleShowReq = () => setShowReq(true);
-    //const handleCloseReq = () => setShowReq(false);
 
     return (
-        <div>
-            <div className="concentrationBox">
-                <h2>Degree Requirements</h2>
-                <p className="reqdesc">
-                    <a href={url} target="_blank" rel="noopener noreferrer">
-                        What classes should I take?
-                    </a>
-                </p>
-            </div>
-
-            <Common
-                degreePlan={degreePlan}
-                //show={showReq}
-                //handleClose={handleCloseReq}
-            ></Common>
-        </div>
+        <Modal show={show} onHide={handleClose}>
+            <Modal.Header closeButton>
+                <Modal.Title>Degree Requirements</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <a href={url} target="_blank" rel="noopener noreferrer">
+                    What classes should I take?
+                </a>
+                <br></br>
+                <br></br>
+                <Common degreePlan={degreePlan}></Common>
+            </Modal.Body>
+            <Modal.Footer>
+                <Button variant="secondary" onClick={handleClose}>
+                    Save
+                </Button>
+            </Modal.Footer>
+        </Modal>
     );
 };

@@ -1,4 +1,5 @@
 /* eslint-disable no-extra-parens */
+// because eslint conflict with prettier
 import React, { useState } from "react";
 import "./App.css";
 import { IntroModal } from "./components/IntroModal";
