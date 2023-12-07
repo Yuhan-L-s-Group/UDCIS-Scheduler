@@ -48,5 +48,10 @@
         ],
         "type": "credits",
         "number": 3
+    },{
+        "name": "Electives",
+        "courses": [],
+        "type": "CISC3",
+        "number": 3
     }
 ]

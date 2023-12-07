@@ -1,4 +1,4 @@
-export type RequirementType = "courses" | "credits";
+export type RequirementType = "courses" | "credits" | "breadth" | "CISC3";
 
 export interface Requirement {
     //requirment's name
