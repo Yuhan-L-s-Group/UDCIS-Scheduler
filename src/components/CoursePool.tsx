@@ -1,4 +1,5 @@
 /* eslint-disable no-extra-parens */
+// because eslint conflict with prettier
 import React from "react";
 import { Course } from "../interfaces/course";
 import { Button } from "react-bootstrap";

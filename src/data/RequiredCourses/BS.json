@@ -1,0 +1,11 @@
+[{
+    "name": "Bachelor of Science Requirement",
+    "courses": ["CISC361","CISC372","MATH242"],
+    "type": "courses",
+    "number": 3
+},{
+    "name": "Electives",
+    "courses": [],
+    "type": "CISC3",
+    "number": 18
+}]

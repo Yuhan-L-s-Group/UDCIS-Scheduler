@@ -7,9 +7,11 @@ export type Concentration =
     | "Bioinformatics"
     | "Cybersecurity"
     | "Data Science"
-    | "High Performance Computing"
+    | "High Performance Computing (Applied Math Track)"
+    | "High Performance Computing (Data Track)"
     | "Systems and Networks"
-    | "Theory and Computation";
+    | "Theory and Computation (Discrete Track)"
+    | "Theory and Computation (Continuous Track)";
 
 //interface for a single semester
 export interface DegreePlan {

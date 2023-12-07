@@ -14,21 +14,21 @@
         "number": 7
     },
     {
-        "name": "Data Track Requirements:",
+        "name": "Data Track Requirements",
         "courses": ["CISC437", "MATH350", "MATH450"],
         "type": "courses",
         "number": 3
     },
     {
-        "name": "Machine Learning Requirement",
+        "name": "Machine Learning Requirements",
         "courses": ["CISC483", "CISC484"],
         "type": "courses",
-        "number": 2
+        "number": 1
     },
     {
-        "name": "Data Track Electives:",
+        "name": "Data Track Electives",
         "courses": ["MATH302", "MATH349", "MATH351", "MATH535"],
-        "type": "courses",
-        "number": 4
+        "type": "credits",
+        "number": 5
     }
 ]

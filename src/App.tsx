@@ -1,4 +1,5 @@
 /* eslint-disable no-extra-parens */
+// because eslint conflict with prettier
 import React, { useState } from "react";
 import "./App.css";
 import { IntroModal } from "./components/IntroModal";
@@ -471,6 +472,8 @@ function App(): JSX.Element {
                                 <br />
                                 <br />
                                 <br />
+                                <br />
+                                <ExportCSV degreeList={degreeList}></ExportCSV>
                                 {isDegreeList && ( //degree list box
                                     <div className="degreeListBox">
                                         <div className="DegreeListTitle-view">
@@ -564,9 +567,6 @@ function App(): JSX.Element {
                                             </table>
                                         )}
                                         <br />
-                                        <ExportCSV
-                                            degreeList={degreeList}
-                                        ></ExportCSV>
                                     </div>
                                 )}
                                 {isEditDegreeOpen && (

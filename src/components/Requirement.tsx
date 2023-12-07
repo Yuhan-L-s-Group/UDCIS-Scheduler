@@ -1,7 +1,8 @@
 import React from "react";
-//import { useEffect, useState } from "react";
+//import { useEffect,  } from "react";
 import { DegreePlan } from "../interfaces/degreePlan";
 import { Common } from "../data/Concentration/Common";
+import { Button, Modal } from "react-bootstrap";
 
 export function getURLs(conc: string): string {
     const URLS: Record<string, string> = {
@@ -17,28 +18,49 @@ export function getURLs(conc: string): string {
             "https://catalog.udel.edu/preview_program.php?catoid=47&poid=34981",
         "Data Science":
             "https://catalog.udel.edu/preview_program.php?catoid=47&poid=34980",
-        "High Performance Computing":
+        "High Performance Computing (Applied Math Track)":
+            "https://catalog.udel.edu/preview_program.php?catoid=47&poid=34984",
+        "High Performance Computing (Data Track)":
             "https://catalog.udel.edu/preview_program.php?catoid=47&poid=34984",
         "Systems and Networks":
             "https://catalog.udel.edu/preview_program.php?catoid=47&poid=34985",
-        "Theory and Computation":
+        "Theory and Computation (Discrete Track)":
+            "https://catalog.udel.edu/preview_program.php?catoid=47&poid=34979",
+        "Theory and Computation (Continuous Track)":
             "https://catalog.udel.edu/preview_program.php?catoid=47&poid=34979"
     };
     return URLS[conc];
 }
 
-export const Requirement = ({ degreePlan }: { degreePlan: DegreePlan }) => {
+export const Requirement = ({
+    degreePlan,
+    show,
+    handleClose
+}: {
+    degreePlan: DegreePlan;
+    show: boolean;
+    handleClose: () => void;
+}) => {
     const url = getURLs(degreePlan.concentration);
 
     return (
-        <div className="concentrationBox">
-            <h2>Degree Requirements</h2>
-            <p className="reqdesc">
+        <Modal show={show} onHide={handleClose}>
+            <Modal.Header closeButton>
+                <Modal.Title>Degree Requirements</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
                 <a href={url} target="_blank" rel="noopener noreferrer">
                     What classes should I take?
                 </a>
-            </p>
-            <Common degreePlan={degreePlan}></Common>
-        </div>
+                <br></br>
+                <br></br>
+                <Common degreePlan={degreePlan}></Common>
+            </Modal.Body>
+            <Modal.Footer>
+                <Button variant="secondary" onClick={handleClose}>
+                    Save
+                </Button>
+            </Modal.Footer>
+        </Modal>
     );
 };

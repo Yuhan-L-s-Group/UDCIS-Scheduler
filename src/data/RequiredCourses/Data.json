@@ -1,0 +1,57 @@
+[
+    {
+        "name": "Concentration Requirements",
+        "courses": ["CISC304",
+        "CISC372",
+        "CISC437",
+        "CISC481",
+        "MATH205",
+        "MATH242",
+        "MATH243",
+        "MATH349"],
+        "type": "courses",
+        "number": 8
+    },
+    {
+        "name": "Advanced Data Science",
+        "courses": ["CISC483","CISC484"],
+        "type": "courses",
+        "number": 1
+    },
+    {
+        "name": "Advanced Math",
+        "courses": ["MATH302","MATH350","MATH426"],
+        "type": "courses",
+        "number": 1
+    },
+    {
+        "name": "Restricted Electives",
+        "courses": [
+            "CISC361",
+            "CISC410",
+            "CISC436",
+            "CISC440",
+            "CISC442",
+            "CISC449",
+            "CISC450",
+            "CISC471",
+            "CISC474",
+            "CISC483",
+            "CISC484",
+            "CISC489",
+            "ELEG387",
+            "ELEG487",
+            "MATH302",
+            "MATH350",
+            "MATH428",
+            "MATH450"
+        ],
+        "type": "credits",
+        "number": 3
+    },{
+        "name": "Electives",
+        "courses": [],
+        "type": "CISC3",
+        "number": 3
+    }
+]

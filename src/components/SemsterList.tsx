@@ -1,11 +1,13 @@
 /* eslint-disable no-extra-parens */
+// eslint conflict with prettier
 import { SemesterDisplay } from "./SemesterDisplay";
 import { Semester } from "../interfaces/semester";
 import "../App.css";
-import React from "react";
+import React, { useState } from "react";
 import { DegreePlan } from "../interfaces/degreePlan";
 import { Button } from "react-bootstrap";
 import { Course } from "../interfaces/course";
+import { Requirement } from "./Requirement";
 
 // It contains all the semesters into "semesters" varible and iterate each semester into "SemesterDisplay" component
 // Addtionally it automatically caculates the cumulative credits
@@ -42,11 +44,15 @@ export const SemesterList = ({
     setCoursePool: React.Dispatch<React.SetStateAction<Course[]>>;
     coursePool: Course[];
 }) => {
+    const [showReq, setShowReq] = useState<boolean>(false);
+    const handleShowReq = () => setShowReq(true);
+    const handleCloseReq = () => setShowReq(false);
     const handleBack = () => {
         setIsEditDegreeOpen(false);
         setIsdegreeList(true);
         setIsaddDegreeButton(true);
     };
+
     return (
         <>
             <br />
@@ -59,14 +65,14 @@ export const SemesterList = ({
                         <div className="DegreeListTitle-view">
                             Semesters List
                         </div>
-                        <br />
-                        <Button
-                            className="add_button"
-                            onClick={handleShowModal}
-                        >
-                            {" "}
-                            Add New Semester
+                        <Button className="show_Req" onClick={handleShowReq}>
+                            Show Requirement
                         </Button>
+                        <Requirement
+                            degreePlan={SelecetedEditdDegreePlan}
+                            show={showReq}
+                            handleClose={handleCloseReq}
+                        ></Requirement>
                         <br />
                         <br />
                         {renderName && <div className="name">{Name}</div>}
@@ -85,6 +91,14 @@ export const SemesterList = ({
                             )}
                             {" credits"}
                         </div>
+                        <br />
+                        <Button
+                            className="add_button"
+                            onClick={handleShowModal}
+                        >
+                            {" "}
+                            Add New Semester
+                        </Button>
 
                         {semesters.map((semester: Semester): JSX.Element => {
                             return (

@@ -4,7 +4,6 @@ import { DegreePlan } from "../interfaces/degreePlan";
 import { Semester } from "../interfaces/semester";
 import { SemesterList } from "./SemsterList";
 import { SemesterModal } from "./SemesterModal";
-import { Requirement } from "./Requirement";
 import { Course } from "../interfaces/course";
 
 interface EditDegreePlanProps {
@@ -75,7 +74,6 @@ const EditDegreePlan = ({
                 setDegreeList={setDegreeList}
                 modifysemster={modifysemster}
             ></SemesterModal>
-            <Requirement degreePlan={SelecetedEditdDegreePlan}></Requirement>
         </div>
     );
 };

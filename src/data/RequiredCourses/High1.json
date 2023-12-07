@@ -20,15 +20,9 @@
         "number": 2
     },
     {
-        "name": "Probability/Statistics Requirement",
-        "courses": ["MATH205", "MATH350"],
-        "type": "courses",
-        "number": 2
-    },
-    {
         "name": "Applied Math Track Electives",
         "courses": ["MATH205", "MATH350"],
-        "type": "courses",
-        "number": 2
+        "type": "credits",
+        "number": 5
     }
 ]
