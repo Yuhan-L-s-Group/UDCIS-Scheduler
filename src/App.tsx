@@ -477,7 +477,12 @@ function App(): JSX.Element {
                                         </div>
                                         <br />
                                         {degreeList.length === 0 ? (
-                                            <p>Add a degree plan to start!</p>
+                                            <p>
+                                                {Name}
+                                                {
+                                                    " please add a degree plan to start!"
+                                                }
+                                            </p>
                                         ) : (
                                             <p></p>
                                         )}
@@ -493,6 +498,10 @@ function App(): JSX.Element {
                                             </div>
                                         )}
                                         <br />
+                                        <div className="NameSize-view">
+                                            {degreeList.length !== 0 && Name}
+                                        </div>
+
                                         {isRenderDegreeTable && (
                                             //individual degree plan.
                                             <table className="degreeTable">
