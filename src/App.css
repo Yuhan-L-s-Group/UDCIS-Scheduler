@@ -147,7 +147,7 @@
     border-radius: 40px;
     padding: 40px;
     width: 460px;
-    margin-left: 50px;
+    margin-left: 5px;
     margin-top: 70px;
 }
 .semesterListName-view {
@@ -167,7 +167,7 @@
     font-size: 18px;
     font-weight: 500;
     margin-top: 360px;
-    margin-left: -60px;
+    margin-left: -20px;
     margin-bottom: 300px;
 }
 
@@ -300,15 +300,15 @@ th {
     border-radius: 40px;
     padding: 50px;
     width: 480px;
-    margin-left: 50px;
+    margin-left: 5px;
     margin-top: 120px;
 }
 .concentrationBox {
     border: 4px solid #000000;
     border-radius: 40px;
     padding: 60px;
-    width: 480px;
-    margin-left: 50px;
+    width: 465px;
+    margin-left: 5px;
     margin-bottom: 100px;
 }
 .classgo-view {
@@ -343,4 +343,16 @@ th {
 
 .ExportCSV:hover::before {
     opacity: 1;
+}
+.NameSize-view{
+    font-size: 25px;
+}
+.selectCourseInsemester{
+    font-size: 16px;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+.prerequiste-view{
+    color: rgb(179, 182, 23);
 }
