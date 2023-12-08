@@ -6,7 +6,7 @@ import { IntroModal } from "./components/IntroModal";
 import { Semester } from "./interfaces/semester";
 import InputGroup from "react-bootstrap/InputGroup";
 import logo1 from "./pictures/udlogo2.jpg";
-import Courses from "./data/CourseList.json";
+import Courses from "./data/CoursesList/CourseList.json";
 import { Course } from "./interfaces/course";
 import Search from "./components/Search";
 import DegreeManage from "./components/DegreeManage";
