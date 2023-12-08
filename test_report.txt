@@ -8,11 +8,11 @@ Browserslist: caniuse-lite is outdated. Please run:
 FAIL src/App.test.tsx
   Scheduler Tests
     ✕ Check home page and welcome window (39 ms)
-    ✕ Switch between different concentration (at this point, just check texts) (8 ms)
-    ✕ Try to add and delete semester (5 ms)
+    ✕ Switch between different concentration (at this point, just check texts) (7 ms)
+    ✕ Try to add and delete semester (6 ms)
     ✕ Add a course that does not exist in the list (7 ms)
     ✕ Replace with test details (5 ms)
-    ✕ Test search bar (5 ms)
+    ✕ Test search bar (6 ms)
 
   ● Scheduler Tests › Check home page and welcome window
 
@@ -425,10 +425,10 @@ FAIL src/App.test.tsx
 ------------------------|---------|----------|---------|---------|----------------------------------------------------------------------------------
 File                    | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s                                                                
 ------------------------|---------|----------|---------|---------|----------------------------------------------------------------------------------
-All files               |   11.08 |     2.53 |    0.62 |   11.38 |                                                                                  
- src                    |   41.44 |    11.11 |     3.7 |    42.2 |                                                                                  
-  App.tsx               |   41.44 |    11.11 |     3.7 |    42.2 | 30-31,45-65,77-78,98-104,110-114,134-140,143-145,152-163,177,185-198,201,226-555 
- src/components         |    2.73 |        0 |       0 |    2.79 |                                                                                  
+All files               |   10.85 |      2.5 |    0.62 |   11.13 |                                                                                  
+ src                    |   41.81 |    11.11 |     3.7 |   42.59 |                                                                                  
+  App.tsx               |   41.81 |    11.11 |     3.7 |   42.59 | 30-31,45-64,76-77,97-102,108-112,132-138,141-143,150-161,175,183-196,199,224-558 
+ src/components         |    2.63 |        0 |       0 |    2.69 |                                                                                  
   AddCourse.tsx         |       0 |        0 |       0 |       0 | 22-102                                                                           
   AddtoSemester.tsx     |       0 |        0 |       0 |       0 | 22-58                                                                            
   CoursePool.tsx        |      20 |        0 |       0 |      20 | 19-52                                                                            
@@ -438,8 +438,8 @@ All files               |   11.08 |     2.53 |    0.62 |   11.38 |
   ExportCSV.tsx         |       5 |        0 |       0 |       5 | 10-67                                                                            
   IntroModal.tsx        |       0 |      100 |       0 |       0 | 11                                                                               
   Requirement.tsx       |      20 |      100 |       0 |      20 | 8-32,44-46                                                                       
-  Search.tsx            |    1.13 |        0 |       0 |    1.14 | 55-317                                                                           
-  SemesterDisplay.tsx   |     1.2 |        0 |       0 |    1.25 | 31-232                                                                           
+  Search.tsx            |    1.09 |        0 |       0 |    1.11 | 61-326                                                                           
+  SemesterDisplay.tsx   |    1.08 |        0 |       0 |    1.12 | 31-240                                                                           
   SemesterModal.tsx     |    3.44 |        0 |       0 |    3.57 | 23-117                                                                           
   SemsterList.tsx       |    7.14 |        0 |       0 |    8.33 | 47-104                                                                           
  src/data/Concentration |    1.53 |        0 |       0 |    1.63 |                                                                                  
@@ -453,5 +453,5 @@ All files               |   11.08 |     2.53 |    0.62 |   11.38 |
 Test Suites: 1 failed, 1 total
 Tests:       6 failed, 6 total
 Snapshots:   0 total
-Time:        3.971 s
+Time:        3.976 s
 Ran all test suites.
