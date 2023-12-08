@@ -333,8 +333,6 @@ const Search = ({
                                                     " " +
                                                     semester.season}
                                             </button>
-                                            <br />
-                                            <br />
                                         </div>
                                     )
                                 )}
