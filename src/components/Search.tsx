@@ -30,6 +30,9 @@ interface SearchProps {
     setIsCourseInfo: React.Dispatch<React.SetStateAction<boolean>>;
     setCoursePool: React.Dispatch<React.SetStateAction<Course[]>>;
     coursePool: Course[];
+    setSemester: React.Dispatch<React.SetStateAction<Semester[]>>;
+    semesters: Semester[];
+    SelecetedEditdDegreePlan: DegreePlan;
 }
 const Search = ({
     ModifiedCourseList,
@@ -50,7 +53,10 @@ const Search = ({
     setIsRenderPoolOfCourse,
     setIsCourseInfo,
     setCoursePool,
-    coursePool
+    coursePool,
+    setSemester,
+    semesters,
+    SelecetedEditdDegreePlan
 }: SearchProps) => {
     const [ErrorMessage2, setError2] = useState(false);
     const [filterCourses, setfilterCourses] = useState<Course[]>();
@@ -154,6 +160,9 @@ const Search = ({
         coursePool.splice(CourseIndexInPool, 1);
         const update2 = [...coursePool];
         setCoursePool(update2);
+        const updatedSemesters = [...SelecetedEditdDegreePlan.semesters];
+        setSemester(updatedSemesters);
+        console.log(semesters);
     };
     const [renderSelectedSemester, setRenderSelectedSemester] =
         useState<Semester>({
@@ -326,12 +335,14 @@ const Search = ({
                                             </button>
                                             <br />
                                             <br />
-                                            <div className="prerequiste-view">
-                                                {"PREREQ: "}
-                                                {theCourse.preReq}
-                                            </div>
                                         </div>
                                     )
+                                )}
+                                {theCourse.preReq.length > 2 && (
+                                    <div className="prerequiste-view">
+                                        {"PREREQ: "}
+                                        {theCourse.preReq}
+                                    </div>
                                 )}
                             </div>
                         ) : (

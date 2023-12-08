@@ -58,7 +58,6 @@ function App(): JSX.Element {
         degreeList[findDegreeIndex] = SelecetedEditdDegreePlan;
         const update = [...degreeList];
         setDegreeList(update);
-        // console.log(degreeList[findDegreeIndex]);
     }
 
     function modifysemster(semester: Semester[]) {
@@ -101,7 +100,6 @@ function App(): JSX.Element {
         setSelecetedEditdDegreePlan(EditdDegreePlan);
         const updatedSemesters = [...EditdDegreePlan.semesters];
         setSemester(updatedSemesters);
-        console.log(selectedDegreePlan);
     };
     // is rendering degree plan table
     const [isRenderDegreeTable, setIsRenderDegreeTable] = useState(false);
@@ -436,6 +434,11 @@ function App(): JSX.Element {
                                             setIsCourseInfo={setIsCourseInfo}
                                             coursePool={coursePool}
                                             setCoursePool={setCoursePool}
+                                            setSemester={setSemester}
+                                            semesters={semesters}
+                                            SelecetedEditdDegreePlan={
+                                                SelecetedEditdDegreePlan
+                                            }
                                         ></Search>
                                     </span>
                                 }

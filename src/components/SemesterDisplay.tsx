@@ -34,7 +34,7 @@ export const SemesterDisplay = ({
             (degreeplan) => degreeplan === SelecetedEditdDegreePlan
         );
         const findSemesterIndex = SelecetedEditdDegreePlan.semesters.findIndex(
-            (s) => s === semester
+            (s) => s.courses.includes(course)
         );
         const findCourseIndex = SelecetedEditdDegreePlan.semesters[
             findSemesterIndex
@@ -45,6 +45,10 @@ export const SemesterDisplay = ({
         );
         const update = [...degreeList];
         setDegreeList(update);
+        semesters[findSemesterIndex].courses.splice(findCourseIndex, 1);
+        const update2 = [...semesters];
+        modifysemster(update2);
+        console.log(semesters);
     };
 
     const deleteWholeSemester = () => {
@@ -135,8 +139,8 @@ export const SemesterDisplay = ({
                 (degreeplan) => degreeplan === SelecetedEditdDegreePlan
             );
             const findSemesterIndex =
-                SelecetedEditdDegreePlan.semesters.findIndex(
-                    (s) => s === semester
+                SelecetedEditdDegreePlan.semesters.findIndex((s) =>
+                    s.courses.includes(course)
                 );
             const findCourseIndex = SelecetedEditdDegreePlan.semesters[
                 findSemesterIndex
@@ -146,9 +150,13 @@ export const SemesterDisplay = ({
             ].courses.splice(findCourseIndex, 1);
             const update2 = [...degreeList];
             setDegreeList(update2);
+            semesters[findSemesterIndex].courses.splice(findCourseIndex, 1);
+            const update3 = [...semesters];
+            modifysemster(update3);
+            console.log(findSemesterIndex);
+            console.log(findCourseIndex);
+            console.log(degreeList);
         }
-
-        console.log(SelecetedEditdDegreePlan);
     };
     return (
         <div className="semester_view">
