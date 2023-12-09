@@ -213,6 +213,9 @@ function App(): JSX.Element {
         breadth: "",
         typ: ""
     });
+    const handledrag = (event: React.DragEvent<HTMLDivElement>) => {
+        event.preventDefault();
+    };
     return (
         <div className="App">
             {isHomepage ? ( // the first page when you open the web
@@ -261,7 +264,16 @@ function App(): JSX.Element {
                         <Row>
                             <Col md={3}>
                                 {isCourseBar && (
-                                    <div className="courseBar_box">
+                                    <div
+                                        className="courseBar_box"
+                                        draggable={true}
+                                        onDrag={(e) => handledrag(e)}
+                                        onDragStart={() =>
+                                            setDragCouse(
+                                                listCourses[courseIndex]
+                                            )
+                                        }
+                                    >
                                         <div className="DegreeListTitle-view">
                                             {"Course Information"}
                                         </div>

@@ -214,7 +214,7 @@ export const SemesterDisplay = ({
                                 0
                             )}
                         </th>
-                        <th>Move Course</th>
+                        {/* <th>Move Course</th> */}
                         {semester.courses.length !== 0 && (
                             <th>
                                 {" "}
@@ -248,7 +248,7 @@ export const SemesterDisplay = ({
                                 {course.name}
                             </td>
                             <td> {course.credits}</td>
-                            <td>
+                            {/* <td>
                                 <select
                                     onChange={(e) => {
                                         const selectedValue = e.target.value;
@@ -281,7 +281,7 @@ export const SemesterDisplay = ({
                                         ))}
                                     <option value={course.code}>To Pool</option>
                                 </select>
-                            </td>
+                            </td> */}
                             <td>
                                 {" "}
                                 <Button

@@ -227,6 +227,7 @@ table {
     border-collapse: collapse;
     margin: auto;
     margin-top: 20px;
+    width: 350px;
 }
 
 table,
