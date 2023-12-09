@@ -202,7 +202,17 @@ function App(): JSX.Element {
     const [IsCourseInfo, setIsCourseInfo] = useState(false);
     //Not to render pool of courses at the begining
     const [IsRenderPoolTable, setIsRenderPoolTable] = useState(false);
-
+    //drag and drop state
+    const [DragCouse, setDragCouse] = useState<Course>({
+        code: "",
+        name: "",
+        descr: "",
+        credits: "",
+        preReq: "",
+        restrict: "",
+        breadth: "",
+        typ: ""
+    });
     return (
         <div className="App">
             {isHomepage ? ( // the first page when you open the web
@@ -450,6 +460,9 @@ function App(): JSX.Element {
                                             AddCourseToDegreePlan
                                         }
                                         IsRenderPoolTable={IsRenderPoolTable}
+                                        DragCouse={DragCouse}
+                                        setDragCouse={setDragCouse}
+                                        setCoursePool={setCoursePool}
                                     />
                                 )}
                             </Col>
@@ -603,6 +616,8 @@ function App(): JSX.Element {
                                             setDegreeList={setDegreeList}
                                             setCoursePool={setCoursePool}
                                             coursePool={coursePool}
+                                            DragCouse={DragCouse}
+                                            setDragCouse={setDragCouse}
                                         />
                                     </div>
                                 )}

@@ -17,7 +17,9 @@ export const SemesterDisplay = ({
     setDegreeList,
     SelecetedEditdDegreePlan,
     setCoursePool,
-    coursePool
+    coursePool,
+    DragCouse,
+    setDragCouse
 }: {
     semester: Semester;
     modifysemster: (semester: Semester[]) => void;
@@ -27,6 +29,8 @@ export const SemesterDisplay = ({
     SelecetedEditdDegreePlan: DegreePlan;
     setCoursePool: React.Dispatch<React.SetStateAction<Course[]>>;
     coursePool: Course[];
+    DragCouse: Course;
+    setDragCouse: React.Dispatch<React.SetStateAction<Course>>;
 }): JSX.Element => {
     const deleteCourseFunc = (course: Course) => {
         // delete a course from a semester
@@ -48,7 +52,6 @@ export const SemesterDisplay = ({
         semesters[findSemesterIndex].courses.splice(findCourseIndex, 1);
         const update2 = [...semesters];
         modifysemster(update2);
-        console.log(semesters);
     };
 
     const deleteWholeSemester = () => {
@@ -85,19 +88,17 @@ export const SemesterDisplay = ({
     const handleCourseMove = (course: Course, targetSemesterId: string) => {
         const updatedSemesters = semesters.map((s) => {
             if (s.season + s.year === targetSemesterId) {
-                // find the semester where user wants to move the course to
                 if (!s.courses.find((c) => c.code === course.code)) {
-                    //make a condition that the target semester does not have repeated course
                     const findCourseIndex = s.courses.findIndex(
                         (thecourse) => thecourse === course
-                    ); //find the course index before user move to target semester, so after move out, the original course will be deleted from its semester
+                    );
                     const findOriginalSemesterIndex = semesters.findIndex(
                         (thesemester) => thesemester.courses.includes(course)
-                    ); //find the semester index before move out, same with the last step
+                    );
                     const findSemesterIndex =
                         SelecetedEditdDegreePlan.semesters.findIndex(
                             (s) => s.season + s.year === targetSemesterId
-                        ); //find the target semester index
+                        );
                     const findDegreeIndex = degreeList.findIndex(
                         (degree) =>
                             degree.name === SelecetedEditdDegreePlan.name
@@ -127,6 +128,7 @@ export const SemesterDisplay = ({
         modifysemster(updatedSemesters);
     };
     //handle the course from seemster list to pool of courses
+
     const handleCoursetoPool = (course: Course) => {
         const repeatedCourse = coursePool.includes(course);
         if (!repeatedCourse) {
@@ -153,14 +155,59 @@ export const SemesterDisplay = ({
             semesters[findSemesterIndex].courses.splice(findCourseIndex, 1);
             const update3 = [...semesters];
             modifysemster(update3);
-            console.log(findSemesterIndex);
-            console.log(findCourseIndex);
-            console.log(degreeList);
         }
     };
+
+    const handleDrag = (
+        event: React.DragEvent<HTMLTableRowElement>,
+        course: Course
+    ) => {
+        event.preventDefault();
+        console.log(course);
+
+        const findSemesterIndex = SelecetedEditdDegreePlan.semesters.findIndex(
+            (s) => s.courses.includes(course)
+        );
+        const findCourseIndex = SelecetedEditdDegreePlan.semesters[
+            findSemesterIndex
+        ].courses.findIndex((c) => c === course);
+
+        semesters[findSemesterIndex].courses.splice(findCourseIndex, 1);
+        const update2 = [...semesters];
+        modifysemster(update2);
+    };
+    const handleDrop = (event: React.DragEvent<HTMLDivElement>) => {
+        event.preventDefault();
+
+        const findSemesterIndex = SelecetedEditdDegreePlan.semesters.findIndex(
+            (s) => s === semester
+        );
+        // const findCourseIndex = SelecetedEditdDegreePlan.semesters[
+        //     findSemesterIndex
+        // ].courses.findIndex((c) => c === DragCouse);
+        // degreeList[findDegreeIndex].semesters[findSemesterIndex].courses.push(
+        //     DragCouse
+        // );
+        // const update = [...degreeList];
+        // setDegreeList(update);
+        const repeatedCourse = semesters.filter((s) =>
+            s.courses.includes(DragCouse)
+        );
+        if (repeatedCourse.length <= 0) {
+            semesters[findSemesterIndex].courses.push(DragCouse);
+            const update2 = [...semesters];
+            modifysemster(update2);
+        }
+    };
+    const handledragover = (event: React.DragEvent<HTMLDivElement>) => {
+        event.preventDefault();
+    };
     return (
-        <div className="semester_view">
-            {}
+        <div
+            className="semester_view"
+            onDrop={(event) => handleDrop(event)}
+            onDragOver={(event) => handledragover(event)}
+        >
             <table>
                 <thead>
                     <tr>
@@ -192,7 +239,16 @@ export const SemesterDisplay = ({
                 </thead>
                 <tbody>
                     {semester.courses.map((course) => (
-                        <tr key={course.code + course.name}>
+                        <tr
+                            key={course.code + course.name}
+                            draggable={true}
+                            onDrag={(e) => handleDrag(e, course)}
+                            onDragStart={() => setDragCouse(course)}
+                            style={{
+                                backgroundColor: "lightblue",
+                                color: "black"
+                            }}
+                        >
                             <td>
                                 {course.code}
                                 {" - "}
@@ -213,10 +269,10 @@ export const SemesterDisplay = ({
                                         }
                                     }}
                                     style={{
-                                        fontSize: "16px", // Adjust the font size as needed
-                                        padding: "8px", // Adjust the padding as needed
-                                        borderRadius: "6px", // Adjust the border radius as needed
-                                        border: "1px solid #ccc" // Add border for a cleaner look
+                                        fontSize: "16px",
+                                        padding: "8px",
+                                        borderRadius: "6px",
+                                        border: "1px solid #ccc"
                                     }}
                                 >
                                     <option>Move to...</option>

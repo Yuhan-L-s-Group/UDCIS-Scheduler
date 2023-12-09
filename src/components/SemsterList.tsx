@@ -26,7 +26,9 @@ export const SemesterList = ({
     handleShowModal,
     SelecetedEditdDegreePlan,
     setCoursePool,
-    coursePool
+    coursePool,
+    DragCouse,
+    setDragCouse
 }: {
     semesters: Semester[];
     Name: string;
@@ -43,6 +45,8 @@ export const SemesterList = ({
     SelecetedEditdDegreePlan: DegreePlan;
     setCoursePool: React.Dispatch<React.SetStateAction<Course[]>>;
     coursePool: Course[];
+    DragCouse: Course;
+    setDragCouse: React.Dispatch<React.SetStateAction<Course>>;
 }) => {
     const [showReq, setShowReq] = useState<boolean>(false);
     const handleShowReq = () => setShowReq(true);
@@ -52,7 +56,6 @@ export const SemesterList = ({
         setIsdegreeList(true);
         setIsaddDegreeButton(true);
     };
-
     return (
         <>
             <br />
@@ -115,6 +118,8 @@ export const SemesterList = ({
                                         }
                                         setCoursePool={setCoursePool}
                                         coursePool={coursePool}
+                                        DragCouse={DragCouse}
+                                        setDragCouse={setDragCouse}
                                     />
                                 </div>
                             );
