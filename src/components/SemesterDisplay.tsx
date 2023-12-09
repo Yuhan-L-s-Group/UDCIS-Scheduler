@@ -157,7 +157,7 @@ export const SemesterDisplay = ({
             modifysemster(update3);
         }
     };
-
+    // drag and drop functions
     const handleDrag = (
         event: React.DragEvent<HTMLTableRowElement>,
         course: Course
@@ -182,14 +182,7 @@ export const SemesterDisplay = ({
         const findSemesterIndex = SelecetedEditdDegreePlan.semesters.findIndex(
             (s) => s === semester
         );
-        // const findCourseIndex = SelecetedEditdDegreePlan.semesters[
-        //     findSemesterIndex
-        // ].courses.findIndex((c) => c === DragCouse);
-        // degreeList[findDegreeIndex].semesters[findSemesterIndex].courses.push(
-        //     DragCouse
-        // );
-        // const update = [...degreeList];
-        // setDegreeList(update);
+
         const repeatedCourse = semesters.filter((s) =>
             s.courses.includes(DragCouse)
         );
