@@ -16,8 +16,8 @@ export const SemesterDisplay = ({
     degreeList,
     setDegreeList,
     SelecetedEditdDegreePlan,
-    setCoursePool,
-    coursePool,
+    // setCoursePool,
+    // coursePool,
     DragCouse,
     setDragCouse
 }: {
@@ -85,78 +85,79 @@ export const SemesterDisplay = ({
         console.log(SelecetedEditdDegreePlan);
     };
     //handle move course to other semester function
-    const handleCourseMove = (course: Course, targetSemesterId: string) => {
-        const updatedSemesters = semesters.map((s) => {
-            if (s.season + s.year === targetSemesterId) {
-                if (!s.courses.find((c) => c.code === course.code)) {
-                    const findCourseIndex = s.courses.findIndex(
-                        (thecourse) => thecourse === course
-                    );
-                    const findOriginalSemesterIndex = semesters.findIndex(
-                        (thesemester) => thesemester.courses.includes(course)
-                    );
-                    const findSemesterIndex =
-                        SelecetedEditdDegreePlan.semesters.findIndex(
-                            (s) => s.season + s.year === targetSemesterId
-                        );
-                    const findDegreeIndex = degreeList.findIndex(
-                        (degree) =>
-                            degree.name === SelecetedEditdDegreePlan.name
-                    );
-                    degreeList[findDegreeIndex].semesters[findSemesterIndex] = {
-                        ...s,
-                        courses: [...s.courses, course]
-                    };
-                    degreeList[findDegreeIndex].semesters[
-                        findOriginalSemesterIndex
-                    ].courses.splice(findCourseIndex, 1);
-                    const update = [...degreeList];
-                    setDegreeList(update);
-                    return {
-                        ...s,
-                        courses: [...s.courses, course]
-                    };
-                }
-            } else if (s.courses.find((c) => c.code === course.code)) {
-                return {
-                    ...s,
-                    courses: s.courses.filter((c) => c.code !== course.code)
-                };
-            }
-            return s;
-        });
-        modifysemster(updatedSemesters);
-    };
+    // const handleCourseMove = (course: Course, targetSemesterId: string) => {
+    //     const updatedSemesters = semesters.map((s) => {
+    //         if (s.season + s.year === targetSemesterId) {
+    //             if (!s.courses.find((c) => c.code === course.code)) {
+    //                 const findCourseIndex = s.courses.findIndex(
+    //                     (thecourse) => thecourse === course
+    //                 );
+    //                 const findOriginalSemesterIndex = semesters.findIndex(
+    //                     (thesemester) => thesemester.courses.includes(course)
+    //                 );
+    //                 const findSemesterIndex =
+    //                     SelecetedEditdDegreePlan.semesters.findIndex(
+    //                         (s) => s.season + s.year === targetSemesterId
+    //                     );
+    //                 const findDegreeIndex = degreeList.findIndex(
+    //                     (degree) =>
+    //                         degree.name === SelecetedEditdDegreePlan.name
+    //                 );
+    //                 degreeList[findDegreeIndex].semesters[findSemesterIndex] = {
+    //                     ...s,
+    //                     courses: [...s.courses, course]
+    //                 };
+    //                 degreeList[findDegreeIndex].semesters[
+    //                     findOriginalSemesterIndex
+    //                 ].courses.splice(findCourseIndex, 1);
+    //                 const update = [...degreeList];
+    //                 setDegreeList(update);
+    //                 return {
+    //                     ...s,
+    //                     courses: [...s.courses, course]
+    //                 };
+    //             }
+    //         } else if (s.courses.find((c) => c.code === course.code)) {
+    //             return {
+    //                 ...s,
+    //                 courses: s.courses.filter((c) => c.code !== course.code)
+    //             };
+    //         }
+    //         return s;
+    //     });
+    //     modifysemster(updatedSemesters);
+    // };
+    //
     //handle the course from seemster list to pool of courses
 
-    const handleCoursetoPool = (course: Course) => {
-        const repeatedCourse = coursePool.includes(course);
-        if (!repeatedCourse) {
-            // add the course from semester to pool
-            coursePool.push(course);
-            const update = [...coursePool];
-            setCoursePool(update);
-            //delete the original course from seemster
-            const findDegreeIndex = degreeList.findIndex(
-                (degreeplan) => degreeplan === SelecetedEditdDegreePlan
-            );
-            const findSemesterIndex =
-                SelecetedEditdDegreePlan.semesters.findIndex((s) =>
-                    s.courses.includes(course)
-                );
-            const findCourseIndex = SelecetedEditdDegreePlan.semesters[
-                findSemesterIndex
-            ].courses.findIndex((c) => c === course);
-            degreeList[findDegreeIndex].semesters[
-                findSemesterIndex
-            ].courses.splice(findCourseIndex, 1);
-            const update2 = [...degreeList];
-            setDegreeList(update2);
-            semesters[findSemesterIndex].courses.splice(findCourseIndex, 1);
-            const update3 = [...semesters];
-            modifysemster(update3);
-        }
-    };
+    // const handleCoursetoPool = (course: Course) => {
+    //     const repeatedCourse = coursePool.includes(course);
+    //     if (!repeatedCourse) {
+    //         // add the course from semester to pool
+    //         coursePool.push(course);
+    //         const update = [...coursePool];
+    //         setCoursePool(update);
+    //         //delete the original course from seemster
+    //         const findDegreeIndex = degreeList.findIndex(
+    //             (degreeplan) => degreeplan === SelecetedEditdDegreePlan
+    //         );
+    //         const findSemesterIndex =
+    //             SelecetedEditdDegreePlan.semesters.findIndex((s) =>
+    //                 s.courses.includes(course)
+    //             );
+    //         const findCourseIndex = SelecetedEditdDegreePlan.semesters[
+    //             findSemesterIndex
+    //         ].courses.findIndex((c) => c === course);
+    //         degreeList[findDegreeIndex].semesters[
+    //             findSemesterIndex
+    //         ].courses.splice(findCourseIndex, 1);
+    //         const update2 = [...degreeList];
+    //         setDegreeList(update2);
+    //         semesters[findSemesterIndex].courses.splice(findCourseIndex, 1);
+    //         const update3 = [...semesters];
+    //         modifysemster(update3);
+    //     }
+    // };
     // drag and drop functions
     const handleDrag = (
         event: React.DragEvent<HTMLTableRowElement>,
