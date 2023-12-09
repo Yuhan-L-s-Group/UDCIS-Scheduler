@@ -27,8 +27,9 @@ const CoursePool = ({
         event: React.DragEvent<HTMLTableRowElement>
     ) => {
         event.preventDefault();
-        const findPoolIndex = coursePool.findIndex((c) => c === course);
-        coursePool.splice(findPoolIndex, 1);
+        const update = coursePool.filter((course) => course !== DragCouse);
+        setCoursePool([...update]);
+        console.log(update);
     };
     const handledrop = (event: React.DragEvent<HTMLDivElement>) => {
         event.preventDefault();
