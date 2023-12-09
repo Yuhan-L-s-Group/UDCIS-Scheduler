@@ -53,7 +53,7 @@ const CoursePool = ({
                 <table>
                     <thead>
                         {" "}
-                        <tr draggable={true}>
+                        <tr>
                             <th> Course Code</th>
                             <th> Course Credits</th>
                             <th> Delete</th>
