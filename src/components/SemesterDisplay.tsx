@@ -1,6 +1,6 @@
 /* eslint-disable no-extra-parens */
 // eslint conflict with prettier
-import React, { useState } from "react";
+import React from "react";
 import { Course } from "../interfaces/course";
 import "../App.css";
 import { Semester } from "../interfaces/semester";
@@ -34,25 +34,24 @@ export const SemesterDisplay = ({
 }): JSX.Element => {
     const deleteCourseFunc = (course: Course) => {
         // delete a course from a semester
-        // const findDegreeIndex = degreeList.findIndex(
-        //     (degreeplan) => degreeplan === SelecetedEditdDegreePlan
-        // );
-        // const findSemesterIndex = SelecetedEditdDegreePlan.semesters.findIndex(
-        //     (s) => s.courses.includes(course)
-        // );
-        // const findCourseIndex = SelecetedEditdDegreePlan.semesters[
-        //     findSemesterIndex
-        // ].courses.findIndex((c) => c === course);
-        // degreeList[findDegreeIndex].semesters[findSemesterIndex].courses.splice(
-        //     findCourseIndex,
-        //     1
-        // );
-        // const update = [...degreeList];
-        // setDegreeList(update);
-        // semesters[findSemesterIndex].courses.splice(findCourseIndex, 1);
-        // const update2 = [...semesters];
-        // modifysemster(update2);
-        console.log(degreeList);
+        const findDegreeIndex = degreeList.findIndex(
+            (degreeplan) => degreeplan === SelecetedEditdDegreePlan
+        );
+        const findSemesterIndex = SelecetedEditdDegreePlan.semesters.findIndex(
+            (s) => s.courses.includes(course)
+        );
+        const findCourseIndex = SelecetedEditdDegreePlan.semesters[
+            findSemesterIndex
+        ].courses.findIndex((c) => c === course);
+        degreeList[findDegreeIndex].semesters[findSemesterIndex].courses.splice(
+            findCourseIndex,
+            1
+        );
+        const update = [...degreeList];
+        setDegreeList(update);
+        semesters[findSemesterIndex].courses.splice(findCourseIndex, 1);
+        const update2 = [...semesters];
+        modifysemster(update2);
     };
 
     const deleteWholeSemester = () => {
@@ -89,19 +88,17 @@ export const SemesterDisplay = ({
     const handleCourseMove = (course: Course, targetSemesterId: string) => {
         const updatedSemesters = semesters.map((s) => {
             if (s.season + s.year === targetSemesterId) {
-                // find the semester where user wants to move the course to
                 if (!s.courses.find((c) => c.code === course.code)) {
-                    //make a condition that the target semester does not have repeated course
                     const findCourseIndex = s.courses.findIndex(
                         (thecourse) => thecourse === course
-                    ); //find the course index before user move to target semester, so after move out, the original course will be deleted from its semester
+                    );
                     const findOriginalSemesterIndex = semesters.findIndex(
                         (thesemester) => thesemester.courses.includes(course)
-                    ); //find the semester index before move out, same with the last step
+                    );
                     const findSemesterIndex =
                         SelecetedEditdDegreePlan.semesters.findIndex(
                             (s) => s.season + s.year === targetSemesterId
-                        ); //find the target semester index
+                        );
                     const findDegreeIndex = degreeList.findIndex(
                         (degree) =>
                             degree.name === SelecetedEditdDegreePlan.name
@@ -158,9 +155,6 @@ export const SemesterDisplay = ({
             semesters[findSemesterIndex].courses.splice(findCourseIndex, 1);
             const update3 = [...semesters];
             modifysemster(update3);
-            console.log(findSemesterIndex);
-            console.log(findCourseIndex);
-            console.log(degreeList);
         }
     };
 
@@ -184,7 +178,6 @@ export const SemesterDisplay = ({
     };
     const handleDrop = (event: React.DragEvent<HTMLDivElement>) => {
         event.preventDefault();
-        console.log(DragCouse);
 
         const findSemesterIndex = SelecetedEditdDegreePlan.semesters.findIndex(
             (s) => s === semester
@@ -197,9 +190,14 @@ export const SemesterDisplay = ({
         // );
         // const update = [...degreeList];
         // setDegreeList(update);
-        semesters[findSemesterIndex].courses.push(DragCouse);
-        const update2 = [...semesters];
-        modifysemster(update2);
+        const repeatedCourse = semesters.filter((s) =>
+            s.courses.includes(DragCouse)
+        );
+        if (repeatedCourse.length <= 0) {
+            semesters[findSemesterIndex].courses.push(DragCouse);
+            const update2 = [...semesters];
+            modifysemster(update2);
+        }
     };
     const handledragover = (event: React.DragEvent<HTMLDivElement>) => {
         event.preventDefault();
@@ -246,6 +244,10 @@ export const SemesterDisplay = ({
                             draggable={true}
                             onDrag={(e) => handleDrag(e, course)}
                             onDragStart={() => setDragCouse(course)}
+                            style={{
+                                backgroundColor: "lightblue",
+                                color: "black"
+                            }}
                         >
                             <td>
                                 {course.code}
@@ -267,10 +269,10 @@ export const SemesterDisplay = ({
                                         }
                                     }}
                                     style={{
-                                        fontSize: "16px", // Adjust the font size as needed
-                                        padding: "8px", // Adjust the padding as needed
-                                        borderRadius: "6px", // Adjust the border radius as needed
-                                        border: "1px solid #ccc" // Add border for a cleaner look
+                                        fontSize: "16px",
+                                        padding: "8px",
+                                        borderRadius: "6px",
+                                        border: "1px solid #ccc"
                                     }}
                                 >
                                     <option>Move to...</option>

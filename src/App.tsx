@@ -462,6 +462,7 @@ function App(): JSX.Element {
                                         IsRenderPoolTable={IsRenderPoolTable}
                                         DragCouse={DragCouse}
                                         setDragCouse={setDragCouse}
+                                        setCoursePool={setCoursePool}
                                     />
                                 )}
                             </Col>
