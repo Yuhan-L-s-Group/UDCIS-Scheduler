@@ -24,6 +24,8 @@ interface EditDegreePlanProps {
     setDegreeList: React.Dispatch<React.SetStateAction<DegreePlan[]>>;
     setCoursePool: React.Dispatch<React.SetStateAction<Course[]>>;
     coursePool: Course[];
+    DragCouse: Course;
+    setDragCouse: React.Dispatch<React.SetStateAction<Course>>;
 }
 const EditDegreePlan = ({
     semesters,
@@ -42,7 +44,9 @@ const EditDegreePlan = ({
     degreeList,
     setDegreeList,
     setCoursePool,
-    coursePool
+    coursePool,
+    DragCouse,
+    setDragCouse
 }: EditDegreePlanProps) => {
     return (
         <div>
@@ -62,6 +66,8 @@ const EditDegreePlan = ({
                 SelecetedEditdDegreePlan={SelecetedEditdDegreePlan}
                 setCoursePool={setCoursePool}
                 coursePool={coursePool}
+                DragCouse={DragCouse}
+                setDragCouse={setDragCouse}
             ></SemesterList>
             <br />
             <br />

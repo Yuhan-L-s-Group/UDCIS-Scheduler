@@ -1,6 +1,6 @@
 /* eslint-disable no-extra-parens */
 // eslint conflict with prettier
-import React from "react";
+import React, { useState } from "react";
 import { Course } from "../interfaces/course";
 import "../App.css";
 import { Semester } from "../interfaces/semester";
@@ -17,7 +17,9 @@ export const SemesterDisplay = ({
     setDegreeList,
     SelecetedEditdDegreePlan,
     setCoursePool,
-    coursePool
+    coursePool,
+    DragCouse,
+    setDragCouse
 }: {
     semester: Semester;
     modifysemster: (semester: Semester[]) => void;
@@ -27,28 +29,30 @@ export const SemesterDisplay = ({
     SelecetedEditdDegreePlan: DegreePlan;
     setCoursePool: React.Dispatch<React.SetStateAction<Course[]>>;
     coursePool: Course[];
+    DragCouse: Course;
+    setDragCouse: React.Dispatch<React.SetStateAction<Course>>;
 }): JSX.Element => {
     const deleteCourseFunc = (course: Course) => {
         // delete a course from a semester
-        const findDegreeIndex = degreeList.findIndex(
-            (degreeplan) => degreeplan === SelecetedEditdDegreePlan
-        );
-        const findSemesterIndex = SelecetedEditdDegreePlan.semesters.findIndex(
-            (s) => s.courses.includes(course)
-        );
-        const findCourseIndex = SelecetedEditdDegreePlan.semesters[
-            findSemesterIndex
-        ].courses.findIndex((c) => c === course);
-        degreeList[findDegreeIndex].semesters[findSemesterIndex].courses.splice(
-            findCourseIndex,
-            1
-        );
-        const update = [...degreeList];
-        setDegreeList(update);
-        semesters[findSemesterIndex].courses.splice(findCourseIndex, 1);
-        const update2 = [...semesters];
-        modifysemster(update2);
-        console.log(semesters);
+        // const findDegreeIndex = degreeList.findIndex(
+        //     (degreeplan) => degreeplan === SelecetedEditdDegreePlan
+        // );
+        // const findSemesterIndex = SelecetedEditdDegreePlan.semesters.findIndex(
+        //     (s) => s.courses.includes(course)
+        // );
+        // const findCourseIndex = SelecetedEditdDegreePlan.semesters[
+        //     findSemesterIndex
+        // ].courses.findIndex((c) => c === course);
+        // degreeList[findDegreeIndex].semesters[findSemesterIndex].courses.splice(
+        //     findCourseIndex,
+        //     1
+        // );
+        // const update = [...degreeList];
+        // setDegreeList(update);
+        // semesters[findSemesterIndex].courses.splice(findCourseIndex, 1);
+        // const update2 = [...semesters];
+        // modifysemster(update2);
+        console.log(degreeList);
     };
 
     const deleteWholeSemester = () => {
@@ -127,6 +131,7 @@ export const SemesterDisplay = ({
         modifysemster(updatedSemesters);
     };
     //handle the course from seemster list to pool of courses
+
     const handleCoursetoPool = (course: Course) => {
         const repeatedCourse = coursePool.includes(course);
         if (!repeatedCourse) {
@@ -158,9 +163,53 @@ export const SemesterDisplay = ({
             console.log(degreeList);
         }
     };
+
+    const handleDrag = (
+        event: React.DragEvent<HTMLTableRowElement>,
+        course: Course
+    ) => {
+        event.preventDefault();
+        console.log(course);
+
+        const findSemesterIndex = SelecetedEditdDegreePlan.semesters.findIndex(
+            (s) => s.courses.includes(course)
+        );
+        const findCourseIndex = SelecetedEditdDegreePlan.semesters[
+            findSemesterIndex
+        ].courses.findIndex((c) => c === course);
+
+        semesters[findSemesterIndex].courses.splice(findCourseIndex, 1);
+        const update2 = [...semesters];
+        modifysemster(update2);
+    };
+    const handleDrop = (event: React.DragEvent<HTMLDivElement>) => {
+        event.preventDefault();
+        console.log(DragCouse);
+
+        const findSemesterIndex = SelecetedEditdDegreePlan.semesters.findIndex(
+            (s) => s === semester
+        );
+        // const findCourseIndex = SelecetedEditdDegreePlan.semesters[
+        //     findSemesterIndex
+        // ].courses.findIndex((c) => c === DragCouse);
+        // degreeList[findDegreeIndex].semesters[findSemesterIndex].courses.push(
+        //     DragCouse
+        // );
+        // const update = [...degreeList];
+        // setDegreeList(update);
+        semesters[findSemesterIndex].courses.push(DragCouse);
+        const update2 = [...semesters];
+        modifysemster(update2);
+    };
+    const handledragover = (event: React.DragEvent<HTMLDivElement>) => {
+        event.preventDefault();
+    };
     return (
-        <div className="semester_view">
-            {}
+        <div
+            className="semester_view"
+            onDrop={(event) => handleDrop(event)}
+            onDragOver={(event) => handledragover(event)}
+        >
             <table>
                 <thead>
                     <tr>
@@ -192,7 +241,12 @@ export const SemesterDisplay = ({
                 </thead>
                 <tbody>
                     {semester.courses.map((course) => (
-                        <tr key={course.code + course.name}>
+                        <tr
+                            key={course.code + course.name}
+                            draggable={true}
+                            onDrag={(e) => handleDrag(e, course)}
+                            onDragStart={() => setDragCouse(course)}
+                        >
                             <td>
                                 {course.code}
                                 {" - "}
