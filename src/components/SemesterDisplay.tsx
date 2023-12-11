@@ -34,21 +34,12 @@ export const SemesterDisplay = ({
 }): JSX.Element => {
     const deleteCourseFunc = (course: Course) => {
         // delete a course from a semester
-        const findDegreeIndex = degreeList.findIndex(
-            (degreeplan) => degreeplan === SelecetedEditdDegreePlan
-        );
         const findSemesterIndex = SelecetedEditdDegreePlan.semesters.findIndex(
             (s) => s.courses.includes(course)
         );
         const findCourseIndex = SelecetedEditdDegreePlan.semesters[
             findSemesterIndex
         ].courses.findIndex((c) => c === course);
-        degreeList[findDegreeIndex].semesters[findSemesterIndex].courses.splice(
-            findCourseIndex,
-            1
-        );
-        const update = [...degreeList];
-        setDegreeList(update);
         semesters[findSemesterIndex].courses.splice(findCourseIndex, 1);
         const update2 = [...semesters];
         modifysemster(update2);
