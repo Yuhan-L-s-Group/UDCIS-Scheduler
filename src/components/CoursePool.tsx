@@ -9,6 +9,7 @@ interface CoursePool {
     deletePool: (deleteCourse: Course) => void;
     AddCourseToDegreePlan: (course: Course) => void;
     IsRenderPoolTable: boolean;
+    setIsRenderPoolTable: React.Dispatch<React.SetStateAction<boolean>>;
     DragCouse: Course;
     setDragCouse: React.Dispatch<React.SetStateAction<Course>>;
     setCoursePool: React.Dispatch<React.SetStateAction<Course[]>>;
@@ -18,6 +19,7 @@ const CoursePool = ({
     deletePool,
     AddCourseToDegreePlan,
     IsRenderPoolTable,
+    setIsRenderPoolTable,
     DragCouse,
     setDragCouse,
     setCoursePool
@@ -27,9 +29,6 @@ const CoursePool = ({
         event: React.DragEvent<HTMLTableRowElement>
     ) => {
         event.preventDefault();
-        const update = coursePool.filter((course) => course !== DragCouse);
-        setCoursePool([...update]);
-        console.log(update);
     };
     const handledrop = (event: React.DragEvent<HTMLDivElement>) => {
         event.preventDefault();
@@ -39,6 +38,7 @@ const CoursePool = ({
             const update = [...coursePool];
             setCoursePool(update);
         }
+        setIsRenderPoolTable(true);
     };
     const handledragover = (e: React.DragEvent<HTMLDivElement>) => {
         e.preventDefault();

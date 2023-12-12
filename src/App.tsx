@@ -500,6 +500,9 @@ function App(): JSX.Element {
                                             AddCourseToDegreePlan
                                         }
                                         IsRenderPoolTable={IsRenderPoolTable}
+                                        setIsRenderPoolTable={
+                                            setIsRenderPoolTable
+                                        }
                                         DragCouse={DragCouse}
                                         setDragCouse={setDragCouse}
                                         setCoursePool={setCoursePool}
