@@ -1,5 +1,5 @@
 /* eslint-disable no-extra-parens */
-import React, { useState } from "react";
+import React, { SetStateAction, useState } from "react";
 import "./App.css";
 import { IntroModal } from "./components/IntroModal";
 import { Semester } from "./interfaces/semester";
@@ -111,6 +111,98 @@ function App(): JSX.Element {
         degreeList.splice(findDegreeIndex, 1);
         setDegreeList([...degreeList]);
     };
+    //pool of courses
+    const [coursePool, setCoursePool] = useState<Course[]>([]);
+    const [isAddedCourseTopool, setIsAddedCourseTopool] = useState(false);
+    const [theCourse, setTheCourse] = useState<Course>({
+        code: "",
+        name: "",
+        descr: "",
+        credits: "",
+        preReq: "",
+        restrict: "",
+        breadth: "",
+        typ: ""
+    });
+    const [isCourseToDegreePlanOpen, setisCourseToDegreePlanOpen] =
+        useState(false);
+
+    //delete courses from courses pool
+    const deletePool = (deleteCourse: Course) => {
+        const indexCourse = coursePool.findIndex(
+            (course) => deleteCourse.code === course.code
+        );
+        coursePool.splice(indexCourse, 1);
+        const update = [...coursePool];
+        setCoursePool(update);
+        setIsAddedCourseTopool(false);
+    };
+    const AddCourseToDegreePlan = (course: Course) => {
+        setTheCourse(course);
+        setisCourseToDegreePlanOpen(true);
+        setIsAddedCourseTopool(false);
+    };
+    // for course information below the search course bar
+    const [isCourseBar, setCourseBar] = useState(true);
+    const [courseIndex, setcourseIndex] = useState<number>(0);
+    // add courses from course bar into courses pool
+    const handleClickPool = () => {
+        const update = [...coursePool];
+        const indexCourse = ModifiedCourseList.findIndex(
+            (course) => listCourses[courseIndex].code === course.code
+        );
+        const repeatedCourse = coursePool.includes(listCourses[courseIndex]);
+        if (!repeatedCourse) {
+            update.push(ModifiedCourseList[indexCourse]);
+            setCoursePool(update);
+        }
+        setIsAddedCourseTopool(true);
+        setIsRenderPoolTable(true);
+        setIsRenderPoolOfCourse(true);
+    };
+    const [countTool, setCount] = useState(0);
+    const [selectedCourse, setselectedCourse] = useState<Course>({
+        code: "",
+        name: "",
+        descr: "",
+        credits: "",
+        preReq: "",
+        restrict: "",
+        breadth: "",
+        typ: ""
+    });
+    const closeEditCourse = () => {
+        setEditCourseOpen(false);
+    };
+    const [isEditCourseOpen, setEditCourseOpen] = useState(false);
+    const [text, setText] = useState<string>("");
+    const [ErrorMessage, setError] = useState(false);
+    const [IsRenderPoolOfCourse, setIsRenderPoolOfCourse] = useState(false);
+
+    const gotYouCourse = (text: string) => {
+        const upperText = text.toUpperCase();
+        if (countTool === 0) {
+            const indexCourse = ModifiedCourseList.findIndex(
+                (course) => upperText === course.code
+            );
+            setselectedCourse(ModifiedCourseList[indexCourse]);
+        } else {
+            const indexCourse = ModifiedCourseList.findIndex(
+                (course) => listCourses[courseIndex].code === course.code
+            );
+            setselectedCourse(ModifiedCourseList[indexCourse]);
+        }
+        setEditCourseOpen(true);
+        setCount(1);
+    };
+    const CloseError = () => {
+        setError(false);
+    };
+    // not to render course information when first open the site
+    const [IsCourseInfo, setIsCourseInfo] = useState(false);
+    //Not to render pool of courses at the begining
+    const [IsRenderPoolTable, setIsRenderPoolTable] = useState(false);
+
     return (
         <div className="App">
             {isHomepage ? ( // the first page when you open the web
@@ -306,22 +398,6 @@ function App(): JSX.Element {
                                 <br />
                                 {
                                     <span>
-                                        <form>
-                                            <input
-                                                type={"file"}
-                                                id={"csvFileInput"}
-                                                accept={".csv"}
-                                                onChange={handleOnChange}
-                                            />
-
-                                            <button
-                                                onClick={(e) => {
-                                                    handleOnSubmit(e);
-                                                }}
-                                            >
-                                                IMPORT CSV
-                                            </button>
-                                        </form>
                                         <Search
                                             ModifiedCourseList={
                                                 ModifiedCourseList
