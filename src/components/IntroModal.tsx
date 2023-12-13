@@ -15,14 +15,14 @@ export function IntroModal({
                     <Modal.Title>Welcome to the UD CIS Scheduler</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    This website allows you to create your own computer science
-                    major degree plan at University of Delaware. The menu on the
-                    left shows all the required courses for the major, and you
-                    can easily edit them. You can also add custom courses if
-                    there are none that meet your needs. You can switch between
-                    concentrations in the drop-down menu at the top to make the
-                    list of courses more relevant to your concentration needs.
-                    Have fun!
+                    This site allows you to create your own computer science
+                    degree plan at the University of Delaware. You can use the
+                    search box on the left to find courses in the database and
+                    add them to your customized degree plan. And confirm the
+                    completion of course requirements for each plan. You can
+                    also modify course information to make it more relevant to
+                    your situation. I hope this site helps you plan your college
+                    years. Have fun!
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
