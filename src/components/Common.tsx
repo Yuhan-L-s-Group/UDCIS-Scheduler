@@ -1,21 +1,21 @@
 /* eslint-disable no-extra-parens */
 // eslint conflict with prettier
 import React from "react";
-import { DegreePlan } from "../../interfaces/degreePlan";
-import all from "../RequiredCourses/FitsAll.json";
-import { Course } from "../../interfaces/course";
-import BA from "../RequiredCourses/BA.json";
-import BS from "../RequiredCourses/BS.json";
-import AI from "../RequiredCourses/AI.json";
-import Bio from "../RequiredCourses/Bio.json";
-import Cyber from "../RequiredCourses/Cyber.json";
-import Data from "../RequiredCourses/Data.json";
-import Math from "../RequiredCourses/High1.json";
-import HighData from "../RequiredCourses/High2.json";
-import System from "../RequiredCourses/Systems.json";
-import Discrete from "../RequiredCourses/Theory1.json";
-import Continuous from "../RequiredCourses/Theory2.json";
-import { Requirement } from "../../interfaces/Requirement";
+import { DegreePlan } from "../interfaces/degreePlan";
+import all from "../data/RequiredCourses/FitsAll.json";
+import { Course } from "../interfaces/course";
+import BA from "../data/RequiredCourses/BA.json";
+import BS from "../data/RequiredCourses/BS.json";
+import AI from "../data/RequiredCourses/AI.json";
+import Bio from "../data/RequiredCourses/Bio.json";
+import Cyber from "../data/RequiredCourses/Cyber.json";
+import Data from "../data/RequiredCourses/Data.json";
+import Math from "../data/RequiredCourses/High1.json";
+import HighData from "../data/RequiredCourses/High2.json";
+import System from "../data/RequiredCourses/Systems.json";
+import Discrete from "../data/RequiredCourses/Theory1.json";
+import Continuous from "../data/RequiredCourses/Theory2.json";
+import { Requirement } from "../interfaces/Requirement";
 import { Col, Container, Row } from "react-bootstrap";
 
 export function getFiles(conc: string): Requirement[] {

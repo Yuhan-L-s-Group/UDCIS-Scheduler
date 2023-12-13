@@ -1,7 +1,7 @@
 import React from "react";
 //import { useEffect,  } from "react";
 import { DegreePlan } from "../interfaces/degreePlan";
-import { Common } from "../data/Concentration/Common";
+import { Common } from "./Common";
 import { Button, Modal } from "react-bootstrap";
 
 export function getURLs(conc: string): string {
