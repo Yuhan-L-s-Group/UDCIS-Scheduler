@@ -16,8 +16,10 @@ export const SemesterDisplay = ({
     degreeList,
     setDegreeList,
     SelecetedEditdDegreePlan,
-    setCoursePool,
-    coursePool
+    // setCoursePool,
+    // coursePool,
+    DragCouse,
+    setDragCouse
 }: {
     semester: Semester;
     modifysemster: (semester: Semester[]) => void;
@@ -27,24 +29,20 @@ export const SemesterDisplay = ({
     SelecetedEditdDegreePlan: DegreePlan;
     setCoursePool: React.Dispatch<React.SetStateAction<Course[]>>;
     coursePool: Course[];
+    DragCouse: Course;
+    setDragCouse: React.Dispatch<React.SetStateAction<Course>>;
 }): JSX.Element => {
     const deleteCourseFunc = (course: Course) => {
         // delete a course from a semester
-        const findDegreeIndex = degreeList.findIndex(
-            (degreeplan) => degreeplan === SelecetedEditdDegreePlan
-        );
         const findSemesterIndex = SelecetedEditdDegreePlan.semesters.findIndex(
-            (s) => s === semester
+            (s) => s.courses.includes(course)
         );
         const findCourseIndex = SelecetedEditdDegreePlan.semesters[
             findSemesterIndex
         ].courses.findIndex((c) => c === course);
-        degreeList[findDegreeIndex].semesters[findSemesterIndex].courses.splice(
-            findCourseIndex,
-            1
-        );
-        const update = [...degreeList];
-        setDegreeList(update);
+        semesters[findSemesterIndex].courses.splice(findCourseIndex, 1);
+        const update2 = [...semesters];
+        modifysemster(update2);
     };
 
     const deleteWholeSemester = () => {
@@ -78,81 +76,123 @@ export const SemesterDisplay = ({
         console.log(SelecetedEditdDegreePlan);
     };
     //handle move course to other semester function
-    const handleCourseMove = (course: Course, targetSemesterId: string) => {
-        const updatedSemesters = semesters.map((s) => {
-            if (s.season + s.year === targetSemesterId) {
-                // find the semester where user wants to move the course to
-                if (!s.courses.find((c) => c.code === course.code)) {
-                    //make a condition that the target semester does not have repeated course
-                    const findCourseIndex = s.courses.findIndex(
-                        (thecourse) => thecourse === course
-                    ); //find the course index before user move to target semester, so after move out, the original course will be deleted from its semester
-                    const findOriginalSemesterIndex = semesters.findIndex(
-                        (thesemester) => thesemester.courses.includes(course)
-                    ); //find the semester index before move out, same with the last step
-                    const findSemesterIndex =
-                        SelecetedEditdDegreePlan.semesters.findIndex(
-                            (s) => s.season + s.year === targetSemesterId
-                        ); //find the target semester index
-                    const findDegreeIndex = degreeList.findIndex(
-                        (degree) =>
-                            degree.name === SelecetedEditdDegreePlan.name
-                    );
-                    degreeList[findDegreeIndex].semesters[findSemesterIndex] = {
-                        ...s,
-                        courses: [...s.courses, course]
-                    };
-                    degreeList[findDegreeIndex].semesters[
-                        findOriginalSemesterIndex
-                    ].courses.splice(findCourseIndex, 1);
-                    const update = [...degreeList];
-                    setDegreeList(update);
-                    return {
-                        ...s,
-                        courses: [...s.courses, course]
-                    };
-                }
-            } else if (s.courses.find((c) => c.code === course.code)) {
-                return {
-                    ...s,
-                    courses: s.courses.filter((c) => c.code !== course.code)
-                };
-            }
-            return s;
-        });
-        modifysemster(updatedSemesters);
-    };
+    // const handleCourseMove = (course: Course, targetSemesterId: string) => {
+    //     const updatedSemesters = semesters.map((s) => {
+    //         if (s.season + s.year === targetSemesterId) {
+    //             if (!s.courses.find((c) => c.code === course.code)) {
+    //                 const findCourseIndex = s.courses.findIndex(
+    //                     (thecourse) => thecourse === course
+    //                 );
+    //                 const findOriginalSemesterIndex = semesters.findIndex(
+    //                     (thesemester) => thesemester.courses.includes(course)
+    //                 );
+    //                 const findSemesterIndex =
+    //                     SelecetedEditdDegreePlan.semesters.findIndex(
+    //                         (s) => s.season + s.year === targetSemesterId
+    //                     );
+    //                 const findDegreeIndex = degreeList.findIndex(
+    //                     (degree) =>
+    //                         degree.name === SelecetedEditdDegreePlan.name
+    //                 );
+    //                 degreeList[findDegreeIndex].semesters[findSemesterIndex] = {
+    //                     ...s,
+    //                     courses: [...s.courses, course]
+    //                 };
+    //                 degreeList[findDegreeIndex].semesters[
+    //                     findOriginalSemesterIndex
+    //                 ].courses.splice(findCourseIndex, 1);
+    //                 const update = [...degreeList];
+    //                 setDegreeList(update);
+    //                 return {
+    //                     ...s,
+    //                     courses: [...s.courses, course]
+    //                 };
+    //             }
+    //         } else if (s.courses.find((c) => c.code === course.code)) {
+    //             return {
+    //                 ...s,
+    //                 courses: s.courses.filter((c) => c.code !== course.code)
+    //             };
+    //         }
+    //         return s;
+    //     });
+    //     modifysemster(updatedSemesters);
+    // };
+    //
     //handle the course from seemster list to pool of courses
-    const handleCoursetoPool = (course: Course) => {
-        const repeatedCourse = coursePool.includes(course);
-        if (!repeatedCourse) {
-            // add the course from semester to pool
-            coursePool.push(course);
-            const update = [...coursePool];
-            setCoursePool(update);
-            //delete the original course from seemster
-            const findDegreeIndex = degreeList.findIndex(
-                (degreeplan) => degreeplan === SelecetedEditdDegreePlan
-            );
-            const findSemesterIndex =
-                SelecetedEditdDegreePlan.semesters.findIndex(
-                    (s) => s === semester
-                );
-            const findCourseIndex = SelecetedEditdDegreePlan.semesters[
-                findSemesterIndex
-            ].courses.findIndex((c) => c === course);
-            degreeList[findDegreeIndex].semesters[
-                findSemesterIndex
-            ].courses.splice(findCourseIndex, 1);
-            const update2 = [...degreeList];
-            setDegreeList(update2);
-        }
 
-        console.log(SelecetedEditdDegreePlan);
+    // const handleCoursetoPool = (course: Course) => {
+    //     const repeatedCourse = coursePool.includes(course);
+    //     if (!repeatedCourse) {
+    //         // add the course from semester to pool
+    //         coursePool.push(course);
+    //         const update = [...coursePool];
+    //         setCoursePool(update);
+    //         //delete the original course from seemster
+    //         const findDegreeIndex = degreeList.findIndex(
+    //             (degreeplan) => degreeplan === SelecetedEditdDegreePlan
+    //         );
+    //         const findSemesterIndex =
+    //             SelecetedEditdDegreePlan.semesters.findIndex((s) =>
+    //                 s.courses.includes(course)
+    //             );
+    //         const findCourseIndex = SelecetedEditdDegreePlan.semesters[
+    //             findSemesterIndex
+    //         ].courses.findIndex((c) => c === course);
+    //         degreeList[findDegreeIndex].semesters[
+    //             findSemesterIndex
+    //         ].courses.splice(findCourseIndex, 1);
+    //         const update2 = [...degreeList];
+    //         setDegreeList(update2);
+    //         semesters[findSemesterIndex].courses.splice(findCourseIndex, 1);
+    //         const update3 = [...semesters];
+    //         modifysemster(update3);
+    //     }
+    // };
+    // drag and drop functions
+    const handleDrag = (
+        event: React.DragEvent<HTMLTableRowElement>,
+        course: Course
+    ) => {
+        event.preventDefault();
+        console.log(course);
+
+        const findSemesterIndex = SelecetedEditdDegreePlan.semesters.findIndex(
+            (s) => s.courses.includes(course)
+        );
+        const findCourseIndex = SelecetedEditdDegreePlan.semesters[
+            findSemesterIndex
+        ].courses.findIndex((c) => c === course);
+
+        semesters[findSemesterIndex].courses.splice(findCourseIndex, 1);
+        const update2 = [...semesters];
+        modifysemster(update2);
+    };
+    const handleDrop = (event: React.DragEvent<HTMLDivElement>) => {
+        event.preventDefault();
+
+        const findSemesterIndex = SelecetedEditdDegreePlan.semesters.findIndex(
+            (s) => s === semester
+        );
+
+        const repeatedCourse = semesters.filter((s) =>
+            s.courses.includes(DragCouse)
+        );
+        if (repeatedCourse.length <= 0) {
+            semesters[findSemesterIndex].courses.push(DragCouse);
+            const update2 = [...semesters];
+            modifysemster(update2);
+        }
+    };
+    const handledragover = (event: React.DragEvent<HTMLDivElement>) => {
+        event.preventDefault();
     };
     return (
-        <div className="semester_view">
-            {}
+        <div
+            className="semester_view"
+            onDrop={(event) => handleDrop(event)}
+            onDragOver={(event) => handledragover(event)}
+        >
             <table>
                 <thead>
                     <tr>
@@ -166,7 +206,7 @@ export const SemesterDisplay = ({
                                 0
                             )}
                         </th>
-                        <th>Move Course</th>
+                        {/* <th>Move Course</th> */}
                         {semester.courses.length !== 0 && (
                             <th>
                                 {" "}
@@ -184,14 +224,23 @@ export const SemesterDisplay = ({
                 </thead>
                 <tbody>
                     {semester.courses.map((course) => (
-                        <tr key={course.code + course.name}>
+                        <tr
+                            key={course.code + course.name}
+                            draggable={true}
+                            onDrag={(e) => handleDrag(e, course)}
+                            onDragStart={() => setDragCouse(course)}
+                            style={{
+                                backgroundColor: "lightblue",
+                                color: "black"
+                            }}
+                        >
                             <td>
                                 {course.code}
                                 {" - "}
                                 {course.name}
                             </td>
                             <td> {course.credits}</td>
-                            <td>
+                            {/* <td>
                                 <select
                                     onChange={(e) => {
                                         const selectedValue = e.target.value;
@@ -205,10 +254,10 @@ export const SemesterDisplay = ({
                                         }
                                     }}
                                     style={{
-                                        fontSize: "16px", // Adjust the font size as needed
-                                        padding: "8px", // Adjust the padding as needed
-                                        borderRadius: "6px", // Adjust the border radius as needed
-                                        border: "1px solid #ccc" // Add border for a cleaner look
+                                        fontSize: "16px",
+                                        padding: "8px",
+                                        borderRadius: "6px",
+                                        border: "1px solid #ccc"
                                     }}
                                 >
                                     <option>Move to...</option>
@@ -224,7 +273,7 @@ export const SemesterDisplay = ({
                                         ))}
                                     <option value={course.code}>To Pool</option>
                                 </select>
-                            </td>
+                            </td> */}
                             <td>
                                 {" "}
                                 <Button
