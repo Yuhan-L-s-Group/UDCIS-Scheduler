@@ -1,4 +1,5 @@
 /* eslint-disable no-extra-parens */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React, { SetStateAction, useState } from "react";
 import "./App.css";
 import { IntroModal } from "./components/IntroModal";
@@ -15,6 +16,7 @@ import CoursePool from "./components/CoursePool";
 import { Button, Modal, Col, Form, Row, Container } from "react-bootstrap";
 import EditCourse from "./components/EditCourse";
 import ExportCSV from "./components/ExportCSV";
+import ImportCSV from "./components/ImportCSV";
 
 // import { text } from "body-parser";
 function App(): JSX.Element {
@@ -554,6 +556,13 @@ function App(): JSX.Element {
                                             </table>
                                         )}
                                         <br />
+                                        <ImportCSV
+                                            onImport={function (): void {
+                                                throw new Error(
+                                                    "Function not implemented."
+                                                );
+                                            }}
+                                        ></ImportCSV>
                                         <ExportCSV
                                             degreeList={degreeList}
                                         ></ExportCSV>

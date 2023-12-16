@@ -1,13 +1,22 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Concentration, DegreePlan } from "../interfaces/degreePlan";
+import { Season } from "../interfaces/semester";
 
 interface ImportCSVProps {
     onImport: (degreeList: DegreePlan[]) => void;
 }
 
 export const ImportCSV: React.FC<ImportCSVProps> = ({ onImport }) => {
-    const handleImportCSV = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const fileInputRef = useRef<HTMLInputElement>(null);
+
+    const handleImportCSV = () => {
+        if (fileInputRef.current) {
+            fileInputRef.current.click();
+        }
+    };
+
+    const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files?.[0];
 
         if (file) {
@@ -15,8 +24,8 @@ export const ImportCSV: React.FC<ImportCSVProps> = ({ onImport }) => {
             reader.onload = (e) => {
                 try {
                     const csvData = e.target?.result as string;
-                    const degreeList = parseCSVData(csvData);
-                    onImport(degreeList);
+                    const degreePlans = parseCSVData(csvData);
+                    onImport(degreePlans);
                 } catch (error) {
                     console.error("Error parsing CSV:", error);
                 }
@@ -41,13 +50,12 @@ export const ImportCSV: React.FC<ImportCSVProps> = ({ onImport }) => {
             }
 
             const degreePlan: DegreePlan = {
-                Plan: values[headers.indexOf("Plan")],
                 concentration: values[
                     headers.indexOf("Concentration")
                 ] as Concentration,
                 semesters: [
                     {
-                        Season: values[headers.indexOf("Semester")],
+                        season: values[headers.indexOf("Semester")] as Season,
                         year: parseInt(
                             values[headers.indexOf("Semester") + 1],
                             10
@@ -56,11 +64,17 @@ export const ImportCSV: React.FC<ImportCSVProps> = ({ onImport }) => {
                             {
                                 code: values[headers.indexOf("CourseCode")],
                                 name: values[headers.indexOf("CourseName")],
-                                credits: values[headers.indexOf("Credits")]
+                                credits: values[headers.indexOf("Credits")],
+                                descr: "",
+                                preReq: "",
+                                restrict: "",
+                                breadth: "",
+                                typ: ""
                             }
                         ]
                     }
-                ]
+                ],
+                name: ""
             };
 
             // Check if the degree plan already exists, and if so, add semesters and courses
@@ -81,7 +95,14 @@ export const ImportCSV: React.FC<ImportCSVProps> = ({ onImport }) => {
 
     return (
         <div>
-            <input type="file" accept=".csv" onChange={handleImportCSV} />
+            <input
+                type="file"
+                accept=".csv"
+                onChange={handleFileChange}
+                style={{ display: "none" }}
+                ref={fileInputRef}
+            />
+            <button onClick={handleImportCSV}>Import</button>
         </div>
     );
 };
