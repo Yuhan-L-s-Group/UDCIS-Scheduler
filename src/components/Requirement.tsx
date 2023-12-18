@@ -1,7 +1,7 @@
 import React from "react";
 //import { useEffect,  } from "react";
 import { DegreePlan } from "../interfaces/degreePlan";
-import { Common } from "../data/Concentration/Common";
+import { CommonRequirement } from "./CommonRequirement";
 import { Button, Modal } from "react-bootstrap";
 
 export function getURLs(conc: string): string {
@@ -44,7 +44,11 @@ export const Requirement = ({
     const url = getURLs(degreePlan.concentration);
 
     return (
-        <Modal show={show} onHide={handleClose}>
+        <Modal
+            show={show}
+            onHide={handleClose}
+            dialogClassName="requirement-modal"
+        >
             <Modal.Header closeButton>
                 <Modal.Title>Degree Requirements</Modal.Title>
             </Modal.Header>
@@ -54,11 +58,11 @@ export const Requirement = ({
                 </a>
                 <br></br>
                 <br></br>
-                <Common degreePlan={degreePlan}></Common>
+                <CommonRequirement degreePlan={degreePlan}></CommonRequirement>
             </Modal.Body>
             <Modal.Footer>
                 <Button variant="secondary" onClick={handleClose}>
-                    Save
+                    OK
                 </Button>
             </Modal.Footer>
         </Modal>

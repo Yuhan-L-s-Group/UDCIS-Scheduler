@@ -955,18 +955,6 @@
         "type": "courses",
         "number": 1
     },{
-        "name": "Core Re",
-        "courses": ["CISC108",
-        "CISC181",
-        "CISC210",
-        "CISC220",
-        "CISC260",
-        "CISC275",
-        "MATH210",
-        "MATH241"],
-        "type": "courses",
-        "number": 8
-    },{
         "name": "Core Requirements",
         "courses": ["CISC108",
         "CISC181",
