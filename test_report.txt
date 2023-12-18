@@ -7,11 +7,11 @@ Browserslist: caniuse-lite is outdated. Please run:
   Why you should do it regularly: https://github.com/browserslist/browserslist#browsers-data-updating
 FAIL src/App.test.tsx
   Scheduler Tests
-    ✕ Check home page and welcome window (37 ms)
+    ✕ Check home page and welcome window (36 ms)
     ✕ Switch between different concentration (at this point, just check texts) (7 ms)
     ✕ Try to add and delete semester (5 ms)
-    ✕ Add a course that does not exist in the list (6 ms)
-    ✕ Replace with test details (5 ms)
+    ✕ Add a course that does not exist in the list (5 ms)
+    ✕ Replace with test details (8 ms)
     ✕ Test search bar (5 ms)
 
   ● Scheduler Tests › Check home page and welcome window
@@ -452,5 +452,5 @@ All files               |   10.96 |     2.15 |    0.53 |   11.29 |
 Test Suites: 1 failed, 1 total
 Tests:       6 failed, 6 total
 Snapshots:   0 total
-Time:        3.921 s
+Time:        3.846 s
 Ran all test suites.
