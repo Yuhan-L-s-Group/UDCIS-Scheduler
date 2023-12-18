@@ -35,7 +35,11 @@ export function getFiles(conc: string): Requirement[] {
     return file[conc];
 }
 
-export const Common = ({ degreePlan }: { degreePlan: DegreePlan }) => {
+export const CommonRequirement = ({
+    degreePlan
+}: {
+    degreePlan: DegreePlan;
+}) => {
     const concList = getFiles(degreePlan.concentration);
     const allCourses = degreePlan.semesters.flatMap((semester) =>
         semester.courses.map((course) => course)
@@ -82,13 +86,25 @@ export const Common = ({ degreePlan }: { degreePlan: DegreePlan }) => {
                         </h5>
                         <span style={{ color: isFulfilled ? "green" : "red" }}>
                             <strong>
-                                {totalCredits}/{require.number}:{" "}
+                                {totalCredits}/{require.number} credits required{" "}
+                                {breadthList.length !== 0 ? (
+                                    <p>
+                                        Current courses:{" "}
+                                        {breadthList
+                                            .map((course) => course.code)
+                                            .join(", ")}
+                                    </p>
+                                ) : (
+                                    <p>
+                                        Need {require.number} credits from{" "}
+                                        {require.name} courses.
+                                    </p>
+                                )}
                             </strong>
                         </span>
                     </div>
                 );
-            }
-            if (require.type === "CISC3") {
+            } else if (require.type === "CISC3") {
                 const CISC300 = find300(allCourses);
                 const totalCredits: number = CISC300.reduce(
                     (acc, course) => acc + parseInt(course.credits),
@@ -103,13 +119,30 @@ export const Common = ({ degreePlan }: { degreePlan: DegreePlan }) => {
                         </h5>
                         <span style={{ color: isFulfilled ? "green" : "red" }}>
                             <strong>
-                                {totalCredits}/{require.number}:{" "}
+                                {totalCredits}/{require.number}
+                                {isFulfilled ? (
+                                    <p>
+                                        Current courses:{" "}
+                                        {CISC300.map(
+                                            (course) => course.code
+                                        ).join(", ")}
+                                    </p>
+                                ) : (
+                                    <p>
+                                        Need {require.number} credits from 300
+                                        level 300 level.
+                                    </p>
+                                )}
                             </strong>
                         </span>
+                        <br></br>
                     </div>
                 );
-            }
-            if (require.type === "courses") {
+            } else if (require.type === "courses") {
+                const onlyCode = result.map((course) => course.code);
+                const findNotTaking = require.courses.filter(
+                    (course) => !onlyCode.includes(course)
+                );
                 const isFulfilled = result.length === require.number;
                 return (
                     <div key={require.name}>
@@ -121,6 +154,22 @@ export const Common = ({ degreePlan }: { degreePlan: DegreePlan }) => {
                             <strong>
                                 {result.length}/{require.number} {require.type}{" "}
                                 required
+                                {isFulfilled ? (
+                                    <p>
+                                        Current course(s):{" "}
+                                        {onlyCode
+                                            .map((course) => course)
+                                            .join(", ")}
+                                    </p>
+                                ) : (
+                                    <p>
+                                        Need to take{" "}
+                                        {findNotTaking
+                                            .map((course) => course)
+                                            .join(", ")}
+                                        .
+                                    </p>
+                                )}
                             </strong>
                         </span>
                     </div>
@@ -141,6 +190,19 @@ export const Common = ({ degreePlan }: { degreePlan: DegreePlan }) => {
                             <strong>
                                 {totalCredits}/{require.number} {require.type}{" "}
                                 required{" "}
+                                {isFulfilled ? (
+                                    <p>
+                                        Current course(s):{" "}
+                                        {result
+                                            .map((course) => course.code)
+                                            .join(", ")}
+                                    </p>
+                                ) : (
+                                    <p>
+                                        Check out the link for more information
+                                        on required courses.
+                                    </p>
+                                )}
                             </strong>
                         </span>
                     </div>
@@ -152,6 +214,73 @@ export const Common = ({ degreePlan }: { degreePlan: DegreePlan }) => {
     const ConcOutput = concList.map((require) => {
         const result = findSameCourse(allCourses, require.courses);
 
+        if (require.name === "Second Writing Requirement") {
+            const isFulfilled = result.length === require.number;
+            return (
+                <div key={require.name}>
+                    <h5>
+                        {require.name}
+                        {isFulfilled ? " ✔️" : " ❌"}
+                    </h5>
+                    <span style={{ color: isFulfilled ? "green" : "red" }}>
+                        <strong>
+                            {result.length}/{require.number} {require.type}{" "}
+                            required
+                            {isFulfilled ? (
+                                <p>
+                                    Current course(s):{" "}
+                                    {result
+                                        .map((course) => course.code)
+                                        .join(", ")}
+                                </p>
+                            ) : (
+                                <p>
+                                    Check out the link for more information on
+                                    required courses.
+                                </p>
+                            )}
+                        </strong>
+                    </span>
+                </div>
+            );
+        }
+        if (require.name === "Foreign Language") {
+            const onlyCode = result.map((course) => course.code);
+            const findNotTaking = require.courses.filter(
+                (course) => !onlyCode.includes(course)
+            );
+            const isFulfilled = result.length === require.number;
+            return (
+                <div key={require.name}>
+                    <h5>
+                        {require.name}
+                        {isFulfilled ? " ✔️" : " ❌"}
+                    </h5>
+                    <span style={{ color: isFulfilled ? "green" : "red" }}>
+                        <strong>
+                            {result.length}/{require.number} {require.type}{" "}
+                            required
+                            {isFulfilled ? (
+                                <p>
+                                    Current course(s):{" "}
+                                    {onlyCode
+                                        .map((course) => course)
+                                        .join(", ")}
+                                </p>
+                            ) : (
+                                <p>
+                                    Choose {require.number} from{" "}
+                                    {findNotTaking
+                                        .map((course) => course)
+                                        .join(", ")}
+                                    .
+                                </p>
+                            )}
+                        </strong>
+                    </span>
+                </div>
+            );
+        }
         if (require.type === "breadth") {
             const breadthList = findSameType(allCourses, require.name);
             const totalCredits: number = breadthList.reduce(
@@ -167,7 +296,20 @@ export const Common = ({ degreePlan }: { degreePlan: DegreePlan }) => {
                     </h5>
                     <span style={{ color: isFulfilled ? "green" : "red" }}>
                         <strong>
-                            {totalCredits}/{require.number}:{" "}
+                            {totalCredits}/{require.number} credits required{" "}
+                            {breadthList.length !== 0 ? (
+                                <p>
+                                    Current courses:{" "}
+                                    {breadthList
+                                        .map((course) => course.code)
+                                        .join(", ")}
+                                </p>
+                            ) : (
+                                <p>
+                                    Need {require.number} credits in total from{" "}
+                                    {require.name} courses.
+                                </p>
+                            )}
                         </strong>
                     </span>
                 </div>
@@ -188,13 +330,30 @@ export const Common = ({ degreePlan }: { degreePlan: DegreePlan }) => {
                     </h5>
                     <span style={{ color: isFulfilled ? "green" : "red" }}>
                         <strong>
-                            {totalCredits}/{require.number}:{" "}
+                            {totalCredits}/{require.number}
+                            {isFulfilled ? (
+                                <p>
+                                    Current course(s):{" "}
+                                    {CISC300.map((course) => course.code).join(
+                                        ", "
+                                    )}
+                                </p>
+                            ) : (
+                                <p>
+                                    Need {require.number} credits from 300 level
+                                    courses.
+                                </p>
+                            )}
                         </strong>
                     </span>
                 </div>
             );
         }
         if (require.type === "courses") {
+            const onlyCode = result.map((course) => course.code);
+            const findNotTaking = require.courses.filter(
+                (course) => !onlyCode.includes(course)
+            );
             const isFulfilled = result.length === require.number;
             return (
                 <div key={require.name}>
@@ -206,6 +365,22 @@ export const Common = ({ degreePlan }: { degreePlan: DegreePlan }) => {
                         <strong>
                             {result.length}/{require.number} {require.type}{" "}
                             required
+                            {isFulfilled ? (
+                                <p>
+                                    Current course(s):{" "}
+                                    {onlyCode
+                                        .map((course) => course)
+                                        .join(", ")}
+                                </p>
+                            ) : (
+                                <p>
+                                    Choose {findNotTaking.length} from{" "}
+                                    {findNotTaking
+                                        .map((course) => course)
+                                        .join(", ")}
+                                    .
+                                </p>
+                            )}
                         </strong>
                     </span>
                 </div>
@@ -226,6 +401,19 @@ export const Common = ({ degreePlan }: { degreePlan: DegreePlan }) => {
                         <strong>
                             {totalCredits}/{require.number} {require.type}{" "}
                             required{" "}
+                            {isFulfilled ? (
+                                <p>
+                                    Current course(s):{" "}
+                                    {result
+                                        .map((course) => course.code)
+                                        .join(", ")}
+                                </p>
+                            ) : (
+                                <p>
+                                    Check out the link for more information on
+                                    required courses.
+                                </p>
+                            )}
                         </strong>
                     </span>
                 </div>
@@ -239,7 +427,7 @@ export const Common = ({ degreePlan }: { degreePlan: DegreePlan }) => {
             <Container>
                 <Row>
                     {degreePlan.concentration !== "Bachelor of Arts" ? (
-                        <div>
+                        <>
                             <Col>
                                 <h3>Common Requirements:</h3>
                                 {CommonOutput}
@@ -248,7 +436,7 @@ export const Common = ({ degreePlan }: { degreePlan: DegreePlan }) => {
                                 <h3>Concentration Requirements:</h3>
                                 {ConcOutput}
                             </Col>
-                        </div>
+                        </>
                     ) : (
                         <Col>
                             <h3>Concentration Requirements:</h3>

@@ -358,3 +358,8 @@ th {
 .prerequiste-view {
     color: rgb(179, 182, 23);
 }
+
+.requirement-modal {
+    max-width: 60%; 
+    width: auto;   
+  }
