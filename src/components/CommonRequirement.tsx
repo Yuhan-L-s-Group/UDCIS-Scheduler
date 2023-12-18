@@ -86,7 +86,7 @@ export const CommonRequirement = ({
                         </h5>
                         <span style={{ color: isFulfilled ? "green" : "red" }}>
                             <strong>
-                                {totalCredits}/{require.number}
+                                {totalCredits}/{require.number} credits required{" "}
                                 {breadthList.length !== 0 ? (
                                     <p>
                                         Current courses:{" "}
@@ -214,6 +214,73 @@ export const CommonRequirement = ({
     const ConcOutput = concList.map((require) => {
         const result = findSameCourse(allCourses, require.courses);
 
+        if (require.name === "Second Writing Requirement") {
+            const isFulfilled = result.length === require.number;
+            return (
+                <div key={require.name}>
+                    <h5>
+                        {require.name}
+                        {isFulfilled ? " ✔️" : " ❌"}
+                    </h5>
+                    <span style={{ color: isFulfilled ? "green" : "red" }}>
+                        <strong>
+                            {result.length}/{require.number} {require.type}{" "}
+                            required
+                            {isFulfilled ? (
+                                <p>
+                                    Current course(s):{" "}
+                                    {result
+                                        .map((course) => course.code)
+                                        .join(", ")}
+                                </p>
+                            ) : (
+                                <p>
+                                    Check out the link for more information on
+                                    required courses.
+                                </p>
+                            )}
+                        </strong>
+                    </span>
+                </div>
+            );
+        }
+        if (require.name === "Foreign Language") {
+            const onlyCode = result.map((course) => course.code);
+            const findNotTaking = require.courses.filter(
+                (course) => !onlyCode.includes(course)
+            );
+            const isFulfilled = result.length === require.number;
+            return (
+                <div key={require.name}>
+                    <h5>
+                        {require.name}
+                        {isFulfilled ? " ✔️" : " ❌"}
+                    </h5>
+                    <span style={{ color: isFulfilled ? "green" : "red" }}>
+                        <strong>
+                            {result.length}/{require.number} {require.type}{" "}
+                            required
+                            {isFulfilled ? (
+                                <p>
+                                    Current course(s):{" "}
+                                    {onlyCode
+                                        .map((course) => course)
+                                        .join(", ")}
+                                </p>
+                            ) : (
+                                <p>
+                                    Choose {require.number} from{" "}
+                                    {findNotTaking
+                                        .map((course) => course)
+                                        .join(", ")}
+                                    .
+                                </p>
+                            )}
+                        </strong>
+                    </span>
+                </div>
+            );
+        }
         if (require.type === "breadth") {
             const breadthList = findSameType(allCourses, require.name);
             const totalCredits: number = breadthList.reduce(
@@ -229,7 +296,20 @@ export const CommonRequirement = ({
                     </h5>
                     <span style={{ color: isFulfilled ? "green" : "red" }}>
                         <strong>
-                            {totalCredits}/{require.number}:{" "}
+                            {totalCredits}/{require.number} credits required{" "}
+                            {breadthList.length !== 0 ? (
+                                <p>
+                                    Current courses:{" "}
+                                    {breadthList
+                                        .map((course) => course.code)
+                                        .join(", ")}
+                                </p>
+                            ) : (
+                                <p>
+                                    Need {require.number} credits in total from{" "}
+                                    {require.name} courses.
+                                </p>
+                            )}
                         </strong>
                     </span>
                 </div>
@@ -294,7 +374,7 @@ export const CommonRequirement = ({
                                 </p>
                             ) : (
                                 <p>
-                                    Need to take{" "}
+                                    Choose {findNotTaking.length} from{" "}
                                     {findNotTaking
                                         .map((course) => course)
                                         .join(", ")}
