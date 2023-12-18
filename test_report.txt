@@ -10,8 +10,8 @@ FAIL src/App.test.tsx
     ✕ Check home page and welcome window (37 ms)
     ✕ Switch between different concentration (at this point, just check texts) (7 ms)
     ✕ Try to add and delete semester (5 ms)
-    ✕ Add a course that does not exist in the list (7 ms)
-    ✕ Replace with test details (10 ms)
+    ✕ Add a course that does not exist in the list (6 ms)
+    ✕ Replace with test details (5 ms)
     ✕ Test search bar (5 ms)
 
   ● Scheduler Tests › Check home page and welcome window
@@ -452,5 +452,5 @@ All files               |   10.96 |     2.15 |    0.53 |   11.29 |
 Test Suites: 1 failed, 1 total
 Tests:       6 failed, 6 total
 Snapshots:   0 total
-Time:        4.105 s
+Time:        3.921 s
 Ran all test suites.
