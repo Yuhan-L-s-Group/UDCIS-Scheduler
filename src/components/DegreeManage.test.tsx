@@ -1,7 +1,7 @@
 import React from "react";
 import { render, fireEvent } from "@testing-library/react";
 import DegreeManage from "./DegreeManage";
-import { DegreePlan, Concentration } from "../interfaces/degreePlan";
+import { DegreePlan } from "../interfaces/degreePlan";
 
 describe("DegreeManage Component", () => {
     const mockSetisDegreePlanOpen = jest.fn();

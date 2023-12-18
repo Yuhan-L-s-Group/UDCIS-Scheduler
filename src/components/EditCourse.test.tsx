@@ -1,6 +1,5 @@
 import React from "react";
 import { render, fireEvent } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
 import EditCourse from "./EditCourse";
 import { Course } from "../interfaces/course";
 
@@ -37,7 +36,7 @@ describe("EditCourse Component", () => {
     });
 
     test("calls setListCourses on form submission", () => {
-        const { getByText, getByLabelText } = render(
+        const { getByText } = render(
             <EditCourse
                 listCourses={mockCourseList}
                 setListCourses={mockSetListCourses}
